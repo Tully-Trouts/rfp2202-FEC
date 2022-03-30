@@ -38,8 +38,18 @@ git push origin readme_updates
 - [ ] Go to **Github** and submit a _Pull Request_ to **develop**
 - [ ] Ping Slack for code review
 - [ ] **Do not do any more work on a branch with a pending Pull Request**
-- [ ] Cut a new branch (and push it to origin) to begin work on another ticket
 - [ ] Reviewer(s) should **delete** the new branch after merging to prevent stale branches
 
+## What to do when _**starting a new a ticket**_:
+- [ ] Make sure **develop** branch is **up to date** _(make sure to CHECKOUT first!)_:
+```
+git checkout develop
+git pull origin develop
+```
+- [ ] Checkout a **NEW** branch for the new **ticket** you're working on:
+```
+git checkout -b more_readme_updates
+```
 
-
+## What to do _**at the end of the day**_:
+- [ ] Make a final commit, push branch to origin, submit a PR to **develop**
