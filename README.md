@@ -53,3 +53,5 @@ git checkout -b more_readme_updates
 
 ## What to do _**at the end of the day**_:
 - [ ] Make a final commit, push branch to origin, submit a PR to **develop**
+
+Adding new lines
