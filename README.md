@@ -55,3 +55,5 @@ git checkout -b more_readme_updates
 - [ ] Make a final commit, push branch to origin, submit a PR to **develop**
 
 Adding new lines
+
+These are changes to the develop branch
