@@ -32,10 +32,11 @@ app.get('/', (req, res) => {
 // });
 
 app.use('/:loc', (req, res) => {
-  axios(process.env.API_URL + req.params.loc, {
+  // console.log('\n\n', req.originalUrl, '\n\n');
+  axios(process.env.API_URL + req.originalUrl, {
     headers: { Authorization: process.env.API_KEY },
     method: req.method,
-    data: req.data,
+    data: req.body,
   })
     .then((response) => {
       console.log(response.data);
@@ -43,6 +44,7 @@ app.use('/:loc', (req, res) => {
     })
     .catch((err) => {
       console.log('Failed\n', err);
+      res.send('error with our stuff');
     });
 });
 
