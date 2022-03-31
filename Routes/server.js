@@ -10,30 +10,16 @@ const app = express();
 
 app.use(express.json());
 
+app.use(express.static('dist'));
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// API_URL='https://app-hrsei-api.herokuapp.com/api/fec2/rfp//products
-// API_URL='https://app-hrsei-api.herokuapp.com/api/fec2/rfp + products
-
-// app.get('/:location', (req, res) => {
-//   const apiUrl = process.env.API_URL + req.params.location;
-//   axios.get(apiUrl, {
-//     headers: { Authorization: process.env.API_KEY },
-//   })
-//     .then((response) => {
-//       console.log(response.data);
-//       res.send(response.data);
-//     })
-//     .catch((err) => {
-//       console.log('failed', err);
-//     });
-// });
-
-app.use('/:loc', (req, res) => {
-  // console.log('\n\n', req.originalUrl, '\n\n');
-  axios(process.env.API_URL + req.originalUrl, {
+app.use('/api/:loc', (req, res) => {
+  console.log('\n\n', req.originalUrl.split('/api')[1], '\n\n');
+  const location = req.originalUrl.split('/api')[1];
+  axios(process.env.API_URL + location, {
     headers: { Authorization: process.env.API_KEY },
     method: req.method,
     data: req.body,
