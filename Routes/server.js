@@ -10,27 +10,39 @@ const app = express();
 
 app.use(express.json());
 
-// app.set('Authorization', process.env.API_KEY);
-
-// process.env.API_URL
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
 // API_URL='https://app-hrsei-api.herokuapp.com/api/fec2/rfp//products
 // API_URL='https://app-hrsei-api.herokuapp.com/api/fec2/rfp + products
-app.get('/:location', (req, res) => {
-  const apiUrl = process.env.API_URL + req.params.location;
-  axios.get(apiUrl, {
+
+// app.get('/:location', (req, res) => {
+//   const apiUrl = process.env.API_URL + req.params.location;
+//   axios.get(apiUrl, {
+//     headers: { Authorization: process.env.API_KEY },
+//   })
+//     .then((response) => {
+//       console.log(response.data);
+//       res.send(response.data);
+//     })
+//     .catch((err) => {
+//       console.log('failed', err);
+//     });
+// });
+
+app.use('/:loc', (req, res) => {
+  axios(process.env.API_URL + req.params.loc, {
     headers: { Authorization: process.env.API_KEY },
+    method: req.method,
+    data: req.data,
   })
     .then((response) => {
       console.log(response.data);
-      res.send(response.data);
+      res.status(211).send(response.data);
     })
     .catch((err) => {
-      console.log('failed', err);
+      console.log('Failed\n', err);
     });
 });
 
