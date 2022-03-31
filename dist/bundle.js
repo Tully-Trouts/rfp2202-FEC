@@ -2226,6 +2226,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
+      productList: [],
       product: {},
       reviewList: [],
       questionsList: [],
@@ -2233,22 +2234,56 @@ var App = /*#__PURE__*/function (_React$Component) {
       cart: []
     };
     _this.getProductById = _this.getProductById.bind(_assertThisInitialized(_this));
-    _this.getReviewList = _this.getReviewList.bind(_assertThisInitialized(_this));
+    _this.getReviewListById = _this.getReviewListById.bind(_assertThisInitialized(_this));
+    _this.getQuestionsById = _this.getQuestionsById.bind(_assertThisInitialized(_this));
+    _this.getProducts = _this.getProducts.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
-    key: "getProductById",
-    value: function getProductById(id) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/products/".concat(id)).then(function (response) {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getProducts();
+    }
+  }, {
+    key: "getQuestionsById",
+    value: function getQuestionsById(productId) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/qa/questions/', {
+        params: {
+          product_id: productId
+        }
+      }).then(function (response) {
         console.log(response.data);
+
+        _this2.setState({
+          questionsList: response.data
+        });
       })["catch"](function (err) {
         console.log(err);
       });
     }
   }, {
-    key: "getReviewList",
-    value: function getReviewList(productId) {
+    key: "getProductById",
+    value: function getProductById(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/products/".concat(id)).then(function (response) {
+        console.log(response.data);
+
+        _this3.setState({
+          product: response.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: "getReviewListById",
+    value: function getReviewListById(productId) {
+      var _this4 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/reviews/', {
         params: {
           sort: 'relevant',
@@ -2256,27 +2291,59 @@ var App = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (response) {
         console.log(response.data);
+
+        _this4.setState({
+          reviewList: response.data
+        });
       })["catch"](function (err) {
         console.log(err);
       });
     }
   }, {
+    key: "getProducts",
+    value: function getProducts() {
+      var _this5 = this;
+
+      // dev tool only
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/products').then(function (response) {
+        _this5.setState({
+          productList: response.data
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this6 = this;
 
+      var _this$state = this.state,
+          product = _this$state.product,
+          questionsList = _this$state.questionsList,
+          reviewList = _this$state.reviewList,
+          productList = _this$state.productList;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-          htmlFor: "test",
-          children: "Button"
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+          children: "sample products/product IDs for development:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("ul", {
+          children: productList.map(function (element) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
+              children: "".concat(element.id, " - ").concat(element.name)
+            }, element.id);
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           type: "button",
           name: "test",
           onClick: function onClick() {
-            _this2.getReviewList(65635);
+            _this6.getQuestionsById(65635);
           },
           children: " TEST! "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Overview__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Q_A__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Ratings__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RelatedItems__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Overview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          product: product
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Q_A__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          questions: questionsList
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Ratings__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          reviews: reviewList
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RelatedItems__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
       });
     }
   }]);
