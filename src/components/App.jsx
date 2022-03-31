@@ -1,11 +1,27 @@
 import React from 'react';
+import Overview from './Overview.jsx';
+import QnA from './Q&A.jsx';
+import Ratings from './Ratings.jsx';
+import RelatedItems from './RelatedItems.jsx';
 
-const App = function () {
-  return (
-    <div>
-      <h2>Hello World!</h2>
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Overview />
+        <QnA />
+        <Ratings />
+        <RelatedItems />
+      </div>
+    )
+  }
+}
 
 export default App;
