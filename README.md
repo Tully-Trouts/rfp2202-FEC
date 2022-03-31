@@ -1,13 +1,6 @@
 # rfp2202-FEC
-charlie making changes
 
-changes here
-
-
-
-
-
-
+## GIT WORKFLOW
 ## What to do **everyday** _before_ doing **ANY** work:
 - [ ] Make sure your **main** branch is **up to date** _(make sure to CHECKOUT first or you might merge )_:
 ```
@@ -54,6 +47,23 @@ git checkout -b more_readme_updates
 ## What to do _**at the end of the day**_:
 - [ ] Make a final commit, push branch to origin, submit a PR to **develop**
 
-Adding new lines
 
-These are changes to the develop branch
+## Tully Trouts Project Atelier
+Follows suggested plan in Writing a Compelling README in Learn
+
+## Overview
+Fill in brief description of outline.
+
+## Table of Contents
+Link to different sections.
+
+## Description
+More detailed outline.
+
+## Installation
+1. Open an integrated terminal at the package.json level in the file directory
+2. Run `npm install`
+
+
+## Usage
+Further details on how project is meant to be used.
