@@ -1,26 +1,72 @@
 import React from 'react';
-import Overview from './Overview.jsx';
-import QnA from './Q&A.jsx';
-import Ratings from './Ratings.jsx';
-import RelatedItems from './RelatedItems.jsx';
+import axios from 'axios';
+import Overview from './Overview';
+import QnA from './Q&A';
+import Ratings from './Ratings';
+import RelatedItems from './RelatedItems';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productList: [],
+      product: {},
+      outfit: [],
+      cart: [],
+    };
+    this.getProductById = this.getProductById.bind(this);
+    this.getProducts = this.getProducts.bind(this);
+  }
 
-    }
+  componentDidMount() {
+    this.getProducts(); // dev tool only
+  }
+
+  getProductById(id) {
+    axios.get(`/api/products/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          product: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  getProducts() {
+    // dev tool only
+    axios.get('/api/products')
+      .then((response) => {
+        this.setState({
+          productList: response.data,
+        });
+      });
   }
 
   render() {
+    const {
+      product,
+      productList,
+    } = this.state;
     return (
       <div>
-        <Overview />
-        <QnA />
-        <Ratings />
-        <RelatedItems />
+        <h3>sample products/product IDs for development:</h3>
+        <ul>
+          {productList.map((element) => (
+            <li key={element.id}>
+              {`${element.id} - ${element.name}`}
+            </li>
+          ))}
+        </ul>
+        <button type="button" name="test" onClick={() => { this.getProductById(65635); }}> TEST! </button>
+        <Overview product={product} />
+        <QnA productId={product.id} />
+        <Ratings productId={product.id} />
+        <RelatedItems productId={product.id} />
       </div>
-    )
+    );
   }
 }
 
