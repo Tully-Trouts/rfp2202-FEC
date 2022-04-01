@@ -5,9 +5,12 @@ var Overview = ({product}) => {
   return (
     <div>
       <h3>Overview</h3>
-      <span>
-        {product.name}
-      </span>
+      <div className="overview-image-panel">
+        image pane
+      </div>
+      <div className="overview-product-detail-panel">
+        product detail panel
+      </div>
     </div>
   );
 };
