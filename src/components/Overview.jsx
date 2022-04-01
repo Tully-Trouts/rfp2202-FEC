@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 
 var Overview = ({product}) => {
   return (
-    <div>
+    <div id="overview-container">
       <h3>Overview</h3>
-      <span>
-        {product.name}
-      </span>
+      <div id="overview-main">
+        <div className="overview overview-image-panel">
+          ([expanding] image pane)
+        </div>
+        <div className="overview overview-product-information-panel">
+          (product style panel)
+        </div>
+      </div>
+      <div className="overview overview-product-description">
+        (product description - free form text field)
+      </div>
     </div>
   );
 };

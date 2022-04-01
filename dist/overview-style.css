@@ -1,0 +1,25 @@
+.devtool {
+  border-style: solid;
+}
+
+#overview-container {
+  width: 75%;
+  margin: auto;
+  padding: 1em;
+  border-style: solid;
+}
+
+#overview-main {
+  display: flex;
+}
+
+.overview-image-panel {
+  width: 65%;
+}
+
+.overview {
+  margin: 5px;
+  padding: 5px;
+  border-style: solid;
+  font-size: x-small;
+}

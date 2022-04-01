@@ -4,6 +4,7 @@ import Overview from './Overview';
 import QnA from './Q&A';
 import Ratings from './Ratings';
 import RelatedItems from './RelatedItems';
+import Devtool from './Devtool';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,14 +53,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <h3>sample products/product IDs for development:</h3>
-        <ul>
-          {productList.map((element) => (
-            <li key={element.id}>
-              {`${element.id} - ${element.name}`}
-            </li>
-          ))}
-        </ul>
+        <Devtool productList={productList} updateProduct={this.getProductById} />
         <button type="button" name="test" onClick={() => { this.getProductById(65635); }}> TEST! </button>
         <Overview product={product} />
         <QnA productId={product.id} />
