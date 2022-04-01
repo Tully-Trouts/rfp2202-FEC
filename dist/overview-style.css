@@ -9,7 +9,7 @@
   border-style: solid;
 }
 
-#overview-main {
+.overview-main {
   display: flex;
 }
 
@@ -22,4 +22,14 @@
   padding: 5px;
   border-style: solid;
   font-size: x-small;
+}
+
+.overview-product-information-panel {
+  display: flex;
+  flex-flow: column;
+}
+
+.sm {
+  line-height: 1;
+  font-size: smaller;
 }
