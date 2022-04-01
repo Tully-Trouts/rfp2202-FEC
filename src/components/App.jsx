@@ -60,7 +60,7 @@ class App extends React.Component {
             </li>
           ))}
         </ul>
-        <button type="button" name="test" onClick={() => { this.getQuestionsById(65635); }}> TEST! </button>
+        <button type="button" name="test" onClick={() => { this.getProductById(65635); }}> TEST! </button>
         <Overview product={product} />
         <QnA productId={product.id} />
         <Ratings productId={product.id} />

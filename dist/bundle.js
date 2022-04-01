@@ -2289,7 +2289,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           type: "button",
           name: "test",
           onClick: function onClick() {
-            _this4.getQuestionsById(65635);
+            _this4.getProductById(65635);
           },
           children: " TEST! "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Overview__WEBPACK_IMPORTED_MODULE_2__["default"], {
