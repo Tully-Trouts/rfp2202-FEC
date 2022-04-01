@@ -19,8 +19,8 @@ class Question_List extends Component {
     return (
       <div className='Question_List'>
         sussy
-        {questionList.map((question) =>
-          <Question question={this.props.question} />
+        {this.props.questionList.map((question) =>
+          <Question question={question} />
         )}
       </div>
     );

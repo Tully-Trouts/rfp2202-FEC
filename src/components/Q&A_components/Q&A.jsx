@@ -7,7 +7,7 @@ class QnA extends Component {
     super(props);
     this.state = {
       productId: 65631, //this.props.productId for production phase
-      questionsList: [1,2,3,4,5]
+      questionList: [{body:'Q1'},{body:'Q2'},{body:'Q3'}]
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
@@ -15,7 +15,7 @@ class QnA extends Component {
 
   componentDidMount() {
     // const {getQuestionsById, state} = this;
-    // const {questionsList} = state;
+    // const {questionList} = state;
     // getQuestionsById(questionsList);
   }
 
@@ -27,7 +27,7 @@ class QnA extends Component {
     })
       .then((response) => {
         this.setState({
-          questionsList: response.data.results
+          questionList: response.data.results
         });
       })
       .catch((err) => {

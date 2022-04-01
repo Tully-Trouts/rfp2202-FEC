@@ -12,7 +12,7 @@ class Question extends Component {
     // const {question} = this.props;
     return (
       <div>
-        {this.props.question}
+        {this.props.question.body}
       </div>
     );
   }
