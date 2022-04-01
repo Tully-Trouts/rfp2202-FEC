@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class QnA extends React.Component {
   constructor(props) {
@@ -6,7 +7,13 @@ class QnA extends React.Component {
     this.state = {
       questionsList: [],
     };
+
     this.getQuestionsById = this.getQuestionsById.bind(this);
+  }
+
+  componentDidMount() {
+    this.getQuestionsById(65631);
+    console.log(this.getQuestionsById(65631))
   }
 
   getQuestionsById(productId) {
@@ -28,7 +35,10 @@ class QnA extends React.Component {
 
   render() {
     return (
-      <div>QUESTIONS AND ANSWERS</div>
+      <div className='QnA_section'>
+        <h3 className='QnA_title'>Questions and Answers</h3>
+        <div></div>
+      </div>
     )
   }
 }
