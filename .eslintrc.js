@@ -4,11 +4,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'airbnb/hooks',
-  ],
+  extends: './node_modules/eslint-config-hackreactor/index.js',
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -23,4 +19,3 @@ module.exports = {
   rules: {
   },
 };
-

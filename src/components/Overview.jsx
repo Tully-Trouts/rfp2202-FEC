@@ -1,17 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class Overview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
+var Overview = ({product}) => {
+  return (
+    <div>
+      <h3>Overview</h3>
+      <span>
+        {product.name}
+      </span>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>OVERVIEW</div>
-    )
-  }
-}
+Overview.propTypes = {
+  product: PropTypes.object.isRequired,
+};
 
 export default Overview;
