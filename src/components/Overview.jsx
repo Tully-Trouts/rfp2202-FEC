@@ -16,12 +16,13 @@ var Overview = ({product}) => {
   }
 
   var getProductReviewMetadata = (id) => {
-    axios.get('/reviews/meta', {
+    axios.get('api/reviews/meta', {
       params: {
         'product_id': id,
       }
     })
       .then((response) => {
+        console.log(response.data);
         getAvgRating(response.data);
       })
       .catch((err) => {
