@@ -2228,14 +2228,10 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       productList: [],
       product: {},
-      reviewList: [],
-      questionsList: [],
       outfit: [],
       cart: []
     };
     _this.getProductById = _this.getProductById.bind(_assertThisInitialized(_this));
-    _this.getReviewListById = _this.getReviewListById.bind(_assertThisInitialized(_this));
-    _this.getQuestionsById = _this.getQuestionsById.bind(_assertThisInitialized(_this));
     _this.getProducts = _this.getProducts.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -2243,57 +2239,18 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getProducts();
-    }
-  }, {
-    key: "getQuestionsById",
-    value: function getQuestionsById(productId) {
-      var _this2 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/qa/questions/', {
-        params: {
-          product_id: productId
-        }
-      }).then(function (response) {
-        console.log(response.data);
-
-        _this2.setState({
-          questionsList: response.data
-        });
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      this.getProducts(); // dev tool only
     }
   }, {
     key: "getProductById",
     value: function getProductById(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/products/".concat(id)).then(function (response) {
         console.log(response.data);
 
-        _this3.setState({
+        _this2.setState({
           product: response.data
-        });
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    }
-  }, {
-    key: "getReviewListById",
-    value: function getReviewListById(productId) {
-      var _this4 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/reviews/', {
-        params: {
-          sort: 'relevant',
-          product_id: productId
-        }
-      }).then(function (response) {
-        console.log(response.data);
-
-        _this4.setState({
-          reviewList: response.data
         });
       })["catch"](function (err) {
         console.log(err);
@@ -2302,11 +2259,11 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getProducts",
     value: function getProducts() {
-      var _this5 = this;
+      var _this3 = this;
 
       // dev tool only
       axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/products').then(function (response) {
-        _this5.setState({
+        _this3.setState({
           productList: response.data
         });
       });
@@ -2314,12 +2271,10 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           product = _this$state.product,
-          questionsList = _this$state.questionsList,
-          reviewList = _this$state.reviewList,
           productList = _this$state.productList;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
@@ -2334,16 +2289,18 @@ var App = /*#__PURE__*/function (_React$Component) {
           type: "button",
           name: "test",
           onClick: function onClick() {
-            _this6.getQuestionsById(65635);
+            _this4.getQuestionsById(65635);
           },
           children: " TEST! "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Overview__WEBPACK_IMPORTED_MODULE_2__["default"], {
           product: product
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Q_A__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          questions: questionsList
+          productId: product.id
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Ratings__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          reviews: reviewList
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RelatedItems__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
+          productId: product.id
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RelatedItems__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          productId: product.id
+        })]
       });
     }
   }]);
@@ -2475,11 +2432,33 @@ var QnA = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, QnA);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      questionsList: []
+    };
+    _this.getQuestionsById = _this.getQuestionsById.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(QnA, [{
+    key: "getQuestionsById",
+    value: function getQuestionsById(productId) {
+      var _this2 = this;
+
+      axios.get('/api/qa/questions/', {
+        params: {
+          product_id: productId
+        }
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this2.setState({
+          questionsList: response.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -2545,11 +2524,34 @@ var Ratings = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Ratings);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      reviewList: []
+    };
+    _this.getReviewListById = _this.getReviewListById.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Ratings, [{
+    key: "getReviewListById",
+    value: function getReviewListById(productId) {
+      var _this2 = this;
+
+      axios.get('/api/reviews/', {
+        params: {
+          sort: 'relevant',
+          product_id: productId
+        }
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this2.setState({
+          reviewList: response.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {

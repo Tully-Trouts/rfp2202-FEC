@@ -11,36 +11,15 @@ class App extends React.Component {
     this.state = {
       productList: [],
       product: {},
-      reviewList: [],
-      questionsList: [],
       outfit: [],
       cart: [],
     };
     this.getProductById = this.getProductById.bind(this);
-    this.getReviewListById = this.getReviewListById.bind(this);
-    this.getQuestionsById = this.getQuestionsById.bind(this);
     this.getProducts = this.getProducts.bind(this);
   }
 
   componentDidMount() {
-    this.getProducts();
-  }
-
-  getQuestionsById(productId) {
-    axios.get('/api/qa/questions/', {
-      params: {
-        product_id: productId,
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          questionsList: response.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getProducts(); // dev tool only
   }
 
   getProductById(id) {
@@ -49,24 +28,6 @@ class App extends React.Component {
         console.log(response.data);
         this.setState({
           product: response.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  getReviewListById(productId) {
-    axios.get('/api/reviews/', {
-      params: {
-        sort: 'relevant',
-        product_id: productId,
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          reviewList: response.data,
         });
       })
       .catch((err) => {
@@ -87,8 +48,6 @@ class App extends React.Component {
   render() {
     const {
       product,
-      questionsList,
-      reviewList,
       productList,
     } = this.state;
     return (
@@ -103,9 +62,9 @@ class App extends React.Component {
         </ul>
         <button type="button" name="test" onClick={() => { this.getQuestionsById(65635); }}> TEST! </button>
         <Overview product={product} />
-        <QnA questions={questionsList} />
-        <Ratings reviews={reviewList} />
-        <RelatedItems />
+        <QnA productId={product.id} />
+        <Ratings productId={product.id} />
+        <RelatedItems productId={product.id} />
       </div>
     );
   }
