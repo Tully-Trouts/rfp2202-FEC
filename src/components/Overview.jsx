@@ -9,30 +9,32 @@ var Overview = ({product}) => {
     let totalRatings = 0;
     let sum = 0;
     for (var star = 1; star <= 5; star += 1) {
-      totalRatings += reviewMetadata.ratings[star];
-      sum += reviewMetadata.ratings[star] * star;
+      console.log(reviewMetadata.ratings)
+      totalRatings += Number(reviewMetadata.ratings[star] || 0);
+      sum += Number(reviewMetadata.ratings[star] || 0) * star;
+      console.log(sum, totalRatings);
     }
     setAvgRating(sum / totalRatings);
   }
 
   var getProductReviewMetadata = (id) => {
-    axios.get('api/reviews/meta', {
-      params: {
-        'product_id': id,
-      }
-    })
-      .then((response) => {
-        console.log(response.data);
-        getAvgRating(response.data);
+    if (!!id) {
+      axios.get('api/reviews/meta', {
+        params: {
+          'product_id': id,
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((response) => {
+          console.log(response.data);
+          getAvgRating(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
-  if (product.id !== undefined) {
-    getProductReviewMetadata(product.id);
-  }
+  getProductReviewMetadata(product.id);
 
   return (
     <div id="overview-container">
