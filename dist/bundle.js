@@ -2377,14 +2377,17 @@ var Overview = function Overview(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
       children: "Overview"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      id: "overview",
+      id: "overview-main",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "overview-image-panel",
-        children: "image pane"
+        className: "overview overview-image-panel",
+        children: "([expanding] image pane)"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "overview-product-detail-panel",
-        children: "product detail panel"
+        className: "overview overview-product-information-panel",
+        children: "(product style panel)"
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "overview overview-product-description",
+      children: "(product description - free form text field)"
     })]
   });
 };
