@@ -9,12 +9,10 @@ var Overview = ({product}) => {
     let totalRatings = 0;
     let sum = 0;
     for (var star = 1; star <= 5; star += 1) {
-      console.log(reviewMetadata.ratings)
       totalRatings += Number(reviewMetadata.ratings[star] || 0);
       sum += Number(reviewMetadata.ratings[star] || 0) * star;
-      console.log(sum, totalRatings);
     }
-    setAvgRating(sum / totalRatings);
+    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings));
   }
 
   var getProductReviewMetadata = (id) => {
@@ -34,7 +32,9 @@ var Overview = ({product}) => {
     }
   };
 
-  getProductReviewMetadata(product.id);
+  React.useEffect(() => {
+    getProductReviewMetadata(product.id);
+  });
 
   return (
     <div id="overview-container">
