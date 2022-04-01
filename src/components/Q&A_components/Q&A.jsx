@@ -6,16 +6,17 @@ class QnA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionsList: [],
+      productId: 65631, //this.props.productId for production phase
+      questionsList: [1,2,3,4,5]
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      questionsList: this.getQuestionsById(65631)
-    });
+    // const {getQuestionsById, state} = this;
+    // const {questionsList} = state;
+    // getQuestionsById(questionsList);
   }
 
   getQuestionsById(productId) {
@@ -25,9 +26,8 @@ class QnA extends Component {
       },
     })
       .then((response) => {
-        console.log(response.data);
         this.setState({
-          questionsList: response.data,
+          questionsList: response.data.results
         });
       })
       .catch((err) => {
@@ -36,11 +36,11 @@ class QnA extends Component {
   }
 
   render() {
-    const {questionList} = this.state;
+    // const {questionList} = this.state;
     return (
       <div className='QnA_section'>
         <h3 className='QnA_title'>Questions and Answers</h3>
-        <Question_List questionList={questionList}/>
+        <Question_List questionList={this.state.questionList}/>
       </div>
     )
   }

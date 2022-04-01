@@ -9,8 +9,13 @@ class Question extends Component {
   }
 
   render() {
+    // const {question} = this.props;
     return (
-      
+      <div>
+        {this.props.question}
+      </div>
     );
   }
 }
+
+export default Question;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Question from './Question';
 
 class Question_List extends Component {
   constructor(props) {
@@ -13,8 +14,15 @@ class Question_List extends Component {
   }
 
   render() {
+    // const {questionList} = this.props;
+    console.log(questionList)
     return (
-      <div>{JSON.stringify(this.props.questionList)}</div>
+      <div className='Question_List'>
+        sussy
+        {questionList.map((question) =>
+          <Question question={this.props.question} />
+        )}
+      </div>
     );
   }
 }
