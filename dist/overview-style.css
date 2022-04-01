@@ -1,0 +1,8 @@
+#overview-container {
+  width: 75%;
+  margin: auto;
+}
+
+#overview {
+  display: flex;
+}
