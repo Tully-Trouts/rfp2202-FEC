@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
+import Question_List from './Question_List';
 
-class QnA extends React.Component {
+class QnA extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,8 +13,9 @@ class QnA extends React.Component {
   }
 
   componentDidMount() {
-    this.getQuestionsById(65631);
-    console.log(this.getQuestionsById(65631))
+    this.setState({
+      questionsList: this.getQuestionsById(65631)
+    });
   }
 
   getQuestionsById(productId) {
@@ -34,10 +36,11 @@ class QnA extends React.Component {
   }
 
   render() {
+    const {questionList} = this.state;
     return (
       <div className='QnA_section'>
         <h3 className='QnA_title'>Questions and Answers</h3>
-        <div></div>
+        <Question_List questionList={questionList}/>
       </div>
     )
   }
