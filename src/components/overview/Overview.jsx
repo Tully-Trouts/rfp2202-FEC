@@ -93,6 +93,7 @@ var Overview = ({product}) => {
       </div>
       <div className="overview overview-product-description">
         [product description - free form text field]
+        {product.description}
       </div>
     </div>
   );
