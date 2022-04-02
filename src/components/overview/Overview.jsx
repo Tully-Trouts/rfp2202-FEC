@@ -1,10 +1,14 @@
 import React from 'react';
+import StyleSelector from './StyleSelector';
+import Gallery from './Gallery';
+import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
   const [styles, setStyles] = React.useState([]);
+  const [selectedStyle, setSelectedStyle] = React.useState({});
 
   var getAvgRating = (reviewMetadata) => {
     let totalRatings = 0;
@@ -37,8 +41,9 @@ var Overview = ({product}) => {
     if (!!id) {
       axios.get(`api/products/${id}/styles`)
         .then(({data}) => {
-          console.log('styles:', data);
+          console.log('styles:', data.results);
           setStyles(data.results);
+          setSelectedStyle(data.results.find((element) => element['default?']));
         })
         .catch((err) => {
           console.log(err);
@@ -69,19 +74,8 @@ var Overview = ({product}) => {
           <span className="category">{product.category}</span>
           <span className="product-title">{product.name}</span>
           <span className="price">{product.default_price}</span>
-          <div className="overview overview-style-selector">
-            [style selector]
-            <div className="overview sm color-selector">
-              [color selector (radio inputs)]
-              {styles.map((element) => (<li key={element.style_id}>{element.name}</li>))}
-            </div>
-          </div>
-          <div className="overview overview-cart-selector">
-            [cart selector]
-            <div className="overview sm cart-selector">
-              [size select] [qty select]
-            </div>
-          </div>
+          <StyleSelector styles={styles} />
+          <CartSelector skus={selectedStyle.skus} />
           <div className="overview overview-favorites-selector">
             [bag and favorite selector]
             <div className="overview sm favorites-selector">
@@ -92,6 +86,7 @@ var Overview = ({product}) => {
       </div>
       <div className="overview overview-product-description">
         [product description - free form text field]
+        {product.description}
       </div>
     </div>
   );

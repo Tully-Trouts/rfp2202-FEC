@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Overview from './Overview';
+import Overview from './overview/Overview';
 import QnA from './Q&A';
 import Ratings from './Ratings';
 import RelatedItems from './RelatedItems';

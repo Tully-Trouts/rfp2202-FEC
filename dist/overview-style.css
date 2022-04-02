@@ -14,6 +14,7 @@
 }
 
 .overview-image-panel {
+  /* will need to figure out how make this dynamic */
   width: 65%;
 }
 
