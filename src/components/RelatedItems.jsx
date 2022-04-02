@@ -10,7 +10,9 @@ class RelatedItems extends React.Component {
 
   render() {
     return (
-      <div>RELATED ITEMS</div>
+      <h1>
+        hello world React!
+      </h1>
     )
   }
 }
