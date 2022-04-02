@@ -3,7 +3,9 @@ import React from 'react';
 var CartSelector = ({skus}) => {
   var sizes = (skus) => {
     return (skus ?
-      Object.keys(skus).map((element) => (<option>{skus[element].size}</option>)) :
+      Object.keys(skus).map((element) => (
+        <option key={element}>{skus[element].size}</option>
+      )) :
       <option>Sold out!</option>);
   };
   return (
@@ -11,9 +13,7 @@ var CartSelector = ({skus}) => {
       [cart selector]
       <div className="overview sm cart-selector">
         <select>
-          {skus ?
-            Object.keys(skus).map((element) => (<option>{skus[element].size}</option>)) :
-            <option>Sold out!</option>}
+          {sizes(skus)}
         </select>
       </div>
     </div>
