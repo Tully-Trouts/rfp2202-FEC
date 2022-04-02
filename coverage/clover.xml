@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648860624146" clover="3.2.0">
-  <project timestamp="1648860624146" name="All files">
+<coverage generated="1648861331433" clover="3.2.0">
+  <project timestamp="1648861331433" name="All files">
     <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="8" coveredelements="8" complexity="0" loc="5" ncloc="5" packages="2" files="2" classes="2"/>
     <package name="rfp2202-FEC">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="sum.js" path="/Users/charliebailey24/rfp2202/rfp2202-FEC/sum.js">
+      <file name="sum.js" path="/Users/jerremystroman/Hackreactor/rfp2202-FEC/sum.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -12,7 +12,7 @@
     </package>
     <package name="rfp2202-FEC.src.components">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="RelatedItems.jsx" path="/Users/charliebailey24/rfp2202/rfp2202-FEC/src/components/RelatedItems.jsx">
+      <file name="RelatedItems.jsx" path="/Users/jerremystroman/Hackreactor/rfp2202-FEC/src/components/RelatedItems.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
