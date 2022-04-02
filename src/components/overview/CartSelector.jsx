@@ -6,13 +6,14 @@ var CartSelector = ({skus}) => {
       Object.keys(skus).map((element) => (
         <option key={element}>{skus[element].size}</option>
       )) :
-      <option>Sold out!</option>);
+      <option>OUT OF STOCK</option>);
   };
   return (
     <div className="overview overview-cart-selector">
       [cart selector]
       <div className="overview sm cart-selector">
         <select>
+          <option defaultValue={true}>Select Size</option>
           {sizes(skus)}
         </select>
       </div>
