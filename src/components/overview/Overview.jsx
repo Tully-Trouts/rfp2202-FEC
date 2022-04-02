@@ -8,6 +8,7 @@ import axios from 'axios';
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
   const [styles, setStyles] = React.useState([]);
+  const [selectedStyle, setSelectedStyle] = React.useState({});
 
   var getAvgRating = (reviewMetadata) => {
     let totalRatings = 0;
@@ -40,8 +41,9 @@ var Overview = ({product}) => {
     if (!!id) {
       axios.get(`api/products/${id}/styles`)
         .then(({data}) => {
-          console.log('styles:', data);
+          console.log('styles:', data.results);
           setStyles(data.results);
+          setSelectedStyle(data.results.find((element) => element['default?']));
         })
         .catch((err) => {
           console.log(err);
@@ -73,7 +75,7 @@ var Overview = ({product}) => {
           <span className="product-title">{product.name}</span>
           <span className="price">{product.default_price}</span>
           <StyleSelector styles={styles} />
-          <CartSelector styles={styles} />
+          <CartSelector skus={selectedStyle.skus} />
           <div className="overview overview-favorites-selector">
             [bag and favorite selector]
             <div className="overview sm favorites-selector">

@@ -1,11 +1,19 @@
 import React from 'react';
 
-var CartSelector = ({styles}) => {
+var CartSelector = ({skus}) => {
+  const [skuList, setSkuList] = React.useState([]);
+
+  if (!!skus) {
+    setSkuList(skus);
+  }
+
   return (
     <div className="overview overview-cart-selector">
       [cart selector]
       <div className="overview sm cart-selector">
-        [size select] [qty select]
+        <select>
+          {skuList.map((element) => (<option>{element.size}</option>))}
+        </select>
       </div>
     </div>
   );
