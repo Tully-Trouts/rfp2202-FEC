@@ -1,18 +1,21 @@
 import React from 'react';
 
 var CartSelector = ({skus}) => {
-  const [skuList, setSkuList] = React.useState([]);
+  const [available, setAvailable] = React.useState(false);
+  let skuList = [];
 
-  if (!!skus) {
-    setSkuList(skus);
-  }
-
+  React.useEffect(() => {
+    setAvailable(!!skus);
+  });
+  //{skuList.map((element) => (<option>{element.size}</option>))}
   return (
     <div className="overview overview-cart-selector">
       [cart selector]
       <div className="overview sm cart-selector">
         <select>
-          {skuList.map((element) => (<option>{element.size}</option>))}
+          {available ?
+            Object.keys(skus).map((element) => (<option>{skus[element].size}</option>)) :
+            <option>sold out</option>}
         </select>
       </div>
     </div>
