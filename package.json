@@ -26,8 +26,8 @@
     "express": "^4.17.3",
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "style-components": "^0.1.0",
     "styled-components": "^5.3.5"
   },
