@@ -14,7 +14,7 @@ var Overview = ({product}) => {
       sum += Number(reviewMetadata.ratings[star] || 0) * star;
     }
     setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings));
-  }
+  };
 
   var getProductReviewMetadata = (id) => {
     if (!!id) {
@@ -45,10 +45,10 @@ var Overview = ({product}) => {
         });
     }
 
-  }
+  };
 
   // Passing in an array as second argument to useEffect causes react to check that prop
-    // for changes before using th effect again. This is to prevent infinite loop
+  //  for changes before using th effect again. This is to prevent infinite loop
   React.useEffect(() => {
     getProductReviewMetadata(product.id);
     getProductStyles(product.id);
@@ -71,15 +71,22 @@ var Overview = ({product}) => {
           <span className="price">{product.default_price}</span>
           <div className="overview overview-style-selector">
             [style selector]
-            <div className="overview color-selector sm">
+            <div className="overview sm color-selector">
               [color selector (radio inputs)]
+              {styles.map((element) => (<li key={element.style_id}>{element.name}</li>))}
             </div>
           </div>
-          <div className="overview cart-selector sm">
+          <div className="overview overview-cart-selector">
             [cart selector]
+            <div className="overview sm cart-selector">
+              [size select] [qty select]
+            </div>
           </div>
-          <div className="overview favorites-selector sm">
+          <div className="overview overview-favorites-selector">
             [bag and favorite selector]
+            <div className="overview sm favorites-selector">
+              [Add to bag btn] [heart btn]
+            </div>
           </div>
         </div>
       </div>
