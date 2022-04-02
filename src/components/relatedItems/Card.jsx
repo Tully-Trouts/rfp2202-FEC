@@ -12,6 +12,7 @@ class Card extends React.Component {
         <span className="preview-image">[preview image]</span>
         <div className="product-info">
           <h6 className="category">CATEGORY</h6>
+          <h6>{this.props.productId}</h6>
           <div className="name">[product name]</div>
           <div className="price">[price]</div>
           <div className="rating"> [rating]</div>

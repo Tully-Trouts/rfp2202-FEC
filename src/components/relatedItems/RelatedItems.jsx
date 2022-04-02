@@ -10,7 +10,6 @@ class RelatedItems extends React.Component {
   }
 
   render() {
-    console.log('productId in RI:::', this.props.productId);
     return (
       <div id="related-items-container">
         <h5>RELATED PRODUCTS</h5>

@@ -24,16 +24,16 @@ class App extends React.Component {
   }
 
   getProductById(id) {
-    axios.get(`/api/products/${id}`)
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          product: response.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios.get(`/api/products/${id}`)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     this.setState({
+    //       product: response.data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   getProducts() {
@@ -58,7 +58,7 @@ class App extends React.Component {
         <Overview product={product} />
         <QnA productId={product.id} />
         <Ratings productId={product.id} />
-        <RelatedItems getProductById={this.getProductById} productId={65635} />
+        <RelatedItems getProductById={this.getProductById} productId={product.id} />
       </div>
     );
   }
