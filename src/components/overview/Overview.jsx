@@ -1,5 +1,7 @@
 import React from 'react';
 import StyleSelector from './StyleSelector';
+import Gallery from './Gallery';
+import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -70,19 +72,8 @@ var Overview = ({product}) => {
           <span className="category">{product.category}</span>
           <span className="product-title">{product.name}</span>
           <span className="price">{product.default_price}</span>
-          <div className="overview overview-style-selector">
-            [style selector]
-            <div className="overview sm color-selector">
-              [color selector (radio inputs)]
-              {styles.map((element) => (<li key={element.style_id}>{element.name}</li>))}
-            </div>
-          </div>
-          <div className="overview overview-cart-selector">
-            [cart selector]
-            <div className="overview sm cart-selector">
-              [size select] [qty select]
-            </div>
-          </div>
+          <StyleSelector styles={styles} />
+          <CartSelector styles={styles} />
           <div className="overview overview-favorites-selector">
             [bag and favorite selector]
             <div className="overview sm favorites-selector">
