@@ -24,6 +24,8 @@ class CardList extends React.Component {
   // }
 
   componentDidMount() {
+    // FOR DEV: testing with fixed if
+    // Need to pass in this.props.productId
     axios.get(`api/products/${65635}/related`)
       .then((response) => {
         console.log('response:::', response);
