@@ -1,0 +1,21 @@
+#related-items-container {
+  width: 75%;
+  height: 300px;
+  margin: auto;
+  padding: 1em;
+  border-style: solid;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  height: 75%;
+  width: 200px;
+  margin: 5px;
+  padding: 5px;
+  border-style: solid;
+}
