@@ -1,4 +1,5 @@
 import React from 'react';
+import StyleSelector from './StyleSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
