@@ -4,6 +4,7 @@ import axios from 'axios';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
+  const [styles, setStyles] = React.useState([]);
 
   var getAvgRating = (reviewMetadata) => {
     let totalRatings = 0;
@@ -23,7 +24,7 @@ var Overview = ({product}) => {
         }
       })
         .then((response) => {
-          console.log(response.data);
+          console.log('review metadata:', response.data);
           getAvgRating(response.data);
         })
         .catch((err) => {
@@ -32,9 +33,26 @@ var Overview = ({product}) => {
     }
   };
 
+  var getProductStyles = (id) => {
+    if (!!id) {
+      axios.get(`api/products/${id}/styles`)
+        .then(({data}) => {
+          console.log('styles:', data);
+          setStyles(data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+  }
+
+  // Passing in an array as second argument to useEffect causes react to check that prop
+    // for changes before using th effect again. This is to prevent infinite loop
   React.useEffect(() => {
     getProductReviewMetadata(product.id);
-  });
+    getProductStyles(product.id);
+  }, [product.id]);
 
   return (
     <div id="overview-container">
@@ -46,7 +64,7 @@ var Overview = ({product}) => {
         <div className="overview overview-product-information-panel">
           [product information panel]
           <div className="overview product-review sm">
-            [product review]
+            [product review: {avgRating}]
           </div>
           <span className="category">{product.category}</span>
           <span className="product-title">{product.name}</span>
