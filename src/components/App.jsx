@@ -1,7 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import Overview from './Overview';
 import QnA from './Q&A_components/Q&A';
+=======
+import Overview from './overview/Overview';
+import QnA from './Q&A';
+>>>>>>> 9ee3cc650cabbf30908d53babb640ef0dce25283
 import Ratings from './Ratings';
 import RelatedItems from './RelatedItems';
 import Devtool from './Devtool';
