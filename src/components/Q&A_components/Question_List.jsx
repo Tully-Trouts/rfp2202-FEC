@@ -9,21 +9,16 @@ class Question_List extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log(this.props.questionList);
-  }
-
   render() {
-    // const {questionList} = this.props;
-    console.log(questionList)
+    const {questions} = this.props;
+    
     return (
       <div className='Question_List'>
-        sussy
-        {this.props.questionList.map((question) =>
-          <Question question={question} />
+        {questions.map((question) =>
+          <Question question={question} key={question.question_id} />
         )}
       </div>
-    );
+    )
   }
 }
 
