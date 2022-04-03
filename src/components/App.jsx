@@ -24,16 +24,17 @@ class App extends React.Component {
   }
 
   getProductById(id) {
-    // axios.get(`/api/products/${id}`)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     this.setState({
-    //       product: response.data,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    console.log('product id in getProductById:::', id);
+    axios.get(`/api/products/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          product: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   getProducts() {

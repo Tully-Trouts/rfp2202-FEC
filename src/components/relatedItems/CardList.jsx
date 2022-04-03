@@ -9,26 +9,14 @@ class CardList extends React.Component {
     this.state = {
       relatedItems: []
     };
-    // this.testRelatedItems = this.testRelatedItems.bind(this);
   }
 
-  // testRelatedItems(id) {
-  //   axios.get(`api/products/${id}/related`)
-  //     .then((response) => {
-  //       console.log('response:::', response);
-  //       this.setState({relatedItems: reponse.data});
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
   componentDidMount() {
-    // FOR DEV: testing with fixed if
-    // Need to pass in this.props.productId
-    axios.get(`api/products/${65635}/related`)
+    // FOR DEV: need to remove hard coded  productId
+    const { productId } = this.props;
+
+    axios.get(`api/products/${productId || 65635}/related`)
       .then((response) => {
-        console.log('response:::', response);
         this.setState({relatedItems: response.data});
       })
       .catch((err) => {
