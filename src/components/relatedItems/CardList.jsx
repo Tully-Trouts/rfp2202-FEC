@@ -26,11 +26,13 @@ class CardList extends React.Component {
   }
 
   render() {
-
-    const cardList = this.state.relatedItems.map((productId) => {
+    const { relatedItems } = this.state;
+    const { getProductById } = this.props;
+    let uniqueItems = [...new Set(relatedItems)];
+    const cardList = uniqueItems.map((productId) => {
       return (
         <div className="card">
-          <Card productId={productId} getProductById={this.props.getProductById}/>
+          <Card key={productId.toString()} productId={productId} getProductById={getProductById}/>
         </div>
 
       );
