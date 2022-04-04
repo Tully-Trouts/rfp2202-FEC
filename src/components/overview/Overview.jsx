@@ -64,7 +64,7 @@ var Overview = ({product}) => {
     <div id="overview-container">
       <h3>Overview</h3>
       <div className="overview overview-main">
-        <Gallery style={selectedStyle} />
+        <Gallery photos={selectedStyle.photos} />
         <div className="overview overview-product-information-panel">
           [product information panel]
           <div className="overview product-review sm">
