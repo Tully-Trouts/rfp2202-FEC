@@ -43,6 +43,7 @@ var Overview = ({product}) => {
         .then(({data}) => {
           console.log('styles:', data.results);
           setStyles(data.results);
+          // setting the default style
           setSelectedStyle(data.results.find((element) => element['default?']));
         })
         .catch((err) => {
@@ -72,16 +73,10 @@ var Overview = ({product}) => {
             [product review: {avgRating}]
           </div>
           <span className="category">{product.category}</span>
-          <span className="product-title">{product.name}</span>
+          <span className="product-title"><h1>{product.name}</h1></span>
           <span className="price">{product.default_price}</span>
           <StyleSelector styles={styles} />
           <CartSelector skus={selectedStyle.skus} />
-          <div className="overview overview-favorites-selector">
-            [bag and favorite selector]
-            <div className="overview sm favorites-selector">
-              [Add to bag btn] [heart btn]
-            </div>
-          </div>
         </div>
       </div>
       <div className="overview overview-product-description">
