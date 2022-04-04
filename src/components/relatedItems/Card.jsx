@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ComparisonModal from './ComparisonModal';
 
 class Card extends React.Component {
   constructor(props) {
@@ -10,14 +11,23 @@ class Card extends React.Component {
       originalPrice: '',
       salePrice: '',
       previewImg: '',
-      avgRating: ''
+      avgRating: '',
+      show: false,
     };
     this.getAllInfo = this.getAllInfo.bind(this);
     this.getAvgRating = this.getAvgRating.bind(this);
+    this.handleModalClick = this.handleModalClick.bind(this);
   }
 
   componentDidMount() {
     this.getAllInfo();
+  }
+
+  handleModalClick() {
+    console.log('handleModalClick is triggering');
+    this.setState({show: !this.state.show}, () => {
+      console.log('state after modal click:::', this.state);
+    });
   }
 
   getAvgRating(ratings) {
@@ -92,18 +102,22 @@ class Card extends React.Component {
   render() {
 
     const { productId } = this.props;
-    const { name, category, originalPrice, salePrice, previewImg, avgRating } = this.state;
+    const { name, category, originalPrice, salePrice, previewImg, avgRating, show } = this.state;
 
     // need to fix aspect ratio for images
     return (
-      <div className="inner-card" onClick={() => (this.props.getProductById(productId))}>
+      <div>
         <span>[product id: {productId}]</span>
-        <img className="preview-image" src={previewImg}/>
-        <div className="product-info">
-          <h6 className="category">{category}</h6>
-          <div className="name">{name}</div>
-          <div className="price">${salePrice || originalPrice}</div>
-          <div className="rating">Rating: {avgRating}</div>
+        <button className="modal-button" type="button" name="modal" onClick={this.handleModalClick}>modal</button>
+        <div className="inner-card" onClick={() => (this.props.getProductById(productId))}>
+          <ComparisonModal show={show}/>
+          <img className="preview-image" src={previewImg}/>
+          <div className="product-info">
+            <h6 className="category">{category}</h6>
+            <div className="name">{name}</div>
+            <div className="price">${salePrice || originalPrice}</div>
+            <div className="rating">Rating: {avgRating}</div>
+          </div>
         </div>
       </div>
     );

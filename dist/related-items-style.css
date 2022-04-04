@@ -27,3 +27,18 @@
   width: 200px;
   height: 200px;
 }
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 450px;
+  height: 450px;
+  border-style: solid;
+  background: white;
+  margin: 5px;
+  padding: 5px;
+}
