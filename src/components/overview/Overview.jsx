@@ -75,7 +75,7 @@ var Overview = ({product}) => {
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
           <span className="price">{product.default_price}</span>
-          <StyleSelector styles={styles} />
+          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
