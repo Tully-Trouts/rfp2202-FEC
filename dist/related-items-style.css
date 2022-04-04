@@ -1,0 +1,29 @@
+#related-items-container {
+  width: 75%;
+  margin: auto;
+  padding: 1em;
+  border-style: solid;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-x: scroll;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0 0 0;
+  width: 200px;
+  height: 75%;
+  margin: 5px;
+  padding: 5px;
+  border-style: solid;
+}
+
+.preview-image {
+  width: 200px;
+  height: 200px;
+}
