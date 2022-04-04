@@ -8,7 +8,7 @@ class QnA extends Component {
     super(props);
     this.state = {
       productId: 65633, //this.props.productId for production phase
-      questions: [], //hardcode test: [{question_body:'Q1', question_id: 1},{question_body:'Q2', question_id: 2},{question_body:'Q3', question_id: 3}]
+      questions: [],
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
@@ -27,7 +27,6 @@ class QnA extends Component {
       },
     })
       .then((response) => {
-        console.log(response.data.results)
         this.setState({
           questions: response.data.results
         });

@@ -11,9 +11,8 @@ class Answer extends Component {
   render() {
     const {answer} = this.props;
     return (
-      <div className='Answer_List'>
-        {/* {answer.body} */}
-        answer
+      <div className='Answer'>
+        {answer.body}
       </div>
     )
   }
