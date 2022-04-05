@@ -13,38 +13,25 @@ class CardList extends React.Component {
   }
 
   getRelatedProducts(productId) {
-    console.log('getRelatedProducts triggering');
-    axios.get(`api/products/${productId}/related`)
-      .then((response) => {
-        console.log('response in get related items:::', response);
-        this.setState({relatedItems: response.data});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  componentDidMount() {
-
-    let { product } = this.props;
-    console.log('product in compMount:::', product);
-
-    // FOR DEV: need to pass in full product on App mount
-    if (Object.keys(product).length === 0) {
-      axios.get(`api/products/${65631}`)
+    if (productId) {
+      axios.get(`api/products/${productId}/related`)
         .then((response) => {
-          console.log('response from get product in cardList:::', response);
-          product = response.data;
-          this.getRelatedProducts(product.id);
+          this.setState({relatedItems: response.data});
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      console.log('else statement is triggering');
-      this.getRelatedProducts(product.id);
     }
+  }
 
+  componentDidMount() {
+    this.getRelatedProducts(this.props.product.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.getRelatedProducts(this.props.product.id);
+    }
   }
 
   render() {
@@ -54,7 +41,7 @@ class CardList extends React.Component {
     const cardList = uniqueItems.map((productId) => {
       return (
         <div className="card">
-          <Card key={productId.toString()} CompProduct={product} productId={productId} getProductById={getProductById}/>
+          <Card key={productId.toString()} compProduct={product} productId={productId} getProductById={getProductById}/>
         </div>
 
       );

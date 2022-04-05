@@ -24,7 +24,9 @@ class App extends React.Component {
   }
 
   getProductById(event, id) {
-    event.stopPropagation();
+    if (event) {
+      event.stopPropagation();
+    }
     axios.get(`/api/products/${id}`)
       .then((response) => {
         this.setState({
@@ -40,10 +42,8 @@ class App extends React.Component {
     // dev tool only
     axios.get('/api/products')
       .then((response) => {
-        console.log('response from getProducts:::', response);
         this.setState({
           productList: response.data,
-          product: response.data[0]
         });
       });
   }
@@ -53,8 +53,6 @@ class App extends React.Component {
       product,
       productList,
     } = this.state;
-
-    console.log('product in app:::', product);
     return (
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
