@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1649185180800" clover="3.2.0">
-  <project timestamp="1649185180800" name="All files">
-    <metrics statements="57" coveredstatements="31" conditionals="12" coveredconditionals="4" methods="20" coveredmethods="12" elements="89" coveredelements="47" complexity="0" loc="57" ncloc="57" packages="2" files="4" classes="4"/>
+<coverage generated="1649196950305" clover="3.2.0">
+  <project timestamp="1649196950306" name="All files">
+    <metrics statements="62" coveredstatements="32" conditionals="14" coveredconditionals="4" methods="23" coveredmethods="12" elements="99" coveredelements="48" complexity="0" loc="62" ncloc="62" packages="3" files="5" classes="5"/>
     <package name="rfp2202-FEC">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="sum.js" path="/Users/jerremystroman/Hackreactor/rfp2202-FEC/sum.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="rfp2202-FEC.src.components.overview">
+      <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="CartSelector.jsx" path="/Users/jerremystroman/Hackreactor/rfp2202-FEC/src/components/overview/CartSelector.jsx">
+        <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
       </file>
     </package>
     <package name="rfp2202-FEC.src.components.relatedItems">
