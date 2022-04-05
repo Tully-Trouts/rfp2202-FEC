@@ -27,11 +27,11 @@ app.use('/api/:loc', (req, res) => {
   })
     .then((response) => {
       console.log(response.data);
-      res.status(211).send(response.data);
+      res.status(200).send(response.data);
     })
     .catch((err) => {
       console.log('Failed\n', err);
-      res.send('error with our stuff');
+      res.status(500).send(err);
     });
 });
 

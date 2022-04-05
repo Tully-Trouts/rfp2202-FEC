@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Overview from './Overview';
-import QnA from './Q&A';
+import Overview from './overview/Overview';
+import QnA from './Q&A_components/Q&A';
 import Ratings from './Ratings';
-import RelatedItems from './RelatedItems';
+import RelatedItems from './relatedItems/RelatedItems';
 import Devtool from './Devtool';
 
 class App extends React.Component {
@@ -24,6 +24,7 @@ class App extends React.Component {
   }
 
   getProductById(id) {
+    console.log('product id in getProductById:::', id);
     axios.get(`/api/products/${id}`)
       .then((response) => {
         console.log(response.data);
@@ -58,7 +59,7 @@ class App extends React.Component {
         <Overview product={product} />
         <QnA productId={product.id} />
         <Ratings productId={product.id} />
-        <RelatedItems productId={product.id} />
+        <RelatedItems getProductById={this.getProductById} productId={product.id} />
       </div>
     );
   }
