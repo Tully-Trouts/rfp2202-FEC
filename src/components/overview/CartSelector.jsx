@@ -6,7 +6,7 @@ var CartSelector = ({skus}) => {
       Object.keys(skus).map((element) => (
         <option key={element}>{skus[element].size}</option>
       )) :
-      <option>OUT OF STOCK</option>);
+      <option>OUT OF STOCK</option>); // idk why the BRD WANTS TO YELL???
   };
   return (
     <div className="overview overview-cart-selector">
@@ -16,6 +16,9 @@ var CartSelector = ({skus}) => {
           <option defaultValue={true}>Select Size</option>
           {sizes(skus)}
         </select>
+      </div>
+      <div className="overview sm cart-selector-buttons">
+        [add to cart and favorite btns]
       </div>
     </div>
   );

@@ -43,7 +43,11 @@ var Overview = ({product}) => {
         .then(({data}) => {
           console.log('styles:', data.results);
           setStyles(data.results);
-          setSelectedStyle(data.results.find((element) => element['default?']));
+          // setting the default style
+          // find (and return) element with default? = true or last, whichever comes first
+          setSelectedStyle(data.results.find(
+            (element) => element['default?'] || element[data.results.length - 1]
+          ));
         })
         .catch((err) => {
           console.log(err);
@@ -63,25 +67,17 @@ var Overview = ({product}) => {
     <div id="overview-container">
       <h3>Overview</h3>
       <div className="overview overview-main">
-        <div className="overview overview-image-panel">
-          [[expanding] image pane]
-        </div>
+        <Gallery photos={selectedStyle.photos} />
         <div className="overview overview-product-information-panel">
           [product information panel]
           <div className="overview product-review sm">
             [product review: {avgRating}]
           </div>
           <span className="category">{product.category}</span>
-          <span className="product-title">{product.name}</span>
+          <span className="product-title"><h1>{product.name}</h1></span>
           <span className="price">{product.default_price}</span>
-          <StyleSelector styles={styles} />
+          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
-          <div className="overview overview-favorites-selector">
-            [bag and favorite selector]
-            <div className="overview sm favorites-selector">
-              [Add to bag btn] [heart btn]
-            </div>
-          </div>
         </div>
       </div>
       <div className="overview overview-product-description">
