@@ -22,9 +22,23 @@ var Gallery = (props) => {
     backgroundSize: 'contain',
   };
 
+  const nextPhoto = () => {
+    console.log('next photo');
+  };
+
+  const prevPhoto = () => {
+    console.log('previous photo');
+  };
+
   return (
     <div className="overview overview-image-panel" style={divStyle}>
       [[expanding] image pane]
+      <span className="overview sm gallery-next-photo" onClick={()=>{ nextPhoto(); }}>
+        Next
+      </span>
+      <span className="overview sm gallery-previous-photo" onClick={()=>{ prevPhoto(); }}>
+        Previous
+      </span>
     </div>
   );
 };
