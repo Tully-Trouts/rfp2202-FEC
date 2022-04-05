@@ -2,8 +2,8 @@ import React from 'react';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
 
@@ -12,7 +12,7 @@ class RatingBreakdown extends React.Component {
       <div>
         [Rating Details Breakdown]
       </div>
-    )
+    );
   }
 }
 

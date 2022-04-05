@@ -1,47 +1,33 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import ReviewList from './R&R/ReviewList.jsx';
 import RatingBreakdown from './R&R/RatingBreakdown.jsx';
 import Sort from './R&R/Sort.jsx';
+import AddReview from './R&R/AddReview.jsx';
 import axios from 'axios';
 
 class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewList: [],
+      reviewList: {},
     };
-    this.getReviewListById = this.getReviewListById.bind(this);
-    this.getData = this.getData.bind(this);
   }
 
 
-  getData(e) {
-    e.preventDefault();
-    axios.get('/api/reviews', {
+  componentDidMount() {
+    // FOR DEV: need to remove hard coded  productId
+    const productId = this.props.productId || 65634;
+    axios({
+      method: 'get',
+      url: '/api/reviews/',
       params: {
-        sort: 'relevant',
-      },
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-
-  getReviewListById(productId) {
-    axios.get('/api/reviews/', {
-      params: {
-        sort: 'relevant',
+        sort: 'newest',
         product_id: productId,
-      },
+      }
     })
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          reviewList: response.data,
-        });
+      .then((result) => {
+        this.setState({reviewList: result.data.results});
       })
       .catch((err) => {
         console.log(err);
@@ -53,26 +39,25 @@ class Ratings extends React.Component {
     return (
       <div id="rating and review container">
         <h3>Rating and Review</h3>
-          <div id="sorting">
-            <Sort />
-          </div>
-          <div  id="review list">
-            <ReviewList />
-          </div>
-          <div id="rating container">
-            <RatingBreakdown />
-          </div>
-          <div id="more review - button">
+        <div id="sorting">
+          <Sort />
+        </div>
+        <div id="review list">
+          <ReviewList reviewList={this.state.reviewList}/>
+        </div>
+        <div id="rating container">
+          <RatingBreakdown />
+        </div>
+        <div id="more review - button">
+          <button>
             More Review
-          </div>
-          <div id="add review - button">
-            Add Review
-          </div>
-          <button onClick={this.getData}>
-            Get data
           </button>
+        </div>
+        <div id="add review">
+          <AddReview />
+        </div>
       </div>
-    )
+    );
   }
 }
 

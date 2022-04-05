@@ -2,8 +2,8 @@ import React from 'react';
 
 class Sort extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
   render() {
@@ -11,7 +11,7 @@ class Sort extends React.Component {
       <div>
         Sort
       </div>
-    )
+    );
   }
 }
 
