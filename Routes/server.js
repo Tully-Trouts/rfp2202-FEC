@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 app.use('/api/:loc', (req, res) => {
   console.log('\n\n', req.originalUrl.split('/api')[1], '\n\n');
   const location = req.originalUrl.split('/api')[1];
+
   axios(process.env.API_URL + location, {
     headers: { Authorization: process.env.API_KEY },
     method: req.method,
