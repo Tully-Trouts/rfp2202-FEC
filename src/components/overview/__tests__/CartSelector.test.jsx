@@ -28,7 +28,8 @@ test('Quantity select element renders with "-" as the current selection', () => 
   //    Using a regex literal (case insensitive flag) to search for the name
   //    of a 'listbox' which is the ARIA/semantic role name of a 'select' element
   //    containing options.
-  component.getByRole('listbox', {name: /quantity/i}); // This line is called a query
+
+  //component.getByRole('listbox', {name: /quantity/i}); // This line is called a query
 
   // Lets assign the return value of the query to a variable so we can assert over it:
   const quantityList = component.getByRole('listbox', {name: 'quantity'});
