@@ -12,8 +12,10 @@ class Card extends React.Component {
       salePrice: '',
       previewImg: '',
       avgRating: '',
+      features: [],
       show: false,
     };
+
     this.getAllInfo = this.getAllInfo.bind(this);
     this.getAvgRating = this.getAvgRating.bind(this);
     this.handleModalClick = this.handleModalClick.bind(this);
@@ -24,10 +26,7 @@ class Card extends React.Component {
   }
 
   handleModalClick() {
-    console.log('handleModalClick is triggering');
-    this.setState({show: !this.state.show}, () => {
-      console.log('state after modal click:::', this.state);
-    });
+    this.setState({show: !this.state.show});
   }
 
   getAvgRating(ratings) {
@@ -48,9 +47,8 @@ class Card extends React.Component {
 
     axios.get(`api/products/${productId}`)
       .then((response) => {
-        console.log(response);
-        let name = response.data.name;
-        let category = response.data.category;
+
+        const { name, category, features } = response.data;
 
         axios.get(`api/products/${productId}/styles`)
           .then((response) => {
@@ -68,10 +66,10 @@ class Card extends React.Component {
               }
             }
 
-            let originalPrice = defaultStyle.original_price;
-            let salePrice = defaultStyle.sale_price;
+            const originalPrice = defaultStyle.original_price;
+            const salePrice = defaultStyle.sale_price;
             // the first image in the set will be displayed as the main image
-            let previewImg = defaultStyle.photos[0].thumbnail_url;
+            const previewImg = defaultStyle.photos[0].thumbnail_url;
 
             axios.get('api/reviews/meta', {
               params: {
@@ -86,7 +84,8 @@ class Card extends React.Component {
                   originalPrice: originalPrice,
                   salePrice: salePrice,
                   previewImg: previewImg,
-                  avgRating: avgRating
+                  avgRating: avgRating,
+                  features: features
                 });
               })
               .catch((err) => {
@@ -101,7 +100,7 @@ class Card extends React.Component {
 
   render() {
 
-    const { productId } = this.props;
+    const { productId, compProduct, getProductById } = this.props;
     const { name, category, originalPrice, salePrice, previewImg, avgRating, show } = this.state;
 
     // need to fix aspect ratio for images
@@ -109,8 +108,8 @@ class Card extends React.Component {
       <div>
         <span>[product id: {productId}]</span>
         <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
-        <div className="inner-card" onClick={() => (this.props.getProductById(productId))}>
-          <ComparisonModal handleModalClick={this.handleModalClick} show={show}/>
+        <ComparisonModal compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
+        <div className="inner-card" onClick={(event) => ( getProductById(event, productId))}>
           <img className="preview-image" src={previewImg}/>
           <div className="product-info">
             <h6 className="category">{category}</h6>

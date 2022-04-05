@@ -9,14 +9,14 @@ class CardList extends React.Component {
     this.state = {
       relatedItems: []
     };
+    this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
 
-  componentDidMount() {
-    // FOR DEV: need to remove hard coded  productId
-    const { productId } = this.props;
-
-    axios.get(`api/products/${productId || 65635}/related`)
+  getRelatedProducts(productId) {
+    console.log('getRelatedProducts triggering');
+    axios.get(`api/products/${productId}/related`)
       .then((response) => {
+        console.log('response in get related items:::', response);
         this.setState({relatedItems: response.data});
       })
       .catch((err) => {
@@ -24,14 +24,37 @@ class CardList extends React.Component {
       });
   }
 
+  componentDidMount() {
+
+    let { product } = this.props;
+    console.log('product in compMount:::', product);
+
+    // FOR DEV: need to pass in full product on App mount
+    if (Object.keys(product).length === 0) {
+      axios.get(`api/products/${65631}`)
+        .then((response) => {
+          console.log('response from get product in cardList:::', response);
+          product = response.data;
+          this.getRelatedProducts(product.id);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log('else statement is triggering');
+      this.getRelatedProducts(product.id);
+    }
+
+  }
+
   render() {
     const { relatedItems } = this.state;
-    const { getProductById } = this.props;
+    const { product, getProductById } = this.props;
     let uniqueItems = [...new Set(relatedItems)];
     const cardList = uniqueItems.map((productId) => {
       return (
         <div className="card">
-          <Card key={productId.toString()} productId={productId} getProductById={getProductById}/>
+          <Card key={productId.toString()} CompProduct={product} productId={productId} getProductById={getProductById}/>
         </div>
 
       );

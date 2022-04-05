@@ -23,10 +23,10 @@ class App extends React.Component {
     this.getProducts(); // dev tool only
   }
 
-  getProductById(id) {
+  getProductById(event, id) {
+    event.stopPropagation();
     axios.get(`/api/products/${id}`)
       .then((response) => {
-        console.log('product::', id, response.data);
         this.setState({
           product: response.data,
         });
@@ -40,8 +40,10 @@ class App extends React.Component {
     // dev tool only
     axios.get('/api/products')
       .then((response) => {
+        console.log('response from getProducts:::', response);
         this.setState({
           productList: response.data,
+          product: response.data[0]
         });
       });
   }
@@ -51,14 +53,16 @@ class App extends React.Component {
       product,
       productList,
     } = this.state;
+
+    console.log('product in app:::', product);
     return (
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
-        <button type="button" name="test" onClick={() => { this.getProductById(65635); }}> TEST! </button>
+        <button type="button" name="test" onClick={(event) => { this.getProductById(event, 65635); }}> TEST! </button>
         <Overview product={product} />
         <QnA productId={product.id} />
         <Ratings productId={product.id} />
-        <RelatedItems getProductById={this.getProductById} productId={product.id} />
+        <RelatedItems getProductById={this.getProductById} product={product} />
       </div>
     );
   }
