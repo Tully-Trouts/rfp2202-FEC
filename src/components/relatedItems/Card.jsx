@@ -38,6 +38,7 @@ class Card extends React.Component {
 
     axios.get(`api/products/${productId}`)
       .then((response) => {
+        console.log(response);
         let name = response.data.name;
         let category = response.data.category;
 

@@ -17,6 +17,7 @@ class CardList extends React.Component {
 
     axios.get(`api/products/${productId || 65635}/related`)
       .then((response) => {
+        console.log('response from related products api call:::', response);
         this.setState({relatedItems: response.data});
       })
       .catch((err) => {
@@ -25,11 +26,13 @@ class CardList extends React.Component {
   }
 
   render() {
-
-    const cardList = this.state.relatedItems.map((productId) => {
+    const { relatedItems } = this.state;
+    const { getProductById } = this.props;
+    let uniqueItems = [...new Set(relatedItems)];
+    const cardList = uniqueItems.map((productId) => {
       return (
         <div className="card">
-          <Card productId={productId} getProductById={this.props.getProductById}/>
+          <Card key={productId.toString()} productId={productId} getProductById={getProductById}/>
         </div>
 
       );
