@@ -12,12 +12,10 @@ class Ratings extends React.Component {
     this.state = {
       reviewList: {},
     };
+    this.retrieveReviewList = this.retrieveReviewList.bind(this);
   }
 
-
-  componentDidMount() {
-    // FOR DEV: need to remove hard coded  productId
-    const productId = this.props.productId || 65634;
+  retrieveReviewList(productId) {
     axios({
       method: 'get',
       url: '/api/reviews/',
@@ -35,6 +33,18 @@ class Ratings extends React.Component {
   }
 
 
+  componentDidMount() {
+    // FOR DEV: need to remove hard coded  productId
+    this.retrieveReviewList(this.props.productId);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.retrieveReviewList(this.props.productId);
+    }
+  }
+
+
   render() {
     return (
       <div id="rating and review container">
@@ -43,7 +53,7 @@ class Ratings extends React.Component {
           <Sort />
         </div>
         <div id="review list">
-          <ReviewList reviewList={this.state.reviewList}/>
+          <ReviewList reviewList={this.state.reviewList} productId={this.props.productId}/>
         </div>
         <div id="rating container">
           <RatingBreakdown />
