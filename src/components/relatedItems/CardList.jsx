@@ -17,7 +17,6 @@ class CardList extends React.Component {
 
     axios.get(`api/products/${productId || 65635}/related`)
       .then((response) => {
-        console.log('response from related products api call:::', response);
         this.setState({relatedItems: response.data});
       })
       .catch((err) => {

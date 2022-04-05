@@ -1,14 +1,19 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 
 const ComparisonModal = (props) => {
   // need to create table from props
+  const { handleModalClick } = props;
   if (!props.show) {
     return null;
   }
 
-  return (
+  return ReactDom.createPortal(
     <div className="modal">
-      <h6>COMPARING</h6>
+      <div className="modal-header">
+        <h6>COMPARING</h6>
+        <button type="button" name="modal-close" onClick={handleModalClick}>X</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -25,8 +30,8 @@ const ComparisonModal = (props) => {
           </tr>
         </tbody>
       </table>
-    </div>
-  );
+    </div>,
+    document.getElementById("related-items-container"))
 };
 
 export default ComparisonModal;

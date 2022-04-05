@@ -108,9 +108,9 @@ class Card extends React.Component {
     return (
       <div>
         <span>[product id: {productId}]</span>
-        <button className="modal-button" type="button" name="modal" onClick={this.handleModalClick}>modal</button>
+        <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
         <div className="inner-card" onClick={() => (this.props.getProductById(productId))}>
-          <ComparisonModal show={show}/>
+          <ComparisonModal handleModalClick={this.handleModalClick} show={show}/>
           <img className="preview-image" src={previewImg}/>
           <div className="product-info">
             <h6 className="category">{category}</h6>

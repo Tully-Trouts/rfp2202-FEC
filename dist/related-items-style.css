@@ -1,5 +1,6 @@
 #related-items-container {
   width: 75%;
+  position: relative;
   margin: auto;
   padding: 1em;
   border-style: solid;
@@ -29,16 +30,22 @@
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 999;
   width: 450px;
   height: 450px;
   border-style: solid;
   background: white;
   margin: 5px;
   padding: 5px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
