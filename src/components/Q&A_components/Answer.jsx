@@ -11,14 +11,12 @@ class Answer extends Component {
   render() {
     const {answer} = this.props;
     const {answerer_name, date, body, helpfulness, photos} = answer
+    const images = photos.map((src) => <img src='`${src}`'>)
     return (
       <div className='Answer'>
         <span className='A'>A: </span>
-        {body}
-
         <div>{JSON.stringify(photos)}</div>
-        {/* {photos.forEach((img_src) =>
-        )} */}
+        {images}
 
         <div className='Answer_details'>
           {`by ${answerer_name}, ${date}`}
