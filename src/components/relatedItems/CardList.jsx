@@ -38,10 +38,11 @@ class CardList extends React.Component {
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
     let uniqueItems = [...new Set(relatedItems)];
+    // use index in map as child key
     const cardList = uniqueItems.map((productId) => {
       return (
         <div className="card">
-          <Card key={productId.toString()} compProduct={product} productId={productId} getProductById={getProductById}/>
+          <Card key={productId.toString()} currProduct={product} productId={productId} getProductById={getProductById}/>
         </div>
 
       );

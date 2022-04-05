@@ -6,6 +6,7 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      compProduct: {},
       name: '',
       category: '',
       originalPrice: '',
@@ -49,6 +50,7 @@ class Card extends React.Component {
       .then((response) => {
 
         const { name, category, features } = response.data;
+        const compProduct = response.data;
 
         axios.get(`api/products/${productId}/styles`)
           .then((response) => {
@@ -79,6 +81,7 @@ class Card extends React.Component {
               .then((response) => {
                 let avgRating = this.getAvgRating(response.data.ratings);
                 this.setState({
+                  compProduct: compProduct,
                   name: name,
                   category: category,
                   originalPrice: originalPrice,
@@ -100,15 +103,15 @@ class Card extends React.Component {
 
   render() {
 
-    const { productId, compProduct, getProductById } = this.props;
-    const { name, category, originalPrice, salePrice, previewImg, avgRating, show } = this.state;
+    const { productId, currProduct, getProductById } = this.props;
+    const { compProduct, name, category, originalPrice, salePrice, previewImg, avgRating, features, show } = this.state;
 
     // need to fix aspect ratio for images
     return (
       <div>
         <span>[product id: {productId}]</span>
         <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
-        <ComparisonModal compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
+        <ComparisonModal currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
         <div className="inner-card" onClick={(event) => ( getProductById(event, productId))}>
           <img className="preview-image" src={previewImg}/>
           <div className="product-info">
