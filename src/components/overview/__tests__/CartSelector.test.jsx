@@ -3,7 +3,7 @@ import CartSelector from '../CartSelector';
 
 // Need a virtual DOM to render our component into, this is supplied by testing-library:
 //  usually only the render method is imported here using destructuring i.e. { render }
-import TestLib from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 // Perhaps optional, but importing the keyword "expect" here:
 import '@testing-library/jest-dom';
@@ -18,7 +18,7 @@ import '@testing-library/jest-dom';
 //  and a function containing the logic for the test
 test('Quantity select element renders with "-" as the current selection', () => {
   // First thing we need to do is render the component (to a virtual DOM)
-  const component = TestLib.render(<CartSelector />);
+  const component = render(<CartSelector />);
 
   // Next we want to check if the component contains a select element for quantity
   //  By using getByRole we can search for the element based on its accesible name
@@ -31,7 +31,7 @@ test('Quantity select element renders with "-" as the current selection', () => 
   component.getByRole('listbox', {name: /quantity/i}); // This line is called a query
 
   // Lets assign the return value of the query to a variable so we can assert over it:
-  const quantityList = component.getByRole('listbox', {name: /quantity/i});
+  const quantityList = component.getByRole('listbox', {name: 'quantity'});
 
   // checking if the 'text content' of our matched query is '-'
   expect(quantityList.textContent).toBe('-');

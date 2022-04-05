@@ -36,8 +36,8 @@ var CartSelector = ({skus}) => {
           <option defaultValue={true}>Select Size</option>
           {getSizeOptions(skus)}
         </select>
-        <select role="listbox">
-          <option defaultValue={true}>-</option>
+        <select role="listbox" aria-label="quantity">
+          <option defaultValue={true} value="">-</option>
           {getQtyOptions(quantities)}
         </select>
       </div>
