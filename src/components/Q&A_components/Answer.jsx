@@ -10,9 +10,23 @@ class Answer extends Component {
 
   render() {
     const {answer} = this.props;
+    const {answerer_name, date, body, helpfulness, photos} = answer
     return (
       <div className='Answer'>
-        {answer.body}
+        <span className='A'>A: </span>
+        {body}
+
+        <div>{JSON.stringify(photos)}</div>
+        {/* {photos.forEach((img_src) =>
+        )} */}
+
+        <div className='Answer_details'>
+          {`by ${answerer_name}, ${date}`}
+          <span className='A_helpful'> Helpful? </span>
+          <button className='A_helpful_button'>yes </button>
+          {` (${helpfulness})`}
+          <button className='A_report'>Report</button>
+        </div>
       </div>
     )
   }

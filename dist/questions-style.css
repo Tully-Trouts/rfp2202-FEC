@@ -14,22 +14,73 @@
 }
 
 .QnA_search_form {
-  margin: 8px;
-  padding: 8px;
-  border: 3px solid black;
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid black;
   background-color: white;
 }
 
 .Question {
-  margin: 5px;
-  padding: 5px;
-  border: 3px solid black;
-  background-color: white;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .Answer {
-  margin: 3px;
-  padding: 3px;
-  border: 3px solid rgb(106, 106, 106);
+  font-weight: normal;
+  font-size: 14px;
+  color:rgb(100, 100, 100);
+  padding: 2px;
+}
+
+.Question_list {
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid black;
   background-color: white;
+}
+
+.Answer_list {
+  margin: 2px
+}
+
+.Q {
+  font-weight: bold;
+}
+
+.A {
+  font-weight: bold;
+}
+
+.Q_helpful {
+  font-weight: normal;
+  font-size: 12px;
+  position: absolute;
+  right: 200px;
+}
+
+.Q_add_answer {
+  font-weight: light;
+  font-size: 12px;
+  position: absolute;
+  right: 100px;
+}
+
+.Answer_details {
+  font-weight: light;
+  font-size: 12px;
+  padding: 2px;
+}
+
+.A_helpful {
+  margin-left: 20px;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.A_report {
+  margin-left: 15px;
+}
+
+.Load_more_qs {
+  margin: 20px;
 }

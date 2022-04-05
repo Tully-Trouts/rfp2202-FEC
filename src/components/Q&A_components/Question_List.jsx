@@ -6,10 +6,12 @@ class Question_List extends Component {
     const {questions} = this.props;
 
     return (
-      <div className='Question_List'>
+      <div className='Question_list'>
         {questions.map((question) =>
           <Question question={question} key={question.question_id} />
         )}
+        <button className='Load_more_qs'>Load More Questions</button>
+        <button className='Add_q'>Add A Question +</button>
       </div>
     )
   }
