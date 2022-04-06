@@ -7,11 +7,12 @@ var Devtool = (props) => {
       <nav>
         <ul className="devtool devtool-product-list">
           {props.productList.map((element) => (
-            <li key={element.id} onClick={()=>{ props.updateProduct(element.id); }}>
-              <span className="devtool devtool-product">
-                {element.id} <br></br>
-                <small>{element.name}</small>
-              </span>
+            <li
+              key={element.id}
+              onClick={()=>{ props.updateProduct(element.id); }}
+              className="devtool devtool-product-list-item">
+              <div className="devtool-product product-id">{element.id}</div>
+              <div className="devtool-product product-name"><small>{element.name}</small></div>
             </li>
           ))}
         </ul>
