@@ -46,7 +46,7 @@ var Overview = ({product}) => {
           // setting the default style
           // find (and return) element with default? = true or last, whichever comes first
           setSelectedStyle(data.results.find(
-            (element) => element['default?'] || element[data.results.length - 1]
+            (element, index) => element['default?'] || index === (data.results.length - 1)
           ));
         })
         .catch((err) => {
