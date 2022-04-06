@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 const ComparisonModal = (props) => {
-  // need to create table from props
   const { handleModalClick } = props;
   if (!props.show) {
     return null;
@@ -14,36 +13,13 @@ const ComparisonModal = (props) => {
 
     const currFeatures = current.features;
     const compFeatures = compare.features;
-    console.log('currFeatures:::', currFeatures);
-    console.log('compFeatures:::', compFeatures);
 
     const uniqueFeatures = [...new Set(currFeatures.concat(compFeatures).map(item => item.feature))];
 
-    console.log('uniqueFeatures:::', uniqueFeatures);
-
-    // this doesn't work. Need to refactor
+    // probably need to refactor this to find a more efficient solution
     const tableBody = uniqueFeatures.map((feature) => {
-
-      let currValue = currFeatures.find(item => item.feature === feature);
-      let compValue = compFeatures.find(item => item.feature === feature);
-
-
-
-      // if (currFeatures[index] !== undefined) {
-      //   if (currFeatures[index].feature === feature) {
-      //     currValue = currFeatures[index].value;
-      //   }
-      // }
-
-      // if (compFeatures[index] !== undefined) {
-      //   if (compFeatures[index].feature === feature) {
-      //     compValue = compFeatures[index].value;
-
-      //   }
-      // }
-
-      console.log('currValue in map:::', currValue);
-      console.log('compValue in map:::', compValue);
+      const currValue = currFeatures.find(item => item.feature === feature);
+      const compValue = compFeatures.find(item => item.feature === feature);
 
       return (
         <tr>
@@ -60,9 +36,9 @@ const ComparisonModal = (props) => {
 
   return ReactDom.createPortal(
     <div className="modal">
-      <div className="modal-header">
+      <div className="header">
         <h6>COMPARING</h6>
-        <button type="button" name="modal-close" onClick={handleModalClick}>X</button>
+        <button type="button" onClick={handleModalClick}>X</button>
       </div>
       <table>
         <thead>

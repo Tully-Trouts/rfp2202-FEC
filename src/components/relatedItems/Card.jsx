@@ -7,14 +7,12 @@ class Card extends React.Component {
     super(props);
     this.state = {
       compProduct: {},
-      name: '',
-      category: '',
       originalPrice: '',
       salePrice: '',
       previewImg: '',
       avgRating: '',
-      features: [],
       show: false,
+      notFoundUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/768px-No_image_available.svg.png'
     };
 
     this.getAllInfo = this.getAllInfo.bind(this);
@@ -23,7 +21,13 @@ class Card extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllInfo();
+    this.getAllInfo(this.props.productId);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.getAllInfo(this.props.productId);
+    }
   }
 
   handleModalClick() {
@@ -45,17 +49,14 @@ class Card extends React.Component {
   getAllInfo() {
     // naive solution for MVP: need to refactor with Promsie.all() and separate concerns.
     const { productId } = this.props;
-
     axios.get(`api/products/${productId}`)
       .then((response) => {
-
-        const { name, category, features } = response.data;
         const compProduct = response.data;
 
         axios.get(`api/products/${productId}/styles`)
           .then((response) => {
             let results = response.data.results;
-            let defaultStyle = null;
+            var defaultStyle = null;
 
             // if the product doesn't have a default style, set default to first style in results
             for (let i = 0; i < results.length; i++) {
@@ -67,9 +68,9 @@ class Card extends React.Component {
                 defaultStyle = results[0];
               }
             }
-
             const originalPrice = defaultStyle.original_price;
             const salePrice = defaultStyle.sale_price;
+
             // the first image in the set will be displayed as the main image
             const previewImg = defaultStyle.photos[0].thumbnail_url;
 
@@ -82,13 +83,10 @@ class Card extends React.Component {
                 let avgRating = this.getAvgRating(response.data.ratings);
                 this.setState({
                   compProduct: compProduct,
-                  name: name,
-                  category: category,
                   originalPrice: originalPrice,
                   salePrice: salePrice,
                   previewImg: previewImg,
                   avgRating: avgRating,
-                  features: features
                 });
               })
               .catch((err) => {
@@ -104,21 +102,23 @@ class Card extends React.Component {
   render() {
 
     const { productId, currProduct, getProductById } = this.props;
-    const { compProduct, name, category, originalPrice, salePrice, previewImg, avgRating, features, show } = this.state;
+    const { compProduct, originalPrice, salePrice, previewImg, notFoundUrl, avgRating, show } = this.state;
+    const { name, category } = compProduct;
 
-    // need to fix aspect ratio for images
     return (
       <div>
-        <span>[product id: {productId}]</span>
-        <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
-        <ComparisonModal key={'1'} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
+        <div className="header">
+          <span>[product id: {productId}]</span>
+          <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
+        </div>
+        <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
         <div className="inner-card" onClick={(event) => ( getProductById(event, productId))}>
-          <img className="preview-image" src={previewImg}/>
-          <div className="product-info">
-            <h6 className="category">{category}</h6>
-            <div className="name">{name}</div>
-            <div className="price">${salePrice || originalPrice}</div>
-            <div className="rating">Rating: {avgRating}</div>
+          <img className="preview-image" src={previewImg || notFoundUrl}/>
+          <div>
+            <h6>{category}</h6>
+            <div>{name}</div>
+            <div>${salePrice || originalPrice}</div>
+            <div>Rating: {avgRating}</div>
           </div>
         </div>
       </div>
