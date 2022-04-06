@@ -8,10 +8,15 @@ class QASearch extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
+    this.setState({
+      search: ''
+    });
+    this.props.liftClear();
   }
 
   handleChange(e) {
@@ -27,7 +32,7 @@ class QASearch extends Component {
     return (
       <form className='QA_Search'>
         <input placeholder='Search Questions' value={search} onChange={handleChange} />
-        <button onClick={handleClick}>Search</button>
+        <button onClick={handleClick}>Clear</button>
       </form>
     );
   }

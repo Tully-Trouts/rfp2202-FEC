@@ -14,6 +14,8 @@ class QA extends Component {
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
     this.liftSearch = this.liftSearch.bind(this);
+    this.filter = this.filter.bind(this);
+    this.liftClear = this.liftClear.bind(this);
   }
 
   componentDidMount() {
@@ -52,9 +54,35 @@ class QA extends Component {
     });
   }
 
+  liftClear() {
+    this.setState({
+      search: ''
+    });
+  }
+
+  filter() {
+    const {search, questions} = this.state;
+    //filter by helpfulness
+    questions.sort((a, b) => {
+      a.question_helpfulness - b.question_helpfulness;
+    });
+
+    //filter by search
+    if (!search.length !== 0 && search.length >= 3) {
+      return questions.filter((question) => {
+        if (question.question_body.toLowerCase().includes(search.toLowerCase())) {
+          return true;
+        }
+        return false;
+      });
+    }
+
+    return questions;
+  }
+
   render() {
     const {questions} = this.state;
-    const {liftSearch} = this;
+    const {liftSearch, liftClear, filter} = this;
     return (
       <div className='QA'>
         <h3 className='QA_Title'>Questions and Answers</h3>
@@ -63,8 +91,8 @@ class QA extends Component {
           <div> WINDOW WILL BE EMPTY EXCEPT FOR THE ADD QUESTIONS BUTTON IF NO QUESTIONS EXIST <div>CLICK TEST TO RENDER QUESTIONS!</div></div>
           :
           <div>
-            <QASearch liftSearch={liftSearch}/>
-            <QList questions={questions}/>
+            <QASearch liftSearch={liftSearch} liftClear={liftClear} />
+            <QList questions={filter()}/>
           </div>
         }
         <button className='Add_Q'>Add A Question +</button>

@@ -16,7 +16,7 @@ class QList extends Component {
     if (e.target.value === 'loadMore') {
       this.setState({toLoad: this.state.toLoad + 2});
     } else {
-      this.setState({toLoad: 2});
+      this.setState({toLoad: 4});
     }
   }
 
