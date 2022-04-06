@@ -9,8 +9,6 @@ class QList extends Component {
         {questions.map((question) =>
           <Question question={question} key={question.question_id} />
         )}
-        <button className='More_Qs'>Load More Questions</button>
-        <button className='Add_Q'>Add A Question +</button>
       </div>
     );
   }
