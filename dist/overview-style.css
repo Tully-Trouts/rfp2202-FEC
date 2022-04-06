@@ -2,6 +2,16 @@
   border-style: solid;
 }
 
+.devtool ul.devtool-product-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.devtool-product {
+  display: inline-block;
+}
+
 #overview-container {
   width: 75%;
   margin: auto;
