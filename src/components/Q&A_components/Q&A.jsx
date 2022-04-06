@@ -16,7 +16,7 @@ class QnA extends Component {
 
   componentDidMount() {
     const {getQuestionsById, state} = this;
-    const {productId, questionList} = state
+    const {productId, questionList} = state;
     getQuestionsById(productId);
   }
 
