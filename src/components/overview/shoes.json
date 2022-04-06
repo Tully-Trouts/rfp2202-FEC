@@ -1,0 +1,84 @@
+{
+  "product_id": "65639",
+  "results": [
+    {
+      "style_id": 404919,
+      "name": "White",
+      "original_price": "59.00",
+      "sale_price": null,
+      "default?": false,
+      "photos": [
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1550338300-f9a475b50ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1550338300-f9a475b50ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
+        },
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1500699889581-a7f97ec155d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1500699889581-a7f97ec155d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+        },
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1498200163530-bdb7c50ec863?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1498200163530-bdb7c50ec863?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80"
+        },
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1558118070-09ba9a9efb2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1558118070-09ba9a9efb2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+        },
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1531889947080-bc5693ae9fa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1531889947080-bc5693ae9fa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80"
+        },
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1529108750117-bcbad8bd25dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1529108750117-bcbad8bd25dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=662&q=80"
+        }
+      ],
+      "skus": {
+        "2352668": {
+          "quantity": 14,
+          "size": "7"
+        },
+        "2352669": {
+          "quantity": 25,
+          "size": "7.5"
+        },
+        "2352670": {
+          "quantity": 9,
+          "size": "8"
+        },
+        "2352671": {
+          "quantity": 2,
+          "size": "8.5"
+        },
+        "2352672": {
+          "quantity": 18,
+          "size": "9"
+        },
+        "2352673": {
+          "quantity": 12,
+          "size": "9.5"
+        },
+        "2352674": {
+          "quantity": 10,
+          "size": "10"
+        },
+        "2352675": {
+          "quantity": 18,
+          "size": "10.5"
+        },
+        "2352676": {
+          "quantity": 11,
+          "size": "11"
+        },
+        "2352677": {
+          "quantity": 35,
+          "size": "11.5"
+        },
+        "2352678": {
+          "quantity": 25,
+          "size": "12"
+        }
+      }
+    }
+  ]
+}
