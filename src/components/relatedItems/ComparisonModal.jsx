@@ -22,32 +22,34 @@ const ComparisonModal = (props) => {
     console.log('uniqueFeatures:::', uniqueFeatures);
 
     // this doesn't work. Need to refactor
-    const tableBody = uniqueFeatures.map((feature, index) => {
+    const tableBody = uniqueFeatures.map((feature) => {
 
-      let currValue = '';
-      let compValue = '';
+      let currValue = currFeatures.find(item => item.feature === feature);
+      let compValue = compFeatures.find(item => item.feature === feature);
 
-      if (currFeatures[index] !== undefined) {
-        if (currFeatures[index].feature === feature) {
-          currValue = currFeatures[index].value;
-        }
-      }
 
-      if (compFeatures[index] !== undefined) {
-        if (compFeatures[index].feature === feature) {
-          compValue = compFeatures[index].value;
 
-        }
-      }
+      // if (currFeatures[index] !== undefined) {
+      //   if (currFeatures[index].feature === feature) {
+      //     currValue = currFeatures[index].value;
+      //   }
+      // }
+
+      // if (compFeatures[index] !== undefined) {
+      //   if (compFeatures[index].feature === feature) {
+      //     compValue = compFeatures[index].value;
+
+      //   }
+      // }
 
       console.log('currValue in map:::', currValue);
       console.log('compValue in map:::', compValue);
 
       return (
         <tr>
-          <td>{currValue}</td>
-          <td>{feature}</td>
-          <td>{compValue}</td>
+          <td>{currValue !== undefined ? currValue.value : 'N/A'}</td>
+          <td className="modal-characteristic">{feature}</td>
+          <td>{compValue !== undefined ? compValue.value : 'N/A'}</td>
         </tr>
       )
     });
