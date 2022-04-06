@@ -7,7 +7,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 65631, //this.props.productId,
+      productId: this.props.productId,
       questions: [],
       search: ''
     };
@@ -88,7 +88,7 @@ class QA extends Component {
         <h3 className='QA_Title'>Questions and Answers</h3>
         { questions.length === 0
           ?
-          <div> WINDOW WILL BE EMPTY EXCEPT FOR THE ADD QUESTIONS BUTTON IF NO QUESTIONS EXIST <div>CLICK TEST TO RENDER QUESTIONS!</div></div>
+          <div>No current questions</div>
           :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
