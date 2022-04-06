@@ -112,7 +112,7 @@ class Card extends React.Component {
           <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
         </div>
         <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
-        <div className="inner-card" onClick={(event) => ( getProductById(event, productId))}>
+        <div className="inner-card" onClick={(event) => ( getProductById(productId, event))}>
           <img className="preview-image" src={previewImg || notFoundUrl}/>
           <div>
             <h6>{category}</h6>
