@@ -4,6 +4,7 @@ import Overview from './overview/Overview';
 import QA from './QA/QA';
 import Ratings from './Ratings';
 import RelatedItems from './relatedItems/RelatedItems';
+import OutfitList from './relatedItems/OutfitList';
 import Devtool from './Devtool';
 
 class App extends React.Component {
@@ -56,9 +57,10 @@ class App extends React.Component {
         <Devtool productList={productList} updateProduct={this.getProductById} />
         <button type="button" name="test" onClick={() => { this.getProductById(65635); }}> TEST! </button>
         <Overview product={product} />
-        <QnA productId={product.id} />
+        <QA productId={product.id} />
         <Ratings productId={product.id} productName={product.name}/>
         <RelatedItems getProductById={this.getProductById} productId={product.id} />
+        <OutfitList product={product}/>
       </div>
     );
   }
