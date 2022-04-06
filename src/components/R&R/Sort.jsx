@@ -8,8 +8,15 @@ class Sort extends React.Component {
 
   render() {
     return (
-      <div>
-        Sort
+      <div className="sort-label">
+        <label>
+          Sort on:
+          <select>
+            <option value="Relevant">Relevant</option>
+            <option value="Helpful">Helpful</option>
+            <option value="Newest">Newest</option>
+          </select>
+        </label>
       </div>
     );
   }

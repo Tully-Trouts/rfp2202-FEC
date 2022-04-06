@@ -1,5 +1,74 @@
+#rating_and_reviews-container {
+  width: 90%;
+  margin: auto;
+  padding: 1em;
+  border-style: solid;
+  margin-bottom: 30px;
+}
+
+.RR-Container {
+  display: flex;
+}
+
+#review-panal {
+  margin: 5px;
+  padding: 5px;
+  border-style: solid;
+  font-style: small;
+}
+.reviewList_container {
+  height: 70%;
+  overflow-y: scroll
+}
+.review_list {
+  width: 65%;
+  height: 300px;
+  padding: 1em;
+  margin: auto;
+  display: inline-block;
+  flex-flow: column-reverse;
+  border-style: solid;
+  overflow-y: scroll;
+
+}
+
+.rating_container {
+  width: 25%;
+  height: 300px;
+  margin: 2.5px;
+  padding: 1em;
+  display: inline-block;
+  flex-flow:column-reverse;
+  border: solid;
+}
+
 .devtool {
   border-style: solid;
+}
+
+.review-tile {
+  width: 90%;
+  border: solid;
+  margin: auto;
+  margin-bottom: 1%;
+}
+
+.sorting {
+  padding-left: 60%;
+  width: 40px;
+}
+
+.sort-label {
+  width: 100px;
+}
+
+.btn-container {
+  display:flex;
+}
+
+.more_review-btn {
+  padding-left: 50%;
+  padding-right: 8%;
 }
 
 
@@ -96,3 +165,4 @@ body.active-modal {
   line-height: 21px;
   }
 }
+

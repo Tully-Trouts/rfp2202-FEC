@@ -78,7 +78,7 @@ class AddReview extends React.Component {
           <div className="modal">
             <div className="overlay"></div>
             <div className="modal-content">
-              <h2>Write your review: [product name]</h2>
+              <h2>Write your review: {this.props.productName}</h2>
               <div className="star-rating">
                 <input
                   type="radio"
