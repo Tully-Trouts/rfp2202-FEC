@@ -1,12 +1,13 @@
+/* eslint-disable camelcase */
 import React, {Component} from 'react';
-import Answer_List from './Answer_List';
+import AList from './AList';
 
 class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
       answers: []
-    }
+    };
   }
 
   render() {
@@ -15,23 +16,24 @@ class Question extends Component {
     return (
       <div className='Question'>
         <span className='Q'>Q: </span>
+
         {question_body}
 
-        <span className='Q_helpful'>
+        <span className='Q_Helpful'>
           helpful?
           <button>yes</button>
           {` (${question_helpfulness})`}
         </span>
 
-        <span className='Q_add_answer'>
+        <span className='Add_A'>
           <button>
             Add Answer +
           </button>
         </span>
 
-        <Answer_List answers={answers}/>
+        <AList answers={answers}/>
       </div>
-    )
+    );
   }
 }
 

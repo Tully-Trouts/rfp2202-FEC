@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 import React, {Component} from 'react';
+import moment from 'moment';
 
 class Answer extends Component {
   constructor(props) {
@@ -13,20 +15,24 @@ class Answer extends Component {
     const {answerer_name, date, body, helpfulness, photos} = answer;
     const images = photos.map((src) => {
       return (
-        <img src={src} className='A_img' height='100' width='100'/>
+        <img src={src} key={src} className='A_Img' height='100' width='100'/>
       );
     });
 
     return (
       <div className='Answer'>
         <span className='A'>A: </span>
-        <>{images}</>
-        <div className='Answer_details'>
-          {`by ${answerer_name}, ${date}`}
-          <span className='A_helpful'> Helpful? </span>
-          <button className='A_helpful_button'>yes </button>
+        <span>{body}</span>
+        <div>
+          <>{images}</>
+        </div>
+
+        <div className='A_Details'>
+          {`by ${answerer_name}, ${moment(date).format('MMMM, DD, YYYY')}`}
+          <span className='A_Helpful'> Helpful? </span>
+          <button className='A_Helpful_Button'>yes </button>
           {` (${helpfulness})`}
-          <button className='A_report'>Report</button>
+          <button className='A_Report'>Report</button>
         </div>
       </div>
     );
