@@ -21,20 +21,33 @@ const ComparisonModal = (props) => {
 
     console.log('uniqueFeatures:::', uniqueFeatures);
 
-    // const currJustFeatures = currFeatures.map(item => item.);
-    // const compJustFeatures = compFeatures.map(item => item.value);
-
-    // const currJustValues = currFeatures.map(item => item.value);
-    // const currJustValues = currFeatures.map(item => item.value);
-
+    // this doesn't work. Need to refactor
     const tableBody = uniqueFeatures.map((feature, index) => {
-      console.log('currFeatures.feature', currFeatures.feature);
+
+      let currValue = '';
+      let compValue = '';
+
+      if (currFeatures[index] !== undefined) {
+        if (currFeatures[index].feature === feature) {
+          currValue = currFeatures[index].value;
+        }
+      }
+
+      if (compFeatures[index] !== undefined) {
+        if (compFeatures[index].feature === feature) {
+          compValue = compFeatures[index].value;
+
+        }
+      }
+
+      console.log('currValue in map:::', currValue);
+      console.log('compValue in map:::', compValue);
 
       return (
         <tr>
-          <td>{currFeatures[index].feature === feature ? currFeatures[index].value : ''}</td>
+          <td>{currValue}</td>
           <td>{feature}</td>
-          <td>{compFeatures[index].feature === feature ? compFeatures[index].value : ''}</td>
+          <td>{compValue}</td>
         </tr>
       )
     });
