@@ -12,19 +12,19 @@ class Ratings extends React.Component {
     this.state = {
       reviewList: [
         {
-          review_id: 1136197,
-          rating: 3,
-          summary: 'They\'re heavy but great',
-          recommend: true,
-          response: '',
-          body: 'I like them but they run wide.',
-          date: '2019-04-13T00:00:00.000Z',
-          reviewer_name: 'thinfootjim',
-          helpfulness: 3,
+          review_id: null,
+          rating: null,
+          summary: null,
+          recommend: null,
+          response: null,
+          body: null,
+          date: null,
+          reviewer_name: null,
+          helpfulness: null,
           photos: []
         }
       ],
-      sort: 'newest',
+      sort: 'relevant',
     };
     this.retrieveReviewList = this.retrieveReviewList.bind(this);
   }
@@ -39,7 +39,7 @@ class Ratings extends React.Component {
       }
     })
       .then((result) => {
-        console.log(result.data.results);
+        console.log('---->HERE<------', result.data.results);
         this.setState({reviewList: result.data.results});
       })
       .catch((err) => {
