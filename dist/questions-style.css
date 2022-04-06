@@ -1,11 +1,11 @@
-.QnA_section {
+.QA {
   margin: 30px;
   padding: 30px;
   border: 3px solid black;
   background-color: white;
 }
 
-.QnA_title {
+.QA_Title {
   margin: 8px;
   padding: 8px;
 
@@ -13,23 +13,74 @@
   background-color: white;
 }
 
-.QnA_search_form {
-  margin: 8px;
-  padding: 8px;
-  border: 3px solid black;
+.QA_Search {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid black;
   background-color: white;
 }
 
 .Question {
-  margin: 5px;
-  padding: 5px;
-  border: 3px solid black;
-  background-color: white;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .Answer {
-  margin: 3px;
-  padding: 3px;
-  border: 3px solid rgb(106, 106, 106);
+  font-weight: normal;
+  font-size: 14px;
+  color:rgb(100, 100, 100);
+  padding: 2px;
+}
+
+.Q_List {
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid black;
   background-color: white;
+}
+
+.A_List {
+  margin: 2px
+}
+
+.Q {
+  font-weight: bold;
+}
+
+.A {
+  font-weight: bold;
+}
+
+.Q_Helpful {
+  font-weight: normal;
+  font-size: 12px;
+  position: absolute;
+  right: 200px;
+}
+
+.Add_A {
+  font-weight: light;
+  font-size: 12px;
+  position: absolute;
+  right: 100px;
+}
+
+.A_Details {
+  font-weight: light;
+  font-size: 12px;
+  padding: 2px;
+}
+
+.A_Helpful {
+  margin-left: 20px;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.A_Report {
+  margin-left: 15px;
+}
+
+.More_Qs {
+  margin: 20px;
 }

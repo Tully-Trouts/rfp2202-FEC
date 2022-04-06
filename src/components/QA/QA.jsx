@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Question_List from './Question_List';
-import QnA_Search from './Q&A_Search';
+import QList from './QList';
+import QASearch from './QASearch';
 
-class QnA extends Component {
+class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,13 +16,14 @@ class QnA extends Component {
 
   componentDidMount() {
     const {getQuestionsById, state} = this;
-    const {productId, questionList} = state
+    const {productId, questionList} = state;
     getQuestionsById(productId);
   }
 
   getQuestionsById(productId) {
     axios.get('/api/qa/questions/', {
       params: {
+        // eslint-disable-next-line camelcase
         product_id: productId,
       },
     })
@@ -39,13 +40,13 @@ class QnA extends Component {
   render() {
     const {questions} = this.state;
     return (
-      <div className='QnA_section'>
-        <h3 className='QnA_title'>Questions and Answers</h3>
-        <QnA_Search />
-        <Question_List questions={questions}/>
+      <div className='QA'>
+        <h3 className='QA_Title'>Questions and Answers</h3>
+        <QASearch />
+        <QList questions={questions}/>
       </div>
-    )
+    );
   }
 }
 
-export default QnA;
+export default QA;
