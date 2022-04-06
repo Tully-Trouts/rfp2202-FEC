@@ -26,7 +26,7 @@ const OutfitList = ({ product }) => {
 
     // generate the card list from localStorage
 
-    const currentOutfits = Object.keys(localStorage).filter(productId => productId !== '').map(productId => {
+    const currentOutfits = Object.keys(localStorage).map(productId => {
       return (
         <div className="card">
           <Card key={productId} productId={productId}/>
