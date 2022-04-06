@@ -24,7 +24,7 @@ class Answer extends Component {
           {` (${helpfulness})`}
           <button className='A_report'>Report</button>
         </div>
-      </div> 
+      </div>
     )
   }
 }
