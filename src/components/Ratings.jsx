@@ -24,6 +24,7 @@ class Ratings extends React.Component {
           photos: []
         }
       ],
+      sort: 'newest',
     };
     this.retrieveReviewList = this.retrieveReviewList.bind(this);
   }
@@ -33,7 +34,7 @@ class Ratings extends React.Component {
       method: 'get',
       url: '/api/reviews/',
       params: {
-        sort: 'newest',
+        sort: this.state.sort,
         product_id: productId,
       }
     })
@@ -69,7 +70,7 @@ class Ratings extends React.Component {
           </div>
           <div className="RR-Container">
             <div className="rating_container">
-              <RatingBreakdown />
+              <RatingBreakdown productId={this.props.productId}/>
             </div>
             <div className="review_list">
               <ReviewList reviewList={this.state.reviewList} />

@@ -8,7 +8,6 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    console.log(this.props.reviewList);
     const eachReview = this.props.reviewList.map((review) =>
       <IndividualReview review={review} />
     );
