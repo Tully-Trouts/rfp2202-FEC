@@ -11,13 +11,6 @@ class Answer extends Component {
   render() {
     const {answer} = this.props;
     const {answerer_name, date, body, helpfulness, photos} = answer;
-    // const images = photos.map((src) => {
-    //   return (
-    //     <div>
-    //       <img src={src}>
-    //     </div>
-    //   );
-    // });
     const images = photos.map((src) => {
       return (
         <img src={src} className='A_img' height='100' width='100'/>
@@ -27,9 +20,7 @@ class Answer extends Component {
     return (
       <div className='Answer'>
         <span className='A'>A: </span>
-        <div>{JSON.stringify(photos)}</div>
         <>{images}</>
-
         <div className='Answer_details'>
           {`by ${answerer_name}, ${date}`}
           <span className='A_helpful'> Helpful? </span>
