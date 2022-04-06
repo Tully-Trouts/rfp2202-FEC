@@ -7,17 +7,17 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId,
+      productId: 65631, //this.props.productId,
       questions: [],
+      search: ''
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
+    this.liftSearch = this.liftSearch.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.questions.length === 0) {
-      console.log('NO QUESTIONS CLICK TEST');
-    }
+    this.getQuestionsById(this.state.productId);
   }
 
   componentDidUpdate(prevProps) {
@@ -46,8 +46,15 @@ class QA extends Component {
       });
   }
 
+  liftSearch(search) {
+    this.setState({
+      search: search
+    });
+  }
+
   render() {
     const {questions} = this.state;
+    const {liftSearch} = this;
     return (
       <div className='QA'>
         <h3 className='QA_Title'>Questions and Answers</h3>
@@ -56,12 +63,10 @@ class QA extends Component {
           <div> WINDOW WILL BE EMPTY EXCEPT FOR THE ADD QUESTIONS BUTTON IF NO QUESTIONS EXIST <div>CLICK TEST TO RENDER QUESTIONS!</div></div>
           :
           <div>
-            <QASearch />
+            <QASearch liftSearch={liftSearch}/>
             <QList questions={questions}/>
-            <button className='More_Qs'>Load More Questions</button>
           </div>
         }
-
         <button className='Add_Q'>Add A Question +</button>
       </div>
     );
