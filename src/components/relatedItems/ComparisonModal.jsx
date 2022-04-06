@@ -27,10 +27,10 @@ const ComparisonModal = (props) => {
           <td className="modal-characteristic">{feature}</td>
           <td>{compValue !== undefined ? compValue.value : 'N/A'}</td>
         </tr>
-      )
+      );
     });
     return tableBody;
-  }
+  };
 
   const modalTable = buildModalTable(currProduct, compProduct);
 
@@ -53,7 +53,7 @@ const ComparisonModal = (props) => {
         </tbody>
       </table>
     </div>,
-    document.getElementById("related-items-container"))
+    document.getElementById('related-items-container'));
 };
 
 export default ComparisonModal;
