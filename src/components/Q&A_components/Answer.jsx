@@ -5,17 +5,30 @@ class Answer extends Component {
     super(props);
     this.state = {
 
-    }
+    };
   }
 
   render() {
     const {answer} = this.props;
     const {answerer_name, date, body, helpfulness, photos} = answer;
+    // const images = photos.map((src) => {
+    //   return (
+    //     <div>
+    //       <img src={src}>
+    //     </div>
+    //   );
+    // });
+    const images = photos.map((src) => {
+      return (
+        <img src={src} className='A_img' height='100' width='100'/>
+      );
+    });
 
     return (
       <div className='Answer'>
         <span className='A'>A: </span>
         <div>{JSON.stringify(photos)}</div>
+        <>{images}</>
 
         <div className='Answer_details'>
           {`by ${answerer_name}, ${date}`}
@@ -25,7 +38,7 @@ class Answer extends Component {
           <button className='A_report'>Report</button>
         </div>
       </div>
-    )
+    );
   }
 }
 
