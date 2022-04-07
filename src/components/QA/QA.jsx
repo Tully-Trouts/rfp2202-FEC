@@ -18,9 +18,9 @@ class QA extends Component {
     this.liftClear = this.liftClear.bind(this);
   }
 
-  componentDidMount() {
-    this.getQuestionsById(this.state.productId);
-  }
+  // componentDidMount() {
+  //   this.getQuestionsById(this.state.productId);
+  // }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;

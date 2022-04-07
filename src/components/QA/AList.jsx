@@ -60,7 +60,6 @@ class AList extends Component {
 
   handleNewAnsSubmit(e) {
     e.preventDefault();
-
   }
 
   render() {
