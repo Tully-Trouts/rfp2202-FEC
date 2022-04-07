@@ -1,5 +1,6 @@
 #related-items-container {
   width: 75%;
+  position: relative;
   margin: auto;
   padding: 1em;
   border-style: solid;
@@ -10,6 +11,7 @@
   flex-direction: row;
   justify-content: space-between;
   overflow-x: scroll;
+  font-size: x-small;
 }
 
 .card {
@@ -26,4 +28,38 @@
 .preview-image {
   width: 200px;
   height: 200px;
+  object-fit: cover;
 }
+
+.comparison-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  width: 60%;
+  height: 60%;
+  max-width: 250px;
+  max-height: 250px;
+  border-style: solid;
+  background: white;
+  margin: 5px;
+  padding: 5px;
+  font-size: x-small;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+td {
+  text-align: center;
+}
+
+.modal-characteristic {
+  font-weight: bold;
+}
+

@@ -9,36 +9,49 @@ class CardList extends React.Component {
     this.state = {
       relatedItems: []
     };
+    this.getRelatedProducts = this.getRelatedProducts.bind(this);
+  }
+
+  getRelatedProducts(productId) {
+    if (productId) {
+      axios.get(`api/products/${productId}/related`)
+        .then((response) => {
+          this.setState({relatedItems: response.data});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   componentDidMount() {
-    // FOR DEV: need to remove hard coded  productId
-    const { productId } = this.props;
+    this.getRelatedProducts(this.props.product.id);
+  }
 
-    axios.get(`api/products/${productId || 65635}/related`)
-      .then((response) => {
-        console.log('response from related products api call:::', response);
-        this.setState({relatedItems: response.data});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.getRelatedProducts(this.props.product.id);
+    }
   }
 
   render() {
     const { relatedItems } = this.state;
-    const { getProductById } = this.props;
+    const { product, getProductById } = this.props;
     let uniqueItems = [...new Set(relatedItems)];
+
     const cardList = uniqueItems.map((productId) => {
       return (
-        <div className="card">
-          <Card key={productId.toString()} productId={productId} getProductById={getProductById}/>
+        <div className="card" key={productId}>
+          <Card currProduct={product} productId={productId} getProductById={getProductById}/>
         </div>
 
       );
     });
+
     return (
-      <>{cardList}</>
+      <div className="card-list">
+        {cardList}
+      </div>
     );
   }
 }

@@ -7,17 +7,28 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 65633, //this.props.productId for production phase
+      productId: this.props.productId,
       questions: [],
+      search: ''
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
+    this.liftSearch = this.liftSearch.bind(this);
+    this.filter = this.filter.bind(this);
+    this.liftClear = this.liftClear.bind(this);
   }
 
   componentDidMount() {
-    const {getQuestionsById, state} = this;
-    const {productId, questionList} = state;
-    getQuestionsById(productId);
+    this.getQuestionsById(this.state.productId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {getQuestionsById, props} = this;
+    const {productId} = props;
+
+    if (productId !== prevProps.productId) {
+      getQuestionsById(productId);
+    }
   }
 
   getQuestionsById(productId) {
@@ -37,13 +48,54 @@ class QA extends Component {
       });
   }
 
+  liftSearch(search) {
+    this.setState({
+      search: search
+    });
+  }
+
+  liftClear() {
+    this.setState({
+      search: ''
+    });
+  }
+
+  filter() {
+    const {search, questions} = this.state;
+    //filter by helpfulness
+    questions.sort((a, b) => {
+      a.question_helpfulness - b.question_helpfulness;
+    });
+
+    //filter by search
+    if (!search.length !== 0 && search.length >= 3) {
+      return questions.filter((question) => {
+        if (question.question_body.toLowerCase().includes(search.toLowerCase())) {
+          return true;
+        }
+        return false;
+      });
+    }
+
+    return questions;
+  }
+
   render() {
     const {questions} = this.state;
+    const {liftSearch, liftClear, filter} = this;
     return (
       <div className='QA'>
         <h3 className='QA_Title'>Questions and Answers</h3>
-        <QASearch />
-        <QList questions={questions}/>
+        { questions.length === 0
+          ?
+          <div>No current questions</div>
+          :
+          <div>
+            <QASearch liftSearch={liftSearch} liftClear={liftClear} />
+            <QList questions={filter()}/>
+          </div>
+        }
+        <button className='Add_Q'>Add A Question +</button>
       </div>
     );
   }

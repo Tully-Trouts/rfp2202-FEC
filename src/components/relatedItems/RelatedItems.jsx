@@ -10,12 +10,11 @@ class RelatedItems extends React.Component {
   }
 
   render() {
+    const { product, getProductById } = this.props;
     return (
       <div id="related-items-container">
         <h5>RELATED PRODUCTS</h5>
-        <div className="card-list">
-          <CardList productId={this.props.productId} getProductById={this.props.getProductById}/>
-        </div>
+        <CardList product={product} getProductById={getProductById}/>
       </div>
 
     );

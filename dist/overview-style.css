@@ -1,5 +1,32 @@
 .devtool {
   border-style: solid;
+  font-size: x-small;
+}
+
+.devtool nav {
+  margin: 8px;
+}
+
+.devtool ul.devtool-product-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  border-style: none;
+  margin: auto;
+  padding: unset;
+}
+
+li.devtool.devtool-product-list-item {
+  width: 80px;
+  padding: 0.3em;
+}
+
+.devtool-product {
+  margin: auto;
+}
+
+.devtool-product-list-item:hover {
+  background-color: cyan;
 }
 
 #overview-container {
