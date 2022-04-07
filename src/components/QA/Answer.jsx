@@ -15,7 +15,7 @@ class Answer extends Component {
     const {answerer_name, date, body, helpfulness, photos} = answer;
     const images = photos.map((src) => {
       return (
-        <img src={src} key={src} className='A_Img' height='100' width='100'/>
+        <img src={src} key={src} className='A_Images' />
       );
     });
 
