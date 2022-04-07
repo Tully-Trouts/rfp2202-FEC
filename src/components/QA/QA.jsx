@@ -80,6 +80,7 @@ class QA extends Component {
   render() {
     const {questions} = this.state;
     const {liftSearch, liftClear, filter} = this;
+    const {product} = this.props;
     return (
       <div className='QA'>
         <h3 className='QA_Title'>Questions and Answers</h3>
@@ -89,7 +90,7 @@ class QA extends Component {
           :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
-            <QList questions={filter()}/>
+            <QList questions={filter()} product={product}/>
           </div>
         }
         <button className='Add_Q'>Add A Question +</button>

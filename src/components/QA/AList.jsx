@@ -9,12 +9,19 @@ class AList extends Component {
     this.state = {
       toLoad: 2,
       loadingMore: false,
-      isAnswerModalOpen: false
+      isAnswerModalOpen: false,
+      newAnsBody: '',
+      newAnsNickname: '',
+      newAnsEmail: ''
     };
 
     this.handleLoadMore = this.handleLoadMore.bind(this);
     this.addAnsClick = this.addAnsClick.bind(this);
     this.closeAddAns = this.closeAddAns.bind(this);
+    this.handleNewAnswerInput = this.handleNewAnswerInput.bind(this);
+    this.handleNicknameInput = this.handleNicknameInput.bind(this);
+    this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handleNewAnsSubmit = this.handleNewAnsSubmit.bind(this);
   }
 
   handleLoadMore(e) {
@@ -36,10 +43,30 @@ class AList extends Component {
     this.setState({isAnswerModalOpen: false});
   }
 
+  handleNewAnswerInput(e) {
+    e.preventDefault;
+    this.setState({newAnsBody: e.target.value});
+  }
+
+  handleNicknameInput(e) {
+    e.preventDefault();
+    this.setState({newAnsNickname: e.target.value});
+  }
+
+  handleEmailInput(e) {
+    e.preventDefault();
+    this.setState({newAnsEmail: e.target.value});
+  }
+
+  handleNewAnsSubmit(e) {
+    e.preventDefault();
+
+  }
+
   render() {
-    const {answers} = this.props;
-    const {toLoad, loadingMore, isAnswerModalOpen} = this.state;
-    const {handleLoadMore, addAnsClick, closeAddAns} = this;
+    const {answers, questionBody, product} = this.props;
+    const {toLoad, loadingMore, isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail} = this.state;
+    const {handleLoadMore, addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit} = this;
 
     const answerList = [];
     for (let id in answers) {
@@ -67,7 +94,25 @@ class AList extends Component {
         {button}
 
         <AnswerModal open={isAnswerModalOpen} onClose={closeAddAns}>
-          AWOOOOGA
+          <form onSubmit={handleNewAnsSubmit}>
+            <h3>Submit Your Answer</h3>
+            <h4>{product.name} : {questionBody}</h4>
+            <div>
+              <label>Enter Answer: </label>
+              <textarea value={newAnsBody} placeholder='Your Answer' onChange={handleNewAnswerInput} rows='10' cols='100' />
+            </div>
+            <div>
+              <label>Enter Nickname: </label>
+              <textarea value={newAnsNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+            </div>
+            <span>
+              <label>Enter Email: </label>
+              <textarea value={newAnsEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
+            </span>
+            <div>
+              <button type='submit'>Submit</button>
+            </div>
+          </form>
         </AnswerModal>
       </div>
     );

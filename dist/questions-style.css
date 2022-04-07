@@ -16,7 +16,7 @@
 .QA_Search {
   margin: 5px;
   padding: 10px;
-  border: 2px solid black;
+  border: 3px solid black;
   background-color: white;
 }
 
@@ -35,7 +35,7 @@
 .Q_List {
   margin: 5px;
   padding: 5px;
-  border: 2px solid black;
+  border: 3px solid black;
   background-color: white;
 }
 

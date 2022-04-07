@@ -11,7 +11,7 @@ class Question extends Component {
   }
 
   render() {
-    const {question} = this.props;
+    const {question, product} = this.props;
     const {question_body, question_helpfulness, answers} = question;
 
     Object.keys(answers).sort((a, b) => { answers[a].helpfulness - answers[b].helpfulness; });
@@ -28,7 +28,7 @@ class Question extends Component {
           {` (${question_helpfulness})`}
         </span>
 
-        <AList answers={answers}/>
+        <AList answers={answers} questionBody={question_body} product={product}/>
       </div>
     );
   }

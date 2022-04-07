@@ -21,7 +21,7 @@ class QList extends Component {
   }
 
   render() {
-    const {questions} = this.props;
+    const {questions, product} = this.props;
     const {toLoad, loadingMore} = this.state;
     const {handleClick} = this;
 
@@ -37,7 +37,7 @@ class QList extends Component {
     return (
       <div className='Q_List'>
         {questions.slice(0, toLoad).map((question) =>
-          <Question question={question} key={question.question_id} />
+          <Question question={question} key={question.question_id} product={product}/>
         )}
         {button}
       </div>
