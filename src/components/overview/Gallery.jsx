@@ -21,7 +21,21 @@ var Gallery = (props) => {
   // setting the styling for the div. will have to alter later for photo fit etc.
   const divStyle = {
     backgroundImage: `url(${displayPhoto.url})`,
-    backgroundSize: 'contain',
+  };
+
+  const createSlideshow = (photos) => {
+    // want to get a big chain of divs with background images contained and centered
+    if (photos && photos.length > 0) {
+      return photos.map((element, index) => (
+        <div
+          key={index}
+          className="gallery-photo"
+          style={{
+            backgroundImage: `url(${element.url})`,
+          }}>
+        </div>
+      ));
+    }
   };
 
   const nextPhoto = () => {
@@ -36,8 +50,17 @@ var Gallery = (props) => {
     setDisplayPhotoIndex(nextIndex);
   };
 
+  // Carousel idea: upon photos prop updating, render out each photo as its own div (all of the same size)
+  //  upon state change (next or prev) use css to animate the div moving to the center
+  //  basically: an array of divs, only the center one is visible
+  // Looks like CSS can handle transitions as well:
+  //  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+
   return (
     <div className="overview overview-gallery" style={divStyle}>
+      <div className="overview overview-slideshow">
+        [slideshow]
+      </div>
       <span className="overview sm previous-image-selector" onClick={()=>{ prevPhoto(); }}>
         Previous
       </span>

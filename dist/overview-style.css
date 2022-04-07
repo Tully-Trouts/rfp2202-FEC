@@ -58,6 +58,7 @@ li.devtool.devtool-product-list-item {
   z-index: 4;
 }
 
+/* Phasing out gallery styling for gallery photo */
 .overview-gallery {
   height: 100%;
   margin: 0;
@@ -65,7 +66,17 @@ li.devtool.devtool-product-list-item {
   box-sizing: border-box;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: contain;
   background-color: grey;
+}
+
+.gallery-photo {
+  height: 40px;
+  width: 40px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
 }
 
 span.overview.previous-image-selector:hover,
