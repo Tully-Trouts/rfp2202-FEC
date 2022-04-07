@@ -71,12 +71,19 @@ li.devtool.devtool-product-list-item {
 }
 
 .gallery-photo {
-  height: 40px;
-  width: 40px;
+  /* where to manipulate the background-position
+  in order to change the background image */
+  height: 100px;
+  /* this technique will rely on width being 100% */
+  width: 100%;
   background-size: contain;
-  background-position: center;
+  background-position: 50%, 500%, 500%, 500%, 500%, 500%;
   background-repeat: no-repeat;
   display: inline-block;
+}
+
+.gallery-photo:hover {
+  background-position: -500%, 50%, 500%, 500%, 500%, 500%;
 }
 
 span.overview.previous-image-selector:hover,

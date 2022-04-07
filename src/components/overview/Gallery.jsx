@@ -26,16 +26,27 @@ var Gallery = (props) => {
   const createSlideshow = (photos) => {
     // want to get a big chain of divs with background images contained and centered
     if (photos && photos.length > 0) {
-      return photos.map((element, index) => (
+      const photoList = photos.map(element => `url(${element.url})`);
+      console.log(photoList);
+      // elements can have multiple background-images
+      // background images can be offset with the background-position property
+      //  giving comma separated values for each image:
+      //  background-position: -1000%, 50%, 1000%, 1000%, 1000%
+      // These percentages can probably also be animated.
+      return (
         <div
-          key={index}
           className="gallery-photo"
           style={{
-            backgroundImage: `url(${element.url})`,
+            backgroundImage: photoList
           }}>
         </div>
-      ));
+      );
     }
+  };
+
+  // Can have multiple background images:
+  const createBackground = (photos) => {
+    const photoList = photos.map(element => `url(${element.url})`);
   };
 
   const nextPhoto = () => {
@@ -60,6 +71,7 @@ var Gallery = (props) => {
     <div className="overview overview-gallery" style={divStyle}>
       <div className="overview overview-slideshow">
         [slideshow]
+        {createSlideshow(props.photos)}
       </div>
       <span className="overview sm previous-image-selector" onClick={()=>{ prevPhoto(); }}>
         Previous
