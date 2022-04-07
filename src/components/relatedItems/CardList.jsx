@@ -41,7 +41,7 @@ class CardList extends React.Component {
 
     const cardList = uniqueItems.map((productId) => {
       return (
-        <div className="card">
+        <div className="card" key={productId}>
           <Card currProduct={product} productId={productId} getProductById={getProductById}/>
         </div>
 
@@ -49,7 +49,9 @@ class CardList extends React.Component {
     });
 
     return (
-      <>{cardList}</>
+      <div className="card-list">
+        {cardList}
+      </div>
     );
   }
 }

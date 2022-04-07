@@ -14,9 +14,7 @@ class RelatedItems extends React.Component {
     return (
       <div id="related-items-container">
         <h5>RELATED PRODUCTS</h5>
-        <div className="card-list">
-          <CardList product={product} getProductById={getProductById}/>
-        </div>
+        <CardList product={product} getProductById={getProductById}/>
       </div>
 
     );
