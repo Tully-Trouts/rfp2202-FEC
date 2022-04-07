@@ -25,10 +25,21 @@ class AList extends Component {
     const {toLoad} = this.state;
     const {handleClick} = this;
 
+    //convert answers obj of objects to array of obj to sort by helpfulness
+    //push tuples of id + answer object to retain information of answer id
+    const answerList = [];
+    for (let id in answers) {
+      answerList.push([id, answers[id]]);
+    }
+    //sort by order of helpfulness
+    answerList.sort((a, b) => {
+      a[1].helpfulness - b[1].helpfulness;
+    });
+
     return (
       <div className='A_List'>
-        {Object.keys(answers).slice(0, toLoad).map((id) =>
-          <Answer answer={answers[id]} key={id}/>
+        { answerList.slice(0, toLoad).map((answer) =>
+          <Answer answer={answer} key={answer[0]} />
         )}
         { toLoad - 1 < Object.keys(answers).length
           ?

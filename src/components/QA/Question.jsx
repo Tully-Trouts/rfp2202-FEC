@@ -13,8 +13,8 @@ class Question extends Component {
   render() {
     const {question} = this.props;
     const {question_body, question_helpfulness, answers} = question;
-    // (Issue) switches the answer ids around but not the answer objects
-    // Object.keys(answers).sort((a, b) => { console.log(a); answers[a].helpfulness - answers[b].helpfulness; });
+
+    Object.keys(answers).sort((a, b) => { answers[a].helpfulness - answers[b].helpfulness; });
 
     return (
       <div className='Question'>

@@ -12,7 +12,8 @@ class Answer extends Component {
 
   render() {
     const {answer} = this.props;
-    const {answerer_name, date, body, helpfulness, photos} = answer;
+    const {answerer_name, date, body, helpfulness, photos} = answer[1];
+    const answerId = answer[0];
     const images = photos.map((src) => {
       return (
         <img src={src} key={src} className='A_Images' />
