@@ -100,6 +100,18 @@ li.style-list-item {
   overflow-wrap: anywhere;
 }
 
+span.style-list-item-circle {
+  width: 100%;
+  border-radius: 50%;
+  background-color: aqua;
+}
+
+span.style-list-item-circle::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
 li.style-list-item:hover {
   cursor: pointer;
   background-color: aqua;

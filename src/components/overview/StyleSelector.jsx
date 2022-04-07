@@ -16,7 +16,7 @@ var StyleSelector = (props) => {
           backgroundImage: `url(${element.photos[0].thumbnail_url})`,
         }}
         onClick={()=>{ props.setSelectedStyle(element); }}>
-        {element.name}
+        <span className="style-list-item-circle"></span>
       </li>
     ));
   };
