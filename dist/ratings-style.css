@@ -6,6 +6,49 @@
   margin-bottom: 30px;
 }
 
+.progress {
+  background-color: #f4f4f4;
+  height: 20px;
+  width: 300px;
+  margin-bottom: 11px;
+}
+
+.progress-done1 {
+  background-color: orange;
+  height: 100%;
+  width: 300px;
+  opacity: 0;
+
+}
+
+.progress-done2 {
+  background-color: orange;
+  height: 100%;
+  width: 300px;
+  opacity: 0;
+}
+
+.progress-done3 {
+  background-color: orange;
+  height: 100%;
+  width: 300px;
+  opacity: 0;
+}
+
+.progress-done4 {
+  background-color: orange;
+  height: 100%;
+  width: 300px;
+  opacity: 0;
+}
+
+.progress-done5 {
+  background-color: orange;
+  height: 100%;
+  width: 300px;
+  opacity: 0;
+}
+
 .RR-Container {
   display: flex;
 }
@@ -46,12 +89,59 @@
   border-style: solid;
 }
 
+/* Individual Tile Style */
 .review-tile {
   width: 90%;
-  border: solid;
+  border-bottom: 2px solid grey;
   margin: auto;
   margin-bottom: 1%;
+  display: flex;
+  flex-direction: column;
 }
+
+.ReviewerName {
+  color: grey;
+  text-align: right;
+  padding-right: 4px;
+  padding-left: 40%;
+}
+
+.Summary-text {
+  margin: auto;
+  height: 40px;
+}
+
+.Review_Body_Container {
+  height: 33px;
+}
+
+.USER-DATE {
+  display: flex;
+  margin-left:auto;
+}
+
+.Date {
+  color: grey;
+  padding-left: 5px;
+  padding-bottom: 1px;
+  padding-right: 128px;
+  flex: none;
+}
+
+.StarRating {
+  padding-bottom: 1px;
+}
+
+.User-box-1 {
+  display: flex;
+  height: 34px;
+  margin-top: 15px;
+}
+
+.Rating_Helpful {
+  margin-bottom: 20px;
+}
+
 
 .sorting {
   padding-left: 60%;
@@ -71,12 +161,12 @@
   padding-right: 8%;
 }
 
-
+/* Popup*/
 body.active-modal {
   overflow-y: hidden;
 }
 
-.modal, .overlay {
+.modalRR, .overlayRR {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -86,7 +176,7 @@ body.active-modal {
   position: fixed;
 }
 
-.overlay {
+.overlayRR {
   background: rgba(49,49,49,0.8);
 }
 .modal-content {
@@ -165,4 +255,6 @@ body.active-modal {
   line-height: 21px;
   }
 }
+
+
 

@@ -15,6 +15,11 @@ class RatingBreakdown extends React.Component {
       quality: null,
       width: null,
       size: null,
+      done: 40,
+      done2: 30,
+      done3: 80,
+      done4: 20,
+      done5: 55,
     };
     this.retrieveMetaList = this.retrieveMetaList.bind(this);
   }
@@ -29,10 +34,22 @@ class RatingBreakdown extends React.Component {
       }
     })
       .then((result) => {
+        console.log('Characteristics', result.data.characteristics.Size.value);
         this.setState({width: null, size: null, fit: null, length: null});
-        this.setState({product_id: result.data.product_id, rating: result.data.rating, recommended: result.data.recommended});
-        console.log('------->HERE<-------', result.data);
-        console.log('TEST1', this.state.metadata.characteristics.Quality.value);
+        this.setState({product_id: result.data.product_id, rating: result.data.rating, recommended: result.data.recommended, comfort: result.data.characteristics.Comfort.value, quality: result.data.characteristics.Quality.value});
+        if (result.data.characteristics.Fit.value !== undefined) {
+          this.setState({fit: result.data.characteristics.Fit.value});
+        }
+        if (result.data.characteristics.Width.value) {
+          this.setState({width: result.data.characteristics.Width.value});
+        }
+        if (result.data.characteristics.Size.value) {
+          this.setState({size: result.data.characteristics.Size.value});
+        }
+        if (result.data.characteristics.Length.value) {
+          this.setState({length: result.data.characteristics.Length.value});
+        }
+        console.log('Stateful Comfort', this.state.comfort);
       })
       .catch((err) => {
         console.log(err);
@@ -47,8 +64,47 @@ class RatingBreakdown extends React.Component {
 
   render() {
     return (
-      <div>
-        Need to make Changes
+      <div className="progress-Container">
+        <div className="progress">
+          <div className="progress-done1" style={{
+            opacity: 1,
+            width: `${this.state.done}%`
+          }}>
+            {this.state.done}%
+          </div>
+        </div>
+        <div className="progress">
+          <div className="progress-done2" style={{
+            opacity: 1,
+            width: `${this.state.done2}%`
+          }}>
+            {this.state.done2}%
+          </div>
+        </div>
+        <div className="progress">
+          <div className="progress-done3" style={{
+            opacity: 1,
+            width: `${this.state.done3}%`
+          }}>
+            {this.state.done3}%
+          </div>
+        </div>
+        <div className="progress">
+          <div className="progress-done4" style={{
+            opacity: 1,
+            width: `${this.state.done4}%`
+          }}>
+            {this.state.done4}%
+          </div>
+        </div>
+        <div className="progress">
+          <div className="progress-done5" style={{
+            opacity: 1,
+            width: `${this.state.done5}%`
+          }}>
+            {this.state.done5}%
+          </div>
+        </div>
       </div>
     );
     // if (this.state.shoes === false) {

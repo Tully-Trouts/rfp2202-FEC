@@ -25,8 +25,15 @@ class Ratings extends React.Component {
         }
       ],
       sort: 'relevant',
+      tileRender: 2,
     };
     this.retrieveReviewList = this.retrieveReviewList.bind(this);
+    this.handleMoreReview = this.handleMoreReview.bind(this);
+  }
+
+  handleMoreReview(e) {
+    e.preventDefault();
+    this.setState({tileRender: this.state.tileRender + 2});
   }
 
   retrieveReviewList(productId) {
@@ -39,7 +46,6 @@ class Ratings extends React.Component {
       }
     })
       .then((result) => {
-        console.log('---->HERE<------', result.data.results);
         this.setState({reviewList: result.data.results});
       })
       .catch((err) => {
@@ -61,6 +67,7 @@ class Ratings extends React.Component {
 
 
   render() {
+    const tileLoad = this.state.reviewList.slice(0, this.state.tileRender);
     return (
       <div id="rating_and_reviews-container">
         <h3>Rating and Review</h3>
@@ -73,13 +80,13 @@ class Ratings extends React.Component {
               <RatingBreakdown productId={this.props.productId}/>
             </div>
             <div className="review_list">
-              <ReviewList reviewList={this.state.reviewList} />
+              <ReviewList reviewList={tileLoad} />
             </div>
           </div>
         </div>
         <div className="btn-container">
           <div className="more_review-btn">
-            <button>
+            <button id="more-review-btn" onClick={this.handleMoreReview}>
               More Review
             </button>
           </div>

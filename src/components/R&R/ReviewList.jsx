@@ -12,8 +12,6 @@ class ReviewList extends React.Component {
       <IndividualReview review={review} />
     );
 
-    console.log('1', this.props.reviewList[0]);
-    console.log('2', this.props.reviewList[0].review_id);
 
     if (this.props.reviewList[0] === undefined || this.props.reviewList[0].review_id === null || this.props.reviewList[0].review_id === undefined) {
       return (
@@ -24,7 +22,6 @@ class ReviewList extends React.Component {
     } else {
       return (
         <div>
-          Rating
           <div className="ReviewList_container">
             {eachReview}
           </div>

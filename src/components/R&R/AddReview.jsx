@@ -75,8 +75,8 @@ class AddReview extends React.Component {
           Add Review
         </button>
         {this.state.setModal && (
-          <div className="modal">
-            <div className="overlay"></div>
+          <div className="modalRR">
+            <div className="overlayRR"></div>
             <div className="modal-content">
               <h2>Write your review: {this.props.productName}</h2>
               <div className="star-rating">
