@@ -12,6 +12,9 @@ var StyleSelector = (props) => {
         key={element.style_id}
         value={element.style_id}
         className="overview sm style-list-item"
+        style={{
+          backgroundImage: `url(${element.photos[0].thumbnail_url})`,
+        }}
         onClick={()=>{ props.setSelectedStyle(element); }}>
         {element.name}
       </li>

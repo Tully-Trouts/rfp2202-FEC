@@ -96,9 +96,12 @@ ul.style-list {
 li.style-list-item {
   display: flex;
   margin: 2px;
+  background-size: contain;
+  overflow-wrap: anywhere;
 }
 
 li.style-list-item:hover {
   cursor: pointer;
   background-color: aqua;
+  opacity: 60%;
 }
