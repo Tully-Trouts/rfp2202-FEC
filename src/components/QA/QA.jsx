@@ -63,9 +63,7 @@ class QA extends Component {
   filter() {
     const {search, questions} = this.state;
     //filter by helpfulness
-    questions.sort((a, b) => {
-      a.question_helpfulness - b.question_helpfulness;
-    });
+    questions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
 
     //filter by search
     if (!search.length !== 0 && search.length >= 3) {

@@ -24,17 +24,12 @@ class AList extends Component {
     const {answers} = this.props;
     const {toLoad} = this.state;
     const {handleClick} = this;
-
-    //convert answers obj of objects to array of obj to sort by helpfulness
-    //push tuples of id + answer object to retain information of answer id
     const answerList = [];
+    
     for (let id in answers) {
       answerList.push([id, answers[id]]);
     }
-    //sort by order of helpfulness
-    answerList.sort((a, b) => {
-      a[1].helpfulness - b[1].helpfulness;
-    });
+    answerList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
 
     return (
       <div className='A_List'>
