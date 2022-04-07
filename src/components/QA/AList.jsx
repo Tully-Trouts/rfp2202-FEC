@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Answer from './Answer';
+import AnswerModal from './AnswerModal';
+import ReactDOM from 'react-dom';
 
 class AList extends Component {
   constructor(props) {
@@ -7,12 +9,15 @@ class AList extends Component {
     this.state = {
       toLoad: 2,
       loadingMore: false,
+      isAnswerModalOpen: false
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
+    this.addAnsClick = this.addAnsClick.bind(this);
+    this.closeAddAns = this.closeAddAns.bind(this);
   }
 
-  handleClick(e) {
+  handleLoadMore(e) {
     e.preventDefault();
     if (e.target.value === 'loadAll') {
       this.setState({toLoad: Object.keys(this.props.answers).length, loadingMore: true});
@@ -21,12 +26,22 @@ class AList extends Component {
     }
   }
 
+  addAnsClick(e) {
+    e.preventDefault();
+    this.setState({isAnswerModalOpen: true});
+  }
+
+  closeAddAns(e) {
+    e.preventDefault();
+    this.setState({isAnswerModalOpen: false});
+  }
+
   render() {
     const {answers} = this.props;
-    const {toLoad, loadingMore} = this.state;
-    const {handleClick} = this;
-    const answerList = [];
+    const {toLoad, loadingMore, isAnswerModalOpen} = this.state;
+    const {handleLoadMore, addAnsClick, closeAddAns} = this;
 
+    const answerList = [];
     for (let id in answers) {
       answerList.push([id, answers[id]]);
     }
@@ -34,28 +49,26 @@ class AList extends Component {
 
     let button;
     if (answerList.length > toLoad) {
-      button = <button value='loadAll' onClick={handleClick}>Load More Answers</button>;
+      button = <button value='loadAll' onClick={handleLoadMore}>Load More Answers</button>;
     } else if (answerList.length > 2 && answerList.length === toLoad) {
-      button = <button value='collapse' onClick={handleClick}>Collapse</button>;
+      button = <button value='collapse' onClick={handleLoadMore}>Collapse</button>;
     } else {
       button = <></>;
     }
 
     return (
       <div className={loadingMore ? 'A_List_Overflow' : 'A_List'}>
+        <button className='Add_A' onClick={addAnsClick}>Add Answer +</button>
+
         { answerList.slice(0, toLoad).map((answer) =>
           <Answer answer={answer} key={answer[0]} />
         )}
 
         {button}
 
-
-        {/* toLoad - 1 < Object.keys(answers[1]).length
-          ?
-          <button value='loadMore' onClick={handleClick}>Load More Answers</button>
-          :
-          <button value='collapse' onClick={handleClick}>Collapse</button>
-        */}
+        <AnswerModal open={isAnswerModalOpen} onClose={closeAddAns}>
+          AWOOOOGA
+        </AnswerModal>
       </div>
     );
   }

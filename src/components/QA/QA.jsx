@@ -74,7 +74,6 @@ class QA extends Component {
         return false;
       });
     }
-
     return questions;
   }
 

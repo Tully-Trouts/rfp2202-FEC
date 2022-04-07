@@ -6,7 +6,7 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answers: []
+
     };
   }
 
@@ -26,12 +26,6 @@ class Question extends Component {
           helpful?
           <button>yes</button>
           {` (${question_helpfulness})`}
-        </span>
-
-        <span className='Add_A'>
-          <button>
-            Add Answer +
-          </button>
         </span>
 
         <AList answers={answers}/>
