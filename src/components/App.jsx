@@ -56,18 +56,10 @@ class App extends React.Component {
     return (
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
-<<<<<<< HEAD
-        <Overview product={product} />
-        <QA productId={product.id} />
-        <Ratings productId={product.id} productName={product.name}/>
-        <RelatedItems getProductById={this.getProductById} productId={product.id} />
-=======
-        <button type="button" name="test" onClick={(event) => { this.getProductById(65635, event); }}> TEST! </button>
         <Overview product={product} />
         <QA productId={product.id} />
         <Ratings productId={product.id} />
         <RelatedItems getProductById={this.getProductById} product={product} />
->>>>>>> develop
       </div>
     );
   }
