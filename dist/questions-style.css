@@ -40,7 +40,13 @@
 }
 
 .A_List {
-  margin: 2px
+  margin: 2px;
+}
+
+.A_List_Overflow {
+  margin: 2px;
+  height: 200px;
+  overflow: scroll;
 }
 
 .Q {
