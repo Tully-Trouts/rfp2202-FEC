@@ -56,7 +56,6 @@ class App extends React.Component {
     return (
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
-        <button type="button" name="test" onClick={(event) => { this.getProductById(65635, event); }}> TEST! </button>
         <Overview product={product} />
         <QA productId={product.id} />
         <Ratings productId={product.id} />
