@@ -96,14 +96,15 @@ ul.style-list {
 li.style-list-item {
   display: flex;
   margin: 2px;
-  background-size: contain;
-  overflow-wrap: anywhere;
 }
 
 span.style-list-item-circle {
   width: 100%;
   border-radius: 50%;
   background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 span.style-list-item-circle::before {

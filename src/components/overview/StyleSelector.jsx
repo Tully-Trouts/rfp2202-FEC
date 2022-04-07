@@ -12,11 +12,11 @@ var StyleSelector = (props) => {
         key={element.style_id}
         value={element.style_id}
         className="overview sm style-list-item"
-        style={{
-          backgroundImage: `url(${element.photos[0].thumbnail_url})`,
-        }}
         onClick={()=>{ props.setSelectedStyle(element); }}>
-        <span className="style-list-item-circle"></span>
+        <span className="style-list-item-circle"
+          style={{
+            backgroundImage: `url(${element.photos[0].thumbnail_url})`,
+          }}></span>
       </li>
     ));
   };
@@ -25,7 +25,6 @@ var StyleSelector = (props) => {
     <div className="overview overview-style-selector">
       [style selector]
       <div className="overview sm color-selector">
-        [color selector (radio inputs)]
         <ul className="style-list">
           {stylesList(props.styles)}
         </ul>
