@@ -45,16 +45,23 @@ li.devtool.devtool-product-list-item {
   display: flex;
 }
 
-.overview-image-panel {
-  /* will need to figure out how make this dynamic */
-  width: 65%;
-}
-
 .overview {
   margin: 5px;
   padding: 5px;
   border-style: solid;
   font-size: x-small;
+}
+
+.overview-image-panel {
+  /* will need to figure out how make this dynamic */
+  width: 65%;
+  z-index: 4;
+}
+
+.overview-gallery {
+  height: 100%;
+  margin: 0;
+  padding: 5px;
 }
 
 .overview-product-information-panel {
