@@ -26,4 +26,8 @@ jspm_packages/
 package-lock.json
 
 coverage/*
+<<<<<<< HEAD
 coverage/
+=======
+coverage/
+>>>>>>> develop

@@ -13,6 +13,8 @@ class Question extends Component {
   render() {
     const {question} = this.props;
     const {question_body, question_helpfulness, answers} = question;
+    Object.keys(answers).sort((a, b) => { a.helpfulness - b.helpfulness; });
+
     return (
       <div className='Question'>
         <span className='Q'>Q: </span>
