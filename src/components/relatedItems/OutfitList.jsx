@@ -2,7 +2,6 @@ import React from 'react';
 import Card from './Card';
 
 const OutfitList = ({ product }) => {
-  // how do I decided which cards to return and what to pass in?
 
   const [outfitList, setOutfitList] = React.useState(null);
   const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.length);
@@ -21,10 +20,6 @@ const OutfitList = ({ product }) => {
   };
 
   React.useEffect(() => {
-
-    console.log('use effect triggers');
-
-    // generate the card list from localStorage
     // refactor: definitely not the most efficient way to be doing this
     const currentOutfits = Object.keys(localStorage).map(productId => {
       return (
@@ -38,8 +33,7 @@ const OutfitList = ({ product }) => {
 
   }, [localStorageSize]);
 
-
-
+  // Need to style the Add to outfit card correctly
   return (
     <div id="outfit-list-container">
       <h5>OUTFIT LIST</h5>
