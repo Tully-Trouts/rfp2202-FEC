@@ -7,7 +7,8 @@
     "test": "jest",
     "build-dev": "webpack --mode development --watch",
     "start": "nodemon Routes/server.js",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "test-ov": "jest src/components/overview/__tests__/*"
   },
   "repository": {
     "type": "git",
