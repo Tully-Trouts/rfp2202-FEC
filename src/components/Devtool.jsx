@@ -6,7 +6,7 @@ var Devtool = (props) => {
       <h3>sample products/product IDs for development:</h3>
       <ul>
         {props.productList.map((element) => (
-          <li key={element.id} onClick={()=>{ props.updateProduct(element.id); }}>
+          <li key={element.id} onClick={(event)=>{ props.updateProduct(event, element.id); }}>
             {`${element.id} - ${element.name}`}
           </li>
         ))}

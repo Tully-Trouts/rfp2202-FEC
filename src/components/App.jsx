@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Overview from './overview/Overview';
-import QnA from './Q&A_components/Q&A';
+import QA from './QA/QA';
 import Ratings from './Ratings';
 import RelatedItems from './relatedItems/RelatedItems';
 import Devtool from './Devtool';
@@ -23,10 +23,12 @@ class App extends React.Component {
     this.getProducts(); // dev tool only
   }
 
-  getProductById(id) {
+  getProductById(id, event) {
+    if (event) {
+      event.stopPropagation();
+    }
     axios.get(`/api/products/${id}`)
       .then((response) => {
-        console.log('product::', id, response.data);
         this.setState({
           product: response.data,
         });
@@ -54,11 +56,11 @@ class App extends React.Component {
     return (
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
-        <button type="button" name="test" onClick={() => { this.getProductById(65635); }}> TEST! </button>
+        <button type="button" name="test" onClick={(event) => { this.getProductById(65635, event); }}> TEST! </button>
         <Overview product={product} />
-        <QnA productId={product.id} />
-        <Ratings productId={product.id} productName={product.name}/>
-        <RelatedItems getProductById={this.getProductById} productId={product.id} />
+        <QA productId={product.id} />
+        <Ratings productId={product.id} />
+        <RelatedItems getProductById={this.getProductById} product={product} />
       </div>
     );
   }
