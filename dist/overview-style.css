@@ -68,6 +68,12 @@ li.devtool.devtool-product-list-item {
   background-color: grey;
 }
 
+span.overview.previous-image-selector:hover,
+span.overview.next-image-selector:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
 .overview-product-information-panel {
   display: flex;
   flex-flow: column;
