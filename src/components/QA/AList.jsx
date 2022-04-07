@@ -6,7 +6,7 @@ class AList extends Component {
     super(props);
     this.state = {
       toLoad: 2,
-      loadingMore: false
+      loadingMore: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -15,7 +15,7 @@ class AList extends Component {
   handleClick(e) {
     e.preventDefault();
     if (e.target.value === 'loadAll') {
-      this.setState({toLoad: 1000, loadingMore: true});
+      this.setState({toLoad: Object.keys(this.props.answers).length, loadingMore: true});
     } else {
       this.setState({toLoad: 2, loadingMore: false});
     }
@@ -35,7 +35,7 @@ class AList extends Component {
     let button;
     if (answerList.length > toLoad) {
       button = <button value='loadAll' onClick={handleClick}>Load More Answers</button>;
-    } else if (answerList.length > 2 && answerList.length <= toLoad) {
+    } else if (answerList.length > 2 && answerList.length === toLoad) {
       button = <button value='collapse' onClick={handleClick}>Collapse</button>;
     } else {
       button = <></>;

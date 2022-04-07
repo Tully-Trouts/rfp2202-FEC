@@ -22,19 +22,24 @@ class QList extends Component {
 
   render() {
     const {questions} = this.props;
-    const {toLoad} = this.state;
+    const {toLoad, loadingMore} = this.state;
     const {handleClick} = this;
+
+    let button;
+    if (questions.length > toLoad) {
+      button = <button className='More_Qs' value='loadMore' onClick={handleClick}>Load More Questions</button>;
+    } else if (questions.length > 4 && questions.length <= toLoad) {
+      button = <button className='More_Qs' value='collapse' onClick={handleClick}>Collapse</button>;
+    } else {
+      button = <></>;
+    }
+
     return (
       <div className='Q_List'>
         {questions.slice(0, toLoad).map((question) =>
           <Question question={question} key={question.question_id} />
         )}
-        { toLoad - 1 < questions.length
-          ?
-          <button className='More_Qs' value='loadMore' onClick={handleClick}>Load More Questions</button>
-          :
-          <button className='More_Qs' value='collapse' onClick={handleClick}>Collapse</button>
-        }
+        {button}
       </div>
     );
   }

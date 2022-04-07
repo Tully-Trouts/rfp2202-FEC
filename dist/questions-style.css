@@ -22,12 +22,12 @@
 
 .Question {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .Answer {
   font-weight: normal;
-  font-size: 14px;
+  font-size: 12px;
   color:rgb(100, 100, 100);
   padding: 2px;
 }
@@ -59,14 +59,14 @@
 
 .Q_Helpful {
   font-weight: normal;
-  font-size: 12px;
+  font-size: 10px;
   position: absolute;
   right: 200px;
 }
 
 .Add_A {
   font-weight: light;
-  font-size: 12px;
+  font-size: 10px;
   position: absolute;
   right: 100px;
 }
@@ -88,7 +88,7 @@
 }
 
 .More_Qs {
-  margin-top: 40px;
+  margin-top: 15px;
   margin-bottom: 15px;
   margin-left: 15px;
 }
