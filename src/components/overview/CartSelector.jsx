@@ -8,15 +8,23 @@ var CartSelector = ({skus}) => {
   var getSizeOptions = (skus) => {
     return (skus ?
       Object.keys(skus).map((element) => (
-        <option key={element} value={element}>{skus[element].size}</option>
+        <option
+          key={element}
+          value={element}>
+          {skus[element].size}
+        </option>
       )) :
-      <option>OUT OF STOCK</option>); // idk why the BRD WANTS TO YELL???
+      <option>OUT OF STOCK</option>); // YELLING
   };
 
   var getQtyOptions = (qty) => {
     const qtyList = [...Array(qty)];
     return (qtyList.map((element, index) => (
-      <option key={index} value={index + 1}>{index + 1}</option>
+      <option
+        key={index}
+        value={index + 1}>
+        {index + 1}
+      </option>
     )));
   };
 
@@ -32,11 +40,16 @@ var CartSelector = ({skus}) => {
     <div className="overview overview-cart-selector">
       [cart selector]
       <div className="overview sm cart-selector">
-        <select onChange={(e) => selectSku(e)}>
+        <select
+          role="listbox"
+          aria-label="size"
+          onChange={(e) => selectSku(e)}>
           <option defaultValue={true}>Select Size</option>
           {getSizeOptions(skus)}
         </select>
-        <select role="listbox" aria-label="quantity">
+        <select
+          role="listbox"
+          aria-label="quantity">
           <option defaultValue={true} value="">-</option>
           {getQtyOptions(quantities)}
         </select>

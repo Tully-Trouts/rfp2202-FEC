@@ -38,3 +38,15 @@ test('Quantity select element renders with "-" as the current selection', () => 
   expect(quantityList.textContent).toBe('-');
 });
 
+// if we import 'screen' we can use it to query the entire document.body
+import { screen } from '@testing-library/dom';
+
+test('Size select element renders with "Select Size" as the initial text', () => {
+
+  // getting a query from the screen/document.body:
+  const sizeList = screen.getByRole('listbox', {name: 'size'});
+
+  // now lets assert over the results of the query:
+  expect(sizeList.textContent).toBe('Select Size');
+});
+
