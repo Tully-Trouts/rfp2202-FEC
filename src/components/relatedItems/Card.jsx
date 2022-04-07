@@ -101,28 +101,48 @@ class Card extends React.Component {
 
   render() {
 
-    const { productId, currProduct, getProductById } = this.props;
+    const { isOutfit, productId, currProduct, getProductById, handleRemoveOutfit } = this.props;
     const { compProduct, originalPrice, salePrice, previewImg, notFoundUrl, avgRating, show } = this.state;
     const { name, category } = compProduct;
 
-    return (
-      <div>
-        <div className="header">
-          <span>[product id: {productId}]</span>
-          <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
-        </div>
-        <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
-        <div className="inner-card" onClick={(event) => ( getProductById(productId, event))}>
-          <img className="preview-image" src={previewImg || notFoundUrl}/>
-          <div>
-            <h6>{category}</h6>
-            <div>{name}</div>
-            <div>${salePrice || originalPrice}</div>
-            <div>Rating: {avgRating}</div>
+    if (!isOutfit) {
+      return (
+        <div>
+          <div className="header">
+            <span>[product id: {productId}]</span>
+            <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
+          </div>
+          <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
+          <div className="inner-card" onClick={(event) => ( getProductById(productId, event))}>
+            <img className="preview-image" src={previewImg || notFoundUrl}/>
+            <div>
+              <h6>{category}</h6>
+              <div>{name}</div>
+              <div>${salePrice || originalPrice}</div>
+              <div>Rating: {avgRating}</div>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <div className="header">
+            <span>[product id: {productId}]</span>
+            <button type="button" name="remove-outfit" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
+          </div>
+          <div className="inner-card">
+            <img className="preview-image" src={previewImg || notFoundUrl}/>
+            <div>
+              <h6>{category}</h6>
+              <div>{name}</div>
+              <div>${salePrice || originalPrice}</div>
+              <div>Rating: {avgRating}</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
