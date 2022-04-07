@@ -37,7 +37,7 @@ var Gallery = (props) => {
   };
 
   return (
-    <div className="overview overview-image-panel" style={divStyle}>
+    <div className="overview overview-gallery" style={divStyle}>
       <span className="overview sm previous-image-selector" onClick={()=>{ prevPhoto(); }}>
         Previous
       </span>
