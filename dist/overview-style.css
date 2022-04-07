@@ -1,6 +1,7 @@
 .devtool {
   border-style: solid;
   font-size: x-small;
+  margin: 0 0 20px 0;
 }
 
 .devtool nav {
