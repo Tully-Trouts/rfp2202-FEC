@@ -1,6 +1,9 @@
 .devtool {
   border-style: solid;
   font-size: x-small;
+}
+
+.devtool-container {
   margin: 0 0 20px 0;
 }
 
