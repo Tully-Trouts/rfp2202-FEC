@@ -71,6 +71,7 @@ li.devtool.devtool-product-list-item {
 .overview-product-information-panel {
   display: flex;
   flex-flow: column;
+  width: 30%;
 }
 
 .cart-selector {
@@ -81,4 +82,23 @@ li.devtool.devtool-product-list-item {
 .sm {
   line-height: 1;
   font-size: smaller;
+  padding: 2px;
+}
+
+ul.style-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+  margin: 0;
+}
+
+li.style-list-item {
+  display: flex;
+  margin: 2px;
+}
+
+li.style-list-item:hover {
+  cursor: pointer;
+  background-color: aqua;
 }
