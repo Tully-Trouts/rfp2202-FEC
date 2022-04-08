@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { Button } from '../styledComponents';
 
@@ -30,6 +31,20 @@ var CartSelector = ({skus}) => {
     setQuantities(skus[sku].quantity);
   };
 
+  var addToCart =  (sku, qty) => {
+    const payload = {
+      'sku_id': sku,
+      'count': qty,
+    };
+    axios.post('/api/cart', payload)
+      .then((res) => {
+        console.log('Cart:', res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="overview sm overview-cart-selector">
       [cart selector]
@@ -54,7 +69,8 @@ var CartSelector = ({skus}) => {
       <div className="overview sm cart-selector-buttons">
         <Button
           size={4}
-          aria-label="add-to-cart">
+          aria-label="add-to-cart"
+          onClick={() => { addToCart(selectedSku, selectedQty); }}>
           Add to cart
         </Button>
         <Button

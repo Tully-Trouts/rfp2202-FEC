@@ -9,7 +9,8 @@ const Button = (props) => {
         flex: props.size,
       }}
       type="button"
-      role="button">
+      role="button"
+      onClick={props.onClick}>
       {props.children.toUpperCase()}
     </button>
   );
