@@ -3,8 +3,6 @@ import React from 'react';
 var Gallery = (props) => {
 
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
-  const [backgroundPositionArray, setBackgroundPositionArray] = React.useState([]);
-  const [backgroundPhotoArray, setBackgroundPhotoArray] = React.useState([]);
 
   const [galleryStyle, setGalleryStyle] = React.useState({});
 
@@ -16,17 +14,17 @@ var Gallery = (props) => {
       // New carousel
       // Build the css property with images in background:
       const backgroundImage = props.photos.map(element => `url(${element.url})`);
-
       // Build the background image position array:
       //  for photo list of length 4, with display index of 0 we want:
       //  backgroundPositionArray = [50%, 500%, 500%, 500%]
+
+      // Future refactor: make this array use the actual dimensions of the photos so
+      //  you can have the images flush against each other, that way sizing the 'background-size'
+      //  property will be more straightforward with different aspect ratio photos.
       const backgroundPosition = [...Array(props.photos.length)].map(() => '500%');
       // Setting the first element/image to be in the center of the div:
       backgroundPosition[0] = '50%';
-
       // Setting state:
-      setBackgroundPhotoArray(backgroundImage);
-      setBackgroundPositionArray(backgroundPosition);
       setGalleryStyle({backgroundImage, backgroundPosition});
     }
 

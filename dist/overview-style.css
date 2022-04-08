@@ -70,9 +70,9 @@ li.devtool.devtool-product-list-item {
   /* where to manipulate the background-position
   in order to change the background image */
   height: 100%;
-  /* this technique will rely on width being 100% */
   width: 100%;
-  background-size: contain;
+  /* setting the width of the photo, height will be auto */
+  background-size: 50%;
   background-repeat: no-repeat;
 }
 
