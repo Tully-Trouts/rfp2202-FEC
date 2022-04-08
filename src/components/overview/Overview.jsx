@@ -4,6 +4,7 @@ import Gallery from './Gallery';
 import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Button } from '../styledComponents';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
@@ -77,7 +78,12 @@ var Overview = ({product}) => {
           </div>
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
-          <span className="price">{product.default_price}</span>
+          <div className="overview product-price">
+            {!!selectedStyle.sale_price &&
+            (<span className="sale-price"> {selectedStyle.sale_price}</span>) ||
+            (<span className="original-price">{selectedStyle.original_price}</span>) ||
+            (<span className="price">{product.default_price}</span>)}
+          </div>
           <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>

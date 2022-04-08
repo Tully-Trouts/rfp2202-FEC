@@ -28,11 +28,12 @@ class App extends React.Component {
     if (event) {
       event.stopPropagation();
     }
-    axios.get(`/api/products/${id}`)
-      .then((response) => {
+    return axios.get(`/api/products/${id}`)
+      .then(({data}) => {
         this.setState({
-          product: response.data,
+          product: data,
         });
+        return data;
       })
       .catch((err) => {
         console.log(err);
