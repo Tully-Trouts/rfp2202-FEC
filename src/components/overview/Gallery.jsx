@@ -68,9 +68,9 @@ var Gallery = (props) => {
         Next
       </span>
       <div
-          className="gallery-photos"
-          style={galleryStyle}>
-        </div>
+        className="gallery-photos"
+        style={galleryStyle}>
+      </div>
     </div>
   );
 };
