@@ -165,3 +165,7 @@ li.style-list-item:hover {
   opacity: 60%;
 }
 
+.styled-btn {
+  line-height: 3em;
+}
+
