@@ -176,6 +176,10 @@ li.style-list-item:hover {
   background-color: white;
 }
 
+.styled-btn.styled-btn-size-1 {
+  justify-content: center;
+}
+
 .styled-btn:hover {
   background: linear-gradient(#e1dede, #eaeaea);
 }
