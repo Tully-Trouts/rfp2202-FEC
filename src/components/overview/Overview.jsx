@@ -4,6 +4,7 @@ import Gallery from './Gallery';
 import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Button } from '../styledComponents';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
