@@ -97,3 +97,7 @@
   width: 100px;
   height:100px;
 }
+
+#Add_Question {
+  position: relative;
+}

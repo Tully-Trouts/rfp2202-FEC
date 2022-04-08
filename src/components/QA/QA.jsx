@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import QList from './QList';
+import Question from './Question';
 import QASearch from './QASearch';
 import QuestionModal from './QuestionModal';
 import { Button, Link } from '../styledComponents';
@@ -16,12 +16,14 @@ class QA extends Component {
       newQuestionNickname: '',
       newQuestionsEmail: '',
       isQuestionModalOpen: false,
+      toLoad: 4
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
     this.liftSearch = this.liftSearch.bind(this);
     this.filter = this.filter.bind(this);
     this.liftClear = this.liftClear.bind(this);
+    this.handleLoadMoreQuestions = this.handleLoadMoreQuestions.bind(this);
 
     this.addQuestionClick = this.addQuestionClick.bind(this);
     this.closeAddQuestion = this.closeAddQuestion.bind(this);
@@ -92,6 +94,15 @@ class QA extends Component {
     return questions;
   }
 
+  handleLoadMoreQuestions(e) {
+    e.preventDefault();
+    if (e.target.value === 'loadMore') {
+      this.setState({toLoad: this.state.toLoad + 2});
+    } else {
+      this.setState({toLoad: 4});
+    }
+  }
+
   addQuestionClick(e) {
     e.preventDefault();
     this.setState({isQuestionModalOpen: true});
@@ -122,24 +133,40 @@ class QA extends Component {
   }
 
   render() {
-    const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail} = this.state;
-    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit} = this;
+    const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad} = this.state;
+    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleLoadMoreQuestions} = this;
     const {product} = this.props;
+
+    let button;
+    if (questions.length > toLoad) {
+      button = <Button className='More_Qs' value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
+    } else if (questions.length > 4 && questions.length <= toLoad) {
+      button = <Button className='More_Qs' value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
+    } else {
+      button = <></>;
+    }
+
+    filter();
 
     return (
       <div className='QA'>
-        <h3 className='QA_Title'>Questions and Answers</h3>
+        <h3 id='QA_Title'>Questions and Answers</h3>
         { questions.length === 0
           ?
           <div>No current questions</div>
           :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
-            <QList questions={filter()} product={product}/>
+            <div className='Q_List'>
+              {questions.slice(0, toLoad).map((question) =>
+                <Question question={question} key={question.question_id} product={product}/>
+              )}
+            </div>
           </div>
         }
 
-        <Button onClick={addQuestionClick} size={1}>Add A Question +</Button>
+        {button}
+        <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>
             <h3>Submit Your Question</h3>

@@ -6,6 +6,7 @@ class QList extends Component {
     super(props);
     this.state = {
       toLoad: 4,
+      loadingMore: false,
     };
 
     this.handleLoadMoreQuestions = this.handleLoadMoreQuestions.bind(this);
@@ -22,7 +23,7 @@ class QList extends Component {
 
   render() {
     const {questions, product} = this.props;
-    const {toLoad} = this.state;
+    const {loadingMore} = this.state;
     const {handleLoadMoreQuestions} = this;
 
     let button;
