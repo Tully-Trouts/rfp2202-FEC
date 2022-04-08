@@ -100,6 +100,10 @@ span.gallery-control:hover {
   flex-flow: column;
 }
 
+.cart-selector-buttons {
+  display: flex;
+}
+
 .sm {
   line-height: 1;
   font-size: smaller;
@@ -139,3 +143,4 @@ li.style-list-item:hover {
   background-color: aqua;
   opacity: 60%;
 }
+
