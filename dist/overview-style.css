@@ -77,9 +77,6 @@ li.devtool.devtool-product-list-item {
   /* this technique will rely on width being 100% */
   width: 100%;
   background-size: contain;
-  /*
-  background-position: 50%, 500%, 500%, 500%, 500%, 500%;
-  */
   background-repeat: no-repeat;
   display: inline-block;
 }
