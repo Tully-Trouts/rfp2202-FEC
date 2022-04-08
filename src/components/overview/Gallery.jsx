@@ -2,15 +2,11 @@ import React from 'react';
 
 var Gallery = (props) => {
 
-  var notFound = {
-    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/768px-No_image_available.svg.png'
-  };
-
-  // setting default to a no image available photo from wikipedia
-  const [displayPhoto, setDisplayPhoto] = React.useState(notFound); // Old carousel
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
   const [backgroundPositionArray, setBackgroundPositionArray] = React.useState([]);
   const [backgroundPhotoArray, setBackgroundPhotoArray] = React.useState([]);
+
+  const [galleryStyle, setGalleryStyle] = React.useState({});
 
   // monitor props.photos for changes, use this effect if there are changes
   React.useEffect(() => {
@@ -19,67 +15,36 @@ var Gallery = (props) => {
     if (props.photos && props.photos.length !== 0) {
       // New carousel
       // Build the css property with images in background:
-      const photoArray = props.photos.map(element => `url(${element.url})`);
+      const backgroundImage = props.photos.map(element => `url(${element.url})`);
 
       // Build the background image position array:
       //  for photo list of length 4, with display index of 0 we want:
       //  backgroundPositionArray = [50%, 500%, 500%, 500%]
-      const positionArray = [...Array(props.photos.length)].map(() => '500%');
-
+      const backgroundPosition = [...Array(props.photos.length)].map(() => '500%');
       // Setting the first element/image to be in the center of the div:
-      positionArray[0] = '50%';
+      backgroundPosition[0] = '50%';
 
       // Setting state:
-      setBackgroundPhotoArray(photoArray);
-      setBackgroundPositionArray(positionArray);
-
-      // Old carousel:
-      setDisplayPhoto(props.photos[displayPhotoIndex] || notFound);
+      setBackgroundPhotoArray(backgroundImage);
+      setBackgroundPositionArray(backgroundPosition);
+      setGalleryStyle({backgroundImage, backgroundPosition});
     }
 
     setDisplayPhotoIndex(0);
   }, [props.photos]);
 
-  // const createSlideshow = (photos) => {
-  //   console.log('rendering a new slideshow');
-  //   // want to get a big chain of divs with background images contained and centered
-  //   if (photos && photos.length > 0) {
-  //     const photoList = photos.map(element => `url(${element.url})`);
-  //     console.log('Gallery background photo list:', photoList);
-  //     // elements can have multiple background-images
-  //     // background images can be offset with the background-position property
-  //     //  giving comma separated values for each image:
-  //     //  background-position: -1000%, 50%, 1000%, 1000%, 1000%
-  //     // These percentages can probably also be animated.
-  //     return (
-  //       <div
-  //         className="gallery-photos"
-  //         style={{
-  //           backgroundImage: photoList,
-  //           backgroundPosition: backgroundPositionArray,
-  //         }}>
-  //       </div>
-  //     );
-  //   }
-  // };
-
-  // Can have multiple background images:
-  const createBackground = (photos) => {
-    const photoList = photos.map(element => `url(${element.url})`);
-  };
-
   const nextPhoto = () => {
     // when this fires, I want to change the bg photo position array
     // AND animate the change from the previous
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
-
     // for testing the concept, lets build a new bg position array:
     const positionArray = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     // and set the position of the photo at nextIndex to 50% (center of div):
     positionArray[nextIndex] = '50%';
-    // then update the state. Do we also need to render out again?
+    // then update the state:
+    // This is where I want to add animation to style
+    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition: positionArray}));
     setBackgroundPositionArray(positionArray);
-    setDisplayPhoto(props.photos[nextIndex]);
     setDisplayPhotoIndex(nextIndex);
   };
 
@@ -101,10 +66,7 @@ var Gallery = (props) => {
         [slideshow]
         <div
           className="gallery-photos"
-          style={{
-            backgroundImage: backgroundPhotoArray,
-            backgroundPosition: backgroundPositionArray,
-          }}>
+          style={galleryStyle}>
         </div>
       </div>
       <span className="overview sm previous-image-selector" onClick={()=>{ prevPhoto(); }}>
