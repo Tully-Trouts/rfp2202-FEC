@@ -84,11 +84,6 @@ li.devtool.devtool-product-list-item {
   display: inline-block;
 }
 
-/* for testing if the image changes */
-.gallery-photos:hover {
-  background-position: -500%, 50%, 500%, 500%, 500%, 500%;
-}
-
 span.overview.previous-image-selector:hover,
 span.overview.next-image-selector:hover {
   background-color: aqua;

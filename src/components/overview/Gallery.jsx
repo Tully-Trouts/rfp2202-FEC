@@ -35,6 +35,7 @@ var Gallery = (props) => {
   };
 
   const createSlideshow = (photos) => {
+    console.log('rendering a new slideshow');
     // want to get a big chain of divs with background images contained and centered
     if (photos && photos.length > 0) {
       const photoList = photos.map(element => `url(${element.url})`);
@@ -65,9 +66,9 @@ var Gallery = (props) => {
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
 
     // for testing the concept, lets build a new bg position array:
-    const positionArray = [...Array(props.photos.length)].map(() => '500%');
+    const positionArray = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     // and set the position of the photo at nextIndex to 50% (center of div):
-    positionArray[nextIndex] = '50%';
+    positionArray[nextIndex] = 'center';
     // then update the state. Do we also need to render out again?
     setBackgroundPositionArray(positionArray);
     setDisplayPhoto(props.photos[nextIndex]);
