@@ -31,7 +31,7 @@ class QASearch extends Component {
     const {search} = state;
     return (
       <form className='QA_Search'>
-        <input placeholder='Search Questions' value={search} onChange={handleChange} />
+        <input type='text' placeholder='Search Questions' value={search} onChange={handleChange} />
         <button onClick={handleClick}>Clear</button>
       </form>
     );

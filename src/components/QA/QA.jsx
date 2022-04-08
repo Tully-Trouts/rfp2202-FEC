@@ -18,9 +18,9 @@ class QA extends Component {
     this.liftClear = this.liftClear.bind(this);
   }
 
-  componentDidMount() {
-    this.getQuestionsById(this.state.productId);
-  }
+  // componentDidMount() {
+  //   this.getQuestionsById(this.state.productId);
+  // }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
@@ -63,9 +63,7 @@ class QA extends Component {
   filter() {
     const {search, questions} = this.state;
     //filter by helpfulness
-    questions.sort((a, b) => {
-      a.question_helpfulness - b.question_helpfulness;
-    });
+    questions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
 
     //filter by search
     if (!search.length !== 0 && search.length >= 3) {
@@ -76,13 +74,13 @@ class QA extends Component {
         return false;
       });
     }
-
     return questions;
   }
 
   render() {
     const {questions} = this.state;
     const {liftSearch, liftClear, filter} = this;
+    const {product} = this.props;
     return (
       <div className='QA'>
         <h3 className='QA_Title'>Questions and Answers</h3>
@@ -92,7 +90,7 @@ class QA extends Component {
           :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
-            <QList questions={filter()}/>
+            <QList questions={filter()} product={product}/>
           </div>
         }
         <button className='Add_Q'>Add A Question +</button>
