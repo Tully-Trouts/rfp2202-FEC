@@ -36,7 +36,7 @@ const OutfitList = ({ product }) => {
   // Need to style the Add to outfit card correctly
   return (
     <div id="outfit-list-container">
-      <h5>OUTFIT LIST</h5>
+      <h5>YOUR OUTFIT</h5>
       <div className="card-list">
         <div className="card">
           <button onClick={() => addProductToOutfit(product.id)}>Add to outfit</button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ComparisonModal from './ComparisonModal';
+import { Button } from '../styledComponents';
 
 class Card extends React.Component {
   constructor(props) {
@@ -109,13 +110,13 @@ class Card extends React.Component {
       return (
         <div>
           <div className="header">
-            <span>[product id: {productId}]</span>
-            <button type="button" name="modal-open" onClick={this.handleModalClick}>modal</button>
+            {/* <span>[product id: {productId}]</span> */}
+            <button className="related-items-modal-open" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
           </div>
           <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
           <div className="inner-card" onClick={(event) => ( getProductById(productId, event))}>
             <img className="preview-image" src={previewImg || notFoundUrl}/>
-            <div>
+            <div className="related-items-card-info">
               <h6>{category}</h6>
               <div>{name}</div>
               <div>${salePrice || originalPrice}</div>
@@ -128,12 +129,13 @@ class Card extends React.Component {
       return (
         <div>
           <div className="header">
-            <span>[product id: {productId}]</span>
-            <button type="button" name="remove-outfit" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
+            {/* <span>[product id: {productId}]</span> */}
+            {/* <Button class="outfit-list-modal-close" size={1} aria-label="close" onClick={(e) => handleRemoveOutfit(e, productId)}>X</Button> */}
+            <button className="outfit-list-modal-close" type="button" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
           </div>
           <div className="inner-card">
             <img className="preview-image" src={previewImg || notFoundUrl}/>
-            <div>
+            <div className="related-items-card-info">
               <h6>{category}</h6>
               <div>{name}</div>
               <div>${salePrice || originalPrice}</div>

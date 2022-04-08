@@ -6,6 +6,13 @@
   border-style: solid;
 }
 
+.related-items{
+  margin: 5px;
+  padding: 5px;
+  border-style: solid;
+  font-size: x-small;
+}
+
 .card-list {
   display: flex;
   flex-direction: row;
@@ -19,10 +26,15 @@
   flex-direction: column;
   flex-grow: 0 0 0;
   width: 200px;
-  height: 75%;
+  height: 80%;
   margin: 5px;
-  padding: 5px;
+  /* padding: 5px; */
   border-style: solid;
+  position: relative;
+}
+
+.related-items-card-info {
+  padding: 5px;
 }
 
 .preview-image {
@@ -52,7 +64,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 td {
@@ -62,4 +74,17 @@ td {
 .modal-characteristic {
   font-weight: bold;
 }
+
+.outfit-list-modal-close, .related-items-modal-open {
+  position: absolute;
+  font-weight: bold;
+  font-size: larger;
+  text-align: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
 
