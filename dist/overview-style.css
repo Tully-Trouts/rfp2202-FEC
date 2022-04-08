@@ -180,6 +180,10 @@ li.style-list-item:hover {
   background: linear-gradient(#e1dede, #eaeaea);
 }
 
+.styled-btn:active {
+  background: linear-gradient(#d5d5d5, #e5e5e5);
+}
+
 span.styled-link {
   text-decoration: underline;
 }
