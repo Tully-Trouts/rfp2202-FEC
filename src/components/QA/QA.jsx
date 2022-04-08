@@ -137,13 +137,13 @@ class QA extends Component {
     const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleLoadMoreQuestions} = this;
     const {product} = this.props;
 
-    let button;
+    let loadMoreButton;
     if (questions.length > toLoad) {
-      button = <Button className='More_Qs' value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
+      loadMoreButton = <Button className='More_Qs' value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
     } else if (questions.length > 4 && questions.length <= toLoad) {
-      button = <Button className='More_Qs' value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
+      loadMoreButton = <Button className='More_Qs' value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
     } else {
-      button = <></>;
+      loadMoreButton = <></>;
     }
 
     filter();
@@ -165,7 +165,7 @@ class QA extends Component {
           </div>
         }
 
-        {button}
+        {loadMoreButton}
         <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>

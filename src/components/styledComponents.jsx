@@ -10,6 +10,7 @@ const Button = (props) => {
       }}
       type="button"
       role="button"
+      value={props.value}
       onClick={props.onClick}>
       {props.children.toUpperCase()}
     </button>
