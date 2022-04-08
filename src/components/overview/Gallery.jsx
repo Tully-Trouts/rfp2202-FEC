@@ -13,7 +13,7 @@ var Gallery = (props) => {
 
   // monitor props.photos for changes, use this effect if there are changes
   React.useEffect(() => {
-    setDisplayPhotoIndex(0);
+    console.log('Gallery useEffect firing');
 
     if (props.photos && props.photos.length !== 0) {
       // New carousel:
@@ -27,6 +27,8 @@ var Gallery = (props) => {
       // Old carousel:
       setDisplayPhoto(props.photos[displayPhotoIndex] || notFound);
     }
+
+    setDisplayPhotoIndex(0);
   }, [props.photos]);
 
   // setting the styling for the div. will have to alter later for photo fit etc.
@@ -39,7 +41,7 @@ var Gallery = (props) => {
     // want to get a big chain of divs with background images contained and centered
     if (photos && photos.length > 0) {
       const photoList = photos.map(element => `url(${element.url})`);
-      console.log(photoList);
+      console.log('Gallery background photo list:', photoList);
       // elements can have multiple background-images
       // background images can be offset with the background-position property
       //  giving comma separated values for each image:
