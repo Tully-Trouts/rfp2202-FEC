@@ -63,19 +63,16 @@ var Gallery = (props) => {
 
   return (
     <div className="overview overview-gallery">
-      <div className="overview overview-slideshow">
-        [slideshow]
-        <div
+      <span className="overview sm gallery-control" onClick={()=>{ prevPhoto(); }}>
+        Previous
+      </span>
+      <span className="overview sm gallery-control" onClick={()=>{ nextPhoto(); }}>
+        Next
+      </span>
+      <div
           className="gallery-photos"
           style={galleryStyle}>
         </div>
-      </div>
-      <span className="overview sm previous-image-selector" onClick={()=>{ prevPhoto(); }}>
-        Previous
-      </span>
-      <span className="overview sm next-image-selector" onClick={()=>{ nextPhoto(); }}>
-        Next
-      </span>
     </div>
   );
 };

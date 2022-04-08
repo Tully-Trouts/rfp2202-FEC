@@ -55,7 +55,6 @@ li.devtool.devtool-product-list-item {
 .overview-image-panel {
   /* will need to figure out how make this dynamic */
   width: 65%;
-  z-index: 4;
 }
 
 /* Phasing out gallery styling for gallery photo */
@@ -64,25 +63,24 @@ li.devtool.devtool-product-list-item {
   margin: 0;
   padding: 5px;
   box-sizing: border-box;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   background-color: grey;
 }
 
 .gallery-photos {
   /* where to manipulate the background-position
   in order to change the background image */
-  height: 100px;
+  height: 100%;
   /* this technique will rely on width being 100% */
   width: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  display: inline-block;
 }
 
-span.overview.previous-image-selector:hover,
-span.overview.next-image-selector:hover {
+span.gallery-control {
+  float: left;
+}
+
+span.gallery-control:hover {
   background-color: aqua;
   cursor: pointer;
 }
