@@ -20,7 +20,7 @@ var Gallery = (props) => {
       //  for photo list of length 4, with display index of 0 we want:
       //  backgroundPositionArray = [50%, 500%, 500%, 500%]
       const positionArray = [...Array(props.photos.length)].map(() => '500%');
-      // Changing the first element to test if this is working:
+      // Setting the first element/image to be in the center of the div:
       positionArray[0] = '50%';
       setBackgroundPositionArray(positionArray);
 
@@ -63,6 +63,13 @@ var Gallery = (props) => {
 
   const nextPhoto = () => {
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
+
+    // for testing the concept, lets build a new bg position array:
+    const positionArray = [...Array(props.photos.length)].map(() => '500%');
+    // and set the position of the photo at nextIndex to 50% (center of div):
+    positionArray[nextIndex] = '50%';
+    // then update the state. Do we also need to render out again?
+    setBackgroundPositionArray(positionArray);
     setDisplayPhoto(props.photos[nextIndex]);
     setDisplayPhotoIndex(nextIndex);
   };
