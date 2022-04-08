@@ -5,10 +5,7 @@
 
 .devtool-container {
   margin: 0 0 20px 0;
-}
-
-.devtool nav {
-  margin: 8px;
+  padding: 0 20px 20px 20px;
 }
 
 .devtool ul.devtool-product-list {
@@ -95,12 +92,21 @@ span.gallery-control:hover {
   width: 30%;
 }
 
+
 .cart-selector {
   display: flex;
 }
 
 .size-selector {
   flex: 3;
+}
+
+.overview > .btn {
+  margin: 2px 2px;
+}
+
+.overview > select {
+  margin: 2px 2px;
 }
 
 .quantity-selector {
