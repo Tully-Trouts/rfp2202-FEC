@@ -9,11 +9,22 @@ var Gallery = (props) => {
   // setting default to a no image available photo from wikipedia
   const [displayPhoto, setDisplayPhoto] = React.useState(notFound);
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
+  const [backgroundPositionArray, setBackgroundPositionArray] = React.useState([]);
 
   // monitor props.photos for changes, use this effect if there are changes
   React.useEffect(() => {
     setDisplayPhotoIndex(0);
+
     if (props.photos && props.photos.length !== 0) {
+      // New carousel:
+      //  for photo list of length 4, with display index of 0 we want:
+      //  backgroundPositionArray = [50%, 500%, 500%, 500%]
+      const positionArray = [...Array(props.photos.length)].map(() => '500%');
+      // Changing the first element to test if this is working:
+      positionArray[0] = '50%';
+      setBackgroundPositionArray(positionArray);
+
+      // Old carousel:
       setDisplayPhoto(props.photos[displayPhotoIndex] || notFound);
     }
   }, [props.photos]);
@@ -35,9 +46,10 @@ var Gallery = (props) => {
       // These percentages can probably also be animated.
       return (
         <div
-          className="gallery-photo"
+          className="gallery-photos"
           style={{
-            backgroundImage: photoList
+            backgroundImage: photoList,
+            backgroundPosition: backgroundPositionArray,
           }}>
         </div>
       );

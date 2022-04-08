@@ -70,19 +70,22 @@ li.devtool.devtool-product-list-item {
   background-color: grey;
 }
 
-.gallery-photo {
+.gallery-photos {
   /* where to manipulate the background-position
   in order to change the background image */
   height: 100px;
   /* this technique will rely on width being 100% */
   width: 100%;
   background-size: contain;
+  /*
   background-position: 50%, 500%, 500%, 500%, 500%, 500%;
+  */
   background-repeat: no-repeat;
   display: inline-block;
 }
 
-.gallery-photo:hover {
+/* for testing if the image changes */
+.gallery-photos:hover {
   background-position: -500%, 50%, 500%, 500%, 500%, 500%;
 }
 
