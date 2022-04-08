@@ -8,10 +8,10 @@ class QList extends Component {
       toLoad: 4,
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLoadMoreQuestions = this.handleLoadMoreQuestions.bind(this);
   }
 
-  handleClick(e) {
+  handleLoadMoreQuestions(e) {
     e.preventDefault();
     if (e.target.value === 'loadMore') {
       this.setState({toLoad: this.state.toLoad + 2});
@@ -22,14 +22,14 @@ class QList extends Component {
 
   render() {
     const {questions, product} = this.props;
-    const {toLoad, loadingMore} = this.state;
-    const {handleClick} = this;
+    const {toLoad} = this.state;
+    const {handleLoadMoreQuestions} = this;
 
     let button;
     if (questions.length > toLoad) {
-      button = <button className='More_Qs' value='loadMore' onClick={handleClick}>Load More Questions</button>;
+      button = <button className='More_Qs' value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</button>;
     } else if (questions.length > 4 && questions.length <= toLoad) {
-      button = <button className='More_Qs' value='collapse' onClick={handleClick}>Collapse</button>;
+      button = <button className='More_Qs' value='collapse' onClick={handleLoadMoreQuestions}>Collapse</button>;
     } else {
       button = <></>;
     }

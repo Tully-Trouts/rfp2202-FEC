@@ -1,9 +1,12 @@
+import axios from 'axios';
 import React from 'react';
+import { Button } from '../styledComponents';
 
 var CartSelector = ({skus}) => {
   const [selectedSku, setSelectedSku] = React.useState({});
   //const [skuList, setSkuList] = React.useState([]);
   const [quantities, setQuantities] = React.useState(0);
+  const [selectedQty, setSelectedQty] = React.useState(0);
 
   var getSizeOptions = (skus) => {
     return (skus ?
@@ -28,21 +31,53 @@ var CartSelector = ({skus}) => {
     setQuantities(skus[sku].quantity);
   };
 
+  var addToCart =  (sku, qty) => {
+    const payload = {
+      'sku_id': sku,
+      'count': qty,
+    };
+    axios.post('/api/cart', payload)
+      .then((res) => {
+        console.log('Cart:', res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div className="overview overview-cart-selector">
+    <div className="overview sm overview-cart-selector">
       [cart selector]
       <div className="overview sm cart-selector">
-        <select onChange={(e) => selectSku(e)}>
+        <select
+          role="listbox"
+          aria-label="size"
+          className="size-selector"
+          onChange={(e) => selectSku(e)}>
           <option defaultValue={true}>Select Size</option>
           {getSizeOptions(skus)}
         </select>
-        <select role="listbox" aria-label="quantity">
-          <option defaultValue={true} value="">-</option>
+        <select
+          role="listbox"
+          aria-label="quantity"
+          className="quantity-selector"
+          onChange={(e) => setSelectedQty(e.target.value)}>
+          <option defaultValue={true} value={0}>-</option>
           {getQtyOptions(quantities)}
         </select>
       </div>
       <div className="overview sm cart-selector-buttons">
-        [add to cart and favorite btns]
+        <Button
+          size={4}
+          aria-label="add-to-cart"
+          onClick={() => { addToCart(selectedSku, selectedQty); }}>
+          Add to cart
+        </Button>
+        <Button
+          size={1}
+          aria-label="save">
+          &#9734;
+        </Button>
       </div>
     </div>
   );

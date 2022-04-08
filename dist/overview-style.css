@@ -5,10 +5,7 @@
 
 .devtool-container {
   margin: 0 0 20px 0;
-}
-
-.devtool nav {
-  margin: 8px;
+  padding: 0 20px 20px 20px;
 }
 
 .devtool ul.devtool-product-list {
@@ -95,9 +92,37 @@ span.gallery-control:hover {
   width: 30%;
 }
 
+
 .cart-selector {
   display: flex;
-  flex-flow: column;
+}
+
+.size-selector {
+  flex: 3;
+}
+
+.overview > .btn {
+  margin: 2px 2px;
+}
+
+.overview > select {
+  margin: 2px 2px;
+}
+
+.quantity-selector {
+  flex: 2;
+}
+
+.cart-selector-buttons {
+  display: flex;
+}
+
+.add-to-cart-btn {
+  flex: 4;
+}
+
+.heart-btn {
+  flex: 1;
 }
 
 .sm {
@@ -139,3 +164,37 @@ li.style-list-item:hover {
   background-color: aqua;
   opacity: 60%;
 }
+
+.styled-btn {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}
+
+.styled-btn.styled-btn-size-1 {
+  justify-content: center;
+}
+
+.styled-btn:hover {
+  background: linear-gradient(#e1dede, #eaeaea);
+}
+
+.styled-btn:active {
+  background: linear-gradient(#d5d5d5, #e5e5e5);
+}
+
+span.styled-link {
+  text-decoration: underline;
+}
+
+span.styled-link:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+

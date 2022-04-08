@@ -3,6 +3,7 @@ import axios from 'axios';
 import QList from './QList';
 import QASearch from './QASearch';
 import QuestionModal from './QuestionModal';
+import { Button, Link } from '../styledComponents';
 
 class QA extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class QA extends Component {
       search: '',
       newQuestionBody: '',
       newQuestionNickname: '',
-      newQuestionEmail: '',
+      newQuestionsEmail: '',
       isQuestionModalOpen: false,
     };
 
@@ -138,18 +139,18 @@ class QA extends Component {
           </div>
         }
 
-        <button className='Add_Q' onClick={addQuestionClick}>Add A Question +</button>
+        <Button onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>
-            <h3>Ask Your Question</h3>
-            <h4>About the {product.name} here</h4>
+            <h3>Submit Your Question</h3>
+            <h4>{product.name}</h4>
             <div>
               <label>Enter Question: </label>
               <textarea value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea value={newQuestionNickname} placeholder='Example: jackson11!' onChange={handleNicknameInput} rows='1' cols='40' />
+              <textarea value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
             </div>
             <span>
               <label>Enter Email: </label>
