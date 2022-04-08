@@ -3,6 +3,10 @@
   font-size: x-small;
 }
 
+.devtool-container {
+  margin: 0 0 20px 0;
+}
+
 .devtool nav {
   margin: 8px;
 }
@@ -27,6 +31,7 @@ li.devtool.devtool-product-list-item {
 
 .devtool-product-list-item:hover {
   background-color: cyan;
+  cursor: pointer;
 }
 
 #overview-container {
@@ -40,11 +45,6 @@ li.devtool.devtool-product-list-item {
   display: flex;
 }
 
-.overview-image-panel {
-  /* will need to figure out how make this dynamic */
-  width: 65%;
-}
-
 .overview {
   margin: 5px;
   padding: 5px;
@@ -52,9 +52,47 @@ li.devtool.devtool-product-list-item {
   font-size: x-small;
 }
 
+.overview-image-panel {
+  /* will need to figure out how make this dynamic */
+  width: 65%;
+}
+
+/* Phasing out gallery styling for gallery photo */
+.overview-gallery {
+  height: 100%;
+  margin: 0;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: grey;
+}
+
+.gallery-photos {
+  /* where to manipulate the background-position
+  in order to change the background image */
+  height: 100%;
+  width: 100%;
+  /* setting the width of the photo, height will be auto */
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+span.gallery-control.previous {
+  float: left;
+}
+
+span.gallery-control.next {
+  float: right;
+}
+
+span.gallery-control:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
 .overview-product-information-panel {
   display: flex;
   flex-flow: column;
+  width: 30%;
 }
 
 .cart-selector {
@@ -65,4 +103,39 @@ li.devtool.devtool-product-list-item {
 .sm {
   line-height: 1;
   font-size: smaller;
+  padding: 2px;
+}
+
+ul.style-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+  margin: 0;
+}
+
+li.style-list-item {
+  display: flex;
+  margin: 2px;
+}
+
+span.style-list-item-circle {
+  width: 100%;
+  border-radius: 50%;
+  background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+span.style-list-item-circle::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+li.style-list-item:hover {
+  cursor: pointer;
+  background-color: aqua;
+  opacity: 60%;
 }
