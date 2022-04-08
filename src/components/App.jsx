@@ -57,7 +57,7 @@ class App extends React.Component {
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
         <Overview product={product} />
-        <QA productId={product.id} />
+        <QA productId={product.id} product={product} />
         <Ratings productId={product.id} />
         <RelatedItems getProductById={this.getProductById} product={product} />
       </div>
