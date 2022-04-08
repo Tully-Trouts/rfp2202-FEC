@@ -35,7 +35,7 @@ const ComparisonModal = (props) => {
   const modalTable = buildModalTable(currProduct, compProduct);
 
   return ReactDom.createPortal(
-    <div className="modal">
+    <div className="comparison-modal">
       <div className="header">
         <h6>COMPARING</h6>
         <button type="button" onClick={handleModalClick}>X</button>
