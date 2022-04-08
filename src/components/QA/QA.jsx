@@ -7,7 +7,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId,
+      productId: 65631, //this.props.productId,
       questions: [],
       search: ''
     };
@@ -18,9 +18,9 @@ class QA extends Component {
     this.liftClear = this.liftClear.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getQuestionsById(this.state.productId);
-  // }
+  componentDidMount() {
+    this.getQuestionsById(this.state.productId);
+  }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
@@ -36,6 +36,8 @@ class QA extends Component {
       params: {
         // eslint-disable-next-line camelcase
         product_id: productId,
+        page: 1,
+        count: 10000
       },
     })
       .then((response) => {
