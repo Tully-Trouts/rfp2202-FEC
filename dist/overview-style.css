@@ -5,10 +5,7 @@
 
 .devtool-container {
   margin: 0 0 20px 0;
-}
-
-.devtool nav {
-  margin: 8px;
+  padding: 0 20px 20px 20px;
 }
 
 .devtool ul.devtool-product-list {
@@ -95,13 +92,37 @@ span.gallery-control:hover {
   width: 30%;
 }
 
+
 .cart-selector {
   display: flex;
-  flex-flow: column;
+}
+
+.size-selector {
+  flex: 3;
+}
+
+.overview > .btn {
+  margin: 2px 2px;
+}
+
+.overview > select {
+  margin: 2px 2px;
+}
+
+.quantity-selector {
+  flex: 2;
 }
 
 .cart-selector-buttons {
   display: flex;
+}
+
+.add-to-cart-btn {
+  flex: 4;
+}
+
+.heart-btn {
+  flex: 1;
 }
 
 .sm {

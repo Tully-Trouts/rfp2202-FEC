@@ -4,6 +4,7 @@ var CartSelector = ({skus}) => {
   const [selectedSku, setSelectedSku] = React.useState({});
   //const [skuList, setSkuList] = React.useState([]);
   const [quantities, setQuantities] = React.useState(0);
+  const [selectedQty, setSelectedQty] = React.useState(0);
 
   var getSizeOptions = (skus) => {
     return (skus ?
@@ -37,28 +38,49 @@ var CartSelector = ({skus}) => {
   };
 
   return (
-    <div className="overview overview-cart-selector">
+    <div className="overview sm overview-cart-selector">
       [cart selector]
       <div className="overview sm cart-selector">
         <select
           role="listbox"
           aria-label="size"
+<<<<<<< HEAD
+=======
+          className="size-selector"
+>>>>>>> overview
           onChange={(e) => selectSku(e)}>
           <option defaultValue={true}>Select Size</option>
           {getSizeOptions(skus)}
         </select>
         <select
           role="listbox"
+<<<<<<< HEAD
           aria-label="quantity">
           <option defaultValue={true} value="">-</option>
+=======
+          aria-label="quantity"
+          className="quantity-selector"
+          onChange={(e) => setSelectedQty(e.target.value)}>
+          <option defaultValue={true} value={0}>-</option>
+>>>>>>> overview
           {getQtyOptions(quantities)}
         </select>
       </div>
       <div className="overview sm cart-selector-buttons">
-        <span
+        <button
+          type="button"
           role="button"
           aria-label="add-to-cart"
-          className="overview sm btn add-to-cart-btn">Add to cart</span>
+          className="btn add-to-cart-btn">
+          Add to cart
+        </button>
+        <button
+          type="button"
+          role="button"
+          aria-label="save"
+          className="btn heart-btn">
+          &hearts;
+        </button>
       </div>
     </div>
   );
