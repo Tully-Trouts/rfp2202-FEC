@@ -52,20 +52,16 @@ var CartSelector = ({skus}) => {
         </select>
       </div>
       <div className="overview sm cart-selector-buttons">
-        <button
-          type="button"
-          role="button"
-          aria-label="add-to-cart"
-          className="btn add-to-cart-btn">
+        <Button
+          size={4}
+          aria-label="add-to-cart">
           Add to cart
-        </button>
-        <button
-          type="button"
-          role="button"
-          aria-label="save"
-          className="btn heart-btn">
-          &hearts;
-        </button>
+        </Button>
+        <Button
+          size={1}
+          aria-label="save">
+          &#9734;
+        </Button>
       </div>
     </div>
   );
