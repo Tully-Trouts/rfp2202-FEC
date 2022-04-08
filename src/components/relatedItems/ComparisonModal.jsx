@@ -53,7 +53,7 @@ const ComparisonModal = (props) => {
         </tbody>
       </table>
     </div>,
-    document.getElementById('related-items-container'));
+    document.getElementById('portal_related'));
 };
 
 export default ComparisonModal;
