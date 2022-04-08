@@ -2,7 +2,7 @@ import React from 'react';
 
 var Devtool = (props) => {
   return (
-    <div className="devtool">
+    <div className="devtool devtool-container">
       <h3>sample products/product IDs for development:</h3>
       <nav>
         <ul className="devtool devtool-product-list">

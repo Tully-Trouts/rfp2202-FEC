@@ -17,7 +17,7 @@ var Overview = ({product}) => {
       totalRatings += Number(reviewMetadata.ratings[star] || 0);
       sum += Number(reviewMetadata.ratings[star] || 0) * star;
     }
-    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings));
+    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings).toFixed(2));
   };
 
   var getProductReviewMetadata = (id) => {
@@ -67,7 +67,9 @@ var Overview = ({product}) => {
     <div id="overview-container">
       <h3>Overview</h3>
       <div className="overview overview-main">
-        <Gallery photos={selectedStyle.photos} />
+        <div className="overview overview-image-panel">
+          <Gallery photos={selectedStyle.photos} />
+        </div>
         <div className="overview overview-product-information-panel">
           [product information panel]
           <div className="overview product-review sm">
@@ -79,6 +81,9 @@ var Overview = ({product}) => {
           <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
+      </div>
+      <div className="overview overview-main-2">
+        [testing]
       </div>
       <div className="overview overview-product-description">
         [product description - free form text field]
