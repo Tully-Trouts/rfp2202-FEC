@@ -97,3 +97,23 @@
   width: 100px;
   height:100px;
 }
+
+.QA_Modal_Styles {
+  position: 'fixed';
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
+  background-color: '#FFF';
+  padding: '50px';
+  z-index: 100;
+}
+
+.QA_Overlay_Styles {
+  position: 'fixed';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: 'rgba(0, 0, 0, .7)';
+  z-index: 100;
+}
