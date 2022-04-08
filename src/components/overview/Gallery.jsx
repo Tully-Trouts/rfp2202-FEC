@@ -12,12 +12,12 @@ var Gallery = (props) => {
 
     if (props.photos && props.photos.length !== 0) {
       // New carousel
-      // Build the css property with images in background:
+      // Build the css property with images in background,
+      //  CSS supports multiple images in background
       const backgroundImage = props.photos.map(element => `url(${element.url})`);
       // Build the background image position array:
-      //  for photo list of length 4, with display index of 0 we want:
-      //  backgroundPositionArray = [50%, 500%, 500%, 500%]
-
+      //  EXAMPLE: for photo list of length 4, with display index of 0 we want:
+      //    backgroundPositionArray = [50%, 500%, 500%, 500%]
       // Future refactor: make this array use the actual dimensions of the photos so
       //  you can have the images flush against each other, that way sizing the 'background-size'
       //  property will be more straightforward with different aspect ratio photos.
@@ -43,9 +43,16 @@ var Gallery = (props) => {
     const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     // and set the position of the photo at nextIndex to 50% (center of div):
     backgroundPosition[nextIndex] = '50%';
+
+    // This is where I want to add animation to the style
+    //  using the 'transition' property I can animate the bg position
+    const newStyle = {
+      backgroundPosition,
+      transition: '1s'
+    };
+
     // then update the state:
-    // This is where I want to add animation to style
-    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition}));
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
   };
 
@@ -57,7 +64,11 @@ var Gallery = (props) => {
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
     const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     backgroundPosition[nextIndex] = '50%';
-    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition}));
+    const newStyle = {
+      backgroundPosition,
+      transition: '1s'
+    };
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
   };
 
