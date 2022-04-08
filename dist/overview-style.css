@@ -55,17 +55,38 @@ li.devtool.devtool-product-list-item {
 .overview-image-panel {
   /* will need to figure out how make this dynamic */
   width: 65%;
-  z-index: 4;
 }
 
+/* Phasing out gallery styling for gallery photo */
 .overview-gallery {
   height: 100%;
   margin: 0;
   padding: 5px;
   box-sizing: border-box;
-  background-position: center;
-  background-repeat: no-repeat;
   background-color: grey;
+}
+
+.gallery-photos {
+  /* where to manipulate the background-position
+  in order to change the background image */
+  height: 100%;
+  width: 100%;
+  /* setting the width of the photo, height will be auto */
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+span.gallery-control.previous {
+  float: left;
+}
+
+span.gallery-control.next {
+  float: right;
+}
+
+span.gallery-control:hover {
+  background-color: aqua;
+  cursor: pointer;
 }
 
 .overview-product-information-panel {
@@ -77,6 +98,10 @@ li.devtool.devtool-product-list-item {
 .cart-selector {
   display: flex;
   flex-flow: column;
+}
+
+.cart-selector-buttons {
+  display: flex;
 }
 
 .sm {
@@ -96,8 +121,21 @@ ul.style-list {
 li.style-list-item {
   display: flex;
   margin: 2px;
-  background-size: contain;
-  overflow-wrap: anywhere;
+}
+
+span.style-list-item-circle {
+  width: 100%;
+  border-radius: 50%;
+  background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+span.style-list-item-circle::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
 }
 
 li.style-list-item:hover {
@@ -105,3 +143,4 @@ li.style-list-item:hover {
   background-color: aqua;
   opacity: 60%;
 }
+

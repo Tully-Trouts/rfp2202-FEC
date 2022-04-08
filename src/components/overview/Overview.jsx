@@ -17,7 +17,7 @@ var Overview = ({product}) => {
       totalRatings += Number(reviewMetadata.ratings[star] || 0);
       sum += Number(reviewMetadata.ratings[star] || 0) * star;
     }
-    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings));
+    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings).toFixed(2));
   };
 
   var getProductReviewMetadata = (id) => {
