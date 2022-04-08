@@ -38,19 +38,20 @@ var Gallery = (props) => {
     // AND animate the change from the previous
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
     // for testing the concept, lets build a new bg position array:
-    const positionArray = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     // and set the position of the photo at nextIndex to 50% (center of div):
-    positionArray[nextIndex] = '50%';
+    backgroundPosition[nextIndex] = '50%';
     // then update the state:
     // This is where I want to add animation to style
-    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition: positionArray}));
-    setBackgroundPositionArray(positionArray);
+    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition}));
     setDisplayPhotoIndex(nextIndex);
   };
 
   const prevPhoto = () => {
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
-    setDisplayPhoto(props.photos[nextIndex]);
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
+    backgroundPosition[nextIndex] = '50%';
+    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition}));
     setDisplayPhotoIndex(nextIndex);
   };
 
