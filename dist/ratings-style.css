@@ -8,17 +8,18 @@
   position: relative;
 }
 
+
 .progress {
   background-color: #f4f4f4;
   height: 20px;
-  width: 300px;
+  width: 200px;
   margin-bottom: 11px;
 }
 
 .progress-done1 {
   background-color: orange;
   height: 100%;
-  width: 300px;
+  width: 200px;
   opacity: 0;
 
 }
@@ -26,29 +27,46 @@
 .progress-done2 {
   background-color: orange;
   height: 100%;
-  width: 300px;
+  width: 200px;
   opacity: 0;
 }
 
 .progress-done3 {
   background-color: orange;
   height: 100%;
-  width: 300px;
+  width: 200px;
   opacity: 0;
 }
 
 .progress-done4 {
   background-color: orange;
   height: 100%;
-  width: 300px;
+  width: 200px;
   opacity: 0;
 }
 
 .progress-done5 {
   background-color: orange;
   height: 100%;
-  width: 300px;
+  width: 200px;
   opacity: 0;
+}
+
+.stars {
+  position: relative;
+  white-space: nowrap;
+  fill: gold
+}
+
+.cover {
+  background: white;
+  height: 100%;
+  width: 100%;
+  margin-left: 40%;
+  overflow: hidden;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
 }
 
 .RR-Container {
@@ -262,4 +280,8 @@ body.active-modal {
 }
 
 
+
+.StarRating-breakdown {
+  display: flex;
+}
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import StarReview from './StarReview.jsx';
 
 class IndividualReview extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class IndividualReview extends React.Component {
       <div className="review-tile">
         <div className="User-box-1">
           <div className="StarRating">
-            [Star Rating] {this.props.review.rating}
+            <StarReview starRating={this.props.review.rating * 20} />
           </div>
           <div className="USER-DATE">
             <div className="ReviewerName">
