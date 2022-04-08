@@ -97,11 +97,26 @@ span.gallery-control:hover {
 
 .cart-selector {
   display: flex;
-  flex-flow: column;
+}
+
+.size-selector {
+  flex: 3;
+}
+
+.quantity-selector {
+  flex: 2;
 }
 
 .cart-selector-buttons {
   display: flex;
+}
+
+.add-to-cart-btn {
+  flex: 4;
+}
+
+.heart-btn {
+  flex: 1;
 }
 
 .sm {

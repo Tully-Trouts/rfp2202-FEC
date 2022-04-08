@@ -9,7 +9,9 @@ var Devtool = (props) => {
           {props.productList.map((element) => (
             <li
               key={element.id}
-              onClick={()=>{ props.updateProduct(element.id); }}
+              onClick={()=>{
+                props.updateProduct(element.id).then((res) => console.log('product:', res.data));
+              }}
               className="devtool devtool-product-list-item">
               <div className="devtool-product product-id">{element.id}</div>
               <div className="devtool-product product-name"><small>{element.name}</small></div>

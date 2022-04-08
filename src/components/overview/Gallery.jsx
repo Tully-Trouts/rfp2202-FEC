@@ -48,7 +48,9 @@ var Gallery = (props) => {
     //  using the 'transition' property I can animate the bg position
     const newStyle = {
       backgroundPosition,
-      transition: '1s'
+      transition: '1s',
+      msTransition: '1s',
+      WebkitTransition: '1s',
     };
 
     // then update the state:
