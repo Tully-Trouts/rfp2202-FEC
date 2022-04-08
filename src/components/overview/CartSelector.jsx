@@ -44,25 +44,17 @@ var CartSelector = ({skus}) => {
         <select
           role="listbox"
           aria-label="size"
-<<<<<<< HEAD
-=======
           className="size-selector"
->>>>>>> overview
           onChange={(e) => selectSku(e)}>
           <option defaultValue={true}>Select Size</option>
           {getSizeOptions(skus)}
         </select>
         <select
           role="listbox"
-<<<<<<< HEAD
-          aria-label="quantity">
-          <option defaultValue={true} value="">-</option>
-=======
           aria-label="quantity"
           className="quantity-selector"
           onChange={(e) => setSelectedQty(e.target.value)}>
           <option defaultValue={true} value={0}>-</option>
->>>>>>> overview
           {getQtyOptions(quantities)}
         </select>
       </div>
