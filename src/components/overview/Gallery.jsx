@@ -32,6 +32,10 @@ var Gallery = (props) => {
   }, [props.photos]);
 
   const nextPhoto = () => {
+    if (!props.photos || props.photos.length === 0) {
+      console.log('No next photos!');
+      return;
+    }
     // when this fires, I want to change the bg photo position array
     // AND animate the change from the previous
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
@@ -46,6 +50,10 @@ var Gallery = (props) => {
   };
 
   const prevPhoto = () => {
+    if (!props.photos || props.photos.length === 0) {
+      console.log('No previous photos!');
+      return;
+    }
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
     const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     backgroundPosition[nextIndex] = '50%';
@@ -61,10 +69,10 @@ var Gallery = (props) => {
 
   return (
     <div className="overview overview-gallery">
-      <span className="overview sm gallery-control" onClick={()=>{ prevPhoto(); }}>
+      <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
         Previous
       </span>
-      <span className="overview sm gallery-control" onClick={()=>{ nextPhoto(); }}>
+      <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
         Next
       </span>
       <div

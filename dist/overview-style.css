@@ -76,8 +76,12 @@ li.devtool.devtool-product-list-item {
   background-repeat: no-repeat;
 }
 
-span.gallery-control {
+span.gallery-control.previous {
   float: left;
+}
+
+span.gallery-control.next {
+  float: right;
 }
 
 span.gallery-control:hover {
