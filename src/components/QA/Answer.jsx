@@ -12,12 +12,12 @@ class Answer extends Component {
     this.handleReport = this.handleReport.bind(this);
   }
 
-  handleReport() {
-
+  handleReport(e) {
+    e.preventDefault();
   }
 
-  handleHelpful() {
-
+  handleHelpful(e) {
+    e.preventDefault();
   }
 
   render() {
@@ -25,12 +25,13 @@ class Answer extends Component {
     const {handleReport, handleHelpful} = this;
     const {answerer_name, date, body, helpfulness, photos} = answer[1];
     const answerId = answer[0];
+
     const images = photos.map((src) => {
       return (
         <img src={src} key={src} className='A_Images' />
       );
     });
-
+    
     return (
       <div className='Answer'>
         <span className='A'>A: </span>
@@ -48,11 +49,6 @@ class Answer extends Component {
             {`(${helpfulness}) | `}
             <Link onClick={handleReport}>Report</Link>
           </span>
-
-          {/* <span className='A_Helpful'> Helpful? </span>
-          <button className='A_Helpful_Button'>Yes </button>
-          {` (${helpfulness})`}
-          <button className='A_Report'>Report</button> */}
         </div>
       </div>
     );

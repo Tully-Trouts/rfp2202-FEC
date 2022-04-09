@@ -16,7 +16,8 @@ class QA extends Component {
       newQuestionNickname: '',
       newQuestionsEmail: '',
       isQuestionModalOpen: false,
-      toLoad: 4
+      toLoad: 4,
+      loadingMore: false
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
@@ -97,9 +98,9 @@ class QA extends Component {
   handleLoadMoreQuestions(e) {
     e.preventDefault();
     if (e.target.value === 'loadMore') {
-      this.setState({toLoad: this.state.toLoad + 2});
+      this.setState({toLoad: this.state.questions.length, loadingMore: true});
     } else {
-      this.setState({toLoad: 4});
+      this.setState({toLoad: 4, loadingMore: false});
     }
   }
 
@@ -133,13 +134,13 @@ class QA extends Component {
   }
 
   render() {
-    const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad} = this.state;
+    const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad, loadingMore} = this.state;
     const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleLoadMoreQuestions} = this;
     const {product} = this.props;
 
     let loadMoreButton;
     if (questions.length > toLoad) {
-      loadMoreButton = <Button className='More_Qs' size={1} value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
+      loadMoreButton = <Button className={'More_Qs'} size={1} value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
     } else if (questions.length > 4 && questions.length <= toLoad) {
       loadMoreButton = <Button className='More_Qs' size={1} value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
     } else {
@@ -155,21 +156,21 @@ class QA extends Component {
           :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
-            <div className='Q_List'>
+            <div className={loadingMore ? 'Q_List_Overflow' : 'Q_List'}>
               {filter().slice(0, toLoad).map((question) =>
                 <Question question={question} key={question.question_id} product={product}/>
               )}
             </div>
           </div>
         }
-        
+
         {loadMoreButton}
 
         <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>
-            <h3>Submit Your Question</h3>
-            <h4>{product.name}</h4>
+            <h3>Ask Your Question Here</h3>
+            <h4>about the {product.name}</h4>
             <div>
               <label>Enter Question: </label>
               <textarea value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />

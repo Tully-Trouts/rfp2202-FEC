@@ -52,10 +52,14 @@ class Question extends Component {
     e.preventDefault();
   }
 
+  handleHelpful(e) {
+    e.preventDefault();
+  }
+
   render() {
     const {question, product} = this.props;
     const {question_body, question_helpfulness, answers} = question;
-    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit} = this;
+    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful} = this;
     const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail} = this.state;
 
     return (
@@ -66,7 +70,7 @@ class Question extends Component {
 
         <span className='Q_Helpful'>
           Helpful?{' '}
-          <Link onClick={console.log('Scoopity Woop!')}>Yes</Link>
+          <Link onClick={handleHelpful}>Yes</Link>
           {` (${question_helpfulness}) | `}
           <Link onClick={addAnsClick}>Add Answer</Link>
         </span>
