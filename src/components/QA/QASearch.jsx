@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Button, Input } from '../styledComponents';
 
 class QASearch extends Component {
   constructor(props) {
@@ -7,11 +8,11 @@ class QASearch extends Component {
       search: '',
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
-  handleClick(e) {
+  handleClear(e) {
     e.preventDefault();
     this.setState({
       search: ''
@@ -19,7 +20,8 @@ class QASearch extends Component {
     this.props.liftClear();
   }
 
-  handleChange(e) {
+  handleSearchInput(e) {
+    e.preventDefault();
     this.setState({
       search: e.target.value
     });
@@ -27,12 +29,12 @@ class QASearch extends Component {
   }
 
   render() {
-    const {handleClick, handleChange, state} = this;
+    const {handleClear, handleSearchInput, state} = this;
     const {search} = state;
     return (
       <form className='QA_Search'>
-        <input type='text' placeholder='Search Questions' value={search} onChange={handleChange} />
-        <button onClick={handleClick}>Clear</button>
+        <Input type='text' placeholder='SEARCH QUESTIONS' value={search} onChange={handleSearchInput} size={1}/>
+        <Button onClick={handleClear} size={1}>Clear</Button>
       </form>
     );
   }

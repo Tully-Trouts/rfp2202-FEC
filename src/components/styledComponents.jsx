@@ -29,4 +29,19 @@ const Link = (props) => {
   );
 };
 
-export { Button, Link };
+const Input = (props) => {
+  return (
+    <input
+      className={`styled-btn styled-btn-size-${props.size}`}
+      style={{
+        flex: props.size,
+      }}
+      placeholder={props.placeholder.toUpperCase()}
+      type={props.type}
+      value={props.value}
+      onChange={props.onChange}
+    />
+  );
+};
+
+export { Button, Link, Input };

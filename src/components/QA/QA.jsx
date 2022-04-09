@@ -139,14 +139,12 @@ class QA extends Component {
 
     let loadMoreButton;
     if (questions.length > toLoad) {
-      loadMoreButton = <Button className='More_Qs' size={3} value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
+      loadMoreButton = <Button className='More_Qs' size={1} value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
     } else if (questions.length > 4 && questions.length <= toLoad) {
-      loadMoreButton = <Button className='More_Qs' size={3} value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
+      loadMoreButton = <Button className='More_Qs' size={1} value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
     } else {
       loadMoreButton = <></>;
     }
-
-    filter();
 
     return (
       <div className='QA'>
@@ -158,7 +156,7 @@ class QA extends Component {
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
             <div className='Q_List'>
-              {questions.slice(0, toLoad).map((question) =>
+              {filter().slice(0, toLoad).map((question) =>
                 <Question question={question} key={question.question_id} product={product}/>
               )}
             </div>
@@ -166,7 +164,7 @@ class QA extends Component {
         }
 
         {loadMoreButton}
-        <Button className='Add_Question' onClick={addQuestionClick} size={3}>Add A Question +</Button>
+        <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>
             <h3>Submit Your Question</h3>
