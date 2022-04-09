@@ -109,13 +109,13 @@ class Card extends React.Component {
     if (!isOutfit) {
       return (
         <div>
-          <div className="card-header">
-            <button className="sm card-button related-items-modal-open" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
+          <div className="header end">
+            <button className="sm card-button absolute" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
           </div>
           <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
           <div className="inner-card" onClick={(event) => ( getProductById(productId, event))}>
             <img className="preview-image" src={previewImg || notFoundUrl}/>
-            <div className="related-items-card-info">
+            <div className="card-info">
               <h6>{category}</h6>
               <div>{name}</div>
               <div>${salePrice || originalPrice}</div>
@@ -127,12 +127,12 @@ class Card extends React.Component {
     } else {
       return (
         <div>
-          <div className="card-header">
-            <button className="sm card-button outfit-list-remove" type="button" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
+          <div className="header end">
+            <button className="sm card-button close-remove absolute" type="button" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
           </div>
           <div className="inner-card">
             <img className="preview-image" src={previewImg || notFoundUrl}/>
-            <div className="related-items-card-info">
+            <div className="card-info">
               <h6>{category}</h6>
               <div>{name}</div>
               <div>${salePrice || originalPrice}</div>

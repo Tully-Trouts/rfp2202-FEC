@@ -41,7 +41,6 @@ const OutfitList = ({ product }) => {
       <div className="card-list">
         <div className="card">
           <Button size={1} aria-label="open" onClick={() => addProductToOutfit(product.id)}>Add to outfit</Button>
-          {/* <button onClick={() => addProductToOutfit(product.id)}>Add to outfit</button> */}
         </div>
         <>{outfitList}</>
       </div>

@@ -25,7 +25,7 @@
   position: relative;
 }
 
-.related-items-card-info {
+.card-info {
   padding: 5px;
 }
 
@@ -53,15 +53,22 @@
   overflow-y: hidden;
 }
 
-.modal-header {
+.comparison-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.card-header {
-  display: flex;
-  flex-direction: row;
+.between {
+  justify-content: space-between;
+}
+
+.end {
   justify-content: flex-end;
 }
 
@@ -74,7 +81,6 @@ td {
 }
 
 .card-button {
-  position: absolute;
   font-weight: bold;
   border: solid;
   border-color: black;
@@ -84,41 +90,18 @@ td {
   margin: 5px;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .card-button:hover {
   background-color: aqua;
   cursor: pointer;
 }
 
-.related-items-modal-open {
-
-  /* font-weight: bold;
-  font-size: larger;
-  text-align: center;
-  justify-content: center; */
-
-}
-
-.outfit-list-remove {
+.close-remove {
   font-weight: bold;
-  /* text-align: center;
-  justify-content: center; */
   border-radius: 50%;
-}
-
-.modal-close {
-  font-weight: bold;
-  border: solid;
-  border-color: black;
-  background-color: white;
-  margin: 5px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-}
-
-.modal-close:hover {
-  background-color: aqua;
-  cursor: pointer;
 }
 
 
