@@ -10,7 +10,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId, //65631
+      productId: 65631, //this.props.productId,
       questions: [],
       search: '',
       newQuestionBody: '',
@@ -18,7 +18,8 @@ class QA extends Component {
       newQuestionEmail: '',
       isQuestionModalOpen: false,
       toLoad: 4,
-      loadingMore: false
+      loadingMore: false,
+      submitError: false,
     };
 
     this.getQuestionsById = this.getQuestionsById.bind(this);
@@ -33,11 +34,12 @@ class QA extends Component {
     this.handleNicknameInput = this.handleNicknameInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewQuestionSubmit = this.handleNewQuestionSubmit.bind(this);
+    this.handleNewQuestionSubmitError = this.handleNewQuestionSubmitError.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getQuestionsById(this.state.productId);
-  // }
+  componentDidMount() {
+    this.getQuestionsById(this.state.productId);
+  }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
@@ -98,8 +100,13 @@ class QA extends Component {
 
   handleLoadMoreQuestions(e) {
     e.preventDefault();
+    // if (e.target.value === 'loadMore') {
+    //   this.setState({toLoad: this.state.questions.length, loadingMore: true});
+    // } else {
+    //   this.setState({toLoad: 4, loadingMore: false});
+    // }
     if (e.target.value === 'loadMore') {
-      this.setState({toLoad: this.state.questions.length, loadingMore: true});
+      this.setState({toLoad: this.state.toLoad + 2, loadingMore: true});
     } else {
       this.setState({toLoad: 4, loadingMore: false});
     }
@@ -112,6 +119,7 @@ class QA extends Component {
 
   closeAddQuestion(e) {
     e.preventDefault();
+    // this.setState({isQuestionModalOpen: false, submitError: false});
     this.setState({isQuestionModalOpen: false});
   }
 
@@ -133,8 +141,8 @@ class QA extends Component {
   handleNewQuestionSubmit(e) {
     e.preventDefault();
     const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
-    console.log(`NEW QUESTION INPUTS | Q BODY: ${newQuestionBody} | Q NICKNAME: ${newQuestionNickname} | Q EMAIL: ${newQuestionEmail} | PRODUCT ID: ${productId}`);
-    console.log(productId, '<--This should be an int:', typeof(productId));
+    // console.log(`NEW QUESTION INPUTS | Q BODY: ${newQuestionBody} | Q NICKNAME: ${newQuestionNickname} | Q EMAIL: ${newQuestionEmail} | PRODUCT ID: ${productId}`);
+    // console.log(productId, '<--This should be an int:', typeof(productId));
 
     axios.post('api/qa/questions', {
       body: newQuestionBody,
@@ -153,12 +161,18 @@ class QA extends Component {
       newQuestionNickname: '',
       newQuestionEmail: '',
       isQuestionModalOpen: false,
+      // submitError: false,
     });
   }
 
+  handleNewQuestionSubmitError(e) {
+    e.preventDefault();
+    this.setState({submitError: true});
+  }
+
   render() {
-    const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad, loadingMore} = this.state;
-    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleLoadMoreQuestions} = this;
+    const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad, loadingMore, submitError} = this.state;
+    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleNewQuestionSubmitError, handleLoadMoreQuestions} = this;
     const {product} = this.props;
 
     let loadMoreButton;
@@ -179,7 +193,8 @@ class QA extends Component {
           :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
-            <div className={loadingMore ? 'Q_List_Overflow' : 'Q_List'}>
+            {/* <div className={loadingMore ? 'Q_List_Overflow' : 'Q_List'}> */}
+            <div className='Q_List'>
               {filter().slice(0, toLoad).map((question) =>
                 <Question question={question} key={question.question_id} product={product}/>
               )}
@@ -196,18 +211,31 @@ class QA extends Component {
             <h4>about the {product.name}</h4>
             <div>
               <label>Enter Question: </label>
-              <textarea value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />
+              <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+              <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
             </div>
             <span>
               <label>Enter Email: </label>
-              <textarea value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
+              <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
             </span>
             <div>
-              <Button size={1} onClick={handleNewQuestionSubmit}>Submit</Button>
+              <Button size={1} onClick={ handleNewQuestionSubmit
+                // newQuestionBody > 0 && newQuestionEmail > 0 && newQuestionNickname > 0
+                //   ?
+                //   handleNewQuestionSubmit
+                //   :
+                //   handleNewQuestionSubmitError
+              }>Submit</Button>
+
+              {/* {submitError
+                ?
+                <span>bro u gotta fill out all the forms my guy</span>
+                :
+                <></>
+              } */}
             </div>
           </form>
         </QuestionModal>

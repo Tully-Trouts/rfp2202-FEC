@@ -111,3 +111,15 @@
 #Add_Question {
   position: relative;
 }
+
+.New_QA_Email_Input_Error {
+  border: 1px solid red;
+}
+
+.New_QA_Nickname_Input_Error {
+  border: 1px solid red;
+}
+
+.New_QA_Input_Error {
+  border: 1px solid red;
+}
