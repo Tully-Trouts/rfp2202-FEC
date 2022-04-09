@@ -162,8 +162,9 @@ class QA extends Component {
             </div>
           </div>
         }
-
+        
         {loadMoreButton}
+
         <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>

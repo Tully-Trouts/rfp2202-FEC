@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import AList from './AList';
 import AnswerModal from './AnswerModal';
 import ReactDOM from 'react-dom';
+import { Button, Link } from '../styledComponents';
 
 class Question extends Component {
   constructor(props) {
@@ -64,12 +65,10 @@ class Question extends Component {
         {question_body}
 
         <span className='Q_Helpful'>
-          helpful?
-          <button>yes</button>
-          {` (${question_helpfulness})`}
-        </span>
-        <span>
-          <button className='Add_A' onClick={addAnsClick}>Add Answer +</button>
+          Helpful?{' '}
+          <Link onClick={console.log('Scoopity Woop!')}>Yes</Link>
+          {` (${question_helpfulness}) | `}
+          <Link onClick={addAnsClick}>Add Answer</Link>
         </span>
 
         <AnswerModal open={isAnswerModalOpen} onClose={closeAddAns}>

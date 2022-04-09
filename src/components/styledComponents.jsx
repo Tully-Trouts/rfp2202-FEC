@@ -23,9 +23,7 @@ Button.propTypes = {
 
 const Link = (props) => {
   return (
-    <span className="styled-link">
-      {props.children}
-    </span>
+    <span className="styled-link" onClick={props.onClick}>{props.children}</span>
   );
 };
 
