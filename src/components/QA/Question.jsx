@@ -4,6 +4,7 @@ import AList from './AList';
 import AnswerModal from './AnswerModal';
 import ReactDOM from 'react-dom';
 import { Button, Link } from '../styledComponents';
+import axios from 'axios';
 
 class Question extends Component {
   constructor(props) {
@@ -12,7 +13,10 @@ class Question extends Component {
       isAnswerModalOpen: false,
       newAnsBody: '',
       newAnsNickname: '',
-      newAnsEmail: ''
+      newAnsEmail: '',
+      newAnswerPhotos: [],
+      questionId: this.props.question.question_id,
+      update: '',
     };
 
     this.addAnsClick = this.addAnsClick.bind(this);
@@ -21,6 +25,7 @@ class Question extends Component {
     this.handleNicknameInput = this.handleNicknameInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewAnsSubmit = this.handleNewAnsSubmit.bind(this);
+    this.handleHelpful = this.handleHelpful.bind(this);
   }
 
   addAnsClick(e) {
@@ -50,10 +55,46 @@ class Question extends Component {
 
   handleNewAnsSubmit(e) {
     e.preventDefault();
+    const {newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId} = this.state;
+
+    console.log(newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId);
+    console.log(`api/qa/questions/${questionId}/answers`);
+
+    axios.post(`api/qa/questions/${questionId}/answers`, {
+      data: {
+        body: newAnsBody,
+        name: newAnsNickname,
+        email: newAnsEmail,
+        photos: newAnswerPhotos,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    this.setState({
+      newAnsBody: '',
+      newAnsNickname: '',
+      newAnsEmail: '',
+      newAnswerPhotos: [],
+      isAnswerModalOpen: false,
+    });
   }
 
   handleHelpful(e) {
     e.preventDefault();
+    const {questionId} = this.state;
+    axios.put(`api/qa/questions/${questionId}/helpful`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {

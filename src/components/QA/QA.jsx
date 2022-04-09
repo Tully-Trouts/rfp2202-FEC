@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, {Component} from 'react';
 import axios from 'axios';
 import Question from './Question';
@@ -41,20 +42,20 @@ class QA extends Component {
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
     const {productId} = props;
-
     if (productId !== prevProps.productId) {
       getQuestionsById(productId);
+      this.setState({productId: productId});
     }
   }
 
   getQuestionsById(productId) {
-    axios.get('/api/qa/questions/', {
+    axios.get('/api/qa/questions', {
       params: {
         // eslint-disable-next-line camelcase
         product_id: productId,
         page: 1,
         count: 10000
-      },
+      }
     })
       .then((response) => {
         this.setState({
@@ -131,6 +132,29 @@ class QA extends Component {
 
   handleNewQuestionSubmit(e) {
     e.preventDefault();
+    const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
+    console.log(`NEW QUESTION INPUTS | Q BODY: ${newQuestionBody} | Q NICKNAME: ${newQuestionNickname} | Q EMAIL: ${newQuestionEmail} | PRODUCT ID: ${productId}`);
+    console.log(productId, '<--This should be an int:', typeof(productId));
+
+    axios.post('api/qa/questions', {
+      body: newQuestionBody,
+      name: newQuestionNickname,
+      email: newQuestionEmail,
+      product_id: this.state.productId
+    })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    this.setState({
+      newQuestionBody: '',
+      newQuestionNickname: '',
+      newQuestionsEmail: '',
+      isQuestionModalOpen: false,
+    });
   }
 
   render() {
