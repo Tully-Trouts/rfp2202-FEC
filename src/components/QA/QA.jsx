@@ -9,7 +9,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 65631, //this.props.productId,
+      productId: this.props.productId, //65631
       questions: [],
       search: '',
       newQuestionBody: '',
@@ -33,9 +33,9 @@ class QA extends Component {
     this.handleNewQuestionSubmit = this.handleNewQuestionSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.getQuestionsById(this.state.productId);
-  }
+  // componentDidMount() {
+  //   this.getQuestionsById(this.state.productId);
+  // }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
@@ -139,9 +139,9 @@ class QA extends Component {
 
     let loadMoreButton;
     if (questions.length > toLoad) {
-      loadMoreButton = <Button className='More_Qs' value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
+      loadMoreButton = <Button className='More_Qs' size={3} value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
     } else if (questions.length > 4 && questions.length <= toLoad) {
-      loadMoreButton = <Button className='More_Qs' value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
+      loadMoreButton = <Button className='More_Qs' size={3} value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
     } else {
       loadMoreButton = <></>;
     }
@@ -166,7 +166,7 @@ class QA extends Component {
         }
 
         {loadMoreButton}
-        <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
+        <Button className='Add_Question' onClick={addQuestionClick} size={3}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form onSubmit={handleNewQuestionSubmit}>
             <h3>Submit Your Question</h3>
