@@ -23,9 +23,9 @@ const ComparisonModal = (props) => {
 
       return (
         <tr>
-          <td>{currValue !== undefined ? currValue.value : 'N/A'}</td>
+          <td>{!!currValue ? currValue.value : 'N/A'}</td>
           <td className="modal-characteristic">{feature}</td>
-          <td>{compValue !== undefined ? compValue.value : 'N/A'}</td>
+          <td>{!!compValue ? compValue.value : 'N/A'}</td>
         </tr>
       );
     });
@@ -35,12 +35,12 @@ const ComparisonModal = (props) => {
   const modalTable = buildModalTable(currProduct, compProduct);
 
   return ReactDom.createPortal(
-    <div className="modal">
-      <div className="header">
+    <div className="comparison-modal absolute">
+      <div className="header between">
         <h6>COMPARING</h6>
-        <button type="button" onClick={handleModalClick}>X</button>
+        <button className="sm card-button close-remove" type="button" onClick={handleModalClick}>X</button>
       </div>
-      <table>
+      <table className="comparison-table">
         <thead>
           <tr>
             <th>{currProduct.name}</th>
