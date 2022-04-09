@@ -10,6 +10,7 @@ const Button = (props) => {
       }}
       type="button"
       role="button"
+      value={props.value}
       onClick={props.onClick}>
       {props.children.toUpperCase()}
     </button>
@@ -22,10 +23,23 @@ Button.propTypes = {
 
 const Link = (props) => {
   return (
-    <span className="styled-link">
-      {props.children}
-    </span>
+    <span className="styled-link" onClick={props.onClick}>{props.children}</span>
   );
 };
 
-export { Button, Link };
+const Input = (props) => {
+  return (
+    <input
+      className={`styled-btn styled-btn-size-${props.size}`}
+      style={{
+        flex: props.size,
+      }}
+      placeholder={props.placeholder.toUpperCase()}
+      type={props.type}
+      value={props.value}
+      onChange={props.onChange}
+    />
+  );
+};
+
+export { Button, Link, Input };
