@@ -15,7 +15,7 @@ class QA extends Component {
       search: '',
       newQuestionBody: '',
       newQuestionNickname: '',
-      newQuestionsEmail: '',
+      newQuestionEmail: '',
       isQuestionModalOpen: false,
       toLoad: 4,
       loadingMore: false
@@ -143,7 +143,6 @@ class QA extends Component {
       product_id: this.state.productId
     })
       .then((response) => {
-        console.log(response);
         console.log(response.data);
       })
       .catch((err) => {
@@ -152,7 +151,7 @@ class QA extends Component {
     this.setState({
       newQuestionBody: '',
       newQuestionNickname: '',
-      newQuestionsEmail: '',
+      newQuestionEmail: '',
       isQuestionModalOpen: false,
     });
   }
@@ -192,7 +191,7 @@ class QA extends Component {
 
         <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
-          <form onSubmit={handleNewQuestionSubmit}>
+          <form>
             <h3>Ask Your Question Here</h3>
             <h4>about the {product.name}</h4>
             <div>
@@ -208,7 +207,7 @@ class QA extends Component {
               <textarea value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
             </span>
             <div>
-              <button type='submit'>Submit</button>
+              <Button size={1} onClick={handleNewQuestionSubmit}>Submit</Button>
             </div>
           </form>
         </QuestionModal>

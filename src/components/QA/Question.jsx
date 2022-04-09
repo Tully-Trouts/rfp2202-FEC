@@ -61,12 +61,10 @@ class Question extends Component {
     console.log(`api/qa/questions/${questionId}/answers`);
 
     axios.post(`api/qa/questions/${questionId}/answers`, {
-      data: {
-        body: newAnsBody,
-        name: newAnsNickname,
-        email: newAnsEmail,
-        photos: newAnswerPhotos,
-      },
+      body: newAnsBody,
+      name: newAnsNickname,
+      email: newAnsEmail,
+      photos: newAnswerPhotos,
     })
       .then((response) => {
         console.log(response);
@@ -75,7 +73,6 @@ class Question extends Component {
       .catch((err) => {
         console.log(err);
       });
-
     this.setState({
       newAnsBody: '',
       newAnsNickname: '',
@@ -117,7 +114,7 @@ class Question extends Component {
         </span>
 
         <AnswerModal open={isAnswerModalOpen} onClose={closeAddAns}>
-          <form onSubmit={handleNewAnsSubmit}>
+          <form>
             <h3>Submit Your Answer</h3>
             <h4>{product.name} : {question_body}</h4>
             <div>
@@ -133,7 +130,10 @@ class Question extends Component {
               <textarea value={newAnsEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
             </span>
             <div>
-              <button type='submit'>Submit</button>
+              <Button size={1}>Add Images</Button>
+            </div>
+            <div>
+              <Button size={1} onClick={handleNewAnsSubmit}>Submit</Button>
             </div>
           </form>
         </AnswerModal>
