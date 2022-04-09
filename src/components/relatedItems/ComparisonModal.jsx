@@ -21,11 +21,12 @@ const ComparisonModal = (props) => {
       const currValue = currFeatures.find(item => item.feature === feature);
       const compValue = compFeatures.find(item => item.feature === feature);
 
+      console.log('currValue:::', currValue);
       return (
         <tr>
-          <td>{currValue !== undefined ? currValue.value : 'N/A'}</td>
+          <td>{!!currValue ? currValue.value : 'N/A'}</td>
           <td className="modal-characteristic">{feature}</td>
-          <td>{compValue !== undefined ? compValue.value : 'N/A'}</td>
+          <td>{!!compValue ? compValue.value : 'N/A'}</td>
         </tr>
       );
     });
@@ -36,9 +37,9 @@ const ComparisonModal = (props) => {
 
   return ReactDom.createPortal(
     <div className="comparison-modal">
-      <div className="header">
+      <div className="modal-header">
         <h6>COMPARING</h6>
-        <button type="button" onClick={handleModalClick}>X</button>
+        <button className="sm modal-close" type="button" onClick={handleModalClick}>X</button>
       </div>
       <table>
         <thead>

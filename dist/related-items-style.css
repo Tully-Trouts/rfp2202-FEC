@@ -6,17 +6,10 @@
   border-style: solid;
 }
 
-.related-items{
-  margin: 5px;
-  padding: 5px;
-  border-style: solid;
-  font-size: x-small;
-}
-
 .card-list {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-x: scroll;
   font-size: x-small;
 }
@@ -28,7 +21,6 @@
   width: 200px;
   height: 80%;
   margin: 5px;
-  /* padding: 5px; */
   border-style: solid;
   position: relative;
 }
@@ -58,10 +50,16 @@
   margin: 5px;
   padding: 5px;
   font-size: x-small;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
-.header {
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-header {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -75,16 +73,53 @@ td {
   font-weight: bold;
 }
 
-.outfit-list-modal-close, .related-items-modal-open {
+.card-button {
   position: absolute;
   font-weight: bold;
+  border: solid;
+  border-color: black;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+}
+
+.card-button:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.related-items-modal-open {
+
+  /* font-weight: bold;
   font-size: larger;
   text-align: center;
-  justify-content: center;
+  justify-content: center; */
+
+}
+
+.outfit-list-remove {
+  font-weight: bold;
+  /* text-align: center;
+  justify-content: center; */
+  border-radius: 50%;
+}
+
+.modal-close {
+  font-weight: bold;
+  border: solid;
+  border-color: black;
+  background-color: white;
+  margin: 5px;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  margin: 5px;
 }
+
+.modal-close:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
 
 

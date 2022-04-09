@@ -109,9 +109,8 @@ class Card extends React.Component {
     if (!isOutfit) {
       return (
         <div>
-          <div className="header">
-            {/* <span>[product id: {productId}]</span> */}
-            <button className="related-items-modal-open" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
+          <div className="card-header">
+            <button className="sm card-button related-items-modal-open" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
           </div>
           <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
           <div className="inner-card" onClick={(event) => ( getProductById(productId, event))}>
@@ -120,7 +119,7 @@ class Card extends React.Component {
               <h6>{category}</h6>
               <div>{name}</div>
               <div>${salePrice || originalPrice}</div>
-              <div>Rating: {avgRating}</div>
+              <div>Rating: {avgRating !== 'no reviews yet' ? `${avgRating}/5` : avgRating}</div>
             </div>
           </div>
         </div>
@@ -128,10 +127,8 @@ class Card extends React.Component {
     } else {
       return (
         <div>
-          <div className="header">
-            {/* <span>[product id: {productId}]</span> */}
-            {/* <Button class="outfit-list-modal-close" size={1} aria-label="close" onClick={(e) => handleRemoveOutfit(e, productId)}>X</Button> */}
-            <button className="outfit-list-modal-close" type="button" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
+          <div className="card-header">
+            <button className="sm card-button outfit-list-remove" type="button" onClick={(e) => handleRemoveOutfit(e, productId)}>X</button>
           </div>
           <div className="inner-card">
             <img className="preview-image" src={previewImg || notFoundUrl}/>
@@ -139,7 +136,7 @@ class Card extends React.Component {
               <h6>{category}</h6>
               <div>{name}</div>
               <div>${salePrice || originalPrice}</div>
-              <div>Rating: {avgRating}</div>
+              <div>Rating: {avgRating !== 'no reviews yet' ? `${avgRating}/5` : avgRating}</div>
             </div>
           </div>
         </div>

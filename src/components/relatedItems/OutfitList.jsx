@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import { Button } from '../styledComponents';
 
 const OutfitList = ({ product }) => {
 
@@ -39,7 +40,8 @@ const OutfitList = ({ product }) => {
       <h5>YOUR OUTFIT</h5>
       <div className="card-list">
         <div className="card">
-          <button onClick={() => addProductToOutfit(product.id)}>Add to outfit</button>
+          <Button size={1} aria-label="open" onClick={() => addProductToOutfit(product.id)}>Add to outfit</Button>
+          {/* <button onClick={() => addProductToOutfit(product.id)}>Add to outfit</button> */}
         </div>
         <>{outfitList}</>
       </div>
