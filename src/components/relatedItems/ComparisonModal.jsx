@@ -23,9 +23,9 @@ const ComparisonModal = (props) => {
 
       return (
         <tr>
-          <td>{!!currValue ? currValue.value : 'N/A'}</td>
+          <td>{!!currValue ? currValue.value : ''}</td>
           <td className="modal-characteristic">{feature}</td>
-          <td>{!!compValue ? compValue.value : 'N/A'}</td>
+          <td>{!!compValue ? compValue.value : ''}</td>
         </tr>
       );
     });

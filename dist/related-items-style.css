@@ -29,6 +29,14 @@
   padding: 5px;
 }
 
+.hidden {
+  color: white;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
 .preview-image {
   width: 200px;
   height: 200px;
@@ -84,7 +92,7 @@ td {
   font-weight: bold;
   border: solid;
   border-color: black;
-  background-color: transparent;
+  background-color: white;
   width: 25px;
   height: 25px;
   margin: 5px;
