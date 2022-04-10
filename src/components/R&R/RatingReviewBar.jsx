@@ -17,11 +17,10 @@ class RatingReviewBar extends React.Component {
         <div>
           <div>{this.props.name}</div>
           <div className="ReviewBar-Container">
-            <div className="progress-Container">
-              <div className="progress">
-                <div className="progress-done" style={{
-                  opacity: 1,
-                  width: `${totalperc}%`
+            <div className="progress-bar-Container">
+              <div className="comparison-bar_bg">
+                <div className="comparison-bar-triangle" style={{
+                  left: `${totalperc}%`
                 }}>
                 </div>
               </div>

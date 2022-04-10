@@ -87,6 +87,26 @@
 
 }
 
+.comparison-bar_bg {
+  background-color: #f4f4f4;
+  overflow: visible;
+  height: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.comparison-bar-triangle {
+  transform: translateX(-50.2867%);
+  border-width: 14px 7px;
+  top: -4px;
+  background-color: var(--gl-color-background-transparent);
+  border: 10px solid var(--gl-color-background-transparent);
+  height:auto;
+  width: 0;
+  border-top-color: var(--gl-color-border-alternative-active);
+
+}
+
 .stars {
   position: relative;
   white-space: nowrap;
@@ -143,6 +163,26 @@
 
 .devtool {
   border-style: solid;
+}
+
+.review-summary {
+  width: 75%;
+  margin-bottom: 15px;
+  margin-top: 15px
+}
+
+.review-body {
+  width: 75%;
+  height: 156px;
+}
+
+.Nickname {
+  width: 220px;
+  margin: 5px 0px;
+}
+
+.email {
+  margin-bottom: 5px;
 }
 
 /* Individual Tile Style */
@@ -254,7 +294,6 @@ body.active-modal {
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
-  height: 50%;
   width: 50%;
 }
 
@@ -265,8 +304,52 @@ body.active-modal {
   padding: 5px 7px;
 }
 
+.recommended-select {
+  font-size: smaller;
+}
+ .char-option-size {
+   font-size: x-small;
+ }
 
+ .char-size {
+    margin-left: 19px;
+ }
 
+ .char-option-width {
+  font-size: x-small;
+}
+
+.char-width {
+   margin-left: 11px;
+}
+
+.char-option-comfort {
+  font-size: x-small;
+}
+
+.char-option-quality {
+  font-size: x-small;
+}
+
+.char-quality {
+   margin-left: 5px;
+}
+
+.char-option-length {
+  font-size: x-small;
+}
+
+.char-length {
+   margin-left: 5px;
+}
+
+.char-option-fit {
+  font-size: x-small;
+}
+
+.char-fit {
+   margin-left: 26px;
+}
 
 
 
@@ -278,7 +361,7 @@ body.active-modal {
   width: 160px;
   flex-direction: row-reverse;
   justify-content: space-between;
-  margin: 10px auto;
+  margin: -13px 10px 5px;
   position: relative;
 }
 /* hide the inputs */

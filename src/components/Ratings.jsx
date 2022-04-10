@@ -26,10 +26,12 @@ class Ratings extends React.Component {
       ],
       sort: 'relevant',
       tileRender: 2,
+      submitCharOption: null,
     };
     this.retrieveReviewList = this.retrieveReviewList.bind(this);
     this.handleMoreReview = this.handleMoreReview.bind(this);
     this.updateSort = this.updateSort.bind(this);
+    this.updateCharOption = this.updateCharOption.bind(this);
   }
 
   handleMoreReview(e) {
@@ -73,6 +75,9 @@ class Ratings extends React.Component {
     this.retrieveReviewList(this.props.productId);
   }
 
+  updateCharOption(value) {
+    this.setState({submitCharOption: value});
+  }
 
   render() {
     const tileLoad = this.state.reviewList.slice(0, this.state.tileRender);
@@ -86,7 +91,7 @@ class Ratings extends React.Component {
             </div>
             <div className="RR-Container">
               <div className="rating_container">
-                <RatingBreakdown productId={this.props.productId}/>
+                <RatingBreakdown productId={this.props.productId} updateCharOption={this.updateCharOption}/>
               </div>
               <div className="review_list">
                 <ReviewList reviewList={tileLoad} />
@@ -95,7 +100,7 @@ class Ratings extends React.Component {
           </div>
           <div className="btn-container-updated">
             <div id="add_review-btn">
-              <AddReview productName={this.props.productName}/>
+              <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption}/>
             </div>
           </div>
         </div>
@@ -110,7 +115,7 @@ class Ratings extends React.Component {
             </div>
             <div className="RR-Container">
               <div className="rating_container">
-                <RatingBreakdown productId={this.props.productId}/>
+                <RatingBreakdown productId={this.props.productId} updateCharOption={this.updateCharOption}/>
               </div>
               <div className="review_list">
                 <ReviewList reviewList={tileLoad} />
@@ -124,7 +129,7 @@ class Ratings extends React.Component {
               </button>
             </div>
             <div id="add_review-btn">
-              <AddReview productName={this.props.productName}/>
+              <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption}/>
             </div>
           </div>
         </div>

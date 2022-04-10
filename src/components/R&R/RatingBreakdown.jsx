@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import StarReview from './StarReview.jsx';
 import RatingReviewBar from './RatingReviewBar.jsx';
+import StarReviewBar from './StarReviewBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -70,8 +71,10 @@ class RatingBreakdown extends React.Component {
         this.setState({totalAvgReview: avgReview});
         if (this.state.overview.characteristics.Fit) {
           this.setState({clothes: true});
+          this.props.updateCharOption(1);
         } else if (this.state.overview.characteristics.Width) {
           this.setState({clothes: false});
+          this.props.updateCharOption(2);
         }
       })
       .catch((err) => {
@@ -86,9 +89,11 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
+    var currentStar = 0;
     const starRating = Object.values(this.state.overview.ratings);
     const starOverallRating = starRating.map((starValue) =>
-      <RatingReviewBar starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} />
+      <StarReviewBar starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} currentStar={currentStar += 1}/>
+
     );
     if (this.state.clothes === true) {
       return (
@@ -134,6 +139,9 @@ class RatingBreakdown extends React.Component {
               <div className="RatingScore-Star">
                 <StarReview starRating={this.state.totalAvgReview * 20}/>
               </div>
+            </div>
+            <div>
+              {starOverallRating}
             </div>
           [Characteristics]
             <div className="comfort-tag">
