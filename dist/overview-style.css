@@ -44,9 +44,11 @@ li.devtool.devtool-product-list-item {
 
 .overview {
   margin: 5px;
+  /* dev style
   padding: 5px;
   border-style: solid;
   font-size: x-small;
+  */
 }
 
 .overview-image-panel {
