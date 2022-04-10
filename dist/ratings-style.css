@@ -8,48 +8,83 @@
   position: relative;
 }
 
+.StarScore-RR {
+  display: flex;
+  height: 70px;
+}
+
+.RatingScore-Int {
+  font-size: xxx-large;
+}
+
+.RatingScore-Star {
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+.Title-text {
+  font-size: medium;
+}
+
+.ReviewBar-Container {
+  display: flex;
+  flex-direction: column;
+}
+
+.characteristic-container {
+  display: flex;
+
+}
+
+.char-1 {
+  font-size: xx-small;
+}
+
+.char-2 {
+  font-size: xx-small;
+  margin-left: 25%;
+}
+
+.char-3 {
+  font-size: xx-small;
+  margin-left: 25%;
+}
+
+.comfort-tag {
+  font-size: x-small;
+}
+
+.quality-tag {
+  font-size: x-small;
+}
+
+.length-tag {
+  font-size: x-small;
+}
+
+.fit-tag {
+  font-size: x-small;
+}
+
+.size-tag {
+  font-size: x-small;
+}
+
+.width-tag {
+  font-size: x-small;
+}
 
 .progress {
   background-color: #f4f4f4;
-  height: 20px;
-  width: 200px;
-  margin-bottom: 11px;
+  height: 10px;
+  width: 100%;
 }
 
-.progress-done1 {
-  background-color: orange;
+.progress-done {
+  background-color: green;
   height: 100%;
-  width: 200px;
   opacity: 0;
 
-}
-
-.progress-done2 {
-  background-color: orange;
-  height: 100%;
-  width: 200px;
-  opacity: 0;
-}
-
-.progress-done3 {
-  background-color: orange;
-  height: 100%;
-  width: 200px;
-  opacity: 0;
-}
-
-.progress-done4 {
-  background-color: orange;
-  height: 100%;
-  width: 200px;
-  opacity: 0;
-}
-
-.progress-done5 {
-  background-color: orange;
-  height: 100%;
-  width: 200px;
-  opacity: 0;
 }
 
 .stars {
@@ -103,6 +138,7 @@
   display: inline-block;
   flex-flow:column-reverse;
   border: solid;
+  overflow-x: scroll;
 }
 
 .devtool {
@@ -123,7 +159,6 @@
   color: grey;
   text-align: right;
   padding-right: 4px;
-  padding-left: 40%;
 }
 
 .Summary-text {
@@ -131,9 +166,12 @@
   height: 40px;
 }
 
+.btn-container-updated {
+  margin-left: 59%;
+}
 .Review_Body_Container {
-  height: 44px;
-  overflow: overlay;
+  height: auto;
+  font-size:smaller
 }
 
 .USER-DATE {
@@ -145,7 +183,6 @@
   color: grey;
   padding-left: 5px;
   padding-bottom: 1px;
-  padding-right: 128px;
   flex: none;
 }
 
@@ -164,6 +201,9 @@
   margin-top: 20px;
 }
 
+.sort-btn {
+  padding-left: 10px;
+}
 
 .sorting {
   padding-left: 60%;
@@ -171,7 +211,8 @@
 }
 
 .sort-label {
-  width: 100px;
+  width: 220px;
+  font-size: smaller;
 }
 
 .btn-container {
@@ -213,6 +254,8 @@ body.active-modal {
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
+  height: 50%;
+  width: 50%;
 }
 
 .close-modal {

@@ -29,6 +29,7 @@ class Ratings extends React.Component {
     };
     this.retrieveReviewList = this.retrieveReviewList.bind(this);
     this.handleMoreReview = this.handleMoreReview.bind(this);
+    this.updateSort = this.updateSort.bind(this);
   }
 
   handleMoreReview(e) {
@@ -46,7 +47,7 @@ class Ratings extends React.Component {
       }
     })
       .then((result) => {
-        this.setState({reviewList: result.data.results});
+        this.setState({reviewList: result.data.results, tileRender: 2});
       })
       .catch((err) => {
         console.log(err);
@@ -59,43 +60,76 @@ class Ratings extends React.Component {
     this.retrieveReviewList(this.props.productId);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.productId !== this.props.productId) {
       this.retrieveReviewList(this.props.productId);
+    } else if (prevState.sort !== this.state.sort) {
+      this.retrieveReviewList(this.props.productId);
     }
+  }
+
+  updateSort(value) {
+    this.setState({sort: value});
+    this.retrieveReviewList(this.props.productId);
   }
 
 
   render() {
     const tileLoad = this.state.reviewList.slice(0, this.state.tileRender);
-    return (
-      <div id="rating_and_reviews-container">
-        <h3>Rating and Review</h3>
-        <div id="review-panal">
-          <div className="sorting">
-            <Sort />
-          </div>
-          <div className="RR-Container">
-            <div className="rating_container">
-              <RatingBreakdown productId={this.props.productId}/>
+    if (this.state.tileRender >= this.state.reviewList.length) {
+      return (
+        <div id="rating_and_reviews-container">
+          <h3>Rating and Review</h3>
+          <div id="review-panal">
+            <div className="sorting">
+              <Sort updateSort={this.updateSort}/>
             </div>
-            <div className="review_list">
-              <ReviewList reviewList={tileLoad} />
+            <div className="RR-Container">
+              <div className="rating_container">
+                <RatingBreakdown productId={this.props.productId}/>
+              </div>
+              <div className="review_list">
+                <ReviewList reviewList={tileLoad} />
+              </div>
+            </div>
+          </div>
+          <div className="btn-container-updated">
+            <div id="add_review-btn">
+              <AddReview productName={this.props.productName}/>
             </div>
           </div>
         </div>
-        <div className="btn-container">
-          <div className="more_review-btn">
-            <button id="more-review-btn" onClick={this.handleMoreReview}>
-              More Review
-            </button>
+      );
+    } else {
+      return (
+        <div id="rating_and_reviews-container">
+          <h3>Rating and Review</h3>
+          <div id="review-panal">
+            <div className="sorting">
+              <Sort updateSort={this.updateSort}/>
+            </div>
+            <div className="RR-Container">
+              <div className="rating_container">
+                <RatingBreakdown productId={this.props.productId}/>
+              </div>
+              <div className="review_list">
+                <ReviewList reviewList={tileLoad} />
+              </div>
+            </div>
           </div>
-          <div id="add_review-btn">
-            <AddReview productName={this.props.productName}/>
+          <div className="btn-container">
+            <div className="more_review-btn">
+              <button id="more-review-btn" onClick={this.handleMoreReview}>
+                More Review
+              </button>
+            </div>
+            <div id="add_review-btn">
+              <AddReview productName={this.props.productName}/>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import StarReview from './StarReview.jsx';
+import RatingReviewBar from './RatingReviewBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -9,25 +10,49 @@ class RatingBreakdown extends React.Component {
     this.state = {
       overview: {
         product_id: null,
-        rating: {},
+        ratings: {'1': null, '2': null, '3': null, '4': null, '5': null},
         recommended: {},
-        fit: null,
-        length: null,
-        comfort: null,
-        quality: null,
-        width: null,
-        size: null,
+        characteristics: {
+          Fit: {value: null},
+          Length: {value: null},
+          Comfort: {value: null},
+          Quality: {value: null},
+          Width: {value: null},
+          Size: {value: null},
+        },
       },
-      done: 40,
-      done2: 30,
-      done3: 80,
-      done4: 20,
-      done5: 55,
+      total: 0,
+      totalReviewScore: 0,
+      totalAvgReview: 0,
+      clothes: null,
     };
     this.retrieveMetaList = this.retrieveMetaList.bind(this);
+    this.totalReview = this.totalReview.bind(this);
+    this.totalRatingScore = this.totalRatingScore.bind(this);
+  }
+
+  totalReview(object) {
+    var totalreview = 0;
+    const total = (Object.values(object));
+    for (var i = 0; i < total.length; i++) {
+      totalreview += parseInt(total[i]);
+    }
+    this.setState({total: totalreview});
+  }
+
+  totalRatingScore(object) {
+    var totalscore = 0;
+    var currentRank = 1;
+    const total = (Object.values(object));
+    for (var i = 0; i < total.length; i++) {
+      totalscore += currentRank * parseInt(total[i]);
+      currentRank += 1;
+    }
+    this.setState({totalReviewScore: totalscore});
   }
 
   retrieveMetaList(productId) {
+    this.setState({clothes: null});
     axios({
       method: 'get',
       url: '/api/reviews/meta/',
@@ -38,8 +63,16 @@ class RatingBreakdown extends React.Component {
     })
       .then((result) => {
         this.setState({overview: result.data});
-        
-        console.log(this.state.overview);
+        this.totalReview(this.state.overview.ratings);
+        console.log('Current Metadata', this.state.overview);
+        this.totalRatingScore(this.state.overview.ratings);
+        const avgReview = Number(this.state.totalReviewScore / this.state.total).toFixed(1);
+        this.setState({totalAvgReview: avgReview});
+        if (this.state.overview.characteristics.Fit) {
+          this.setState({clothes: true});
+        } else if (this.state.overview.characteristics.Width) {
+          this.setState({clothes: false});
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -53,121 +86,80 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h4 className="ratings-reviews-text">
-          Ratings & Reviews
-        </h4>
-        <div className="progress-Container">
-          <div className="progress">
-            <div className="progress-done1" style={{
-              opacity: 1,
-              width: `${this.state.done}%`
-            }}>
-              {this.state.done}%
-            </div>
-          </div>
-          <div className="progress">
-            <div className="progress-done2" style={{
-              opacity: 1,
-              width: `${this.state.done2}%`
-            }}>
-              {this.state.done2}%
-            </div>
-          </div>
-          <div className="progress">
-            <div className="progress-done3" style={{
-              opacity: 1,
-              width: `${this.state.done3}%`
-            }}>
-              {this.state.done3}%
-            </div>
-          </div>
-          <div className="progress">
-            <div className="progress-done4" style={{
-              opacity: 1,
-              width: `${this.state.done4}%`
-            }}>
-              {this.state.done4}%
-            </div>
-          </div>
-          <div className="progress">
-            <div className="progress-done5" style={{
-              opacity: 1,
-              width: `${this.state.done5}%`
-            }}>
-              {this.state.done5}%
-            </div>
-          </div>
-        </div>
-        <div className="StarRating-breakdown">
-          <StarReview />
-        </div>
-      </div>
+    const starRating = Object.values(this.state.overview.ratings);
+    const starOverallRating = starRating.map((starValue) =>
+      <RatingReviewBar starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} />
     );
-    // if (this.state.shoes === false) {
-    //   return (
-    //     <div>
-    //       [Rating & Reviews]
-    //       <div className="characterboxA">
-    //       [Characteristics]
-    //         <div className="comfort-tag">
-    //         [Comfort] {this.state.metadata.characteristics.Comfort.value}
-    //         </div>
-    //         <div className="quality-tag">
-    //         [Quality] {this.state.metadata.characteristics.Quality.value}
-    //         </div>
-    //         <div className="length-tag">
-    //         [Length] {this.state.metadata.characteristics.Length.value}
-    //         </div>
-    //         <div className="fit-tag">
-    //       [Fit] {this.state.metadata.characteristics.Fit.value}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // } else {
-    //   return (
-    //     <div>
-    //       [Rating & Reviews]
-    //       <div className="characterboxB">
-    //       [Characteristics]
-    //         <div className="comfort-tag">
-    //       [Comfort] {this.state.metadata.characteristics.Quality.value}
-    //         </div>
-    //         <div className="quality-tag">
-    //       [Quality] {this.state.metadata.characteristics.Quality.value}
-    //         </div>
-    //         <div className="size-tag">
-    //       [Size] {this.state.metadata.characteristics.Quality.value}
-    //         </div>
-    //         <div className="width-tag">
-    //       [Width] {this.state.metadata.characteristics.Width.value}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // }
+    if (this.state.clothes === true) {
+      return (
+        <div>
+          <div className="Title-text">Rating & Reviews</div>
+          <div className="characterboxA">
+            <div className="StarScore-RR">
+              <div className="RatingScore-Int">
+                {this.state.totalAvgReview}
+              </div>
+              <div className="RatingScore-Star">
+                <StarReview starRating={this.state.totalAvgReview * 20}/>
+              </div>
+            </div>
+            <div>
+              {starOverallRating}
+            </div>
+          [Characteristics]
+            <div className="comfort-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div classname={'characteristic-tag'}>Comfort</div>)}/>
+            </div>
+            <div className="quality-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div classname={'characteristic-tag'}>Quality</div>)}/>
+            </div>
+            <div className="length-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Length.value} name={(<div classname={'characteristic-tag'}>Length</div>)}/>
+            </div>
+            <div className="fit-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Fit.value} name={(<div classname={'characteristic-tag'}>Fit</div>)}/>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.state.clothes === false) {
+      return (
+        <div>
+          <div className="Title-text">Rating & Reviews</div>
+          <div className="characterboxA">
+            <div className="StarScore-RR">
+              <div className="RatingScore-Int">
+                {this.state.totalAvgReview}
+              </div>
+              <div className="RatingScore-Star">
+                <StarReview starRating={this.state.totalAvgReview * 20}/>
+              </div>
+            </div>
+          [Characteristics]
+            <div className="comfort-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div classname={'characteristic-tag'}>Comfort</div>)}/>
+            </div>
+            <div className="quality-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div classname={'characteristic-tag'}>Quality</div>)}/>
+            </div>
+            <div className="size-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Size.value} name={(<div classname={'characteristic-tag'}>Size</div>)}/>
+            </div>
+            <div className="width-tag">
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Width.value} name={(<div classname={'characteristic-tag'}>Width</div>)}/>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          No Data
+        </div>
+      );
+    }
   }
 }
 
 export default RatingBreakdown;
 
-
-
-// console.log('Characteristics', result.data.characteristics.Size.value);
-// this.setState({width: null, size: null, fit: null, length: null});
-// this.setState({product_id: result.data.product_id, rating: result.data.rating, recommended: result.data.recommended, comfort: result.data.characteristics.Comfort.value, quality: result.data.characteristics.Quality.value});
-// if (result.data.characteristics.Fit.value !== undefined) {
-//   this.setState({fit: result.data.characteristics.Fit.value});
-// }
-// if (result.data.characteristics.Width.value) {
-//   this.setState({width: result.data.characteristics.Width.value});
-// }
-// if (result.data.characteristics.Size.value) {
-//   this.setState({size: result.data.characteristics.Size.value});
-// }
-// if (result.data.characteristics.Length.value) {
-//   this.setState({length: result.data.characteristics.Length.value});
-// }
-// console.log('Stateful Comfort', this.state.comfort);
