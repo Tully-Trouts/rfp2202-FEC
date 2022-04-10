@@ -10,7 +10,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 65631, //this.props.productId,
+      productId: this.props.productId, //65631,
       questions: [],
       search: '',
       newQuestionBody: '',
@@ -37,9 +37,9 @@ class QA extends Component {
     this.handleNewQuestionSubmitError = this.handleNewQuestionSubmitError.bind(this);
   }
 
-  componentDidMount() {
-    this.getQuestionsById(this.state.productId);
-  }
+  // componentDidMount() {
+  //   this.getQuestionsById(this.state.productId);
+  // }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
