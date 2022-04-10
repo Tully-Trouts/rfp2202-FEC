@@ -74,7 +74,8 @@ var Overview = ({product}) => {
         <div className="overview overview-product-information-panel">
           [product information panel]
           <div className="overview product-review sm">
-            [product review: {avgRating}]
+            [product review: {avgRating}]&nbsp;&nbsp;
+            <a href="#rating_and_reviews-container">Read all reviews</a>
           </div>
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
@@ -92,8 +93,7 @@ var Overview = ({product}) => {
         [testing]
       </div>
       <div className="overview overview-product-description">
-        [product description - free form text field]
-        {product.description}
+        <h5 className="overview-product-description">{product.description}</h5>
       </div>
     </div>
   );

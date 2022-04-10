@@ -92,9 +92,20 @@ span.gallery-control:hover {
   width: 30%;
 }
 
+h5.overview-product-description {
+  margin: 1.67em 1.5em;
+}
+
 
 .cart-selector {
   display: flex;
+}
+
+.cart-selector > select {
+  height: 3em;
+  margin: 2px 2px;
+  padding-left: 0.8em;
+  padding-right: 0.4em;
 }
 
 .size-selector {
@@ -102,10 +113,6 @@ span.gallery-control:hover {
 }
 
 .overview > .btn {
-  margin: 2px 2px;
-}
-
-.overview > select {
   margin: 2px 2px;
 }
 
