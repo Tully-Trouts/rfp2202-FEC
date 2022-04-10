@@ -4,6 +4,7 @@ import Gallery from './Gallery';
 import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Button } from '../styledComponents';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
@@ -17,7 +18,7 @@ var Overview = ({product}) => {
       totalRatings += Number(reviewMetadata.ratings[star] || 0);
       sum += Number(reviewMetadata.ratings[star] || 0) * star;
     }
-    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings));
+    setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings).toFixed(2));
   };
 
   var getProductReviewMetadata = (id) => {
@@ -67,22 +68,31 @@ var Overview = ({product}) => {
     <div id="overview-container">
       <h3>Overview</h3>
       <div className="overview overview-main">
-        <Gallery photos={selectedStyle.photos} />
+        <div className="overview overview-image-panel">
+          <Gallery photos={selectedStyle.photos} />
+        </div>
         <div className="overview overview-product-information-panel">
-          [product information panel]
           <div className="overview product-review sm">
-            [product review: {avgRating}]
+            [product review: {avgRating}]&nbsp;&nbsp;
+            <a href="#rating_and_reviews-container">Read all reviews</a>
           </div>
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
-          <span className="price">{product.default_price}</span>
+          <div className="overview product-price">
+            {!!selectedStyle.sale_price &&
+            (<span className="sale-price"> {selectedStyle.sale_price}</span>) ||
+            (<span className="original-price">{selectedStyle.original_price}</span>) ||
+            (<span className="price">{product.default_price}</span>)}
+          </div>
           <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
+      <div className="overview overview-main-2">
+        [testing]
+      </div>
       <div className="overview overview-product-description">
-        [product description - free form text field]
-        {product.description}
+        <h5 className="overview-product-description">{product.description}</h5>
       </div>
     </div>
   );

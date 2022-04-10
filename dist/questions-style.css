@@ -1,22 +1,22 @@
 .QA {
-  margin: 30px;
-  padding: 30px;
-  border: 3px solid black;
-  background-color: white;
+    margin: auto;
+    padding: 1em;
+    width: 75%;
+    border: 2px solid black;
+    background-color: white;
 }
 
 .QA_Title {
   margin: 8px;
   padding: 8px;
-
   border-radius: 5px;
   background-color: white;
 }
 
 .QA_Search {
+  display: flex;
   margin: 5px;
   padding: 10px;
-  border: 3px solid black;
   background-color: white;
 }
 
@@ -35,8 +35,19 @@
 .Q_List {
   margin: 5px;
   padding: 5px;
+  /*
+  border: 3px solid black;
+  */
+  background-color: white;
+}
+
+.Q_List_Overflow{
+  margin: 5px;
+  padding: 5px;
   border: 3px solid black;
   background-color: white;
+  height: 600px;
+  overflow: scroll;
 }
 
 .A_List {
@@ -47,6 +58,7 @@
   margin: 2px;
   height: 200px;
   overflow: scroll;
+  background-color: rgb(240, 240, 240);
 }
 
 .Q {
@@ -59,9 +71,8 @@
 
 .Q_Helpful {
   font-weight: normal;
-  font-size: 10px;
-  position: absolute;
-  right: 200px;
+  font-size: 12px;
+  float: right;
 }
 
 .Add_A {
@@ -96,4 +107,20 @@
 .A_Images {
   width: 100px;
   height:100px;
+}
+
+#Add_Question {
+  position: relative;
+}
+
+.New_QA_Email_Input_Error {
+  border: 1px solid red;
+}
+
+.New_QA_Nickname_Input_Error {
+  border: 1px solid red;
+}
+
+.New_QA_Input_Error {
+  border: 1px solid red;
 }

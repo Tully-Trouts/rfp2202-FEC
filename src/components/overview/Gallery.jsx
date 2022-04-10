@@ -2,48 +2,73 @@ import React from 'react';
 
 var Gallery = (props) => {
 
-  var notFound = {
-    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/768px-No_image_available.svg.png'
-  };
-
-  // setting default to a no image available photo from wikipedia
-  const [displayPhoto, setDisplayPhoto] = React.useState(notFound);
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
+
+  const [galleryStyle, setGalleryStyle] = React.useState({});
 
   // monitor props.photos for changes, use this effect if there are changes
   React.useEffect(() => {
-    setDisplayPhotoIndex(0);
+    console.log('Rendering gallery');
+
     if (props.photos && props.photos.length !== 0) {
-      setDisplayPhoto(props.photos[displayPhotoIndex] || notFound);
+      const backgroundImage = props.photos.map(element => `url(${element.url})`);
+      // Create a background position array for the multiple background images:
+      const backgroundPosition = [...Array(props.photos.length)].map(() => '500%');
+      // Setting the first element/image to be in the center of the div:
+      backgroundPosition[0] = '50%';
+      setGalleryStyle({backgroundImage, backgroundPosition});
     }
+    setDisplayPhotoIndex(0);
   }, [props.photos]);
 
-  // setting the styling for the div. will have to alter later for photo fit etc.
-  const divStyle = {
-    backgroundImage: `url(${displayPhoto.url})`,
-    backgroundSize: 'contain',
-  };
-
   const nextPhoto = () => {
+    if (!props.photos || props.photos.length === 0) {
+      console.log('No next photos!');
+      return;
+    }
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
-    setDisplayPhoto(props.photos[nextIndex]);
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
+    backgroundPosition[nextIndex] = '50%';
+
+    const newStyle = {
+      backgroundPosition,
+      transition: '1s',
+      msTransition: '1s',
+      WebkitTransition: '1s',
+    };
+
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
   };
 
   const prevPhoto = () => {
+    if (!props.photos || props.photos.length === 0) {
+      console.log('No previous photos!');
+      return;
+    }
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
-    setDisplayPhoto(props.photos[nextIndex]);
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
+    backgroundPosition[nextIndex] = '50%';
+    const newStyle = {
+      backgroundPosition,
+      transition: '1s'
+    };
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
   };
 
   return (
-    <div className="overview overview-image-panel" style={divStyle}>
-      <span className="overview sm previous-image-selector" onClick={()=>{ prevPhoto(); }}>
+    <div className="overview overview-gallery">
+      <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
         Previous
       </span>
-      <span className="overview sm next-image-selector" onClick={()=>{ nextPhoto(); }}>
+      <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
         Next
       </span>
+      <div
+        className="gallery-photos"
+        style={galleryStyle}>
+      </div>
     </div>
   );
 };

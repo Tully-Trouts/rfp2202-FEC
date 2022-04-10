@@ -1,7 +1,7 @@
 #related-items-container, #outfit-list-container {
   width: 75%;
   position: relative;
-  margin: auto auto 30px auto;
+  margin: auto;
   padding: 1em;
   border-style: solid;
 }
@@ -9,7 +9,7 @@
 .card-list {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-x: scroll;
   font-size: x-small;
 }
@@ -19,10 +19,24 @@
   flex-direction: column;
   flex-grow: 0 0 0;
   width: 200px;
-  height: 75%;
+  height: 80%;
   margin: 5px;
-  padding: 5px;
   border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  position: relative;
+}
+
+.card-info {
+  padding: 5px;
+}
+
+.hidden {
+  color: white;
+}
+
+.clickable:hover {
+  cursor: pointer;
 }
 
 .preview-image {
@@ -44,15 +58,32 @@
   border-style: solid;
   background: white;
   margin: 5px;
-  padding: 5px;
+  padding: 0 1.5em;
   font-size: x-small;
-  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.comparison-table {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.header > h6 {
+  margin: 1.5em 0;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.end {
+  justify-content: flex-end;
 }
 
 td {
@@ -62,4 +93,34 @@ td {
 .modal-characteristic {
   font-weight: bold;
 }
+
+.card-button {
+  font-weight: bold;
+  border: none;
+  border-color: black;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+}
+
+.header > .card-button {
+
+}
+
+.absolute {
+  position: absolute;
+}
+
+.card-button:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.close-remove {
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+
 

@@ -28,8 +28,8 @@ export default function Modal ({ open, children, onClose }) {
   return ReactDOM.createPortal (
     <>
       <div style={overlayStyles} />
-      <div style={modalStyles} >
-        <Button onClick={onClose}>Close</Button>
+      <div style={modalStyles}>
+        <Button size={1} onClick={onClose}>Close</Button>
         {children}
       </div>
     </>,
