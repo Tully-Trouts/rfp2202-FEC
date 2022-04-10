@@ -23,22 +23,26 @@ Button.propTypes = {
 
 const Link = (props) => {
   return (
-    <span className="styled-link" onClick={props.onClick}>{props.children}</span>
+    <span className="styled-link"
+      onClick={props.onClick}>
+      {props.children}
+    </span>
   );
 };
 
 const Input = (props) => {
   return (
     <input
-      className={`styled-btn styled-btn-size-${props.size}`}
+      className={`styled-input styled-input-size-${props.size}`}
       style={{
         flex: props.size,
       }}
       placeholder={props.placeholder.toUpperCase()}
       type={props.type}
       value={props.value}
-      onChange={props.onChange}
-    />
+      onChange={props.onChange}>
+      {props.children}
+    </input>
   );
 };
 
