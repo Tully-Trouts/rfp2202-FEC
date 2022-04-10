@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import { Link } from '../styledComponents';
+import axios from 'axios';
+
 
 class Answer extends Component {
   constructor(props) {
@@ -14,10 +16,26 @@ class Answer extends Component {
 
   handleReport(e) {
     e.preventDefault();
+    const {answer} = this.props;
+    axios.put(`api/qa/questions/${answer[0]}/report`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleHelpful(e) {
     e.preventDefault();
+    const {answer} = this.props;
+    axios.put(`api/qa/questions/${answer[0]}/helpful`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -31,7 +49,7 @@ class Answer extends Component {
         <img src={src} key={src} className='A_Images' />
       );
     });
-    
+
     return (
       <div className='Answer'>
         <span className='A'>A: </span>

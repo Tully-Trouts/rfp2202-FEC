@@ -56,7 +56,7 @@
   margin: 2px;
   height: 200px;
   overflow: scroll;
-  background-color: rgb(237, 237, 237);
+  background-color: rgb(240, 240, 240);
 }
 
 .Q {
@@ -69,7 +69,7 @@
 
 .Q_Helpful {
   font-weight: normal;
-  font-size: 10px;
+  font-size: 12px;
   position: absolute;
   right: 200px;
 }
@@ -110,4 +110,16 @@
 
 #Add_Question {
   position: relative;
+}
+
+.New_QA_Email_Input_Error {
+  border: 1px solid red;
+}
+
+.New_QA_Nickname_Input_Error {
+  border: 1px solid red;
+}
+
+.New_QA_Input_Error {
+  border: 1px solid red;
 }
