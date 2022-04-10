@@ -72,7 +72,6 @@ var Overview = ({product}) => {
           <Gallery photos={selectedStyle.photos} />
         </div>
         <div className="overview overview-product-information-panel">
-          [product information panel]
           <div className="overview product-review sm">
             [product review: {avgRating}]&nbsp;&nbsp;
             <a href="#rating_and_reviews-container">Read all reviews</a>

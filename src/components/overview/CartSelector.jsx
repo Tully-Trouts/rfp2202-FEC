@@ -53,7 +53,6 @@ var CartSelector = ({skus}) => {
 
   return (
     <div className="overview sm overview-cart-selector">
-      [cart selector]
       <div className="overview sm cart-selector">
         <select
           role="listbox"
