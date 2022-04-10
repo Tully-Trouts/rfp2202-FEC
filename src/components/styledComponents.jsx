@@ -22,8 +22,10 @@ Button.propTypes = {
 };
 
 const Link = (props) => {
+  console.log('props.value:::', props.value);
   return (
-    <span className="styled-link"
+    <span className={`styled-link  ${props.className}`}
+      value={props.value}
       onClick={props.onClick}>
       {props.children}
     </span>

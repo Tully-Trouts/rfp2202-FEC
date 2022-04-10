@@ -123,7 +123,7 @@ class Question extends Component {
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea  value={newAnsNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+              <textarea value={newAnsNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
             </div>
             <span>
               <label>Enter Email: </label>
