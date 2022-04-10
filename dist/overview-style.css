@@ -45,7 +45,9 @@ li.devtool.devtool-product-list-item {
 .overview {
   margin: 5px;
   padding: 5px;
+  /*
   border-style: solid;
+  */
   font-size: x-small;
 }
 
@@ -92,9 +94,20 @@ span.gallery-control:hover {
   width: 30%;
 }
 
+h5.overview-product-description {
+  margin: 1.67em 1.5em;
+}
+
 
 .cart-selector {
   display: flex;
+}
+
+.cart-selector > select {
+  height: 3em;
+  margin: 2px 2px;
+  padding-left: 0.8em;
+  padding-right: 0.4em;
 }
 
 .size-selector {
@@ -102,10 +115,6 @@ span.gallery-control:hover {
 }
 
 .overview > .btn {
-  margin: 2px 2px;
-}
-
-.overview > select {
   margin: 2px 2px;
 }
 
@@ -197,4 +206,17 @@ span.styled-link:hover {
   cursor: pointer;
 }
 
+.styled-input {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}
 
+span.loadMore {
+  text-decoration: none;
+}
