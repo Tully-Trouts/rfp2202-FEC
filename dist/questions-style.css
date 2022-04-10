@@ -1,6 +1,7 @@
 .QA {
-    margin: 30px;
-    padding: 30px;
+    margin: auto;
+    padding: 1em;
+    width: 75%;
     border: 3px solid black;
     background-color: white;
 }
@@ -70,8 +71,7 @@
 .Q_Helpful {
   font-weight: normal;
   font-size: 12px;
-  position: absolute;
-  right: 200px;
+  float: right;
 }
 
 .Add_A {

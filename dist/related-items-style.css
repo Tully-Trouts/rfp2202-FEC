@@ -1,7 +1,7 @@
 #related-items-container, #outfit-list-container {
   width: 75%;
   position: relative;
-  margin: auto auto 30px auto;
+  margin: auto;
   padding: 1em;
   border-style: solid;
 }

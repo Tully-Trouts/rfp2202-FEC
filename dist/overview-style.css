@@ -45,7 +45,9 @@ li.devtool.devtool-product-list-item {
 .overview {
   margin: 5px;
   padding: 5px;
+  /*
   border-style: solid;
+  */
   font-size: x-small;
 }
 
