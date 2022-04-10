@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Button, Link } from '../styledComponents';
 
 const modalStyles = {
   position: 'fixed',
@@ -28,7 +29,7 @@ export default function Modal ({ open, children, onClose }) {
     <>
       <div style={overlayStyles} />
       <div style={modalStyles} >
-        <button onClick={onClose}>Close</button>
+        <Button onClick={onClose}>Close</Button>
         {children}
       </div>
     </>,

@@ -1,7 +1,7 @@
 #related-items-container, #outfit-list-container {
   width: 75%;
   position: relative;
-  margin: auto auto 30px auto;
+  margin: auto;
   padding: 1em;
   border-style: solid;
 }
@@ -22,11 +22,21 @@
   height: 80%;
   margin: 5px;
   border-style: solid;
+  border-width: 1px;
+  border-color: gray;
   position: relative;
 }
 
 .card-info {
   padding: 5px;
+}
+
+.hidden {
+  color: white;
+}
+
+.clickable:hover {
+  cursor: pointer;
 }
 
 .preview-image {
@@ -48,7 +58,7 @@
   border-style: solid;
   background: white;
   margin: 5px;
-  padding: 5px;
+  padding: 0 1.5em;
   font-size: x-small;
   overflow-y: hidden;
 }
@@ -62,6 +72,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.header > h6 {
+  margin: 1.5em 0;
 }
 
 .between {
@@ -82,12 +96,16 @@ td {
 
 .card-button {
   font-weight: bold;
-  border: solid;
+  border: none;
   border-color: black;
   background-color: transparent;
   width: 25px;
   height: 25px;
   margin: 5px;
+}
+
+.header > .card-button {
+
 }
 
 .absolute {

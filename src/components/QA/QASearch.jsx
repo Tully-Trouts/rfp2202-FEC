@@ -34,7 +34,7 @@ class QASearch extends Component {
     return (
       <form className='QA_Search'>
         <Input type='text' placeholder='SEARCH QUESTIONS' value={search} onChange={handleSearchInput} size={1}/>
-        <Button onClick={handleClear} size={1}>Clear</Button>
+        <Button onClick={handleClear} size={0}>Clear</Button>
       </form>
     );
   }
