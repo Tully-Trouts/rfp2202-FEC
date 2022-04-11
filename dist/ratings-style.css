@@ -351,13 +351,16 @@ body.active-modal {
    margin-left: 26px;
 }
 
+.StarRating-breakdown {
+  display: flex;
+}
 
 
 /* Star Rating CSS */
 
 .star-rating {
   display: flex;
-  align-items:flex-start;
+  align-items:center;
   width: 160px;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -375,11 +378,11 @@ body.active-modal {
   font-family: Arial;
   font-size: 30px;
   transition: 0.1s ease;
-  color: orange;
+  color: gold;
 }
 /* give label a hover state */
 .star-rating label:hover {
-  color: #ff69b4;
+  color: black;
   transition: 0.2s ease;
 }
 .star-rating label:active::before {
@@ -405,9 +408,4 @@ body.active-modal {
   }
 }
 
-
-
-.StarRating-breakdown {
-  display: flex;
-}
 

@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 import React from 'react';
+import axios from 'axios';
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -45,6 +47,30 @@ class AddReview extends React.Component {
   }
 
   submitReview() {
+    axios.post('api/reviews', {
+      product_id: this.props.productId,
+      rating: this.state.star,
+      summary: this.state.summary,
+      body: this.state.body,
+      recommend: this.state.recommended,
+      name: this.state.nickname,
+      email: this.state.email,
+      photos: this.state.img,
+      characteristics: {
+        size: this.state.size,
+        width: this.state.width,
+        comfort: this.state.comfort,
+        quality: this.state.quality,
+        length: this.state.length,
+        fit: this.state.fit,
+      },
+    })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     this.setState({setModal: false, summary: '', body: '', nickname: '', email: '', img: []});
   }
 
@@ -124,46 +150,46 @@ class AddReview extends React.Component {
               <div className="modal-content">
                 <h2>Write your review: {this.props.productName}</h2>
                 <div className="star-rating">
-                  <label for="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label for="star-b"></label>
+                  <label for="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label for="star-c"></label>
+                  <label for="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label for="star-d"></label>
+                  <label for="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label for="star-e"></label>
+                  <label for="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
+                  <label for="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
                   <label for="recommend-option"></label>
                   <input type="radio"
                     name="recommendation"
-                    value="true"
+                    value='true'
                     onChange={this.handleRecommendedChange}/> Yes
                   <label for="recommend-option" >
                   </label>
@@ -322,40 +348,40 @@ class AddReview extends React.Component {
               <div className="modal-content">
                 <h2>Write your review: {this.props.productName}</h2>
                 <div className="star-rating">
-                  <label for="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label for="star-b"></label>
+                  <label for="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label for="star-c"></label>
+                  <label for="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label for="star-d"></label>
+                  <label for="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label for="star-e"></label>
+                  <label for="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
+                  <label for="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
                   <label for="recommend-option"></label>
@@ -520,40 +546,40 @@ class AddReview extends React.Component {
               <div className="modal-content">
                 <h2>Write your review: {this.props.productName}</h2>
                 <div className="star-rating">
-                  <label for="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label for="star-b"></label>
+                  <label for="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label for="star-c"></label>
+                  <label for="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label for="star-d"></label>
+                  <label for="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label for="star-e"></label>
+                  <label for="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
+                  <label for="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
                   <label for="recommend-option"></label>
