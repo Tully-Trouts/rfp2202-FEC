@@ -106,7 +106,7 @@ class QA extends Component {
     //   this.setState({toLoad: 4, loadingMore: false});
     // }
     if (e.target.value === 'loadMore') {
-      this.setState({toLoad: this.state.toLoad + 2, loadingMore: true});
+      this.setState({toLoad: this.state.toLoad + 100, loadingMore: true});
     } else {
       this.setState({toLoad: 4, loadingMore: false});
     }
@@ -141,6 +141,7 @@ class QA extends Component {
   handleNewQuestionSubmit(e) {
     e.preventDefault();
     const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
+    const {getQuestionsById} = this;
     // console.log(`NEW QUESTION INPUTS | Q BODY: ${newQuestionBody} | Q NICKNAME: ${newQuestionNickname} | Q EMAIL: ${newQuestionEmail} | PRODUCT ID: ${productId}`);
     // console.log(productId, '<--This should be an int:', typeof(productId));
 
@@ -148,7 +149,7 @@ class QA extends Component {
       body: newQuestionBody,
       name: newQuestionNickname,
       email: newQuestionEmail,
-      product_id: this.state.productId
+      product_id: productId
     })
       .then((response) => {
         console.log(response.data);
@@ -163,6 +164,7 @@ class QA extends Component {
       isQuestionModalOpen: false,
       // submitError: false,
     });
+    getQuestionsById(productId);
   }
 
   handleNewQuestionSubmitError(e) {
