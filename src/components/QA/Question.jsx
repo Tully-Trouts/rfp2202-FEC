@@ -10,6 +10,7 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // answers: [],
       isAnswerModalOpen: false,
       newAnsBody: '',
       newAnsNickname: '',
@@ -26,7 +27,33 @@ class Question extends Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewAnsSubmit = this.handleNewAnsSubmit.bind(this);
     this.handleHelpful = this.handleHelpful.bind(this);
+    // this.getAllAnswers = this.getAllAnswers.bind(this);
   }
+
+  // componentDidMount() {
+  //   console.log('QUESTION ID === ', this.props.question.question_id);
+  //   this.getAllAnswers(this.props.question.question_id);
+  // }
+
+  // getAllAnswers(questionId) {
+  //   //GET /qa/questions/:question_id/answers
+  //   console.log(`/api/qa/questions/${questionId}/answers`);
+  //   axios.get(`/api/qa/questions/${questionId}/answers`, {
+  //     params: {
+  //       page: 10000,
+  //       count: 1
+  //     }
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       this.setState({
+  //         answers: response.data.results
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   addAnsClick(e) {
     e.preventDefault();
@@ -56,6 +83,7 @@ class Question extends Component {
   handleNewAnsSubmit(e) {
     e.preventDefault();
     const {newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId} = this.state;
+    const {getQuestionsById} = this.props;
 
     console.log(newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId);
     console.log(`api/qa/questions/${questionId}/answers`);
@@ -80,6 +108,8 @@ class Question extends Component {
       newAnswerPhotos: [],
       isAnswerModalOpen: false,
     });
+    //re-render list
+    getQuestionsById();
   }
 
   handleHelpful(e) {

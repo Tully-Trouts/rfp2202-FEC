@@ -56,7 +56,7 @@
 
 .A_List_Overflow {
   margin: 2px;
-  height: 200px;
+  height: 450px;
   overflow: scroll;
   background-color: rgb(240, 240, 240);
 }

@@ -51,6 +51,9 @@ class QA extends Component {
   }
 
   getQuestionsById(productId) {
+    if (productId === undefined) {
+      var productId = this.state.productId;
+    }
     axios.get('/api/qa/questions', {
       params: {
         // eslint-disable-next-line camelcase
@@ -174,7 +177,7 @@ class QA extends Component {
 
   render() {
     const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad, loadingMore, submitError} = this.state;
-    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleNewQuestionSubmitError, handleLoadMoreQuestions} = this;
+    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleNewQuestionSubmitError, handleLoadMoreQuestions, getQuestionsById} = this;
     const {product} = this.props;
 
     let loadMoreButton;
@@ -198,7 +201,7 @@ class QA extends Component {
             {/* <div className={loadingMore ? 'Q_List_Overflow' : 'Q_List'}> */}
             <div className='Q_List'>
               {filter().slice(0, toLoad).map((question) =>
-                <Question question={question} key={question.question_id} product={product}/>
+                <Question getQuestionsById={getQuestionsById} question={question} key={question.question_id} product={product}/>
               )}
             </div>
           </div>
