@@ -115,6 +115,7 @@ class Question extends Component {
   handleHelpful(e) {
     e.preventDefault();
     const {questionId} = this.state;
+    const {getQuestionsById} = this.props;
     axios.put(`api/qa/questions/${questionId}/helpful`)
       .then((response) => {
         console.log(response);
@@ -122,10 +123,11 @@ class Question extends Component {
       .catch((err) => {
         console.log(err);
       });
+    getQuestionsById();
   }
 
   render() {
-    const {question, product} = this.props;
+    const {question, product, getQuestionsById} = this.props;
     const {question_body, question_helpfulness, answers} = question;
     const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful} = this;
     const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail} = this.state;
@@ -168,7 +170,7 @@ class Question extends Component {
           </form>
         </AnswerModal>
 
-        <AList answers={answers} questionBody={question_body} product={product}/>
+        <AList getQuestionsById={getQuestionsById} answers={answers} questionBody={question_body} product={product}/>
       </div>
     );
   }
