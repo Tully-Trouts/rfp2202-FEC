@@ -32,7 +32,7 @@ li.devtool.devtool-product-list-item {
 }
 
 #overview-container {
-  width: 75%;
+  width: 85%;
   margin: auto;
   padding: 1em;
   border-style: solid;
@@ -44,8 +44,11 @@ li.devtool.devtool-product-list-item {
 
 .overview {
   margin: 5px;
+  /* dev style
   padding: 5px;
+  /*
   border-style: solid;
+  */
   font-size: x-small;
 }
 
@@ -89,7 +92,15 @@ span.gallery-control:hover {
 .overview-product-information-panel {
   display: flex;
   flex-flow: column;
-  width: 30%;
+  width: 35%;
+}
+
+h5.overview-product-description {
+  margin: 1.67em 1.5em;
+}
+
+h4.style-selector {
+  font-weight: normal;
 }
 
 
@@ -97,15 +108,19 @@ span.gallery-control:hover {
   display: flex;
 }
 
+.cart-selector > select {
+  height: 3em;
+  margin: 2px 3px;
+  padding-left: 0.8em;
+  padding-right: 0.4em;
+  border-radius: 0%;
+}
+
 .size-selector {
   flex: 3;
 }
 
 .overview > .btn {
-  margin: 2px 2px;
-}
-
-.overview > select {
   margin: 2px 2px;
 }
 
@@ -128,7 +143,9 @@ span.gallery-control:hover {
 .sm {
   line-height: 1;
   font-size: smaller;
+  /*
   padding: 2px;
+  */
 }
 
 ul.style-list {
@@ -141,7 +158,7 @@ ul.style-list {
 
 li.style-list-item {
   display: flex;
-  margin: 2px;
+  margin: 10%;
 }
 
 span.style-list-item-circle {
@@ -165,3 +182,49 @@ li.style-list-item:hover {
   opacity: 60%;
 }
 
+.styled-btn {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}
+
+.styled-btn.styled-btn-size-1 {
+  justify-content: center;
+}
+
+.styled-btn:hover {
+  background: linear-gradient(#e1dede, #eaeaea);
+}
+
+.styled-btn:active {
+  background: linear-gradient(#d5d5d5, #e5e5e5);
+}
+
+span.styled-link {
+  text-decoration: underline;
+}
+
+span.styled-link:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.styled-input {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}
+
+span.loadMore {
+  text-decoration: none;
+}

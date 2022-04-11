@@ -3,3 +3,26 @@ body main {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+
+div.super-app {
+  width: 75%;
+  /* border: solid; */
+  margin: auto;
+}
+
+div.star-component.star-component-container {
+  display: flex;
+}
+
+div.star-component.star-component-stars {
+  fill: lightblue;
+}
+
+div.star-component.star-component-cover {
+  position: relative;
+  top: -100%;
+  height: 100%;
+  width: 100%;
+  mix-blend-mode: color;
+  background: white;
+}

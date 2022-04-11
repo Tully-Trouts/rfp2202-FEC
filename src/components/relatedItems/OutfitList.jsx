@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import { Button } from '../styledComponents';
 
 const OutfitList = ({ product }) => {
 
@@ -36,10 +37,19 @@ const OutfitList = ({ product }) => {
   // Need to style the Add to outfit card correctly
   return (
     <div id="outfit-list-container">
-      <h5>OUTFIT LIST</h5>
+      <h5>YOUR OUTFIT</h5>
       <div className="card-list">
         <div className="card">
-          <button onClick={() => addProductToOutfit(product.id)}>Add to outfit</button>
+          <div className="inner-card clickable" onClick={() => addProductToOutfit(product.id)}>
+            <img className="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/5/53/WP20Symbols_PLUS.svg"/>
+            <div className="card-info">
+              <h6>Add to Outfit</h6>
+              <div>Current product</div>
+              <div className="hidden">$&infin;</div>
+              <div className="hidden">Rating: (=^_^=)</div>
+            </div>
+          </div>
+          {/* <Button size={1} aria-label="open" onClick={() => addProductToOutfit(product.id)}>Add to outfit</Button> */}
         </div>
         <>{outfitList}</>
       </div>

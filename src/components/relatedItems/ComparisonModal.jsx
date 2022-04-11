@@ -17,15 +17,15 @@ const ComparisonModal = (props) => {
     const uniqueFeatures = [...new Set(currFeatures.concat(compFeatures).map(item => item.feature))];
 
     // probably need to refactor this to find a more efficient solution
-    const tableBody = uniqueFeatures.map((feature) => {
+    const tableBody = uniqueFeatures.map((feature, index) => {
       const currValue = currFeatures.find(item => item.feature === feature);
       const compValue = compFeatures.find(item => item.feature === feature);
 
       return (
-        <tr>
-          <td>{currValue !== undefined ? currValue.value : 'N/A'}</td>
+        <tr key={index}>
+          <td>{!!currValue ? currValue.value : ''}</td>
           <td className="modal-characteristic">{feature}</td>
-          <td>{compValue !== undefined ? compValue.value : 'N/A'}</td>
+          <td>{!!compValue ? compValue.value : ''}</td>
         </tr>
       );
     });
@@ -35,12 +35,12 @@ const ComparisonModal = (props) => {
   const modalTable = buildModalTable(currProduct, compProduct);
 
   return ReactDom.createPortal(
-    <div className="comparison-modal">
-      <div className="header">
+    <div className="comparison-modal absolute">
+      <div className="header between">
         <h6>COMPARING</h6>
-        <button type="button" onClick={handleModalClick}>X</button>
+        <button className="sm card-button close-remove" type="button" onClick={handleModalClick}>X</button>
       </div>
-      <table>
+      <table className="comparison-table">
         <thead>
           <tr>
             <th>{currProduct.name}</th>

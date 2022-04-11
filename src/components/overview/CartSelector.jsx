@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React from 'react';
+import { Button } from '../styledComponents';
 
 var CartSelector = ({skus}) => {
   const [selectedSku, setSelectedSku] = React.useState({});
@@ -30,49 +32,65 @@ var CartSelector = ({skus}) => {
   };
 
   var selectSku = (event) => {
-    const sku = event.target.value;
-    console.log('selected sku:', sku);
-    setSelectedSku(sku);
-    console.log('quantity available:', skus[sku].quantity);
-    setQuantities(skus[sku].quantity);
+    if (event.target.value === '') {
+      console.log('No size selected!');
+      setQuantities(0);
+      setSelectedSku({});
+    } else {
+      const sku = event.target.value;
+      console.log('selected sku:', sku);
+      setSelectedSku(sku);
+      console.log('quantity available:', skus[sku].quantity);
+      setQuantities(skus[sku].quantity);
+    }
+  };
+
+  var addToCart =  (sku, qty) => {
+    const payload = {
+      'sku_id': sku,
+      'count': qty,
+    };
+    axios.post('/api/cart', payload)
+      .then((res) => {
+        console.log('Cart:', res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="overview sm overview-cart-selector">
-      [cart selector]
       <div className="overview sm cart-selector">
         <select
           role="listbox"
           aria-label="size"
-          className="size-selector"
+          className="cart-selector size-selector"
           onChange={(e) => selectSku(e)}>
-          <option defaultValue={true}>Select Size</option>
+          <option defaultValue={true} value="">Select Size</option>
           {getSizeOptions(skus)}
         </select>
         <select
           role="listbox"
           aria-label="quantity"
-          className="quantity-selector"
+          className="cart-selector quantity-selector"
           onChange={(e) => setSelectedQty(e.target.value)}>
           <option defaultValue={true} value={0}>-</option>
           {getQtyOptions(quantities)}
         </select>
       </div>
       <div className="overview sm cart-selector-buttons">
-        <button
-          type="button"
-          role="button"
+        <Button
+          size={4}
           aria-label="add-to-cart"
-          className="btn add-to-cart-btn">
+          onClick={() => { addToCart(selectedSku, selectedQty); }}>
           Add to cart
-        </button>
-        <button
-          type="button"
-          role="button"
-          aria-label="save"
-          className="btn heart-btn">
-          &hearts;
-        </button>
+        </Button>
+        <Button
+          size={1}
+          aria-label="save">
+          &#9734;
+        </Button>
       </div>
     </div>
   );

@@ -13,6 +13,9 @@ class CardList extends React.Component {
   }
 
   getRelatedProducts(productId) {
+
+    console.log('productId:::', productId);
+    console.log('product.id:::', this.props.product.id);
     if (productId) {
       axios.get(`api/products/${productId}/related`)
         .then((response) => {
@@ -39,7 +42,7 @@ class CardList extends React.Component {
     const { product, getProductById } = this.props;
     let uniqueItems = [...new Set(relatedItems)];
 
-    const cardList = uniqueItems.map((productId) => {
+    const cardList = uniqueItems.filter(productId => productId !== product.id).map((productId) => {
       return (
         <div className="card" key={productId}>
           <Card isOutfit={false} currProduct={product} productId={productId} getProductById={getProductById}/>
