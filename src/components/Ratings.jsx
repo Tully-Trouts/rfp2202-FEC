@@ -5,6 +5,7 @@ import RatingBreakdown from './R&R/RatingBreakdown.jsx';
 import Sort from './R&R/Sort.jsx';
 import AddReview from './R&R/AddReview.jsx';
 import axios from 'axios';
+import { Button } from './styledComponents';
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class Ratings extends React.Component {
 
   handleMoreReview(e) {
     e.preventDefault();
+    console.log(e.target.value);
     this.setState({tileRender: this.state.tileRender + 2});
   }
 
@@ -124,9 +126,9 @@ class Ratings extends React.Component {
           </div>
           <div className="btn-container">
             <div className="more_review-btn">
-              <button id="more-review-btn" onClick={this.handleMoreReview}>
+              <Button id="more-review-btn" size={2} onClick={this.handleMoreReview}>
                 More Review
-              </button>
+              </Button>
             </div>
             <div id="add_review-btn">
               <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption}/>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Button = (props) => {
   return (
     <button
-      className={`styled-btn styled-btn-size-${props.size}`}
+      className={`styled-btn styled-btn-size-${props.size} ${props.className}`}
       style={{
         flex: props.size,
       }}
