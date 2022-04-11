@@ -4,6 +4,124 @@
   padding: 1em;
   border-style: solid;
   margin-bottom: 30px;
+  z-index: 99999;
+  position: relative;
+}
+
+.StarScore-RR {
+  display: flex;
+  height: 70px;
+}
+
+.RatingScore-Int {
+  font-size: xxx-large;
+}
+
+.RatingScore-Star {
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+.Title-text {
+  font-size: medium;
+}
+
+.ReviewBar-Container {
+  display: flex;
+  flex-direction: column;
+}
+
+.characteristic-container {
+  display: flex;
+
+}
+
+.char-1 {
+  font-size: xx-small;
+}
+
+.char-2 {
+  font-size: xx-small;
+  margin-left: 25%;
+}
+
+.char-3 {
+  font-size: xx-small;
+  margin-left: 25%;
+}
+
+.comfort-tag {
+  font-size: x-small;
+}
+
+.quality-tag {
+  font-size: x-small;
+}
+
+.length-tag {
+  font-size: x-small;
+}
+
+.fit-tag {
+  font-size: x-small;
+}
+
+.size-tag {
+  font-size: x-small;
+}
+
+.width-tag {
+  font-size: x-small;
+}
+
+.progress {
+  background-color: #f4f4f4;
+  height: 10px;
+  width: 100%;
+}
+
+.progress-done {
+  background-color: green;
+  height: 100%;
+  opacity: 0;
+
+}
+
+.comparison-bar_bg {
+  background-color: #f4f4f4;
+  overflow: visible;
+  height: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.comparison-bar-triangle {
+  transform: translateX(-50.2867%);
+  border-width: 14px 7px;
+  top: -4px;
+  background-color: var(--gl-color-background-transparent);
+  border: 10px solid var(--gl-color-background-transparent);
+  height:auto;
+  width: 0;
+  border-top-color: var(--gl-color-border-alternative-active);
+
+}
+
+.stars {
+  position: relative;
+  white-space: nowrap;
+  fill: gold
+}
+
+.cover {
+  background: white;
+  height: 100%;
+  width: 100%;
+  margin-left: 40%;
+  overflow: hidden;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
 }
 
 .RR-Container {
@@ -40,17 +158,91 @@
   display: inline-block;
   flex-flow:column-reverse;
   border: solid;
+  overflow-x: scroll;
 }
 
 .devtool {
   border-style: solid;
 }
 
+.review-summary {
+  width: 75%;
+  margin-bottom: 15px;
+  margin-top: 15px
+}
+
+.review-body {
+  width: 75%;
+  height: 156px;
+}
+
+.Nickname {
+  width: 220px;
+  margin: 5px 0px;
+}
+
+.email {
+  margin-bottom: 5px;
+}
+
+/* Individual Tile Style */
 .review-tile {
   width: 90%;
-  border: solid;
+  border-bottom: 2px solid grey;
   margin: auto;
   margin-bottom: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ReviewerName {
+  color: grey;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.Summary-text {
+  margin: auto;
+  height: 40px;
+}
+
+.btn-container-updated {
+  margin-left: 59%;
+}
+.Review_Body_Container {
+  height: auto;
+  font-size:smaller
+}
+
+.USER-DATE {
+  display: flex;
+  margin-left:auto;
+}
+
+.Date {
+  color: grey;
+  padding-left: 5px;
+  padding-bottom: 1px;
+  flex: none;
+}
+
+.StarRating {
+  padding-bottom: 1px;
+}
+
+.User-box-1 {
+  display: flex;
+  height: 34px;
+  margin-top: 15px;
+}
+
+.Rating_Helpful {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.sort-btn {
+  padding-left: 10px;
 }
 
 .sorting {
@@ -59,7 +251,8 @@
 }
 
 .sort-label {
-  width: 100px;
+  width: 220px;
+  font-size: smaller;
 }
 
 .btn-container {
@@ -71,12 +264,12 @@
   padding-right: 8%;
 }
 
-
+/* Popup*/
 body.active-modal {
   overflow-y: hidden;
 }
 
-.modal, .overlay {
+.modalRR, .overlayRR {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -86,8 +279,9 @@ body.active-modal {
   position: fixed;
 }
 
-.overlay {
+.overlayRR {
   background: rgba(49,49,49,0.8);
+
 }
 .modal-content {
   position: absolute;
@@ -100,6 +294,7 @@ body.active-modal {
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
+  width: 50%;
 }
 
 .close-modal {
@@ -109,20 +304,67 @@ body.active-modal {
   padding: 5px 7px;
 }
 
+.recommended-select {
+  font-size: smaller;
+}
+ .char-option-size {
+   font-size: x-small;
+ }
 
+ .char-size {
+    margin-left: 19px;
+ }
 
+ .char-option-width {
+  font-size: x-small;
+}
 
+.char-width {
+   margin-left: 11px;
+}
+
+.char-option-comfort {
+  font-size: x-small;
+}
+
+.char-option-quality {
+  font-size: x-small;
+}
+
+.char-quality {
+   margin-left: 5px;
+}
+
+.char-option-length {
+  font-size: x-small;
+}
+
+.char-length {
+   margin-left: 5px;
+}
+
+.char-option-fit {
+  font-size: x-small;
+}
+
+.char-fit {
+   margin-left: 26px;
+}
+
+.StarRating-breakdown {
+  display: flex;
+}
 
 
 /* Star Rating CSS */
 
 .star-rating {
   display: flex;
-  align-items:flex-start;
+  align-items:center;
   width: 160px;
   flex-direction: row-reverse;
   justify-content: space-between;
-  margin: 10px auto;
+  margin: -13px 10px 5px;
   position: relative;
 }
 /* hide the inputs */
@@ -136,11 +378,11 @@ body.active-modal {
   font-family: Arial;
   font-size: 30px;
   transition: 0.1s ease;
-  color: orange;
+  color: gold;
 }
 /* give label a hover state */
 .star-rating label:hover {
-  color: #ff69b4;
+  color: black;
   transition: 0.2s ease;
 }
 .star-rating label:active::before {
@@ -165,4 +407,5 @@ body.active-modal {
   line-height: 21px;
   }
 }
+
 
