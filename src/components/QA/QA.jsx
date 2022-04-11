@@ -196,7 +196,7 @@ class QA extends Component {
     }
 
     return (
-      <div className='QA'>
+      <div id='QA'>
         <h3 id='QA_Title'>Questions and Answers</h3>
         { questions.length === 0
           ?
@@ -218,36 +218,31 @@ class QA extends Component {
         <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form>
-            <h3>Ask Your Question Here</h3>
-            <h4>about the {product.name}</h4>
+            <h3 className='New_QA_Form_Header'>Ask Your Question Here</h3>
+            <h4 className='New_QA_Form_Sub_Header'>about the {product.name}</h4>
             <div>
               <label>Enter Question: </label>
               <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />
             </div>
-            <div>
-              <label>Enter Nickname: </label>
-              <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
-            </div>
-            <span>
-              <label>Enter Email: </label>
-              <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
-            </span>
-            <div>
-              <Button size={1} onClick={ handleNewQuestionSubmit
-                // newQuestionBody > 0 && newQuestionEmail > 0 && newQuestionNickname > 0
-                //   ?
-                //   handleNewQuestionSubmit
-                //   :
-                //   handleNewQuestionSubmitError
-              }>Submit</Button>
 
-              {/* {submitError
-                ?
-                <span>bro u gotta fill out all the forms my guy</span>
-                :
-                <></>
-              } */}
+            <div className='Flex_New_QA_Submit'>
+
+              <div className='Flex_Nickname_Email'>
+                <div>
+                  <label>Enter Nickname: </label>
+                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+                </div>
+                <span>
+                  <label>Enter Email: </label>
+                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='44' />
+                </span>
+              </div>
+
+              <div>
+                <Button size={1} onClick={ handleNewQuestionSubmit}>Submit</Button>
+              </div>
             </div>
+
           </form>
         </QuestionModal>
       </div>

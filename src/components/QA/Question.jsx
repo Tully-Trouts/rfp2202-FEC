@@ -153,8 +153,8 @@ class Question extends Component {
 
         <AnswerModal open={isAnswerModalOpen} onClose={closeAddAns}>
           <form>
-            <h3>Submit Your Answer</h3>
-            <h4>{product.name} : {question_body}</h4>
+            <h3 className='New_QA_Form_Header'>Submit Your Answer</h3>
+            <h4 className='New_QA_Form_Sub_Header'>{product.name} : {question_body}</h4>
             <div>
               <label>Enter Answer: </label>
               <textarea className={newAnsBody.length === 0 ? 'New_QA_Input_Error' : ''} value={newAnsBody} placeholder='Your Answer' onChange={handleNewAnswerInput} rows='10' cols='100' />
