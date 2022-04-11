@@ -6,6 +6,8 @@ class AddReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      char: {},
+      submitChar: {},
       setModal: false,
       summary: '',
       body: '',
@@ -36,34 +38,52 @@ class AddReview extends React.Component {
     this.handleQualityChange = this.handleQualityChange.bind(this);
     this.handleLengthChange = this.handleLengthChange.bind(this);
     this.handleFitChange = this.handleFitChange.bind(this);
+    this.retrieveMetaList = this.retrieveMetaList.bind(this);
+    this.setDefaultChar = this.setDefaultChar.bind(this);
   }
 
   toggleModal() {
     if (this.state.setModal === false) {
       this.setState({setModal: true});
+      this.retrieveMetaList(this.props.productId);
     } else {
       this.setState({setModal: false, summary: '', body: '', nickname: '', email: '', img: []});
     }
   }
 
+  setDefaultChar(data) {
+    console.log('Test Location 1: ', data);
+    this.setState({char: data});
+    console.log('Test Location 2: ', this.state.char);
+  }
+
+  retrieveMetaList(productId) {
+    console.log('current productId', productId);
+    axios({
+      method: 'get',
+      url: '/api/reviews/meta/',
+      params: {
+        // eslint-disable-next-line camelcase
+        product_id: productId
+      }
+    })
+      .then((result) => {
+        console.log('result info type', result.data.characteristics);
+        this.setDefaultChar(result.data.characteristics);
+      });
+  }
+
   submitReview() {
-    axios.post('api/reviews', {
+    axios.post('/api/reviews', {
       product_id: this.props.productId,
-      rating: this.state.star,
+      rating: Number(this.state.star),
       summary: this.state.summary,
       body: this.state.body,
       recommend: this.state.recommended,
       name: this.state.nickname,
       email: this.state.email,
       photos: this.state.img,
-      characteristics: {
-        size: this.state.size,
-        width: this.state.width,
-        comfort: this.state.comfort,
-        quality: this.state.quality,
-        length: this.state.length,
-        fit: this.state.fit,
-      },
+      characteristics: this.state.submitChar,
     })
       .then((result) => {
         console.log(result);
@@ -71,7 +91,7 @@ class AddReview extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-    this.setState({setModal: false, summary: '', body: '', nickname: '', email: '', img: []});
+    this.setState({setModal: false, summary: '', body: '', nickname: '', email: '', img: [], submitChar: {}});
   }
 
   handleSummaryChange(event) {
@@ -89,33 +109,65 @@ class AddReview extends React.Component {
   }
 
   handleRecommendedChange(event) {
-    this.setState({recommended: event.target.value});
+    const isRecommended = event.target.value === 'true' ? true : false;
+    this.setState({recommended: isRecommended});
   }
 
   handleSizeChange(event) {
-    this.setState({size: event.target.value});
+    const key = this.state.char.Size.id;
+    this.setState(prevState => {
+      let submitChar = Object.assign({}, prevState.submitChar);
+      submitChar[key] = Number(event.target.value);
+      return { submitChar };
+    });
   }
 
   handleWidthChange(event) {
-    this.setState({width: event.target.value});
+    const key = this.state.char.Width.id;
+    this.setState(prevState => {
+      let submitChar = Object.assign({}, prevState.submitChar);
+      submitChar[key] = Number(event.target.value);
+      return { submitChar };
+    });
 
   }
 
   handleComfortChange(event) {
-    this.setState({comfort: event.target.value});
+    const key = this.state.char.Comfort.id;
+    this.setState(prevState => {
+      let submitChar = Object.assign({}, prevState.submitChar);
+      submitChar[key] = Number(event.target.value);
+      return { submitChar };
+    });
   }
 
   handleQualityChange(event) {
-    this.setState({quality: event.target.value});
+    const key = this.state.char.Quality.id;
+    this.setState(prevState => {
+      let submitChar = Object.assign({}, prevState.submitChar);
+      submitChar[key] = Number(event.target.value);
+      return { submitChar };
+    });
   }
 
   handleLengthChange(event) {
-    this.setState({length: event.target.value});
+    const key = this.state.char.Length.id;
+    this.setState(prevState => {
+      let submitChar = Object.assign({}, prevState.submitChar);
+      submitChar[key] = Number(event.target.value);
+      return { submitChar };
+    });
   }
 
   handleFitChange(event) {
-    this.setState({fit: event.target.value});
+    const key = this.state.char.Fit.id;
+    this.setState(prevState => {
+      let submitChar = Object.assign({}, prevState.submitChar);
+      submitChar[key] = Number(event.target.value);
+      return { submitChar };
+    });
   }
+
   handleImgChange(event) {
     if (this.state.img.length < 5) {
       this.setState({img: [...this.state.img, ...event.target.files]});
@@ -195,7 +247,7 @@ class AddReview extends React.Component {
                   </label>
                   <input type="radio"
                     name="recommendation"
-                    value="false"
+                    value='false'
                     onChange={this.handleRecommendedChange}/> No
                 </div>
                 <div className="char-option-comfort"> Comfort

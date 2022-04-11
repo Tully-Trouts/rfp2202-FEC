@@ -129,7 +129,7 @@ class Ratings extends React.Component {
               </button>
             </div>
             <div id="add_review-btn">
-              <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption}/>
+              <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption} productId={this.props.productId}/>
             </div>
           </div>
         </div>
