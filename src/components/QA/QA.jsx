@@ -37,9 +37,9 @@ class QA extends Component {
     this.handleNewQuestionSubmitError = this.handleNewQuestionSubmitError.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getQuestionsById(this.state.productId);
-  // }
+  componentDidMount() {
+    this.getQuestionsById(this.state.productId);
+  }
 
   componentDidUpdate(prevProps) {
     const {getQuestionsById, props} = this;
