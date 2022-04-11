@@ -123,7 +123,13 @@ class QA extends Component {
   closeAddQuestion(e) {
     e.preventDefault();
     // this.setState({isQuestionModalOpen: false, submitError: false});
-    this.setState({isQuestionModalOpen: false});
+    this.setState({
+      newQuestionBody: '',
+      newQuestionNickname: '',
+      newQuestionEmail: '',
+      isQuestionModalOpen: false,
+      // submitError: false,
+    });
   }
 
   handleNewQuestionInput(e) {

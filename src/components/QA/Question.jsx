@@ -62,7 +62,13 @@ class Question extends Component {
 
   closeAddAns(e) {
     e.preventDefault();
-    this.setState({isAnswerModalOpen: false});
+    this.setState({
+      newAnsBody: '',
+      newAnsNickname: '',
+      newAnsEmail: '',
+      newAnswerPhotos: [],
+      isAnswerModalOpen: false,
+    });
   }
 
   handleNewAnswerInput(e) {
@@ -151,15 +157,15 @@ class Question extends Component {
             <h4>{product.name} : {question_body}</h4>
             <div>
               <label>Enter Answer: </label>
-              <textarea value={newAnsBody} placeholder='Your Answer' onChange={handleNewAnswerInput} rows='10' cols='100' />
+              <textarea className={newAnsBody.length === 0 ? 'New_QA_Input_Error' : ''} value={newAnsBody} placeholder='Your Answer' onChange={handleNewAnswerInput} rows='10' cols='100' />
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea value={newAnsNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+              <textarea className={newAnsNickname.length === 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newAnsNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
             </div>
             <span>
               <label>Enter Email: </label>
-              <textarea value={newAnsEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
+              <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
             </span>
             <div>
               <Button size={1}>Add Images</Button>
