@@ -22,7 +22,7 @@ const overlayStyles = {
   zIndex: 100
 };
 
-export default function Modal ({ open, children, onClose }) {
+export default function QuestionModal ({ open, children, onClose }) {
   if (!open) { return null; }
 
   return ReactDOM.createPortal (

@@ -57,18 +57,19 @@ class Card extends React.Component {
         axios.get(`api/products/${productId}/styles`)
           .then((response) => {
             let results = response.data.results;
-            var defaultStyle = null;
+            let defaultStyle = null;
 
-            // if the product doesn't have a default style, set default to first style in results
-            for (let i = 0; i < results.length; i++) {
-              if (results['default?'] === true) {
-                defaultStyle = results[i];
-                break;
-              }
-              if (i === results.length - 1 && defaultStyle === null) {
-                defaultStyle = results[0];
-              }
-            }
+            // if the product doesn't have a default style, set default to last style in results
+            defaultStyle = results.find((element, index) => element['default?'] || index === (results.length - 1));
+            // for (let i = 0; i < results.length; i++) {
+            //   if (results['default?'] === true) {
+            //     defaultStyle = results[i];
+            //     break;
+            //   }
+            //   if (i === results.length - 1 && defaultStyle === null) {
+            //     defaultStyle = results[0];
+            //   }
+            // }
             const originalPrice = defaultStyle.original_price;
             const salePrice = defaultStyle.sale_price;
 
@@ -112,7 +113,7 @@ class Card extends React.Component {
           <div className="header end">
             <button className="sm card-button absolute" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
           </div>
-          <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
+          <ComparisonModal currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
           <div className="inner-card clickable" onClick={(event) => ( getProductById(productId, event))}>
             <img className="preview-image" src={previewImg || notFoundUrl}/>
             <div className="card-info">
