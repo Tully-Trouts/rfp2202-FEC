@@ -91,8 +91,8 @@ class RatingBreakdown extends React.Component {
   render() {
     var currentStar = 0;
     const starRating = Object.values(this.state.overview.ratings);
-    const starOverallRating = starRating.map((starValue) =>
-      <StarReviewBar starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} currentStar={currentStar += 1}/>
+    const starOverallRating = starRating.map((starValue, i) =>
+      <StarReviewBar key={i} starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} currentStar={currentStar += 1}/>
 
     );
     if (this.state.clothes === true) {
@@ -113,16 +113,16 @@ class RatingBreakdown extends React.Component {
             </div>
           [Characteristics]
             <div className="comfort-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div classname={'characteristic-tag'}>Comfort</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)}/>
             </div>
             <div className="quality-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div classname={'characteristic-tag'}>Quality</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div className={'characteristic-tag'}>Quality</div>)}/>
             </div>
             <div className="length-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Length.value} name={(<div classname={'characteristic-tag'}>Length</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Length.value} name={(<div className={'characteristic-tag'}>Length</div>)}/>
             </div>
             <div className="fit-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Fit.value} name={(<div classname={'characteristic-tag'}>Fit</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Fit.value} name={(<div className={'characteristic-tag'}>Fit</div>)}/>
             </div>
           </div>
         </div>
@@ -145,16 +145,16 @@ class RatingBreakdown extends React.Component {
             </div>
           [Characteristics]
             <div className="comfort-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div classname={'characteristic-tag'}>Comfort</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)}/>
             </div>
             <div className="quality-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div classname={'characteristic-tag'}>Quality</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div className={'characteristic-tag'}>Quality</div>)}/>
             </div>
             <div className="size-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Size.value} name={(<div classname={'characteristic-tag'}>Size</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Size.value} name={(<div className={'characteristic-tag'}>Size</div>)}/>
             </div>
             <div className="width-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Width.value} name={(<div classname={'characteristic-tag'}>Width</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Width.value} name={(<div className={'characteristic-tag'}>Width</div>)}/>
             </div>
           </div>
         </div>
