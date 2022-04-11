@@ -3,3 +3,9 @@ body main {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+
+div.super-app {
+  width: 75%;
+  /* border: solid; */
+  margin: auto;
+}
