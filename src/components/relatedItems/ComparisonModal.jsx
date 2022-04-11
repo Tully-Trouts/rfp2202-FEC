@@ -17,12 +17,12 @@ const ComparisonModal = (props) => {
     const uniqueFeatures = [...new Set(currFeatures.concat(compFeatures).map(item => item.feature))];
 
     // probably need to refactor this to find a more efficient solution
-    const tableBody = uniqueFeatures.map((feature) => {
+    const tableBody = uniqueFeatures.map((feature, index) => {
       const currValue = currFeatures.find(item => item.feature === feature);
       const compValue = compFeatures.find(item => item.feature === feature);
 
       return (
-        <tr>
+        <tr key={index}>
           <td>{!!currValue ? currValue.value : ''}</td>
           <td className="modal-characteristic">{feature}</td>
           <td>{!!compValue ? compValue.value : ''}</td>
