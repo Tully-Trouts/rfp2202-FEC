@@ -31,8 +31,8 @@
   padding: 5px;
 }
 
-.hidden {
-  color: white;
+.fixedHeight {
+  height: 51.77px;
 }
 
 .clickable:hover {
