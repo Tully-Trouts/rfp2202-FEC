@@ -112,7 +112,7 @@ class Card extends React.Component {
           <div className="header end">
             <button className="sm card-button absolute" type="button" name="modal-open" onClick={this.handleModalClick}>&#9734;</button>
           </div>
-          <ComparisonModal key={productId} currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
+          <ComparisonModal currProduct={currProduct} compProduct={compProduct} show={show} handleModalClick={this.handleModalClick} />
           <div className="inner-card clickable" onClick={(event) => ( getProductById(productId, event))}>
             <img className="preview-image" src={previewImg || notFoundUrl}/>
             <div className="card-info">

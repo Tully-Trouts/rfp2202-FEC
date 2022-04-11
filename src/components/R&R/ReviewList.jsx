@@ -8,18 +8,26 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    console.log(this.props.reviewList);
-    const eachReview = this.props.reviewList.map((review) =>
-      <IndividualReview review={review} />
+    const eachReview = this.props.reviewList.map((review, i) =>
+      <IndividualReview key={i} review={review} />
     );
-    return (
-      <div>
-        Rating
-        <div className="ReviewList_container">
-          {eachReview}
+
+
+    if (this.props.reviewList[0] === undefined || this.props.reviewList[0].review_id === null || this.props.reviewList[0].review_id === undefined) {
+      return (
+        <div>
+          [Rating] No Reviews At This Time!
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <div className="ReviewList_container">
+            {eachReview}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
