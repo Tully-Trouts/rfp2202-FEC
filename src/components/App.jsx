@@ -30,6 +30,7 @@ class App extends React.Component {
     }
     return axios.get(`/api/products/${id}`)
       .then(({data}) => {
+        console.log(data);
         this.setState({
           product: data,
         });
@@ -55,14 +56,18 @@ class App extends React.Component {
       product,
       productList,
     } = this.state;
+    console.log('Check Here', product);
     return (
       <div>
         <Devtool productList={productList} updateProduct={this.getProductById} />
         <Overview product={product} />
-        <QA productId={product.id} product={product} />
-        <Ratings productId={product.id} />
-        <RelatedItems getProductById={this.getProductById} product={product} />
-        <OutfitList product={product}/>
+        <div className="super-app">
+          <RelatedItems getProductById={this.getProductById} product={product} />
+          <OutfitList product={product}/>
+          <QA productId={product.id} product={product} />
+          <Ratings productId={product.id} productName={product.name}/>
+
+        </div>
       </div>
     );
   }

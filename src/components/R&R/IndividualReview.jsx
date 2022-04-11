@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+import StarReview from './StarReview.jsx';
 
 class IndividualReview extends React.Component {
   constructor(props) {
@@ -14,18 +16,24 @@ class IndividualReview extends React.Component {
     // }
     return (
       <div className="review-tile">
-        <div className="ReviewerName">
-          {this.props.review.reviewer_name}
-        </div>
-        <div className="StarRating">
-          {this.props.review.rating}
-        </div>
-        <div className="Date">
-          {this.props.review.date}
+        <div className="User-box-1">
+          <div className="StarRating">
+            <StarReview starRating={this.props.review.rating * 20} />
+          </div>
+          <div className="USER-DATE">
+            <div className="ReviewerName">
+              {this.props.review.reviewer_name}
+            </div>
+            <div className="Date">
+              {moment(`${this.props.review.date}`).format('MMMM Do YYYY')}
+            </div>
+          </div>
         </div>
         <div className="Review_Summary_Container">
           <span className="Review_Summary">
-            {this.props.review.summary}
+            <h3 className="Summary-text">
+              {this.props.review.summary}
+            </h3>
           </span>
         </div>
         <div className="Review_Body_Container">
@@ -36,12 +44,12 @@ class IndividualReview extends React.Component {
         <div className="Response">
           {this.state.review &&
             <h2>
-              {this.props.review.response}
+              [Response] {this.props.review.response}
             </h2>
           }
         </div>
-        <div className="Rating_Helpfull">
-          {this.props.review.helpfulness}
+        <div className="Rating_Helpful">
+          Helpful?  Yes({this.props.review.helpfulness}) | Report
         </div>
       </div>
     );
