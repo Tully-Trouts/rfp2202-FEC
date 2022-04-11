@@ -47,7 +47,7 @@
 
 .comparison-modal {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
@@ -56,6 +56,8 @@
   max-width: 250px;
   max-height: 250px;
   border-style: solid;
+  border-width: 1px;
+  border-color: gray;
   background: white;
   margin: 5px;
   padding: 0 1.5em;
@@ -102,10 +104,6 @@ td {
   width: 25px;
   height: 25px;
   margin: 5px;
-}
-
-.header > .card-button {
-
 }
 
 .absolute {
