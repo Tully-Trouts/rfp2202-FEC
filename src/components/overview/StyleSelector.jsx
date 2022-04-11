@@ -23,7 +23,7 @@ var StyleSelector = (props) => {
 
   return (
     <div className="overview overview-style-selector">
-      [style selector]
+      <h4 className="style-selector"><b>STYLE &gt;</b> SELECTED STYLE</h4>
       <div className="overview sm color-selector">
         <ul className="style-list">
           {stylesList(props.styles)}
