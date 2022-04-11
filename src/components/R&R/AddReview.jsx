@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import axios from 'axios';
+import { Button } from '../styledComponents';
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -139,11 +140,12 @@ class AddReview extends React.Component {
     if (this.props.submitCharOption === 1) {
       return (
         <div>
-          <button
+          <Button
+            size={2}
             onClick={this.toggleModal}
             className="btn-AddReview">
             Add Review
-          </button>
+          </Button>
           {this.state.setModal && (
             <div className="modalRR">
               <div className="overlayRR"></div>
@@ -337,11 +339,12 @@ class AddReview extends React.Component {
     } else if (this.props.submitCharOption === 2) {
       return (
         <div>
-          <button
+          <Button
+            size={2}
             onClick={this.toggleModal}
             className="btn-AddReview">
             Add Review
-          </button>
+          </Button>
           {this.state.setModal && (
             <div className="modalRR">
               <div className="overlayRR"></div>
@@ -535,11 +538,12 @@ class AddReview extends React.Component {
     } else {
       return (
         <div>
-          <button
+          <Button
+            size={2}
             onClick={this.toggleModal}
             className="btn-AddReview">
             Add Review
-          </button>
+          </Button>
           {this.state.setModal && (
             <div className="modalRR">
               <div className="overlayRR"></div>

@@ -1,9 +1,9 @@
 #rating_and_reviews-container {
-  width: 75%;
+  width: 100%;
   margin: auto;
   padding: 1em;
   border-style: solid;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   z-index: 99999;
   position: relative;
 }
@@ -131,7 +131,7 @@
 #review-panal {
   margin: 5px;
   padding: 5px;
-  border-style: solid;
+  /* border-style: solid; */
   font-style: small;
 }
 .reviewList_container {
@@ -145,7 +145,9 @@
   margin: auto;
   display: inline-block;
   flex-flow: column-reverse;
+  /*
   border-style: solid;
+  */
   overflow-y: scroll;
 
 }
@@ -157,7 +159,9 @@
   padding: 1em;
   display: inline-block;
   flex-flow:column-reverse;
+  /*
   border: solid;
+  */
   overflow-x: scroll;
 }
 
