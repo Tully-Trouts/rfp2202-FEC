@@ -14,8 +14,6 @@ class CardList extends React.Component {
 
   getRelatedProducts(productId) {
 
-    console.log('productId:::', productId);
-    console.log('product.id:::', this.props.product.id);
     if (productId) {
       axios.get(`api/products/${productId}/related`)
         .then((response) => {

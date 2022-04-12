@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ComparisonModal from './ComparisonModal';
-import { Button } from '../styledComponents';
+import { Button, StarReview } from '../styledComponents';
 
 class Card extends React.Component {
   constructor(props) {
@@ -61,15 +61,7 @@ class Card extends React.Component {
 
             // if the product doesn't have a default style, set default to last style in results
             defaultStyle = results.find((element, index) => element['default?'] || index === (results.length - 1));
-            // for (let i = 0; i < results.length; i++) {
-            //   if (results['default?'] === true) {
-            //     defaultStyle = results[i];
-            //     break;
-            //   }
-            //   if (i === results.length - 1 && defaultStyle === null) {
-            //     defaultStyle = results[0];
-            //   }
-            // }
+
             const originalPrice = defaultStyle.original_price;
             const salePrice = defaultStyle.sale_price;
 
@@ -120,7 +112,7 @@ class Card extends React.Component {
               <h6>{category}</h6>
               <div>{name}</div>
               <div>{salePrice ? <><span style={{ 'color': 'red' }}>{`$${salePrice}  `}</span><span style={{ 'text-decoration': 'line-through' }}>{`$${originalPrice}`}</span></> : `$${originalPrice}`}</div>
-              <div>Rating: {avgRating !== 'no reviews yet' ? `${avgRating}/5` : avgRating}</div>
+              <div>{avgRating !== 'no reviews yet' ? <StarReview stars={avgRating} /> : <div style={{ 'height': '21.77px' }}></div>}</div>
             </div>
           </div>
         </div>
@@ -137,7 +129,7 @@ class Card extends React.Component {
               <h6>{category}</h6>
               <div>{name}</div>
               <div>{salePrice ? <><span style={{ 'color': 'red' }}>{`$${salePrice}  `}</span><span style={{ 'text-decoration': 'line-through' }}>{`$${originalPrice}`}</span></> : `$${originalPrice}`}</div>
-              <div>Rating: {avgRating !== 'no reviews yet' ? `${avgRating}/5` : avgRating}</div>
+              <div>{avgRating !== 'no reviews yet' ? <StarReview stars={avgRating} /> : <div style={{ 'height': '21.77px' }}></div>}</div>
             </div>
           </div>
         </div>
@@ -147,4 +139,6 @@ class Card extends React.Component {
 }
 
 export default Card;
+
+// <div>Rating: {avgRating !== 'no reviews yet' ? `${avgRating}/5` : avgRating}</div>
 
