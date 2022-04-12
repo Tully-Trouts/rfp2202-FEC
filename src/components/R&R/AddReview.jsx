@@ -23,6 +23,8 @@ class AddReview extends React.Component {
       quality: 0,
       length: 0,
       fit: 0,
+      minBodyChar: 50,
+      minCharNeeded: 50,
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.submitReview = this.submitReview.bind(this);
@@ -41,6 +43,7 @@ class AddReview extends React.Component {
     this.handleFitChange = this.handleFitChange.bind(this);
     this.retrieveMetaList = this.retrieveMetaList.bind(this);
     this.setDefaultChar = this.setDefaultChar.bind(this);
+    this.comfortDescription = this.comfortDescription.bind(this);
   }
 
   toggleModal() {
@@ -57,6 +60,8 @@ class AddReview extends React.Component {
     this.setState({char: data});
     console.log('Test Location 2: ', this.state.char);
   }
+
+
 
   retrieveMetaList(productId) {
     console.log('current productId', productId);
@@ -100,7 +105,14 @@ class AddReview extends React.Component {
 
   }
   handleBodyChange(event) {
-    this.setState({body: event.target.value});
+
+    const charCount = event.target.value.length;
+    const minChar = 50;
+    const charLength = minChar - charCount;
+    if (charLength > -1) {
+      this.setState({minCharNeeded: charLength });
+    }
+    this.setState({ body: event.target.value });
   }
   handleNicknameChange(event) {
     this.setState({nickname: event.target.value});
@@ -179,6 +191,17 @@ class AddReview extends React.Component {
   handleStarChange(event) {
     this.setState({star: event.target.value});
   }
+
+  comfortDescription() {
+    if (this.state.comfort === 1) {
+      return (
+        <div className="char-Descript">
+          Uncomfortable
+        </div>
+      );
+    }
+  }
+
 
 
   render() {
@@ -274,6 +297,7 @@ class AddReview extends React.Component {
                     name="Comfort"
                     value="5"
                     onChange={this.handleComfortChange} />
+                  {this.comfortDescription}
                 </div>
                 <div className="char-option-quality"> Quality
                   <label class="char-quality"></label>
@@ -345,28 +369,36 @@ class AddReview extends React.Component {
                     onChange={this.handleFitChange} />
                 </div>
                 <input className="review-summary"
+                  maxLength="60"
                   type="text"
                   placeholder="Example: Best purchase ever!"
                   value={this.state.summary}
                   onChange={this.handleSummaryChange} />
                 <br></br>
                 <textarea className="review-body"
+                  maxLength="1000"
+                  required
                   type="text"
                   placeholder="Why did you like the product or not?"
                   value={this.state.body}
                   onChange={this.handleBodyChange} />
+                <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
                 <br></br>
                 <input className="Nickname"
+                  maxLength="60"
+                  required
                   type="text"
                   placeholder="Example: jackson11!"
                   value={this.state.nickname}
                   onChange={this.handleNicknameChange} />
+                <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
                 <br></br>
                 <input className="email"
                   type="text"
                   placeholder="Example: jackson11@email.com"
                   value={this.state.email}
                   onChange={this.handleEmailChange} />
+                <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
                 <br></br>
                 <input className="img"
                   type="file"
@@ -519,6 +551,7 @@ class AddReview extends React.Component {
                     name="Comfort"
                     value="5"
                     onChange={this.handleComfortChange} />
+                  {this.comfortDescription}
                 </div>
                 <div className="char-option-quality"> Quality
                   <label class="char-quality"></label>
@@ -544,28 +577,36 @@ class AddReview extends React.Component {
                     onChange={this.handleQualityChange} />
                 </div>
                 <input className="review-summary"
+                  maxLength="60"
                   type="text"
                   placeholder="Example: Best purchase ever!"
                   value={this.state.summary}
                   onChange={this.handleSummaryChange} />
                 <br></br>
                 <textarea className="review-body"
+                  maxLength="1000"
+                  required
                   type="text"
                   placeholder="Why did you like the product or not?"
                   value={this.state.body}
                   onChange={this.handleBodyChange} />
+                <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
                 <br></br>
                 <input className="Nickname"
+                  maxLength="60"
+                  required
                   type="text"
                   placeholder="Example: jackson11!"
                   value={this.state.nickname}
                   onChange={this.handleNicknameChange} />
+                <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
                 <br></br>
                 <input className="email"
                   type="text"
                   placeholder="Example: jackson11@email.com"
                   value={this.state.email}
                   onChange={this.handleEmailChange} />
+                <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
                 <br></br>
                 <input className="img"
                   type="file"
@@ -718,6 +759,7 @@ class AddReview extends React.Component {
                     name="Comfort"
                     value="5"
                     onChange={this.handleComfortChange} />
+                  {this.comfortDescription}
                 </div>
                 <div className="char-option-quality"> Quality
                   <label class="char-quality"></label>
@@ -789,28 +831,36 @@ class AddReview extends React.Component {
                     onChange={this.handleFitChange} />
                 </div>
                 <input className="review-summary"
+                  maxLength="60"
                   type="text"
                   placeholder="Example: Best purchase ever!"
                   value={this.state.summary}
                   onChange={this.handleSummaryChange} />
                 <br></br>
                 <textarea className="review-body"
+                  maxLength="1000"
+                  required
                   type="text"
                   placeholder="Why did you like the product or not?"
                   value={this.state.body}
                   onChange={this.handleBodyChange} />
+                <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
                 <br></br>
                 <input className="Nickname"
+                  maxLength="60"
+                  required
                   type="text"
                   placeholder="Example: jackson11!"
                   value={this.state.nickname}
                   onChange={this.handleNicknameChange} />
+                <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
                 <br></br>
                 <input className="email"
                   type="text"
                   placeholder="Example: jackson11@email.com"
                   value={this.state.email}
                   onChange={this.handleEmailChange} />
+                <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
                 <br></br>
                 <input className="img"
                   type="file"

@@ -89,6 +89,9 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
+    console.log('current recommended', this.state.overview.recommended);
+    const totalRecommended = ((Number(this.state.overview.recommended.true) / (Number(this.state.overview.recommended.false) + Number(this.state.overview.recommended.true)) * 100).toFixed(2));
+    console.log('current Recommended percentage', totalRecommended);
     var currentStar = 0;
     const starRating = Object.values(this.state.overview.ratings);
     const starOverallRating = starRating.map((starValue, i) =>
@@ -107,6 +110,9 @@ class RatingBreakdown extends React.Component {
               <div className="RatingScore-Star">
                 <StarReview starRating={this.state.totalAvgReview * 20}/>
               </div>
+            </div>
+            <div className="totalRecommended">
+              {totalRecommended}% of reviews recommend this product
             </div>
             <div>
               {starOverallRating}
@@ -138,6 +144,9 @@ class RatingBreakdown extends React.Component {
               <div className="RatingScore-Star">
                 <StarReview starRating={this.state.totalAvgReview * 20}/>
               </div>
+            </div>
+            <div className="totalRecommended">
+              {totalRecommended}% of reviews recommend this product
             </div>
             <div>
               {starOverallRating}

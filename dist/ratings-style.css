@@ -18,8 +18,12 @@
 }
 
 .RatingScore-Star {
-  margin-left: 10px;
-  margin-top: 7px;
+  margin-left: 30px;
+  margin-top: 16px;
+}
+
+.warning-line {
+  font-size: x-small;
 }
 
 .Title-text {
@@ -34,6 +38,10 @@
 .characteristic-container {
   display: flex;
 
+}
+
+.totalRecommended {
+  font-size: small;
 }
 
 .char-1 {
@@ -197,6 +205,7 @@
 
 .email {
   margin-bottom: 5px;
+  width: 220px;
 }
 
 /* Individual Tile Style */
@@ -306,7 +315,7 @@ body.active-modal {
   background: #f1f1f1;
   padding: 14px 28px;
   border-radius: 3px;
-  max-width: 600px;
+  max-width: 550px;
   min-width: 300px;
   width: 50%;
 }
@@ -316,6 +325,12 @@ body.active-modal {
   top: 10px;
   right: 10px;
   padding: 5px 7px;
+}
+
+.MinCharNeeded {
+  font-size: x-small;
+  color: red;
+  margin-left: 20%;
 }
 
 .recommended-select {

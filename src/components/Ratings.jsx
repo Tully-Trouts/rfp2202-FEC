@@ -114,7 +114,7 @@ class Ratings extends React.Component {
           <h3>Rating and Review</h3>
           <div id="review-panal">
             <div className="sorting">
-              <Sort updateSort={this.updateSort} totalCurrentReviews={this.state.reviewList.length}/>
+              <Sort updateSort={this.updateSort} />
             </div>
             <div className="RR-Container">
               <div className="rating_container">
