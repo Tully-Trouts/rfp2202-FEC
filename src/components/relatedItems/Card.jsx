@@ -129,7 +129,7 @@ class Card extends React.Component {
               <h6>{category}</h6>
               <div>{name}</div>
               <div>{salePrice ? <><span style={{ color: 'red' }}>{`$${salePrice}  `}</span><span style={{ textDecoration: 'line-through' }}>{`$${originalPrice}`}</span></> : `$${originalPrice}`}</div>
-              <div>{avgRating !== 'no reviews yet' ? <StarReview stars={avgRating} /> : <div style={{ height: '23.82px' }}></div>}</div>
+              <div>{avgRating !== 'no reviews yet' ? <StarReview stars={avgRating} /> : <div style={{ height: '22.82px' }}></div>}</div>
             </div>
           </div>
         </div>

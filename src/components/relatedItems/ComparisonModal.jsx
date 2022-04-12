@@ -21,19 +21,6 @@ const ComparisonModal = (props) => {
       let currValue = currFeatures.find(item => item.feature === feature);
       let compValue = compFeatures.find(item => item.feature === feature);
 
-      // console.log('typeof currValue:::', typeof currValue);
-      // console.log('typeof compValue:::', typeof compValue);
-
-      // console.log('currValue:::', currValue);
-      // console.log('compValue:::', compValue);
-
-      // if (currValue) {
-      //   currValue.value = currValue.value.toString().replace(/["]+/g, '');
-      // }
-      // if (compValue) {
-      //   compValue.value = compValue.value.toString().replace(/["]+/g, '');
-      // }
-
       return (
         <tr key={index}>
           <td>{!!currValue ? currValue.value : ''}</td>
