@@ -17,11 +17,6 @@ class App extends React.Component {
       cart: [],
     };
     this.getProductById = this.getProductById.bind(this);
-    this.getProducts = this.getProducts.bind(this);
-  }
-
-  componentDidMount() {
-    this.getProducts(); // dev tool only
   }
 
   getProductById(id, event) {
@@ -41,16 +36,6 @@ class App extends React.Component {
       });
   }
 
-  getProducts() {
-    // dev tool only
-    axios.get('/api/products')
-      .then((response) => {
-        this.setState({
-          productList: response.data,
-        });
-      });
-  }
-
   render() {
     const {
       product,
@@ -59,14 +44,13 @@ class App extends React.Component {
     console.log('Check Here', product);
     return (
       <div>
-        <Devtool productList={productList} updateProduct={this.getProductById} />
+        <Devtool updateProduct={this.getProductById} />
         <Overview product={product} />
         <div className="super-app">
           <RelatedItems getProductById={this.getProductById} product={product} />
           <OutfitList product={product}/>
           <QA productId={product.id} product={product} />
           <Ratings productId={product.id} productName={product.name}/>
-
         </div>
       </div>
     );
