@@ -151,29 +151,35 @@ class QA extends Component {
     e.preventDefault();
     const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
     const {getQuestionsById} = this;
-    // console.log(`NEW QUESTION INPUTS | Q BODY: ${newQuestionBody} | Q NICKNAME: ${newQuestionNickname} | Q EMAIL: ${newQuestionEmail} | PRODUCT ID: ${productId}`);
-    // console.log(productId, '<--This should be an int:', typeof(productId));
 
-    axios.post('api/qa/questions', {
-      body: newQuestionBody,
-      name: newQuestionNickname,
-      email: newQuestionEmail,
-      product_id: productId
-    })
-      .then((response) => {
-        console.log(response.data);
+    //Check for input formatting:
+    const clearForSubmit = true;
+
+
+
+
+    if (clearForSubmit) {
+      axios.post('api/qa/questions', {
+        body: newQuestionBody,
+        name: newQuestionNickname,
+        email: newQuestionEmail,
+        product_id: productId
       })
-      .catch((err) => {
-        console.log(err);
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.setState({
+        newQuestionBody: '',
+        newQuestionNickname: '',
+        newQuestionEmail: '',
+        isQuestionModalOpen: false,
+        // submitError: false,
       });
-    this.setState({
-      newQuestionBody: '',
-      newQuestionNickname: '',
-      newQuestionEmail: '',
-      isQuestionModalOpen: false,
-      // submitError: false,
-    });
-    getQuestionsById(productId);
+      getQuestionsById(productId);
+    }
   }
 
   handleNewQuestionSubmitError(e) {
@@ -222,7 +228,7 @@ class QA extends Component {
             <h4 className='New_QA_Form_Sub_Header'>about the {product.name}</h4>
             <div>
               <label>Enter Question: </label>
-              <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />
+              <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' maxLength={1000} onChange={handleNewQuestionInput} rows='10' cols='100' />
             </div>
 
             <div className='Flex_New_QA_Submit'>
@@ -230,11 +236,11 @@ class QA extends Component {
               <div className='Flex_Nickname_Email'>
                 <div>
                   <label>Enter Nickname: </label>
-                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='40' />
                 </div>
                 <span>
                   <label>Enter Email: </label>
-                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='44' />
+                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='44' />
                 </span>
               </div>
 
