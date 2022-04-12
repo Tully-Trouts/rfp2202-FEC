@@ -1,3 +1,4 @@
+import { findByLabelText } from '@testing-library/react';
 import React from 'react';
 
 var Gallery = (props) => {
@@ -57,6 +58,12 @@ var Gallery = (props) => {
     setDisplayPhotoIndex(nextIndex);
   };
 
+  const thumbStyle = {
+    display: 'flex',
+    position: 'absolute',
+    flexFlow: 'column',
+  };
+
   return (
     <div className="overview overview-gallery">
       <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
@@ -65,6 +72,12 @@ var Gallery = (props) => {
       <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
         Next
       </span>
+      <div className="overview overview-gallery-thumbnails" style={thumbStyle}>
+        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
+        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
+        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
+        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
+      </div>
       <div
         className="gallery-photos"
         style={galleryStyle}>
