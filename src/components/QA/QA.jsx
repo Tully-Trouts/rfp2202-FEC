@@ -239,7 +239,7 @@ class QA extends Component {
               </div>
 
               <div>
-                <Button size={1} onClick={ handleNewQuestionSubmit}>Submit</Button>
+                <Button size={1} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
               </div>
             </div>
 
