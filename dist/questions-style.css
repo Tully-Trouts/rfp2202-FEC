@@ -151,11 +151,11 @@
   flex-direction: column;
 }
 
-.New_Ans_Images {
+.New_Answer_Images {
   flex-direction: row;
 }
 
-.New_Ans_Image {
+.New_Answer_Image {
   height: 200px;
   width: 200px;
 }
