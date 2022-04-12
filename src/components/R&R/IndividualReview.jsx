@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import StarReview from './StarReview.jsx';
+import { Link } from '../styledComponents';
+import axios from 'axios';
 
 class IndividualReview extends React.Component {
   constructor(props) {
@@ -8,12 +10,33 @@ class IndividualReview extends React.Component {
     this.state = {
       review: false,
     };
+    this.handleYesSelect = this.handleYesSelect.bind(this);
+    this.handleReportSelect = this.handleReportSelect.bind(this);
+  }
+
+  handleYesSelect(event) {
+    event.preventDefault();
+    axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleReportSelect(event) {
+    event.preventDefault();
+    axios.put(`api/reviews/${this.props.review.review_id}/report`)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
-    // if (this.props.eachReview.response !== "") {
-    //   this.setState({review: true});
-    // }
     return (
       <div className="review-tile">
         <div className="User-box-1">
@@ -49,7 +72,10 @@ class IndividualReview extends React.Component {
           }
         </div>
         <div className="Rating_Helpful">
-          Helpful?  Yes({this.props.review.helpfulness}) | Report
+          Helpful?{' '}
+          <Link onClick={this.handleYesSelect}>Yes</Link>
+          { `(${this.props.review.helpfulness}) | `}
+          <Link onClick={this.handleReportSelect}>Report</Link>
         </div>
       </div>
     );
