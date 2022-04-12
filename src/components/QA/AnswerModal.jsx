@@ -9,7 +9,7 @@ const modalStyles = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
   padding: '50px',
-  zIndex: 100
+  zIndex: 100000
 };
 
 const overlayStyles = {
@@ -19,7 +19,7 @@ const overlayStyles = {
   right: 0,
   bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, .7)',
-  zIndex: 100
+  zIndex: 100000
 };
 
 export default function AnswerModal ({ open, children, onClose }) {

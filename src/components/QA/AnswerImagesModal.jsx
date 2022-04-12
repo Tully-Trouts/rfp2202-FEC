@@ -9,7 +9,7 @@ const modalStyles = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'rgb(230, 230, 230)',
   padding: '50px',
-  zIndex: 200
+  zIndex: 200000
 };
 
 export default function AnswerImagesModal ({ open, children, onClose }) {
