@@ -61,7 +61,7 @@ li.devtool.devtool-product-list-item {
 .overview-gallery {
   height: 100%;
   margin: 0;
-  padding: 5px;
+  /* padding: 5px; */
   box-sizing: border-box;
   background-color: grey;
 }

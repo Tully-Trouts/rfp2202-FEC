@@ -72,12 +72,6 @@ var Gallery = (props) => {
       <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
         Next
       </span>
-      <div className="overview overview-gallery-thumbnails" style={thumbStyle}>
-        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
-        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
-        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
-        <span style={{width:'50px',height:'50px',background:'green'}}></span> &nbsp;
-      </div>
       <div
         className="gallery-photos"
         style={galleryStyle}>
