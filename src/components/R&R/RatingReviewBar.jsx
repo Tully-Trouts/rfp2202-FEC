@@ -8,10 +8,14 @@ class RatingReviewBar extends React.Component {
   }
 
   render() {
-    var totalperc = (this.props.ratingValue * 20);
+    const x = (this.props.ratingValue * 20) - 3;
+    const y = -7;
+    const styles = {
+      transform: `translate(${x}%, ${y}px)`
+    };
 
     console.log('rating value', this.props.ratingValue);
-    console.log(totalperc);
+    console.log(styles);
     if (this.props.ratingValue !== null) {
       return (
         <div>
@@ -19,9 +23,7 @@ class RatingReviewBar extends React.Component {
           <div className="ReviewBar-Container">
             <div className="progress-bar-Container">
               <div className="comparison-bar_bg">
-                <div className="comparison-bar-triangle" style={{
-                  left: `${totalperc}%`
-                }}>
+                <div className="comparison-bar-triangle" style={styles}>
                 </div>
               </div>
             </div>
@@ -34,22 +36,6 @@ class RatingReviewBar extends React.Component {
               </div>
               <div className="char-3">
                   Too Large
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    } else if (this.props.starRating) {
-      return (
-        <div>
-          <div className="ReviewBar-Container">
-            <div className="progress-Container">
-              <div className="progress">
-                <div className="progress-done" style={{
-                  opacity: 1,
-                  width: `${this.props.starRating}%`
-                }}>
-                </div>
               </div>
             </div>
           </div>

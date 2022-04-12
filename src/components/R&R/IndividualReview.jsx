@@ -14,10 +14,14 @@ class IndividualReview extends React.Component {
     this.handleReportSelect = this.handleReportSelect.bind(this);
   }
 
+  handleYesValueUpdate(reviewID) {
+    this.props.updateValue(reviewID);
+  }
   handleYesSelect(event) {
     event.preventDefault();
     axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
       .then((result) => {
+        this.handleYesValueUpdate(this.props.review.review_id);
         console.log(result);
       })
       .catch((err) => {

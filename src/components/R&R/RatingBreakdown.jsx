@@ -111,7 +111,6 @@ class RatingBreakdown extends React.Component {
             <div>
               {starOverallRating}
             </div>
-          [Characteristics]
             <div className="comfort-tag">
               <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)}/>
             </div>
@@ -143,7 +142,6 @@ class RatingBreakdown extends React.Component {
             <div>
               {starOverallRating}
             </div>
-          [Characteristics]
             <div className="comfort-tag">
               <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)}/>
             </div>
