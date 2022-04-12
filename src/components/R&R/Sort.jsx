@@ -12,18 +12,26 @@ class Sort extends React.Component {
   }
 
   render() {
-    return (
-      <div className="sort-label">
-        Sort on:
-        <label className="sort-btn">
-          <select onChange={this.handleSortChange}>
-            <option value="Relevant">Relevant</option>
-            <option value="Helpful">Helpful</option>
-            <option value="Newest">Newest</option>
-          </select>
-        </label>
-      </div>
-    );
+    console.log('Current Total', this.props.totalCurrentReviews);
+    if (this.props.totalCurrentReviews > 1) {
+      return (
+        <div className="sort-label">
+          {`${this.props.totalCurrentReviews} reviews, sorted by`}
+          <label className="sort-btn">
+            <select className="sort-btn-container" onChange={this.handleSortChange}>
+              <option value="Relevant">Relevant</option>
+              <option value="Helpful">Helpful</option>
+              <option value="Newest">Newest</option>
+            </select>
+          </label>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+        </div>
+      );
+    }
   }
 }
 

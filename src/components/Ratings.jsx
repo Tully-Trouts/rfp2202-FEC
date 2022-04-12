@@ -48,6 +48,7 @@ class Ratings extends React.Component {
       params: {
         sort: this.state.sort,
         product_id: productId,
+        count: 500,
       }
     })
       .then((result) => {
@@ -89,7 +90,7 @@ class Ratings extends React.Component {
           <h3>Rating and Review</h3>
           <div id="review-panal">
             <div className="sorting">
-              <Sort updateSort={this.updateSort}/>
+              <Sort updateSort={this.updateSort} totalCurrentReviews={this.state.reviewList.length}/>
             </div>
             <div className="RR-Container">
               <div className="rating_container">
@@ -113,7 +114,7 @@ class Ratings extends React.Component {
           <h3>Rating and Review</h3>
           <div id="review-panal">
             <div className="sorting">
-              <Sort updateSort={this.updateSort}/>
+              <Sort updateSort={this.updateSort} />
             </div>
             <div className="RR-Container">
               <div className="rating_container">
@@ -131,7 +132,7 @@ class Ratings extends React.Component {
               </Button>
             </div>
             <div id="add_review-btn">
-              <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption}/>
+              <AddReview productName={this.props.productName} submitCharOption={this.state.submitCharOption} productId={this.props.productId}/>
             </div>
           </div>
         </div>

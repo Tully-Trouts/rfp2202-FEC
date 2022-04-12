@@ -18,8 +18,12 @@
 }
 
 .RatingScore-Star {
-  margin-left: 10px;
-  margin-top: 7px;
+  margin-left: 30px;
+  margin-top: 16px;
+}
+
+.warning-line {
+  font-size: x-small;
 }
 
 .Title-text {
@@ -36,8 +40,13 @@
 
 }
 
+.totalRecommended {
+  font-size: small;
+}
+
 .char-1 {
   font-size: xx-small;
+  margin-left: 10px;
 }
 
 .char-2 {
@@ -51,26 +60,32 @@
 }
 
 .comfort-tag {
+  padding-top: 30px;
   font-size: x-small;
 }
 
 .quality-tag {
+  padding-top:15px;
   font-size: x-small;
 }
 
 .length-tag {
+  padding-top:15px;
   font-size: x-small;
 }
 
 .fit-tag {
+  padding-top:15px;
   font-size: x-small;
 }
 
 .size-tag {
+  padding-top:15px;
   font-size: x-small;
 }
 
 .width-tag {
+  padding-top:15px;
   font-size: x-small;
 }
 
@@ -95,16 +110,19 @@
   position: relative;
 }
 
+/* .comparison-bar_bg::after {
+  content: "";
+  display:block;
+  background-image: url(/assets/triangle2.png);
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+} */
 .comparison-bar-triangle {
-  transform: translateX(-50.2867%);
-  border-width: 14px 7px;
-  top: -4px;
-  background-color: var(--gl-color-background-transparent);
-  border: 10px solid var(--gl-color-background-transparent);
-  height:auto;
-  width: 0;
-  border-top-color: var(--gl-color-border-alternative-active);
-
+  background-image: url(/assets/triangle8.png);
+  background-repeat: no-repeat;
+  height: 30px;
+  transform: translate(-3%, -7px);
 }
 
 .stars {
@@ -187,6 +205,7 @@
 
 .email {
   margin-bottom: 5px;
+  width: 220px;
 }
 
 /* Individual Tile Style */
@@ -296,7 +315,7 @@ body.active-modal {
   background: #f1f1f1;
   padding: 14px 28px;
   border-radius: 3px;
-  max-width: 600px;
+  max-width: 550px;
   min-width: 300px;
   width: 50%;
 }
@@ -306,6 +325,12 @@ body.active-modal {
   top: 10px;
   right: 10px;
   padding: 5px 7px;
+}
+
+.MinCharNeeded {
+  font-size: x-small;
+  color: red;
+  margin-left: 20%;
 }
 
 .recommended-select {
@@ -359,6 +384,10 @@ body.active-modal {
   display: flex;
 }
 
+.sort-btn-container {
+  border: none;
+  text-decoration: underline;
+}
 
 /* Star Rating CSS */
 
