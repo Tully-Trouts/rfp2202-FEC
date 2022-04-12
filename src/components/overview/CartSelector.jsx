@@ -11,15 +11,23 @@ var CartSelector = ({skus}) => {
   var getSizeOptions = (skus) => {
     return (skus ?
       Object.keys(skus).map((element) => (
-        <option key={element} value={element}>{skus[element].size}</option>
+        <option
+          key={element}
+          value={element}>
+          {skus[element].size}
+        </option>
       )) :
-      <option>OUT OF STOCK</option>); // idk why the BRD WANTS TO YELL???
+      <option>OUT OF STOCK</option>); // YELLING
   };
 
   var getQtyOptions = (qty) => {
     const qtyList = [...Array(qty)];
     return (qtyList.map((element, index) => (
-      <option key={index} value={index + 1}>{index + 1}</option>
+      <option
+        key={index}
+        value={index + 1}>
+        {index + 1}
+      </option>
     )));
   };
 

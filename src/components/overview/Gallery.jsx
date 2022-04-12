@@ -1,3 +1,4 @@
+import { findByLabelText } from '@testing-library/react';
 import React from 'react';
 
 var Gallery = (props) => {
@@ -55,6 +56,12 @@ var Gallery = (props) => {
     };
     setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
+  };
+
+  const thumbStyle = {
+    display: 'flex',
+    position: 'absolute',
+    flexFlow: 'column',
   };
 
   return (

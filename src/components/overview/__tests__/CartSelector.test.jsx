@@ -38,3 +38,21 @@ test('Quantity select element renders with "-" as the current selection', () => 
   expect(quantityList.textContent).toBe('-');
 });
 
+// if we import 'screen' we can use it to query the entire document.body
+import { screen } from '@testing-library/dom';
+
+test('Size select element renders with "Select Size" as the initial text', () => {
+
+  // getting a query from the screen/document.body:
+  //const sizeList = screen.getByRole('listbox', {name: 'size'}); // Did not work initially
+
+  // This reused code is probably good for a 'beforeEach' hook or 'describe' block
+  const component = render(<CartSelector />);
+  const sizeList = component.getByRole('listbox', {name: 'size'});
+
+  //console.log(sizeList.firstChild); // -> HTMLOptionElement
+
+  // now lets assert over the results of the query:
+  expect(sizeList.firstChild.text).toBe('Select Size');
+});
+
