@@ -42,21 +42,16 @@ var Devtool = (props) => {
 
   var nextPage = () => {
     var next = page + 1;
-    getProducts(5, next)
-      .then(({data}) => {
-        setProductList(data);
-        setPage(next);
-      });
+    log('Get next page request:', next);
+    setPage(next);
   };
 
   React.useEffect(() => {
     log('Devtool rendering. . .');
-    if (page === 1) {
-      getProducts()
-        .then(({data}) => {
-          setProductList(data);
-        });
-    }
+    getProducts(5, page)
+      .then(({data}) => {
+        setProductList(data);
+      });
   }, [page]);
 
   return (
