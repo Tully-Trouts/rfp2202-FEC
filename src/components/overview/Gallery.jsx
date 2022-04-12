@@ -83,7 +83,12 @@ var Gallery = (props) => {
     if (props.photos) {
       return (
         Array.from(Array(props.photos.length), (e, i) => i).map((e) => (
-          <span key={e} className="thumbnail-nav-item"></span>
+          <button
+            key={e}
+            value={e}
+            className="thumbnail-nav-item"
+            onClick={()=>{ setPhoto(e); }}>
+          </button>
         ))
       );
     }

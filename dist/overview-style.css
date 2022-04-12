@@ -106,14 +106,14 @@ nav.thumbnail-nav {
   margin: 2em;
 }
 
-span.thumbnail-nav-item {
+button.thumbnail-nav-item {
   width: 40px;
   height: 40px;
-  background: green;
+  background: rgba(34, 56, 106, 0.172);
   margin: 0.5em;
 }
 
-span.thumbnail-nav-item:hover {
+button.thumbnail-nav-item:hover {
   opacity: .5;
 }
 
