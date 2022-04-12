@@ -44,9 +44,9 @@ const OutfitList = ({ product }) => {
             <img className="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/5/53/WP20Symbols_PLUS.svg"/>
             <div className="card-info">
               <h6>Add to Outfit</h6>
+              <div className="hidden">$Priceless</div>
+              <div className="hidden">Rating: 10/10</div>
               <div className="fixedHeight"></div>
-              {/* <div className="hidden">$&infin;</div>
-              <div className="hidden">Rating: (=^_^=)</div> */}
             </div>
           </div>
           {/* <Button size={1} aria-label="open" onClick={() => addProductToOutfit(product.id)}>Add to outfit</Button> */}

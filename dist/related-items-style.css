@@ -31,8 +31,12 @@
   padding: 5px;
 }
 
+.hidden {
+  color: white;
+}
+
 .fixedHeight {
-  height: 51.77px;
+  height: 23.82px;
 }
 
 .clickable:hover {
@@ -62,12 +66,12 @@
   margin: 5px;
   padding: 0 1.5em;
   font-size: x-small;
-  overflow-y: hidden;
 }
 
 .comparison-table {
   margin-left: auto;
   margin-right: auto;
+  overflow-y: scroll;
 }
 
 .header {

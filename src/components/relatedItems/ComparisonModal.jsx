@@ -18,8 +18,21 @@ const ComparisonModal = (props) => {
 
     // probably need to refactor this to find a more efficient solution
     const tableBody = uniqueFeatures.map((feature, index) => {
-      const currValue = currFeatures.find(item => item.feature === feature);
-      const compValue = compFeatures.find(item => item.feature === feature);
+      let currValue = currFeatures.find(item => item.feature === feature);
+      let compValue = compFeatures.find(item => item.feature === feature);
+
+      // console.log('typeof currValue:::', typeof currValue);
+      // console.log('typeof compValue:::', typeof compValue);
+
+      // console.log('currValue:::', currValue);
+      // console.log('compValue:::', compValue);
+
+      // if (currValue) {
+      //   currValue.value = currValue.value.toString().replace(/["]+/g, '');
+      // }
+      // if (compValue) {
+      //   compValue.value = compValue.value.toString().replace(/["]+/g, '');
+      // }
 
       return (
         <tr key={index}>
