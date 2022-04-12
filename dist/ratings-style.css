@@ -1,0 +1,444 @@
+#rating_and_reviews-container {
+  width: 100%;
+  margin: auto;
+  padding: 1em;
+  border-bottom: solid lightgrey;
+  /* margin-bottom: 30px; */
+  z-index: 99999;
+  position: relative;
+}
+
+.StarScore-RR {
+  display: flex;
+  height: 70px;
+}
+
+.RatingScore-Int {
+  font-size: xxx-large;
+}
+
+.RatingScore-Star {
+  margin-left: 30px;
+  margin-top: 16px;
+}
+
+.warning-line {
+  font-size: x-small;
+}
+
+.Title-text {
+  font-size: medium;
+}
+
+.ReviewBar-Container {
+  display: flex;
+  flex-direction: column;
+}
+
+.characteristic-container {
+  display: flex;
+
+}
+
+.totalRecommended {
+  font-size: small;
+}
+
+.char-1 {
+  font-size: xx-small;
+  margin-left: 10px;
+}
+
+.char-2 {
+  font-size: xx-small;
+  margin-left: 25%;
+}
+
+.char-3 {
+  font-size: xx-small;
+  margin-left: 25%;
+}
+
+.comfort-tag {
+  padding-top: 30px;
+  font-size: x-small;
+}
+
+.quality-tag {
+  padding-top:15px;
+  font-size: x-small;
+}
+
+.length-tag {
+  padding-top:15px;
+  font-size: x-small;
+}
+
+.fit-tag {
+  padding-top:15px;
+  font-size: x-small;
+}
+
+.size-tag {
+  padding-top:15px;
+  font-size: x-small;
+}
+
+.width-tag {
+  padding-top:15px;
+  font-size: x-small;
+}
+
+.progress {
+  background-color: #f4f4f4;
+  height: 10px;
+  width: 100%;
+}
+
+.progress-done {
+  background-color: green;
+  height: 100%;
+  opacity: 0;
+
+}
+
+.comparison-bar_bg {
+  background-color: #f4f4f4;
+  overflow: visible;
+  height: 5px;
+  width: 100%;
+  position: relative;
+}
+
+/* .comparison-bar_bg::after {
+  content: "";
+  display:block;
+  background-image: url(/assets/triangle2.png);
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+} */
+.comparison-bar-triangle {
+  background-image: url(/assets/triangle8.png);
+  background-repeat: no-repeat;
+  height: 30px;
+  transform: translate(-3%, -7px);
+}
+
+.stars {
+  position: relative;
+  white-space: nowrap;
+  fill: gold
+}
+
+.cover {
+  background: white;
+  height: 100%;
+  width: 100%;
+  margin-left: 40%;
+  overflow: hidden;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+}
+
+.RR-Container {
+  display: flex;
+}
+
+#review-panal {
+  margin: 5px;
+  padding: 5px;
+  /* border-style: solid; */
+  font-style: small;
+}
+.reviewList_container {
+  height: 70%;
+  overflow-y: scroll
+}
+.review_list {
+  width: 65%;
+  height: 300px;
+  padding: 1em;
+  margin: auto;
+  display: inline-block;
+  flex-flow: column-reverse;
+  /*
+  border-style: solid;
+  */
+  overflow-y: scroll;
+
+}
+
+.rating_container {
+  width: 25%;
+  height: 300px;
+  margin: 2.5px;
+  padding: 1em;
+  display: inline-block;
+  flex-flow:column-reverse;
+  /*
+  border: solid;
+  */
+  overflow-x: scroll;
+}
+
+.devtool {
+  border-style: solid;
+}
+
+.review-summary {
+  width: 75%;
+  margin-bottom: 15px;
+  margin-top: 15px
+}
+
+.review-body {
+  width: 75%;
+  height: 156px;
+}
+
+.Nickname {
+  width: 220px;
+  margin: 5px 0px;
+}
+
+.email {
+  margin-bottom: 5px;
+  width: 220px;
+}
+
+/* Individual Tile Style */
+.review-tile {
+  width: 90%;
+  border-bottom: 2px solid grey;
+  margin: auto;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ReviewerName {
+  color: grey;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.Summary-text {
+  margin: auto;
+  height: 40px;
+}
+
+.btn-container-updated {
+  margin-left: 59%;
+}
+.Review_Body_Container {
+  height: auto;
+  font-size:smaller
+}
+
+.USER-DATE {
+  display: flex;
+  margin-left:auto;
+}
+
+.Date {
+  color: grey;
+  padding-left: 5px;
+  padding-bottom: 1px;
+  flex: none;
+}
+
+.StarRating {
+  padding-bottom: 1px;
+}
+
+.User-box-1 {
+  display: flex;
+  height: 34px;
+  margin-top: 15px;
+}
+
+.Rating_Helpful {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.sort-btn {
+  padding-left: 10px;
+}
+
+.sorting {
+  padding-left: 60%;
+  width: 40px;
+}
+
+.sort-label {
+  width: 220px;
+  font-size: smaller;
+}
+
+.btn-container {
+  display:flex;
+}
+
+.more_review-btn {
+  padding-left: 50%;
+  padding-right: 8%;
+}
+
+/* Popup*/
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modalRR, .overlayRR {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlayRR {
+  background: rgba(49,49,49,0.8);
+
+}
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 550px;
+  min-width: 300px;
+  width: 50%;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
+.MinCharNeeded {
+  font-size: x-small;
+  color: red;
+  margin-left: 20%;
+}
+
+.recommended-select {
+  font-size: smaller;
+}
+ .char-option-size {
+   font-size: x-small;
+ }
+
+ .char-size {
+    margin-left: 19px;
+ }
+
+ .char-option-width {
+  font-size: x-small;
+}
+
+.char-width {
+   margin-left: 11px;
+}
+
+.char-option-comfort {
+  font-size: x-small;
+}
+
+.char-option-quality {
+  font-size: x-small;
+}
+
+.char-quality {
+   margin-left: 5px;
+}
+
+.char-option-length {
+  font-size: x-small;
+}
+
+.char-length {
+   margin-left: 5px;
+}
+
+.char-option-fit {
+  font-size: x-small;
+}
+
+.char-fit {
+   margin-left: 26px;
+}
+
+.StarRating-breakdown {
+  display: flex;
+}
+
+.sort-btn-container {
+  border: none;
+  text-decoration: underline;
+}
+
+/* Star Rating CSS */
+
+.star-rating {
+  display: flex;
+  align-items:center;
+  width: 160px;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin: -13px 10px 5px;
+  position: relative;
+}
+/* hide the inputs */
+.star-rating input {
+  display: none;
+}
+/* set properties of all labels */
+.star-rating > label {
+  width: 30px;
+  height: 30px;
+  font-family: Arial;
+  font-size: 30px;
+  transition: 0.1s ease;
+  color: gold;
+}
+/* give label a hover state */
+.star-rating label:hover {
+  color: black;
+  transition: 0.2s ease;
+}
+.star-rating label:active::before {
+  transform:scale(1.1);
+}
+
+/* set shape of unselected label */
+.star-rating label::before {
+  content: '\2606';
+  position: absolute;
+  top: 0px;
+  line-height: 26px;
+}
+/* set full star shape for checked label and those that come after it */
+.star-rating input:checked ~ label:before {
+  content:'\2605';
+}
+
+@-moz-document url-prefix() {
+  .star-rating input:checked ~ label:before {
+  font-size: 36px;
+  line-height: 21px;
+  }
+}
+
+

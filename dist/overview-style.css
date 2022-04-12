@@ -1,0 +1,241 @@
+.devtool {
+  border-style: solid;
+  font-size: x-small;
+}
+
+.devtool-container {
+  margin: 0 0 20px 0;
+  padding: 0 20px 20px 20px;
+}
+
+.devtool ul.devtool-product-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  border-style: none;
+  margin: auto;
+  padding: unset;
+}
+
+li.devtool.devtool-product-list-item {
+  width: 80px;
+  padding: 0.3em;
+}
+
+.devtool-product {
+  margin: auto;
+}
+
+.devtool-product-list-item:hover {
+  background-color: cyan;
+  cursor: pointer;
+}
+
+#overview-container {
+  width: 85%;
+  margin: auto;
+  padding: 1em;
+  border-bottom: solid lightgrey;
+}
+
+.overview-main {
+  display: flex;
+}
+
+.overview {
+  margin: 5px;
+  /* dev style
+  padding: 5px;
+  /*
+  border-style: solid;
+  */
+  font-size: x-small;
+}
+
+div.app-header {
+  display: flex;
+  height: 50px;
+  width: 85%;
+  margin: auto;
+  padding: 1em;
+  background-color: gray;
+  color:#ffffff;
+  align-items: center;
+}
+
+div.app-header > h3 {
+  margin: 0;
+}
+
+.overview-image-panel {
+  /* will need to figure out how make this dynamic */
+  width: 65%;
+}
+
+/* Phasing out gallery styling for gallery photo */
+.overview-gallery {
+  height: 100%;
+  margin: 0;
+  /* padding: 5px; */
+  box-sizing: border-box;
+  background-color: grey;
+}
+
+.gallery-photos {
+  /* where to manipulate the background-position
+  in order to change the background image */
+  height: 100%;
+  width: 100%;
+  /* setting the width of the photo, height will be auto */
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+span.gallery-control.previous {
+  float: left;
+}
+
+span.gallery-control.next {
+  float: right;
+}
+
+span.gallery-control:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.overview-product-information-panel {
+  display: flex;
+  flex-flow: column;
+  width: 35%;
+}
+
+h5.overview-product-description {
+  margin: 1.67em 1.5em;
+}
+
+h4.style-selector {
+  font-weight: normal;
+}
+
+
+.cart-selector {
+  display: flex;
+}
+
+.cart-selector > select {
+  height: 3em;
+  margin: 2px 3px;
+  padding-left: 0.8em;
+  padding-right: 0.4em;
+  border-radius: 0%;
+}
+
+.size-selector {
+  flex: 3;
+}
+
+.overview > .btn {
+  margin: 2px 2px;
+}
+
+.quantity-selector {
+  flex: 2;
+}
+
+.cart-selector-buttons {
+  display: flex;
+}
+
+.add-to-cart-btn {
+  flex: 4;
+}
+
+.heart-btn {
+  flex: 1;
+}
+
+.sm {
+  line-height: 1;
+  font-size: smaller;
+  /*
+  padding: 2px;
+  */
+}
+
+ul.style-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+  margin: 0;
+}
+
+li.style-list-item {
+  display: flex;
+  margin: 10%;
+}
+
+span.style-list-item-circle {
+  width: 100%;
+  border-radius: 50%;
+  background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+span.style-list-item-circle::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+li.style-list-item:hover {
+  cursor: pointer;
+  background-color: aqua;
+  opacity: 60%;
+}
+
+.styled-btn {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}
+
+.styled-btn.styled-btn-size-1 {
+  justify-content: center;
+}
+
+.styled-btn:hover {
+  background: linear-gradient(#e1dede, #eaeaea);
+}
+
+.styled-btn:active {
+  background: linear-gradient(#d5d5d5, #e5e5e5);
+}
+
+span.styled-link {
+  text-decoration: underline;
+}
+
+span.styled-link:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.styled-input {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}

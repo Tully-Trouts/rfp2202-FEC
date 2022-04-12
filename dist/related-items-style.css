@@ -1,0 +1,124 @@
+#related-items-container, #outfit-list-container {
+  width: 100%;
+  position: relative;
+  margin: auto;
+  padding: 1em;
+  border-bottom: solid lightgrey;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  font-size: x-small;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0 0 0;
+  width: 200px;
+  height: 80%;
+  margin: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  position: relative;
+}
+
+.card-info {
+  padding: 5px;
+}
+
+.fixedHeight {
+  height: 51.77px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.preview-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.comparison-modal {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  width: 60%;
+  height: 60%;
+  max-width: 250px;
+  max-height: 250px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  background: white;
+  margin: 5px;
+  padding: 0 1.5em;
+  font-size: x-small;
+  overflow-y: hidden;
+}
+
+.comparison-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header > h6 {
+  margin: 1.5em 0;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.end {
+  justify-content: flex-end;
+}
+
+td {
+  text-align: center;
+}
+
+.modal-characteristic {
+  font-weight: bold;
+}
+
+.card-button {
+  font-weight: bold;
+  border: none;
+  border-color: black;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.card-button:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.close-remove {
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+
+
