@@ -113,6 +113,10 @@ span.thumbnail-nav-item {
   margin: 0.5em;
 }
 
+span.thumbnail-nav-item:hover {
+  opacity: .5;
+}
+
 span.gallery-control:hover {
   background-color: aqua;
   cursor: pointer;
