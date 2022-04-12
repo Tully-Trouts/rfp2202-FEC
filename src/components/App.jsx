@@ -45,6 +45,9 @@ class App extends React.Component {
     return (
       <div>
         <Devtool updateProduct={this.getProductById} />
+        <div className="app-header">
+          <h3><em>Logo</em></h3>
+        </div>
         <Overview product={product} />
         <div className="super-app">
           <RelatedItems getProductById={this.getProductById} product={product} />

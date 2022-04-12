@@ -3,7 +3,7 @@
   position: relative;
   margin: auto;
   padding: 1em;
-  border-style: solid;
+  border-bottom: solid lightgrey;
 }
 
 .card-list {
