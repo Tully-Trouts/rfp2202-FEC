@@ -16,7 +16,7 @@ class Answer extends Component {
 
   handleReport(e) {
     e.preventDefault();
-    const {answer, getQuestionsById} = this.props;
+    const {answer} = this.props;
     axios.put(`api/qa/questions/${answer[0]}/report`)
       .then((response) => {
         console.log(response);
@@ -24,12 +24,11 @@ class Answer extends Component {
       .catch((err) => {
         console.log(err);
       });
-    getQuestionsById();
   }
 
   handleHelpful(e) {
     e.preventDefault();
-    const {answer, getQuestionsById} = this.props;
+    const {answer} = this.props;
     axios.put(`api/qa/questions/${answer[0]}/helpful`)
       .then((response) => {
         console.log(response);
@@ -37,7 +36,6 @@ class Answer extends Component {
       .catch((err) => {
         console.log(err);
       });
-    getQuestionsById();
   }
 
   render() {

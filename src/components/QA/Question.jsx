@@ -210,7 +210,7 @@ class Question extends Component {
             <div className='New_Ans_Images'>
               {newAnswerPhotos.length > 0
                 ?
-                newAnswerPhotos.map((URL) => <img className='New_Answer_Image' src={URL} />)
+                newAnswerPhotos.map((URL, index) => <img key={index} className='New_Answer_Image' src={URL} />)
                 :
                 <></>
               }

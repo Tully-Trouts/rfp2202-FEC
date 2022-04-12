@@ -10,7 +10,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 65631, //this.props.productId,
+      productId: this.props.productId, //65631
       questions: [],
       search: '',
       newQuestionBody: '',
@@ -35,10 +35,6 @@ class QA extends Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewQuestionSubmit = this.handleNewQuestionSubmit.bind(this);
     this.handleNewQuestionSubmitError = this.handleNewQuestionSubmitError.bind(this);
-  }
-
-  componentDidMount() {
-    this.getQuestionsById(this.state.productId);
   }
 
   componentDidUpdate(prevProps) {
@@ -155,9 +151,6 @@ class QA extends Component {
     //Check for input formatting:
     const clearForSubmit = true;
 
-
-
-
     if (clearForSubmit) {
       axios.post('api/qa/questions', {
         body: newQuestionBody,
@@ -167,6 +160,7 @@ class QA extends Component {
       })
         .then((response) => {
           console.log(response.data);
+          getQuestionsById(productId);
         })
         .catch((err) => {
           console.log(err);
@@ -178,7 +172,6 @@ class QA extends Component {
         isQuestionModalOpen: false,
         // submitError: false,
       });
-      getQuestionsById(productId);
     }
   }
 
@@ -245,7 +238,7 @@ class QA extends Component {
               </div>
 
               <div>
-                <Button size={2} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
+                <Button size={1} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
               </div>
             </div>
 
