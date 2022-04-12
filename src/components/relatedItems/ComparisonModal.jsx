@@ -18,8 +18,8 @@ const ComparisonModal = (props) => {
 
     // probably need to refactor this to find a more efficient solution
     const tableBody = uniqueFeatures.map((feature, index) => {
-      let currValue = currFeatures.find(item => item.feature === feature);
-      let compValue = compFeatures.find(item => item.feature === feature);
+      const currValue = currFeatures.find(item => item.feature === feature);
+      const compValue = compFeatures.find(item => item.feature === feature);
 
       return (
         <tr key={index}>
