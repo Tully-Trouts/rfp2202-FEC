@@ -64,6 +64,14 @@ var Gallery = (props) => {
     flexFlow: 'column',
   };
 
+  var getThumbnails = () => {
+    return (
+      Array.from(Array(5), (e, i) => i).map((e) => (
+        <span key={e} className="thumbnail-nav-item"></span>
+      ))
+    );
+  };
+
   return (
     <div className="overview overview-gallery">
       <nav className="gallery-nav">
@@ -78,6 +86,9 @@ var Gallery = (props) => {
         className="gallery-photos"
         style={galleryStyle}>
       </div>
+      <nav className="thumbnail-nav">
+        {getThumbnails()}
+      </nav>
     </div>
   );
 };

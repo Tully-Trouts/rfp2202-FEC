@@ -6,7 +6,7 @@ const Button = (props) => {
     <button
       className={`styled-btn styled-btn-size-${props.size} ${props.className}`}
       style={{
-        flex: props.size,
+        flex: props.size || 0,
       }}
       type="button"
       role="button"
@@ -17,9 +17,10 @@ const Button = (props) => {
   );
 };
 
-Button.propTypes = {
-  size: PropTypes.number.isRequired,
-};
+// Removing requirement for now
+// Button.propTypes = {
+//   size: PropTypes.number.isRequired,
+// };
 
 const Link = (props) => {
   return (
@@ -70,13 +71,13 @@ const StarReview = (props) => {
         <path d="m 25 1 l 6 17 h 18 l -14 11 l 5 17 l -15 -10 l -15 10 l 5 -17 l -14 -11 h 18 Z"></path>
       </svg>
     ));
-  }
+  };
 
   return (
     <div className="star-component star-component-container">
       <div className="star-component star-component-stars" style={starStyle}>
         {drawStars(props.max || 5)}
-       <div className="star-component star-component-cover"
+        <div className="star-component star-component-cover"
           style={{marginLeft}}>
         </div>
       </div>

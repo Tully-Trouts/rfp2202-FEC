@@ -91,14 +91,26 @@ div.app-header > h3 {
   background-repeat: no-repeat;
 }
 
-span.gallery-control.previous {
-  /* float: left; */
+nav.gallery-nav {
+  display: flex;
   position: absolute;
+  /* justify-content: space-between; */
 }
 
-span.gallery-control.next {
-  /* float: right; */
-  position: absolute;
+nav.thumbnail-nav {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  top: -100%;
+  justify-content: center;
+  margin: 2em;
+}
+
+span.thumbnail-nav-item {
+  width: 40px;
+  height: 40px;
+  background: green;
+  margin: 0.5em;
 }
 
 span.gallery-control:hover {
