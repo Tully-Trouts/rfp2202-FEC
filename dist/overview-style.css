@@ -92,11 +92,13 @@ div.app-header > h3 {
 }
 
 span.gallery-control.previous {
-  float: left;
+  /* float: left; */
+  position: absolute;
 }
 
 span.gallery-control.next {
-  float: right;
+  /* float: right; */
+  position: absolute;
 }
 
 span.gallery-control:hover {
