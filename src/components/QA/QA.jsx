@@ -10,7 +10,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId, //65631,
+      productId: 65631, //this.props.productId,
       questions: [],
       search: '',
       newQuestionBody: '',

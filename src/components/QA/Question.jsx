@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import AList from './AList';
 import AnswerModal from './AnswerModal';
+import AnswerImagesModal from './AnswerImagesModal';
 import ReactDOM from 'react-dom';
 import { Button, Link } from '../styledComponents';
 import axios from 'axios';
@@ -18,6 +19,7 @@ class Question extends Component {
       newAnswerPhotos: [],
       questionId: this.props.question.question_id,
       update: '',
+      imageURL: '',
     };
 
     this.addAnsClick = this.addAnsClick.bind(this);
@@ -27,6 +29,10 @@ class Question extends Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewAnsSubmit = this.handleNewAnsSubmit.bind(this);
     this.handleHelpful = this.handleHelpful.bind(this);
+    this.handleAddImages = this.handleAddImages.bind(this);
+    this.closeAddImages = this.closeAddImages.bind(this);
+    this.handleImageURL = this.handleImageURL.bind(this);
+    this.handeImageSubmit = this.handeImageSubmit.bind(this);
     // this.getAllAnswers = this.getAllAnswers.bind(this);
   }
 
@@ -113,8 +119,8 @@ class Question extends Component {
       newAnsEmail: '',
       newAnswerPhotos: [],
       isAnswerModalOpen: false,
+      isImagesModalOpen: false,
     });
-    //re-render list
     getQuestionsById();
   }
 
@@ -132,11 +138,37 @@ class Question extends Component {
     getQuestionsById();
   }
 
+  handleAddImages() {
+    this.setState({isImagesModalOpen: true});
+  }
+
+  closeAddImages(e) {
+    e.preventDefault();
+    this.setState({isImagesModalOpen: false, imageURL: ''});
+  }
+
+  handleImageURL(e) {
+    e.preventDefault();
+    this.setState({imageURL: e.target.value});
+  }
+
+  handeImageSubmit(e) {
+    e.preventDefault();
+    const {newAnswerPhotos, imageURL} = this.state;
+    const photos = newAnswerPhotos.slice();
+    photos.push(imageURL);
+    this.setState({
+      newAnswerPhotos: photos,
+      imageURL: '',
+      isImagesModalOpen: false,
+    });
+  }
+
   render() {
     const {question, product, getQuestionsById} = this.props;
     const {question_body, question_helpfulness, answers} = question;
-    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful} = this;
-    const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail} = this.state;
+    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful, handleAddImages, closeAddImages, handleImageURL, handeImageSubmit} = this;
+    const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail, isImagesModalOpen, newAnswerPhotos} = this.state;
 
     return (
       <div className='Question'>
@@ -167,14 +199,32 @@ class Question extends Component {
               <label>Enter Email: </label>
               <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
             </span>
+
             <div>
-              <Button size={1}>Add Images</Button>
+              <Button size={1} onClick={handleAddImages}>Add Images</Button>
             </div>
             <div>
               <Button size={1} onClick={handleNewAnsSubmit}>Submit</Button>
             </div>
+
+            <div className='New_Ans_Images'>
+              {newAnswerPhotos.length > 0
+                ?
+                newAnswerPhotos.map((URL) => <img className='New_Answer_Image' src={URL} />)
+                :
+                <></>
+              }
+            </div>
           </form>
         </AnswerModal>
+
+        <AnswerImagesModal open={isImagesModalOpen} onClose={closeAddImages}>
+          <div>
+            <h4>Insert Image URL:</h4>
+            <textarea row='2' cols='70' onChange={handleImageURL} />
+            <Button size={1} onClick={handeImageSubmit}>Enter</Button>
+          </div>
+        </AnswerImagesModal>
 
         <AList getQuestionsById={getQuestionsById} answers={answers} questionBody={question_body} product={product}/>
       </div>
