@@ -23,7 +23,6 @@ jspm_packages/
 *bundle.js
 *.map
 
-package-lock.json
 
 coverage/*
 coverage/

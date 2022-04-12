@@ -2,7 +2,7 @@
   width: 100%;
   margin: auto;
   padding: 1em;
-  border-style: solid;
+  border-bottom: solid lightgrey;
   /* margin-bottom: 30px; */
   z-index: 99999;
   position: relative;
