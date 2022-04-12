@@ -70,7 +70,6 @@ var Overview = ({product}) => {
 
   return (
     <div id="overview-container">
-      <h3>Overview</h3>
       <div className="overview overview-main">
         <div className="overview overview-image-panel">
           <Gallery photos={selectedStyle.photos} />

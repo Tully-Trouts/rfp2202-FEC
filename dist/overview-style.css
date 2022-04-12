@@ -35,7 +35,7 @@ li.devtool.devtool-product-list-item {
   width: 85%;
   margin: auto;
   padding: 1em;
-  border-style: solid;
+  border-bottom: solid lightgrey;
 }
 
 .overview-main {
@@ -50,6 +50,21 @@ li.devtool.devtool-product-list-item {
   border-style: solid;
   */
   font-size: x-small;
+}
+
+div.app-header {
+  display: flex;
+  height: 50px;
+  width: 85%;
+  margin: auto;
+  padding: 1em;
+  background-color: gray;
+  color:#ffffff;
+  align-items: center;
+}
+
+div.app-header > h3 {
+  margin: 0;
 }
 
 .overview-image-panel {
