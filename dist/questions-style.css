@@ -1,9 +1,9 @@
-.QA {
-    margin: auto;
-    padding: 1em;
-    width: 100%;
-    border: 2px solid black;
-    background-color: white;
+#QA {
+  margin: auto;
+  padding: 1em;
+  width: 100%;
+  border: solid black;
+  background-color: white;
 }
 
 .QA_Title {
@@ -46,7 +46,7 @@
   padding: 5px;
   border: 3px solid black;
   background-color: white;
-  height: 600px;
+  max-height: 450px;
   overflow: scroll;
 }
 
@@ -56,7 +56,7 @@
 
 .A_List_Overflow {
   margin: 2px;
-  height: 200px;
+  height: 500px;
   overflow: scroll;
   background-color: rgb(240, 240, 240);
 }
@@ -123,4 +123,46 @@
 
 .New_QA_Input_Error {
   border: 1px solid red;
+}
+
+.New_QA_Form_Header {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.New_QA_Form_Sub_Header {
+  text-align: center;
+  color:rgb(50, 50, 50);
+  margin: 0px;
+  padding: 0px;
+}
+
+.Flex_New_QA_Submit {
+  padding-top: 1em;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Flex_Nickname_Email {
+  display: flex;
+  flex-direction: column;
+}
+
+.New_Answer_Images {
+  flex-direction: row;
+}
+
+.New_Answer_Image {
+  height: 200px;
+  width: 200px;
+}
+
+span.loadMore {
+  text-decoration: none;
+}
+span.collapse {
+  text-decoration: none;
 }

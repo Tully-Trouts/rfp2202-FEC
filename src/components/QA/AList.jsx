@@ -23,7 +23,7 @@ class AList extends Component {
   }
 
   render() {
-    const {answers} = this.props;
+    const {answers, getQuestionsById} = this.props;
     const {toLoad, loadingMore} = this.state;
     const {handleLoadMore} = this;
 
@@ -45,7 +45,7 @@ class AList extends Component {
     return (
       <div className={loadingMore ? 'A_List_Overflow' : 'A_List'}>
         { answerList.slice(0, toLoad).map((answer) =>
-          <Answer answer={answer} key={answer[0]} />
+          <Answer getQuestionsById={getQuestionsById} answer={answer} key={answer[0]} />
         )}
         {button}
       </div>

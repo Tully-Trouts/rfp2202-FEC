@@ -10,7 +10,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId, //65631,
+      productId: 65631, //this.props.productId,
       questions: [],
       search: '',
       newQuestionBody: '',
@@ -51,6 +51,9 @@ class QA extends Component {
   }
 
   getQuestionsById(productId) {
+    if (productId === undefined) {
+      var productId = this.state.productId;
+    }
     axios.get('/api/qa/questions', {
       params: {
         // eslint-disable-next-line camelcase
@@ -120,7 +123,13 @@ class QA extends Component {
   closeAddQuestion(e) {
     e.preventDefault();
     // this.setState({isQuestionModalOpen: false, submitError: false});
-    this.setState({isQuestionModalOpen: false});
+    this.setState({
+      newQuestionBody: '',
+      newQuestionNickname: '',
+      newQuestionEmail: '',
+      isQuestionModalOpen: false,
+      // submitError: false,
+    });
   }
 
   handleNewQuestionInput(e) {
@@ -141,28 +150,36 @@ class QA extends Component {
   handleNewQuestionSubmit(e) {
     e.preventDefault();
     const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
-    // console.log(`NEW QUESTION INPUTS | Q BODY: ${newQuestionBody} | Q NICKNAME: ${newQuestionNickname} | Q EMAIL: ${newQuestionEmail} | PRODUCT ID: ${productId}`);
-    // console.log(productId, '<--This should be an int:', typeof(productId));
+    const {getQuestionsById} = this;
 
-    axios.post('api/qa/questions', {
-      body: newQuestionBody,
-      name: newQuestionNickname,
-      email: newQuestionEmail,
-      product_id: this.state.productId
-    })
-      .then((response) => {
-        console.log(response.data);
+    //Check for input formatting:
+    const clearForSubmit = true;
+
+
+
+
+    if (clearForSubmit) {
+      axios.post('api/qa/questions', {
+        body: newQuestionBody,
+        name: newQuestionNickname,
+        email: newQuestionEmail,
+        product_id: productId
       })
-      .catch((err) => {
-        console.log(err);
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.setState({
+        newQuestionBody: '',
+        newQuestionNickname: '',
+        newQuestionEmail: '',
+        isQuestionModalOpen: false,
+        // submitError: false,
       });
-    this.setState({
-      newQuestionBody: '',
-      newQuestionNickname: '',
-      newQuestionEmail: '',
-      isQuestionModalOpen: false,
-      // submitError: false,
-    });
+      getQuestionsById(productId);
+    }
   }
 
   handleNewQuestionSubmitError(e) {
@@ -172,7 +189,7 @@ class QA extends Component {
 
   render() {
     const {questions, isQuestionModalOpen, newQuestionBody, newQuestionNickname, newQuestionEmail, toLoad, loadingMore, submitError} = this.state;
-    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleNewQuestionSubmitError, handleLoadMoreQuestions} = this;
+    const {liftSearch, liftClear, filter, addQuestionClick, closeAddQuestion, handleNewQuestionInput, handleNicknameInput, handleEmailInput, handleNewQuestionSubmit, handleNewQuestionSubmitError, handleLoadMoreQuestions, getQuestionsById} = this;
     const {product} = this.props;
 
     let loadMoreButton;
@@ -185,7 +202,7 @@ class QA extends Component {
     }
 
     return (
-      <div className='QA'>
+      <div id='QA'>
         <h3 id='QA_Title'>Questions and Answers</h3>
         { questions.length === 0
           ?
@@ -196,7 +213,7 @@ class QA extends Component {
             {/* <div className={loadingMore ? 'Q_List_Overflow' : 'Q_List'}> */}
             <div className='Q_List'>
               {filter().slice(0, toLoad).map((question) =>
-                <Question question={question} key={question.question_id} product={product}/>
+                <Question getQuestionsById={getQuestionsById} question={question} key={question.question_id} product={product}/>
               )}
             </div>
           </div>
@@ -207,36 +224,31 @@ class QA extends Component {
         <Button className='Add_Question' onClick={addQuestionClick} size={1}>Add A Question +</Button>
         <QuestionModal open={isQuestionModalOpen} onClose={closeAddQuestion}>
           <form>
-            <h3>Ask Your Question Here</h3>
-            <h4>about the {product.name}</h4>
+            <h3 className='New_QA_Form_Header'>Ask Your Question Here</h3>
+            <h4 className='New_QA_Form_Sub_Header'>about the {product.name}</h4>
             <div>
               <label>Enter Question: </label>
-              <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' onChange={handleNewQuestionInput} rows='10' cols='100' />
+              <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' maxLength={1000} onChange={handleNewQuestionInput} rows='10' cols='100' />
             </div>
-            <div>
-              <label>Enter Nickname: </label>
-              <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
-            </div>
-            <span>
-              <label>Enter Email: </label>
-              <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
-            </span>
-            <div>
-              <Button size={1} onClick={ handleNewQuestionSubmit
-                // newQuestionBody > 0 && newQuestionEmail > 0 && newQuestionNickname > 0
-                //   ?
-                //   handleNewQuestionSubmit
-                //   :
-                //   handleNewQuestionSubmitError
-              }>Submit</Button>
 
-              {/* {submitError
-                ?
-                <span>bro u gotta fill out all the forms my guy</span>
-                :
-                <></>
-              } */}
+            <div className='Flex_New_QA_Submit'>
+
+              <div className='Flex_Nickname_Email'>
+                <div>
+                  <label>Enter Nickname: </label>
+                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
+                </div>
+                <span>
+                  <label>Enter Email: </label>
+                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
+                </span>
+              </div>
+
+              <div>
+                <Button size={2} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
+              </div>
             </div>
+
           </form>
         </QuestionModal>
       </div>

@@ -7,29 +7,18 @@ const modalStyles = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
+  backgroundColor: 'rgb(230, 230, 230)',
   padding: '50px',
-  zIndex: 100000
+  zIndex: 200000
 };
 
-const overlayStyles = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0, 0, 0, .7)',
-  zIndex: 100000
-};
-
-export default function AnswerModal ({ open, children, onClose }) {
+export default function AnswerImagesModal ({ open, children, onClose }) {
   if (!open) { return null; }
 
   return ReactDOM.createPortal (
     <>
-      <div style={overlayStyles} />
       <div style={modalStyles} >
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={onClose}>Cancel</Button>
         {children}
       </div>
     </>,

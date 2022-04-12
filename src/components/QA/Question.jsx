@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import AList from './AList';
 import AnswerModal from './AnswerModal';
+import AnswerImagesModal from './AnswerImagesModal';
 import ReactDOM from 'react-dom';
 import { Button, Link } from '../styledComponents';
 import axios from 'axios';
@@ -10,6 +11,7 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // answers: [],
       isAnswerModalOpen: false,
       newAnsBody: '',
       newAnsNickname: '',
@@ -17,6 +19,7 @@ class Question extends Component {
       newAnswerPhotos: [],
       questionId: this.props.question.question_id,
       update: '',
+      imageURL: '',
     };
 
     this.addAnsClick = this.addAnsClick.bind(this);
@@ -26,7 +29,37 @@ class Question extends Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewAnsSubmit = this.handleNewAnsSubmit.bind(this);
     this.handleHelpful = this.handleHelpful.bind(this);
+    this.handleAddImages = this.handleAddImages.bind(this);
+    this.closeAddImages = this.closeAddImages.bind(this);
+    this.handleImageURL = this.handleImageURL.bind(this);
+    this.handeImageSubmit = this.handeImageSubmit.bind(this);
+    // this.getAllAnswers = this.getAllAnswers.bind(this);
   }
+
+  // componentDidMount() {
+  //   console.log('QUESTION ID === ', this.props.question.question_id);
+  //   this.getAllAnswers(this.props.question.question_id);
+  // }
+
+  // getAllAnswers(questionId) {
+  //   //GET /qa/questions/:question_id/answers
+  //   console.log(`/api/qa/questions/${questionId}/answers`);
+  //   axios.get(`/api/qa/questions/${questionId}/answers`, {
+  //     params: {
+  //       page: 10000,
+  //       count: 1
+  //     }
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       this.setState({
+  //         answers: response.data.results
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   addAnsClick(e) {
     e.preventDefault();
@@ -35,7 +68,13 @@ class Question extends Component {
 
   closeAddAns(e) {
     e.preventDefault();
-    this.setState({isAnswerModalOpen: false});
+    this.setState({
+      newAnsBody: '',
+      newAnsNickname: '',
+      newAnsEmail: '',
+      newAnswerPhotos: [],
+      isAnswerModalOpen: false,
+    });
   }
 
   handleNewAnswerInput(e) {
@@ -56,6 +95,7 @@ class Question extends Component {
   handleNewAnsSubmit(e) {
     e.preventDefault();
     const {newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId} = this.state;
+    const {getQuestionsById} = this.props;
 
     console.log(newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId);
     console.log(`api/qa/questions/${questionId}/answers`);
@@ -69,6 +109,7 @@ class Question extends Component {
       .then((response) => {
         console.log(response);
         console.log(response.data);
+        getQuestionsById();
       })
       .catch((err) => {
         console.log(err);
@@ -79,12 +120,14 @@ class Question extends Component {
       newAnsEmail: '',
       newAnswerPhotos: [],
       isAnswerModalOpen: false,
+      isImagesModalOpen: false,
     });
   }
 
   handleHelpful(e) {
     e.preventDefault();
     const {questionId} = this.state;
+    const {getQuestionsById} = this.props;
     axios.put(`api/qa/questions/${questionId}/helpful`)
       .then((response) => {
         console.log(response);
@@ -92,13 +135,40 @@ class Question extends Component {
       .catch((err) => {
         console.log(err);
       });
+    getQuestionsById();
+  }
+
+  handleAddImages() {
+    this.setState({isImagesModalOpen: true});
+  }
+
+  closeAddImages(e) {
+    e.preventDefault();
+    this.setState({isImagesModalOpen: false, imageURL: ''});
+  }
+
+  handleImageURL(e) {
+    e.preventDefault();
+    this.setState({imageURL: e.target.value});
+  }
+
+  handeImageSubmit(e) {
+    e.preventDefault();
+    const {newAnswerPhotos, imageURL} = this.state;
+    const photos = newAnswerPhotos.slice();
+    photos.push(imageURL);
+    this.setState({
+      newAnswerPhotos: photos,
+      imageURL: '',
+      isImagesModalOpen: false,
+    });
   }
 
   render() {
-    const {question, product} = this.props;
+    const {question, product, getQuestionsById} = this.props;
     const {question_body, question_helpfulness, answers} = question;
-    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful} = this;
-    const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail} = this.state;
+    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful, handleAddImages, closeAddImages, handleImageURL, handeImageSubmit} = this;
+    const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail, isImagesModalOpen, newAnswerPhotos} = this.state;
 
     return (
       <div className='Question'>
@@ -115,30 +185,48 @@ class Question extends Component {
 
         <AnswerModal open={isAnswerModalOpen} onClose={closeAddAns}>
           <form>
-            <h3>Submit Your Answer</h3>
-            <h4>{product.name} : {question_body}</h4>
+            <h3 className='New_QA_Form_Header'>Submit Your Answer</h3>
+            <h4 className='New_QA_Form_Sub_Header'>{product.name} : {question_body}</h4>
             <div>
               <label>Enter Answer: </label>
-              <textarea value={newAnsBody} placeholder='Your Answer' onChange={handleNewAnswerInput} rows='10' cols='100' />
+              <textarea className={newAnsBody.length === 0 ? 'New_QA_Input_Error' : ''} value={newAnsBody} placeholder='Your Answer' maxLength={1000} onChange={handleNewAnswerInput} rows='10' cols='100' />
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea value={newAnsNickname} placeholder='Example: jack543!' onChange={handleNicknameInput} rows='1' cols='40' />
+              <textarea className={newAnsNickname.length === 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newAnsNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
             </div>
             <span>
               <label>Enter Email: </label>
-              <textarea value={newAnsEmail} placeholder='Example: jack@email.com' onChange={handleEmailInput} rows='1' cols='40' />
+              <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
             </span>
+
             <div>
-              <Button size={1}>Add Images</Button>
+              <Button size={1} onClick={handleAddImages}>Add Images</Button>
             </div>
             <div>
               <Button size={1} onClick={handleNewAnsSubmit}>Submit</Button>
             </div>
+
+            <div className='New_Ans_Images'>
+              {newAnswerPhotos.length > 0
+                ?
+                newAnswerPhotos.map((URL) => <img className='New_Answer_Image' src={URL} />)
+                :
+                <></>
+              }
+            </div>
           </form>
         </AnswerModal>
 
-        <AList answers={answers} questionBody={question_body} product={product}/>
+        <AnswerImagesModal open={isImagesModalOpen} onClose={closeAddImages}>
+          <div>
+            <h4>Insert Image URL:</h4>
+            <textarea row='2' cols='70' onChange={handleImageURL} />
+            <Button size={1} onClick={handeImageSubmit}>Enter</Button>
+          </div>
+        </AnswerImagesModal>
+
+        <AList getQuestionsById={getQuestionsById} answers={answers} questionBody={question_body} product={product}/>
       </div>
     );
   }
