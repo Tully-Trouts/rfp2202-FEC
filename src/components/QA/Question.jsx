@@ -109,6 +109,7 @@ class Question extends Component {
       .then((response) => {
         console.log(response);
         console.log(response.data);
+        getQuestionsById();
       })
       .catch((err) => {
         console.log(err);
@@ -121,7 +122,6 @@ class Question extends Component {
       isAnswerModalOpen: false,
       isImagesModalOpen: false,
     });
-    getQuestionsById();
   }
 
   handleHelpful(e) {
