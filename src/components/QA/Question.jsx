@@ -193,11 +193,11 @@ class Question extends Component {
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea className={newAnsNickname.length === 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newAnsNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='40' />
+              <textarea className={newAnsNickname.length === 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newAnsNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
             </div>
             <span>
               <label>Enter Email: </label>
-              <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='40' />
+              <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
             </span>
 
             <div>

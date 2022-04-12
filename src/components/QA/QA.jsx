@@ -109,7 +109,7 @@ class QA extends Component {
     //   this.setState({toLoad: 4, loadingMore: false});
     // }
     if (e.target.value === 'loadMore') {
-      this.setState({toLoad: this.state.toLoad + 100, loadingMore: true});
+      this.setState({toLoad: this.state.toLoad + 2, loadingMore: true});
     } else {
       this.setState({toLoad: 4, loadingMore: false});
     }
@@ -236,16 +236,16 @@ class QA extends Component {
               <div className='Flex_Nickname_Email'>
                 <div>
                   <label>Enter Nickname: </label>
-                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='40' />
+                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
                 </div>
                 <span>
                   <label>Enter Email: </label>
-                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='44' />
+                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
                 </span>
               </div>
 
               <div>
-                <Button size={1} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
+                <Button size={2} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
               </div>
             </div>
 
