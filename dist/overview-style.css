@@ -107,14 +107,15 @@ nav.thumbnail-nav {
 }
 
 button.thumbnail-nav-item {
-  width: 40px;
-  height: 40px;
+  width: 5%;
+  aspect-ratio: 1;
   background: rgba(34, 56, 106, 0.172);
   margin: 0.5em;
 }
 
 button.thumbnail-nav-item:hover {
   opacity: .5;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 span.gallery-control:hover {
@@ -133,7 +134,16 @@ h5.overview-product-description {
 }
 
 h4.style-selector {
+  margin-top: 0.5em;
   font-weight: normal;
+}
+
+div.product-price {
+  font-size: larger;
+}
+
+span.product-title > h1 {
+  margin: 0.5em 0;
 }
 
 
