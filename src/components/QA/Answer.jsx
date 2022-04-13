@@ -47,8 +47,6 @@ class Answer extends Component {
     const {handleReport, handleHelpful} = this;
     const {answerer_name, date, body, helpfulness, photos} = answer;
 
-    console.log(answer);
-
     const images = photos.map((photo) => {
       return (
         <img src={photo.url} key={photo.id} className='A_Images' />

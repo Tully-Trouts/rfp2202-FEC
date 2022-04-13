@@ -47,7 +47,6 @@ class Question extends Component {
       }
     })
       .then((response) => {
-        console.log(response.data);
         this.setState({
           answers: response.data.results
         });
@@ -100,7 +99,6 @@ class Question extends Component {
       photos: newAnswerPhotos,
     })
       .then((response) => {
-        console.log(response);
         console.log(response.data);
         this.getAllAnswers(question.question_id);
       })

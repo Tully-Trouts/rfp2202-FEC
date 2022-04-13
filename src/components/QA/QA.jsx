@@ -152,7 +152,6 @@ class QA extends Component {
         product_id: productId
       })
         .then((response) => {
-          console.log(response.data);
           getQuestionsById(productId);
         })
         .catch((err) => {
