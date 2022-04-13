@@ -52,30 +52,65 @@ var Gallery = (props) => {
     backgroundPosition[nextIndex] = '50%';
     const newStyle = {
       backgroundPosition,
-      transition: '1s'
+      transition: '1s',
+      msTransition: '1s',
+      WebkitTransition: '1s',
     };
     setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
   };
 
-  const thumbStyle = {
-    display: 'flex',
-    position: 'absolute',
-    flexFlow: 'column',
+  const setPhoto = (index) => {
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < index ? '-500%' : '500%');
+    backgroundPosition[index] = '50%';
+    const newStyle = {
+      backgroundPosition,
+      transition: '1s',
+      msTransition: '1s',
+      WebkitTransition: '1s',
+    };
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
+    setDisplayPhotoIndex(index);
+  };
+
+  // const thumbStyle = {
+  //   display: 'flex',
+  //   position: 'absolute',
+  //   flexFlow: 'column',
+  // };
+
+  var getThumbnails = () => {
+    if (props.photos) {
+      return (
+        Array.from(Array(props.photos.length), (e, i) => i).map((e) => (
+          <button
+            key={e}
+            value={e}
+            className="thumbnail-nav-item"
+            onClick={()=>{ setPhoto(e); }}>
+          </button>
+        ))
+      );
+    }
   };
 
   return (
     <div className="overview overview-gallery">
-      <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
-        Previous
-      </span>
-      <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
-        Next
-      </span>
+      <nav className="gallery-nav">
+        <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
+          Previous
+        </span>
+        <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
+          Next
+        </span>
+      </nav>
       <div
         className="gallery-photos"
         style={galleryStyle}>
       </div>
+      <nav className="thumbnail-nav">
+        {getThumbnails()}
+      </nav>
     </div>
   );
 };
