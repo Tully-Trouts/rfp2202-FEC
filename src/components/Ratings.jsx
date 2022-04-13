@@ -97,7 +97,7 @@ class Ratings extends React.Component {
                 <RatingBreakdown productId={this.props.productId} updateCharOption={this.updateCharOption}/>
               </div>
               <div className="review_list">
-                <ReviewList reviewList={tileLoad} />
+                <ReviewList reviewList={tileLoad} productId={this.props.productId} retrieveReviewList={this.retrieveReviewList}/>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ class Ratings extends React.Component {
                 <RatingBreakdown productId={this.props.productId} updateCharOption={this.updateCharOption}/>
               </div>
               <div className="review_list">
-                <ReviewList reviewList={tileLoad} />
+                <ReviewList reviewList={tileLoad} productId={this.props.productId} retrieveReviewList={this.retrieveReviewList}/>
               </div>
             </div>
           </div>
