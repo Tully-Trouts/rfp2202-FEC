@@ -88,7 +88,7 @@ var Overview = ({product}) => {
             (<span className="original-price">{selectedStyle.original_price}</span>) ||
             (<span className="price">{product.default_price}</span>)}
           </div>
-          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
+          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} selected={selectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
