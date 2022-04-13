@@ -41,7 +41,7 @@ class AList extends Component {
     return (
       <div className={loadingMore ? 'A_List_Overflow' : 'A_List'}>
         { answers.slice(0, toLoad).map((answer) =>
-          <Answer questionId={this.props.questionId} getAllAnswers={getAllAnswers} answer={answer} key={answer.id} />
+          <Answer questionId={this.props.questionId} getAllAnswers={getAllAnswers} answer={answer} key={answer.answer_id} />
         )}
         {button}
       </div>
