@@ -200,6 +200,8 @@ li.style-list-item {
 svg.style-list-item-checkmark {
   position: absolute;
   right: 0;
+  border-radius: 50%;
+  background:rgba(255, 255, 255, 0.6)
 }
 
 span.style-list-item-circle {
