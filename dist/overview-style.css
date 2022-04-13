@@ -196,6 +196,7 @@ li.style-list-item {
 
 span.style-list-item-circle {
   width: 100%;
+  border: solid;
   border-radius: 50%;
   background-color: aqua;
   background-size: cover;

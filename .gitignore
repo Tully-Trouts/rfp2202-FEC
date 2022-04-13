@@ -26,3 +26,5 @@ jspm_packages/
 
 coverage/*
 coverage/
+
+*.pem

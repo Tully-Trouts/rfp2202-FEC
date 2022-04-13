@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "build-dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
     "start": "nodemon Routes/server.js",
     "cypress:open": "cypress open",
     "test-ov": "jest src/components/overview/__tests__/*"
