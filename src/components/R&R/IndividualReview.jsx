@@ -18,7 +18,7 @@ class IndividualReview extends React.Component {
     event.preventDefault();
     axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
       .then((result) => {
-
+        this.props.retrieveReviewList(this.props.productId);
         console.log(result);
       })
       .catch((err) => {

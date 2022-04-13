@@ -233,42 +233,42 @@ class AddReview extends React.Component {
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label for="star-a"></label>
+                  <label id="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label for="star-b"></label>
+                  <label id="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label for="star-c"></label>
+                  <label id="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label for="star-d"></label>
+                  <label id="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
-                  <label for="star-e"></label>
+                  <label id="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
-                  <label for="recommend-option"></label>
+                  <label id="recommend-option"></label>
                   <input type="radio"
                     name="recommendation"
                     value='true'
                     onChange={this.handleRecommendedChange}/> Yes
-                  <label for="recommend-option" >
+                  <label id="recommend-option" >
                   </label>
                   <input type="radio"
                     name="recommendation"
@@ -276,7 +276,7 @@ class AddReview extends React.Component {
                     onChange={this.handleRecommendedChange}/> No
                 </div>
                 <div className="char-option-comfort"> Comfort
-                  <label class="char-comfort"></label>
+                  <label className="char-comfort"></label>
                   <input type="radio"
                     name="Comfort"
                     value="1"
@@ -300,7 +300,7 @@ class AddReview extends React.Component {
                   {this.comfortDescription}
                 </div>
                 <div className="char-option-quality"> Quality
-                  <label class="char-quality"></label>
+                  <label className="char-quality"></label>
                   <input type="radio"
                     name="Quality"
                     value="1"
@@ -323,7 +323,7 @@ class AddReview extends React.Component {
                     onChange={this.handleQualityChange} />
                 </div>
                 <div className="char-option-length"> Length
-                  <label class="char-length"></label>
+                  <label className="char-length"></label>
                   <input type="radio"
                     name="Length"
                     value="1"
@@ -346,7 +346,7 @@ class AddReview extends React.Component {
                     onChange={this.handleLengthChange} />
                 </div>
                 <div className="char-option-fit"> Fit
-                  <label class="char-fit"></label>
+                  <label className="char-fit"></label>
                   <input type="radio"
                     name="Fit"
                     value="1"
@@ -441,34 +441,34 @@ class AddReview extends React.Component {
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label for="star-a"></label>
+                  <label id="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label for="star-b"></label>
+                  <label id="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label for="star-c"></label>
+                  <label id="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label for="star-d"></label>
+                  <label id="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
-                  <label for="star-e"></label>
+                  <label id="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
                   <label for="recommend-option"></label>
@@ -484,7 +484,7 @@ class AddReview extends React.Component {
                     onChange={this.handleRecommendedChange}/> No
                 </div>
                 <div className="char-option-size"> Size
-                  <label class="char-size"></label>
+                  <label className="char-size"></label>
                   <input type="radio"
                     name="Size"
                     value="1"
@@ -507,7 +507,7 @@ class AddReview extends React.Component {
                     onChange={this.handleSizeChange} />
                 </div>
                 <div className="char-option-width"> Width
-                  <label class="char-width"></label>
+                  <label className="char-width"></label>
                   <input type="radio"
                     name="Width"
                     value="1"
@@ -530,7 +530,7 @@ class AddReview extends React.Component {
                     onChange={this.handleWidthChange} />
                 </div>
                 <div className="char-option-comfort"> Comfort
-                  <label class="char-comfort"></label>
+                  <label className="char-comfort"></label>
                   <input type="radio"
                     name="Comfort"
                     value="1"
@@ -554,7 +554,7 @@ class AddReview extends React.Component {
                   {this.comfortDescription}
                 </div>
                 <div className="char-option-quality"> Quality
-                  <label class="char-quality"></label>
+                  <label className="char-quality"></label>
                   <input type="radio"
                     name="Quality"
                     value="1"
@@ -692,7 +692,7 @@ class AddReview extends React.Component {
                     onChange={this.handleRecommendedChange}/> No
                 </div>
                 <div className="char-option-size"> Size
-                  <label class="char-size"></label>
+                  <label className="char-size"></label>
                   <input type="radio"
                     name="Size"
                     value="1"
@@ -715,7 +715,7 @@ class AddReview extends React.Component {
                     onChange={this.handleSizeChange} />
                 </div>
                 <div className="char-option-width"> Width
-                  <label class="char-width"></label>
+                  <label className="char-width"></label>
                   <input type="radio"
                     name="Width"
                     value="1"
@@ -762,7 +762,7 @@ class AddReview extends React.Component {
                   {this.comfortDescription}
                 </div>
                 <div className="char-option-quality"> Quality
-                  <label class="char-quality"></label>
+                  <label className="char-quality"></label>
                   <input type="radio"
                     name="Quality"
                     value="1"
@@ -785,7 +785,7 @@ class AddReview extends React.Component {
                     onChange={this.handleQualityChange} />
                 </div>
                 <div className="char-option-length"> Length
-                  <label class="char-length"></label>
+                  <label className="char-length"></label>
                   <input type="radio"
                     name="Length"
                     value="1"
@@ -808,7 +808,7 @@ class AddReview extends React.Component {
                     onChange={this.handleLengthChange} />
                 </div>
                 <div className="char-option-fit"> Fit
-                  <label class="char-fit"></label>
+                  <label className="char-fit"></label>
                   <input type="radio"
                     name="Fit"
                     value="1"
