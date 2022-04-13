@@ -129,6 +129,12 @@ span.gallery-control:hover {
   width: 35%;
 }
 
+div.overview.product-review {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
 h5.overview-product-description {
   margin: 1.67em 1.5em;
 }
