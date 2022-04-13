@@ -118,13 +118,11 @@ class QA extends Component {
 
   closeAddQuestion(e) {
     e.preventDefault();
-    // this.setState({isQuestionModalOpen: false, submitError: false});
     this.setState({
       newQuestionBody: '',
       newQuestionNickname: '',
       newQuestionEmail: '',
       isQuestionModalOpen: false,
-      // submitError: false,
     });
   }
 
@@ -170,7 +168,6 @@ class QA extends Component {
         newQuestionNickname: '',
         newQuestionEmail: '',
         isQuestionModalOpen: false,
-        // submitError: false,
       });
     }
   }

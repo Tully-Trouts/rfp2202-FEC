@@ -4,7 +4,6 @@ import moment from 'moment';
 import { Link } from '../styledComponents';
 import axios from 'axios';
 
-
 class Answer extends Component {
   constructor(props) {
     super(props);
@@ -21,11 +20,11 @@ class Answer extends Component {
     axios.put(`api/qa/answers/${answer.answer_id}/report`)
       .then((response) => {
         console.log(response);
+        getAllAnswers(questionId);
       })
       .catch((err) => {
         console.log(err);
       });
-    getAllAnswers(questionId);
   }
 
   handleHelpful(e) {
@@ -36,11 +35,11 @@ class Answer extends Component {
     axios.put(`api/qa/answers/${answer_id}/helpful`)
       .then((response) => {
         console.log(response);
+        getAllAnswers(questionId);
       })
       .catch((err) => {
         console.log(err);
       });
-    getAllAnswers(questionId);
   }
 
   render() {

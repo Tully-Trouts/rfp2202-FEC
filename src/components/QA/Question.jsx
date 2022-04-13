@@ -91,7 +91,7 @@ class Question extends Component {
   handleNewAnsSubmit(e) {
     e.preventDefault();
     const {newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId} = this.state;
-    const {getQuestionsById} = this.props;
+    const {getQuestionsById, question} = this.props;
 
     axios.post(`api/qa/questions/${questionId}/answers`, {
       body: newAnsBody,
@@ -102,7 +102,7 @@ class Question extends Component {
       .then((response) => {
         console.log(response);
         console.log(response.data);
-        getQuestionsById();
+        this.getAllAnswers(question.question_id);
       })
       .catch((err) => {
         console.log(err);
@@ -124,11 +124,11 @@ class Question extends Component {
     axios.put(`api/qa/questions/${questionId}/helpful`)
       .then((response) => {
         console.log(response);
+        getQuestionsById();
       })
       .catch((err) => {
         console.log(err);
       });
-    getQuestionsById();
   }
 
   handleAddImages() {
