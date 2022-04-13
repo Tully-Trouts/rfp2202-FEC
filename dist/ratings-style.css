@@ -227,6 +227,7 @@
 .Summary-text {
   margin: auto;
   height: 40px;
+  overflow: hidden;
 }
 
 .btn-container-updated {
