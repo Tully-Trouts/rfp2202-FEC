@@ -107,14 +107,15 @@ nav.thumbnail-nav {
 }
 
 button.thumbnail-nav-item {
-  width: 40px;
-  height: 40px;
+  width: 5%;
+  aspect-ratio: 1;
   background: rgba(34, 56, 106, 0.172);
   margin: 0.5em;
 }
 
 button.thumbnail-nav-item:hover {
   opacity: .5;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 span.gallery-control:hover {
@@ -133,7 +134,16 @@ h5.overview-product-description {
 }
 
 h4.style-selector {
+  margin-top: 0.5em;
   font-weight: normal;
+}
+
+div.product-price {
+  font-size: larger;
+}
+
+span.product-title > h1 {
+  margin: 0.5em 0;
 }
 
 
@@ -192,10 +202,21 @@ ul.style-list {
 li.style-list-item {
   display: flex;
   margin: 10%;
+  /* setting position property to checkmark can position based on this and not the body */
+  position: relative;
+  opacity: 50%;
+}
+
+svg.style-list-item-checkmark {
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  background:rgba(255, 255, 255, 0.6)
 }
 
 span.style-list-item-circle {
   width: 100%;
+  border: solid;
   border-radius: 50%;
   background-color: aqua;
   background-size: cover;
@@ -211,8 +232,8 @@ span.style-list-item-circle::before {
 
 li.style-list-item:hover {
   cursor: pointer;
-  background-color: aqua;
-  opacity: 60%;
+  /* background-color: aqua; */
+  opacity: 80%;
 }
 
 .styled-btn {

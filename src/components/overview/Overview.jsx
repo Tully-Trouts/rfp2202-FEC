@@ -84,11 +84,11 @@ var Overview = ({product}) => {
           <span className="product-title"><h1>{product.name}</h1></span>
           <div className="overview product-price">
             {!!selectedStyle.sale_price &&
-            (<span className="sale-price"> {selectedStyle.sale_price}</span>) ||
-            (<span className="original-price">{selectedStyle.original_price}</span>) ||
-            (<span className="price">{product.default_price}</span>)}
+            (<span className="sale-price"> ${selectedStyle.sale_price}</span>) ||
+            (<span className="original-price">${selectedStyle.original_price}</span>) ||
+            (<span className="price">${product.default_price}</span>)}
           </div>
-          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
+          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} selected={selectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
