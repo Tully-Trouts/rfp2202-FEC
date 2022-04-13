@@ -11,14 +11,13 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // answers: [],
+      answers: [],
       isAnswerModalOpen: false,
       newAnsBody: '',
       newAnsNickname: '',
       newAnsEmail: '',
       newAnswerPhotos: [],
       questionId: this.props.question.question_id,
-      update: '',
       imageURL: '',
     };
 
@@ -33,33 +32,30 @@ class Question extends Component {
     this.closeAddImages = this.closeAddImages.bind(this);
     this.handleImageURL = this.handleImageURL.bind(this);
     this.handeImageSubmit = this.handeImageSubmit.bind(this);
-    // this.getAllAnswers = this.getAllAnswers.bind(this);
+    this.getAllAnswers = this.getAllAnswers.bind(this);
   }
 
-  // componentDidMount() {
-  //   console.log('QUESTION ID === ', this.props.question.question_id);
-  //   this.getAllAnswers(this.props.question.question_id);
-  // }
+  componentDidMount() {
+    this.getAllAnswers(this.props.question.question_id);
+  }
 
-  // getAllAnswers(questionId) {
-  //   //GET /qa/questions/:question_id/answers
-  //   console.log(`/api/qa/questions/${questionId}/answers`);
-  //   axios.get(`/api/qa/questions/${questionId}/answers`, {
-  //     params: {
-  //       page: 10000,
-  //       count: 1
-  //     }
-  //   })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       this.setState({
-  //         answers: response.data.results
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  getAllAnswers(questionId) {
+    axios.get(`/api/qa/questions/${questionId}/answers`, {
+      params: {
+        page: 1,
+        count: 10000
+      }
+    })
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          answers: response.data.results
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   addAnsClick(e) {
     e.preventDefault();
@@ -96,9 +92,6 @@ class Question extends Component {
     e.preventDefault();
     const {newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId} = this.state;
     const {getQuestionsById} = this.props;
-
-    console.log(newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId);
-    console.log(`api/qa/questions/${questionId}/answers`);
 
     axios.post(`api/qa/questions/${questionId}/answers`, {
       body: newAnsBody,
@@ -166,9 +159,9 @@ class Question extends Component {
 
   render() {
     const {question, product, getQuestionsById} = this.props;
-    const {question_body, question_helpfulness, answers} = question;
-    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful, handleAddImages, closeAddImages, handleImageURL, handeImageSubmit} = this;
-    const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail, isImagesModalOpen, newAnswerPhotos} = this.state;
+    const {question_body, question_helpfulness} = question;
+    const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful, handleAddImages, closeAddImages, handleImageURL, handeImageSubmit, getAllAnswers} = this;
+    const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail, isImagesModalOpen, newAnswerPhotos, answers} = this.state;
 
     return (
       <div className='Question'>
@@ -226,7 +219,7 @@ class Question extends Component {
           </div>
         </AnswerImagesModal>
 
-        <AList getQuestionsById={getQuestionsById} answers={answers} questionBody={question_body} product={product}/>
+        <AList questionId={question.question_id} getQuestionsById={getQuestionsById} getAllAnswers={getAllAnswers} answers={answers} questionBody={question_body} product={product}/>
       </div>
     );
   }
