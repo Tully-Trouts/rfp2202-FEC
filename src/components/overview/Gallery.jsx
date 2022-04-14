@@ -74,7 +74,11 @@ var Gallery = (props) => {
     }
   };
 
-  const imagePanel = document.getElementById('overview-panel');
+  var setGallerySize = () => {
+    console.log('clicked');
+  };
+
+  const imagePanel = document.getElementById('overview-panel'); // portal container
 
   return (
     <div className="overview overview-gallery">
