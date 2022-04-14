@@ -15,7 +15,7 @@ var StyleSelector = (props) => {
         <span className="style-list-item-circle"
           style={{
             backgroundImage: `url(${element.photos[0].thumbnail_url})`,
-            opacity: element.style_id === props.selected.style_id ? '80%' : '50%',
+            opacity: element.style_id === props.selected.style_id ? '100%' : '50%',
           }}></span>
         <svg xmlns="http://www.w3.org/2000/svg"
           width="30%"

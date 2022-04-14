@@ -4,7 +4,7 @@ import Gallery from './Gallery';
 import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button, StarReview } from '../styledComponents';
+import { Button, StarReview, Link } from '../styledComponents';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
@@ -76,9 +76,10 @@ var Overview = ({product}) => {
         </div>
         <div className="overview overview-product-information-panel">
           <div className="overview product-review sm">
-            [product review: {avgRating}]&nbsp;&nbsp;
-            <StarReview stars={avgRating} />
-            <a href="#rating_and_reviews-container">Read all reviews</a>
+            <StarReview stars={avgRating} /> &nbsp; &nbsp;
+            <Link>
+              <a href="#rating_and_reviews-container">Read all reviews</a>
+            </Link>
           </div>
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
@@ -92,11 +93,8 @@ var Overview = ({product}) => {
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
-      <div className="overview overview-main-2">
-        [testing]
-      </div>
       <div className="overview overview-product-description">
-        <h5 className="overview-product-description">{product.description}</h5>
+        <h4 className="overview-product-description">{product.description}</h4>
       </div>
     </div>
   );

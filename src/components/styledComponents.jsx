@@ -24,7 +24,7 @@ const Button = (props) => {
 
 const Link = (props) => {
   return (
-    <span className={`styled-link  ${props.className}`}
+    <span className={`styled-link  ${props.className || 'Link'}`}
       value={props.value}
       onClick={props.onClick}>
       {props.children}
@@ -35,7 +35,7 @@ const Link = (props) => {
 const Input = (props) => {
   return (
     <input
-      className={`styled-input styled-input-size-${props.size}`}
+      className={`styled-input styled-input-size-${props.size || '0'}`}
       style={{
         flex: props.size,
       }}

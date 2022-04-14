@@ -56,7 +56,7 @@ var Devtool = (props) => {
 
   return (
     <div className="devtool devtool-container">
-      <h3>Tully Trout Devtool:</h3>
+      <h3>shop:</h3>
       <nav>
         <ul className="devtool devtool-product-list">
           {productList.length > 0 ? renderProducts() : 'Loading. . .'}

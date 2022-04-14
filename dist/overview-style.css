@@ -1,11 +1,18 @@
 .devtool {
-  border-style: solid;
+  font-family: 'Courier New', Courier, monospace;
   font-size: x-small;
+  background: #5F5562;
 }
 
 .devtool-container {
   margin: 0 0 20px 0;
-  padding: 0 20px 20px 20px;
+  padding: 20px;
+  border: none;
+  box-shadow: 1px 3px 11px rgba(91, 91, 91, 0.455);
+}
+
+.devtool-container > h3 {
+  margin-top: 0;
 }
 
 .devtool ul.devtool-product-list {
@@ -18,15 +25,24 @@
 }
 
 li.devtool.devtool-product-list-item {
-  width: 80px;
+  width: 8%;
   padding: 0.3em;
+  border: solid grey;
+  background-color: rgb(241, 235, 255);
+  box-shadow: 1px 2px 2px rgb(47, 47, 47);
 }
 
 .devtool-product {
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
-.devtool-product-list-item:hover {
+.devtool-product.product-id {
+  font-weight: bold;
+}
+
+li.devtool-product-list-item:hover {
   background-color: cyan;
   cursor: pointer;
 }
@@ -110,13 +126,15 @@ nav.thumbnail-nav {
 button.thumbnail-nav-item {
   width: 5%;
   aspect-ratio: 1;
-  background: rgba(34, 56, 106, 0.172);
+  background-size: cover;
+  opacity: 60%;
   margin: 0.5em;
 }
 
 button.thumbnail-nav-item:hover {
-  opacity: .5;
-  background: rgba(255, 255, 255, 0.6);
+  opacity: 20%;
+  /* background: rgba(255, 255, 255, 0.6);
+  background-position: center center; */
 }
 
 span.gallery-control:hover {
@@ -128,6 +146,12 @@ span.gallery-control:hover {
   display: flex;
   flex-flow: column;
   width: 35%;
+}
+
+div.overview.product-review {
+  display: flex;
+  align-items: center;
+  align-content: center;
 }
 
 h5.overview-product-description {
@@ -205,14 +229,14 @@ li.style-list-item {
   margin: 10%;
   /* setting position property to checkmark can position based on this and not the body */
   position: relative;
-  opacity: 50%;
+  opacity: 90%;
 }
 
 svg.style-list-item-checkmark {
   position: absolute;
   right: 0;
   border-radius: 50%;
-  background:rgba(255, 255, 255, 0.6)
+  background:rgba(255, 255, 255, 0.944)
 }
 
 span.style-list-item-circle {
