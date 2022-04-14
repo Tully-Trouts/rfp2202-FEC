@@ -10,6 +10,7 @@ var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
   const [styles, setStyles] = React.useState([]);
   const [selectedStyle, setSelectedStyle] = React.useState({});
+  const [galleryExpanded, setGalleryExpanded] = React.useState(false);
 
   var getAvgRating = (reviewMetadata) => {
     let totalRatings = 0;
@@ -58,8 +59,30 @@ var Overview = ({product}) => {
           console.log(err);
         });
     }
-
   };
+
+  // let expandoStyle = {
+  //   width: '65%',
+  // };
+
+  // let infoPanelStyle = {};
+
+  // var setGallerySize = () => {
+  //   if (galleryExpanded) {
+  //     // collapse
+  //     console.log('collapse');
+  //     infoPanelStyle = {
+  //       display: 'flex',
+  //     };
+  //     expandoStyle = {
+  //       width: '100%',
+  //     };
+  //   } else {
+  //     // expand
+  //     console.log('expand');
+  //   }
+  //   setGalleryExpanded(!galleryExpanded);
+  // };
 
   // Passing in an array as second argument to useEffect causes react to check that prop
   //  for changes before using th effect again. This is to prevent infinite loop
@@ -70,7 +93,7 @@ var Overview = ({product}) => {
 
   return (
     <div id="overview-container">
-      <div className="overview overview-main">
+      <div className="overview overview-main" id="overview-panel">
         <div className="overview overview-image-panel">
           <Gallery photos={selectedStyle.photos} />
         </div>

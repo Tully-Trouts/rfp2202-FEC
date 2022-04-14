@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 var Gallery = (props) => {
 
@@ -73,8 +74,15 @@ var Gallery = (props) => {
     }
   };
 
+  const imagePanel = document.getElementById('overview-panel');
+
   return (
     <div className="overview overview-gallery">
+      <button
+        className="btn image-expando-button"
+        onClick={()=>{ setGallerySize(); }}>
+        Expando
+      </button>
       <nav className="gallery-nav">
         <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
           Previous
