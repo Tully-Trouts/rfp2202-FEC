@@ -6,9 +6,10 @@ body main {
 }
 
 div.super-app {
-  width: 75%;
+  width: 85%;
   /* border: solid; */
   margin: auto;
+  padding: 1em;
   background-color: white;
 }
 
