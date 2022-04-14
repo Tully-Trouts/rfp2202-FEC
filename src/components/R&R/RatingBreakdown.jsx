@@ -4,7 +4,7 @@ import axios from 'axios';
 import StarReview from './StarReview.jsx';
 import RatingReviewBar from './RatingReviewBar.jsx';
 import StarReviewBar from './StarReviewBar.jsx';
-import { Button } from '../styledComponents';
+import { Link } from '../styledComponents';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -148,9 +148,9 @@ class RatingBreakdown extends React.Component {
               Current Filter Active: {this.state.starId}
             </div>
             <div className="resetFilter-btn-container">
-              <Button className="resetFilter-btn" size={3} onClick={this.handleClearFilter}>
+              <Link className="resetFilter-btn" onClick={this.handleClearFilter}>
               Clear Filter
-              </Button>
+              </Link>
             </div>
             <div className="comfort-tag">
               <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)} charIndex={this.state.allPossibleChar[2]}/>
@@ -190,9 +190,9 @@ class RatingBreakdown extends React.Component {
               Current Filter Active: {this.state.starId}
             </div>
             <div className="resetFilter-btn-container">
-              <Button className="resetFilter-btn" size={3} onClick={this.handleClearFilter}>
+              <Link className="resetFilter-btn" onClick={this.handleClearFilter}>
               Clear Filter
-              </Button>
+              </Link>
             </div>
             <div className="comfort-tag">
               <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)} charIndex={this.state.allPossibleChar[2]}/>
