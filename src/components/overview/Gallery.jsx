@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 var Gallery = (props) => {
 
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
-
   const [galleryStyle, setGalleryStyle] = React.useState({});
+  const [expanded, setExpanded] = React.useState(false);
 
   const newStyle = {
     transition: '1s',
@@ -80,30 +80,39 @@ var Gallery = (props) => {
 
   const imagePanel = document.getElementById('overview-panel'); // portal container
 
-  return (
-    <div className="overview overview-gallery">
-      <button
-        className="btn image-expando-button"
-        onClick={()=>{ setGallerySize(); }}>
-        Expando
-      </button>
-      <nav className="gallery-nav">
-        <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
-          Previous
-        </span>
-        <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
-          Next
-        </span>
-      </nav>
-      <div
-        className="gallery-photos"
-        style={galleryStyle}>
+  const child = (
+    <>
+      <div className="overview overview-gallery">
+        <button
+          className="btn image-expando-button"
+          onClick={()=>{ setGallerySize(); }}>
+          Expando
+        </button>
+        <nav className="gallery-nav">
+          <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
+            Previous
+          </span>
+          <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
+            Next
+          </span>
+        </nav>
+        <div
+          className="gallery-photos"
+          style={galleryStyle}>
+        </div>
+        <nav className="thumbnail-nav">
+          {getThumbnails()}
+        </nav>
       </div>
-      <nav className="thumbnail-nav">
-        {getThumbnails()}
-      </nav>
-    </div>
+    </>
   );
+
+  if (!expanded) {
+    return child;
+  } else {
+    return ReactDOM.createPortal(child, imagePanel);
+  }
+
 };
 
 export default Gallery;
