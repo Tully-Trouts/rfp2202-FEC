@@ -94,7 +94,7 @@ var Overview = ({product}) => {
         </div>
       </div>
       <div className="overview overview-product-description">
-        <h5 className="overview-product-description">{product.description}</h5>
+        <h4 className="overview-product-description">{product.description}</h4>
       </div>
     </div>
   );

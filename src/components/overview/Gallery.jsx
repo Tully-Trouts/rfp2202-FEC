@@ -1,4 +1,3 @@
-import { findByLabelText } from '@testing-library/react';
 import React from 'react';
 
 var Gallery = (props) => {
@@ -59,14 +58,14 @@ var Gallery = (props) => {
   var getThumbnails = () => {
     if (props.photos) {
       return (
-        Array.from(Array(props.photos.length), (e, i) => i).map((e) => (
+        props.photos.map((e, i) => (
           <button
-            key={e}
-            value={e}
+            key={i}
+            value={i}
             className="thumbnail-nav-item"
-            onClick={()=>{ setPhoto(e); }}
+            onClick={()=>{ setPhoto(i); }}
             style={{
-              backgroundImage: `url(${e})`
+              backgroundImage: `url(${e.url})`
             }}>
           </button>
         ))
