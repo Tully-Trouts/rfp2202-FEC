@@ -61,15 +61,12 @@ class AddReview extends React.Component {
   }
 
   setDefaultChar(data) {
-    console.log('Test Location 1: ', data);
     this.setState({char: data});
-    console.log('Test Location 2: ', this.state.char);
   }
 
 
 
   retrieveMetaList(productId) {
-    console.log('current productId', productId);
     axios({
       method: 'get',
       url: '/api/reviews/meta/',
@@ -79,7 +76,6 @@ class AddReview extends React.Component {
       }
     })
       .then((result) => {
-        console.log('result info type', result.data.characteristics);
         this.setDefaultChar(result.data.characteristics);
       });
   }

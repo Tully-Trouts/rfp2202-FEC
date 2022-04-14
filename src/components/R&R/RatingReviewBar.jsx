@@ -14,8 +14,6 @@ class RatingReviewBar extends React.Component {
       transform: `translate(${x}%, ${y}px)`
     };
 
-    console.log('rating value', this.props.ratingValue);
-    console.log('Test charIndex', this.props.charIndex);
     if (this.props.ratingValue !== null) {
       if (this.props.charIndex === 'Size') {
         return (

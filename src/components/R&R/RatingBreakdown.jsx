@@ -70,7 +70,6 @@ class RatingBreakdown extends React.Component {
       .then((result) => {
         this.setState({overview: result.data});
         this.totalReview(this.state.overview.ratings);
-        console.log('Current Metadata', this.state.overview);
         this.totalRatingScore(this.state.overview.ratings);
         const avgReview = Number(this.state.totalReviewScore / this.state.total).toFixed(1);
         if (avgReview !== 'NaN') {
@@ -118,13 +117,11 @@ class RatingBreakdown extends React.Component {
     if (totalRecommended === 'NaN') {
       totalRecommended = 0;
     }
-    console.log('current Recommended percentage', totalRecommended);
     var currentStar = 0;
     const starRating = Object.values(this.state.overview.ratings);
     const starOverallRating = starRating.map((starValue, i) =>
       <StarReviewBar key={i} starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} currentStar={currentStar += 1} handleStarClickFilter={this.handleStarClickFilter}/>
     );
-    console.log('Detail check', this.state.allPossibleChar);
     if (this.state.clothes === true) {
       return (
         <div>
