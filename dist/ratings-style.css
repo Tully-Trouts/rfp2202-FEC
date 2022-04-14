@@ -164,7 +164,7 @@
 .stars {
   position: relative;
   white-space: nowrap;
-  fill: gold
+  fill: lightblue;
 }
 
 .cover {
@@ -499,7 +499,7 @@ body.active-modal {
   font-family: Arial;
   font-size: 30px;
   transition: 0.1s ease;
-  color: gold;
+  color: lightblue;
 }
 /* give label a hover state */
 .star-rating label:hover {
