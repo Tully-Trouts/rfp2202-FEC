@@ -7,15 +7,18 @@ var Gallery = (props) => {
 
   const [galleryStyle, setGalleryStyle] = React.useState({});
 
-  // monitor props.photos for changes, use this effect if there are changes
+  const newStyle = {
+    transition: '1s',
+    msTransition: '1s',
+    WebkitTransition: '1s',
+  };
+
   React.useEffect(() => {
     console.log('Rendering gallery');
 
     if (props.photos && props.photos.length !== 0) {
       const backgroundImage = props.photos.map(element => `url(${element.url})`);
-      // Create a background position array for the multiple background images:
       const backgroundPosition = [...Array(props.photos.length)].map(() => '500%');
-      // Setting the first element/image to be in the center of the div:
       backgroundPosition[0] = '50%';
       setGalleryStyle({backgroundImage, backgroundPosition});
     }
@@ -30,15 +33,7 @@ var Gallery = (props) => {
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
     const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     backgroundPosition[nextIndex] = '50%';
-
-    const newStyle = {
-      backgroundPosition,
-      transition: '1s',
-      msTransition: '1s',
-      WebkitTransition: '1s',
-    };
-
-    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
+    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition, ...newStyle}));
     setDisplayPhotoIndex(nextIndex);
   };
 
@@ -50,34 +45,16 @@ var Gallery = (props) => {
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
     const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
     backgroundPosition[nextIndex] = '50%';
-    const newStyle = {
-      backgroundPosition,
-      transition: '1s',
-      msTransition: '1s',
-      WebkitTransition: '1s',
-    };
-    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle, backgroundPosition}));
     setDisplayPhotoIndex(nextIndex);
   };
 
   const setPhoto = (index) => {
     const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < index ? '-500%' : '500%');
     backgroundPosition[index] = '50%';
-    const newStyle = {
-      backgroundPosition,
-      transition: '1s',
-      msTransition: '1s',
-      WebkitTransition: '1s',
-    };
-    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle}));
+    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle, backgroundPosition}));
     setDisplayPhotoIndex(index);
   };
-
-  // const thumbStyle = {
-  //   display: 'flex',
-  //   position: 'absolute',
-  //   flexFlow: 'column',
-  // };
 
   var getThumbnails = () => {
     if (props.photos) {
@@ -87,7 +64,10 @@ var Gallery = (props) => {
             key={e}
             value={e}
             className="thumbnail-nav-item"
-            onClick={()=>{ setPhoto(e); }}>
+            onClick={()=>{ setPhoto(e); }}
+            style={{
+              backgroundImage: `url(${e})`
+            }}>
           </button>
         ))
       );

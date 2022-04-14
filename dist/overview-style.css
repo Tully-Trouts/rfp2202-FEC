@@ -210,7 +210,7 @@ li.style-list-item {
   margin: 10%;
   /* setting position property to checkmark can position based on this and not the body */
   position: relative;
-  opacity: 50%;
+  opacity: 90%;
 }
 
 svg.style-list-item-checkmark {

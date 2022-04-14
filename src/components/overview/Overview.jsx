@@ -76,7 +76,7 @@ var Overview = ({product}) => {
         </div>
         <div className="overview overview-product-information-panel">
           <div className="overview product-review sm">
-            <StarReview stars={avgRating} />
+            <StarReview stars={avgRating} /> &nbsp; &nbsp;
             <Link>
               <a href="#rating_and_reviews-container">Read all reviews</a>
             </Link>
@@ -92,9 +92,6 @@ var Overview = ({product}) => {
           <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} selected={selectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
-      </div>
-      <div className="overview overview-main-2">
-        [testing]
       </div>
       <div className="overview overview-product-description">
         <h5 className="overview-product-description">{product.description}</h5>
