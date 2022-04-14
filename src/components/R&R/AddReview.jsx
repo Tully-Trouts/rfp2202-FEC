@@ -25,6 +25,12 @@ class AddReview extends React.Component {
       fit: 0,
       minBodyChar: 50,
       minCharNeeded: 50,
+      comfortDescrib: '',
+      widthDescrib: '',
+      sizeDescrib: '',
+      qualityDescrib: '',
+      lengthDescrib: '',
+      fitDescrib: '',
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.submitReview = this.submitReview.bind(this);
@@ -43,7 +49,6 @@ class AddReview extends React.Component {
     this.handleFitChange = this.handleFitChange.bind(this);
     this.retrieveMetaList = this.retrieveMetaList.bind(this);
     this.setDefaultChar = this.setDefaultChar.bind(this);
-    this.comfortDescription = this.comfortDescription.bind(this);
   }
 
   toggleModal() {
@@ -56,15 +61,12 @@ class AddReview extends React.Component {
   }
 
   setDefaultChar(data) {
-    console.log('Test Location 1: ', data);
     this.setState({char: data});
-    console.log('Test Location 2: ', this.state.char);
   }
 
 
 
   retrieveMetaList(productId) {
-    console.log('current productId', productId);
     axios({
       method: 'get',
       url: '/api/reviews/meta/',
@@ -74,7 +76,6 @@ class AddReview extends React.Component {
       }
     })
       .then((result) => {
-        console.log('result info type', result.data.characteristics);
         this.setDefaultChar(result.data.characteristics);
       });
   }
@@ -133,6 +134,17 @@ class AddReview extends React.Component {
       submitChar[key] = Number(event.target.value);
       return { submitChar };
     });
+    if (event.target.value === '1') {
+      this.setState({sizeDescrib: 'A size too small'});
+    } else if (event.target.value === '2') {
+      this.setState({sizeDescrib: '1/2 a size too small'});
+    } else if (event.target.value === '3') {
+      this.setState({sizeDescrib: 'Perfect'});
+    } else if (event.target.value === '4') {
+      this.setState({sizeDescrib: '1/2 a size too big'});
+    } else if (event.target.value === '5') {
+      this.setState({sizeDescrib: 'A size too large'});
+    }
   }
 
   handleWidthChange(event) {
@@ -142,7 +154,17 @@ class AddReview extends React.Component {
       submitChar[key] = Number(event.target.value);
       return { submitChar };
     });
-
+    if (event.target.value === '1') {
+      this.setState({widthDescrib: 'Too narrow'});
+    } else if (event.target.value === '2') {
+      this.setState({widthDescrib: 'Slightly narrow'});
+    } else if (event.target.value === '3') {
+      this.setState({widthDescrib: 'Perfect'});
+    } else if (event.target.value === '4') {
+      this.setState({widthDescrib: 'Slightly wide'});
+    } else if (event.target.value === '5') {
+      this.setState({widthDescrib: 'Too wide'});
+    }
   }
 
   handleComfortChange(event) {
@@ -152,6 +174,17 @@ class AddReview extends React.Component {
       submitChar[key] = Number(event.target.value);
       return { submitChar };
     });
+    if (event.target.value === '1') {
+      this.setState({comfortDescrib: 'Uncomfortable'});
+    } else if (event.target.value === '2') {
+      this.setState({comfortDescrib: 'Slightly Uncomfortable'});
+    } else if (event.target.value === '3') {
+      this.setState({comfortDescrib: 'Ok'});
+    } else if (event.target.value === '4') {
+      this.setState({comfortDescrib: 'Comfortable'});
+    } else if (event.target.value === '5') {
+      this.setState({comfortDescrib: 'Perfect'});
+    }
   }
 
   handleQualityChange(event) {
@@ -161,6 +194,17 @@ class AddReview extends React.Component {
       submitChar[key] = Number(event.target.value);
       return { submitChar };
     });
+    if (event.target.value === '1') {
+      this.setState({qualityDescrib: 'Poor'});
+    } else if (event.target.value === '2') {
+      this.setState({qualityDescrib: 'Below Average'});
+    } else if (event.target.value === '3') {
+      this.setState({qualityDescrib: 'What I expected'});
+    } else if (event.target.value === '4') {
+      this.setState({qualityDescrib: 'Pretty good'});
+    } else if (event.target.value === '5') {
+      this.setState({qualityDescrib: 'Perfect'});
+    }
   }
 
   handleLengthChange(event) {
@@ -170,6 +214,17 @@ class AddReview extends React.Component {
       submitChar[key] = Number(event.target.value);
       return { submitChar };
     });
+    if (event.target.value === '1') {
+      this.setState({lengthDescrib: 'Runs short'});
+    } else if (event.target.value === '2') {
+      this.setState({lengthDescrib: 'Runs slightly short'});
+    } else if (event.target.value === '3') {
+      this.setState({lengthDescrib: 'Perfect'});
+    } else if (event.target.value === '4') {
+      this.setState({lengthDescrib: 'Runs slightly long'});
+    } else if (event.target.value === '5') {
+      this.setState({lengthDescrib: 'Runs long'});
+    }
   }
 
   handleFitChange(event) {
@@ -179,6 +234,17 @@ class AddReview extends React.Component {
       submitChar[key] = Number(event.target.value);
       return { submitChar };
     });
+    if (event.target.value === '1') {
+      this.setState({fitDescrib: 'Runs tight'});
+    } else if (event.target.value === '2') {
+      this.setState({fitDescrib: 'Runs slightly tight'});
+    } else if (event.target.value === '3') {
+      this.setState({fitDescrib: 'Perfect'});
+    } else if (event.target.value === '4') {
+      this.setState({fitDescrib: 'Runs slightly long'});
+    } else if (event.target.value === '5') {
+      this.setState({fitDescrib: 'Runs long'});
+    }
   }
 
   handleImgChange(event) {
@@ -191,18 +257,6 @@ class AddReview extends React.Component {
   handleStarChange(event) {
     this.setState({star: event.target.value});
   }
-
-  comfortDescription() {
-    if (this.state.comfort === 1) {
-      return (
-        <div className="char-Descript">
-          Uncomfortable
-        </div>
-      );
-    }
-  }
-
-
 
   render() {
 
@@ -225,7 +279,7 @@ class AddReview extends React.Component {
             <div className="modalRR">
               <div className="overlayRR"></div>
               <div className="modal-content">
-                <h2>Write your review: {this.props.productName}</h2>
+                <h2 className="create-review-title">Write your review: {this.props.productName}</h2>
                 <div className="star-rating">
                   <input
                     type="radio"
@@ -233,34 +287,34 @@ class AddReview extends React.Component {
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label id="star-a"></label>
+                  <label htmlFor="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label id="star-b"></label>
+                  <label htmlFor="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label id="star-c"></label>
+                  <label htmlFor="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label id="star-d"></label>
+                  <label htmlFor="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
-                  <label id="star-e"></label>
+                  <label htmlFor="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
                   <label id="recommend-option"></label>
@@ -275,146 +329,176 @@ class AddReview extends React.Component {
                     value='false'
                     onChange={this.handleRecommendedChange}/> No
                 </div>
-                <div className="char-option-comfort"> Comfort
-                  <label className="char-comfort"></label>
-                  <input type="radio"
-                    name="Comfort"
-                    value="1"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="2"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="3"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="4"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="5"
-                    onChange={this.handleComfortChange} />
-                  {this.comfortDescription}
+                <div className="Section-box-1">
+                  <div className="character-container">
+                    <div className="char-option-comfort"> Comfort
+                      <label className="char-comfort"></label>
+                      <input type="radio"
+                        name="Comfort"
+                        value="1"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="2"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="3"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="4"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="5"
+                        onChange={this.handleComfortChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.comfortDescrib}
+                    </div>
+                    <div className="char-option-quality"> Quality
+                      <label className="char-quality"></label>
+                      <input type="radio"
+                        name="Quality"
+                        value="1"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="2"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="3"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="4"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="5"
+                        onChange={this.handleQualityChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.qualityDescrib}
+                    </div>
+                    <div className="char-option-length"> Length
+                      <label className="char-length"></label>
+                      <input type="radio"
+                        name="Length"
+                        value="1"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="2"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="3"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="4"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="5"
+                        onChange={this.handleLengthChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.lengthDescrib}
+                    </div>
+                    <div className="char-option-fit"> Fit
+                      <label className="char-fit"></label>
+                      <input type="radio"
+                        name="Fit"
+                        value="1"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="2"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="3"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="4"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="5"
+                        onChange={this.handleFitChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.fitDescrib}
+                    </div>
+                  </div>
+                  <div className="description-box">
+                    <input className="review-summary"
+                      maxLength="60"
+                      type="text"
+                      placeholder="Example: Best purchase ever!"
+                      value={this.state.summary}
+                      onChange={this.handleSummaryChange} />
+                    <br></br>
+                    <textarea className="review-body"
+                      maxLength="1000"
+                      required
+                      type="text"
+                      placeholder="Why did you like the product or not?"
+                      value={this.state.body}
+                      onChange={this.handleBodyChange} />
+                    <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
+                  </div>
                 </div>
-                <div className="char-option-quality"> Quality
-                  <label className="char-quality"></label>
-                  <input type="radio"
-                    name="Quality"
-                    value="1"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="2"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="3"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="4"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="5"
-                    onChange={this.handleQualityChange} />
+                <br></br>
+                <div className="user-overall-detail-container">
+                  <div className="user-detail-container">
+                    <div className="nickname-container">
+                      <div className="title-section">Nickname</div>
+                      <input className="Nickname"
+                        maxLength="60"
+                        required
+                        type="text"
+                        placeholder="Example: jackson11!"
+                        value={this.state.nickname}
+                        onChange={this.handleNicknameChange} />
+                      <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
+                    </div>
+                    <br></br>
+                    <div className="title-section">Email</div>
+                    <input className="email"
+                      type="text"
+                      placeholder="Example: jackson11@email.com"
+                      value={this.state.email}
+                      onChange={this.handleEmailChange} />
+                    <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
+                    <br></br>
+                  </div>
+                  <div className="added-Image-Container">
+                    <div className="title-section">Add an Image</div>
+                    <input className="img"
+                      type="file"
+                      multiple
+                      name="myImage"
+                      onChange={this.handleImgChange} />
+                  </div>
                 </div>
-                <div className="char-option-length"> Length
-                  <label className="char-length"></label>
-                  <input type="radio"
-                    name="Length"
-                    value="1"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="2"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="3"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="4"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="5"
-                    onChange={this.handleLengthChange} />
-                </div>
-                <div className="char-option-fit"> Fit
-                  <label className="char-fit"></label>
-                  <input type="radio"
-                    name="Fit"
-                    value="1"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="2"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="3"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="4"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="5"
-                    onChange={this.handleFitChange} />
-                </div>
-                <input className="review-summary"
-                  maxLength="60"
-                  type="text"
-                  placeholder="Example: Best purchase ever!"
-                  value={this.state.summary}
-                  onChange={this.handleSummaryChange} />
-                <br></br>
-                <textarea className="review-body"
-                  maxLength="1000"
-                  required
-                  type="text"
-                  placeholder="Why did you like the product or not?"
-                  value={this.state.body}
-                  onChange={this.handleBodyChange} />
-                <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
-                <br></br>
-                <input className="Nickname"
-                  maxLength="60"
-                  required
-                  type="text"
-                  placeholder="Example: jackson11!"
-                  value={this.state.nickname}
-                  onChange={this.handleNicknameChange} />
-                <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
-                <br></br>
-                <input className="email"
-                  type="text"
-                  placeholder="Example: jackson11@email.com"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange} />
-                <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
-                <br></br>
-                <input className="img"
-                  type="file"
-                  multiple
-                  name="myImage"
-                  onChange={this.handleImgChange} />
                 <button
                   className='close-modal'
                   onClick={this.toggleModal}>
                     Close
                 </button>
-                <button
-                  className='submit-review'
-                  onClick={this.submitReview}>
-                    Submit
-                </button>
+                <div className="submit-review-btn">
+                  <button
+                    className='submit-review'
+                    onClick={this.submitReview}>
+                      Submit
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -441,188 +525,218 @@ class AddReview extends React.Component {
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label id="star-a"></label>
+                  <label htmlFor="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label id="star-b"></label>
+                  <label htmlFor="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label id="star-c"></label>
+                  <label htmlFor="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label id="star-d"></label>
+                  <label htmlFor="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
-                  <label id="star-e"></label>
+                  <label htmlFor="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
-                  <label for="recommend-option"></label>
+                  <label htmlFor="recommend-option"></label>
                   <input type="radio"
                     name="recommendation"
                     value="true"
                     onChange={this.handleRecommendedChange}/> Yes
-                  <label for="recommend-option" >
+                  <label htmlFor="recommend-option" >
                   </label>
                   <input type="radio"
                     name="recommendation"
                     value="false"
                     onChange={this.handleRecommendedChange}/> No
                 </div>
-                <div className="char-option-size"> Size
-                  <label className="char-size"></label>
-                  <input type="radio"
-                    name="Size"
-                    value="1"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="2"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="3"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="4"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="5"
-                    onChange={this.handleSizeChange} />
+                <div className="Section-box-1">
+                  <div className="character-container">
+                    <div className="char-option-size"> Size
+                      <label className="char-size"></label>
+                      <input type="radio"
+                        name="Size"
+                        value="1"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="2"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="3"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="4"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="5"
+                        onChange={this.handleSizeChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.sizeDescrib}
+                    </div>
+                    <div className="char-option-width"> Width
+                      <label className="char-width"></label>
+                      <input type="radio"
+                        name="Width"
+                        value="1"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="2"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="3"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="4"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="5"
+                        onChange={this.handleWidthChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.widthDescrib}
+                    </div>
+                    <div className="char-option-comfort"> Comfort
+                      <label className="char-comfort"></label>
+                      <input type="radio"
+                        name="Comfort"
+                        value="1"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="2"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="3"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="4"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="5"
+                        onChange={this.handleComfortChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.comfortDescrib}
+                    </div>
+                    <div className="char-option-quality"> Quality
+                      <label className="char-quality"></label>
+                      <input type="radio"
+                        name="Quality"
+                        value="1"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="2"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="3"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="4"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="5"
+                        onChange={this.handleQualityChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.qualityDescrib}
+                    </div>
+                  </div>
+                  <div className="description-box">
+                    <input className="review-summary"
+                      maxLength="60"
+                      type="text"
+                      placeholder="Example: Best purchase ever!"
+                      value={this.state.summary}
+                      onChange={this.handleSummaryChange} />
+                    <br></br>
+                    <textarea className="review-body"
+                      maxLength="1000"
+                      required
+                      type="text"
+                      placeholder="Why did you like the product or not?"
+                      value={this.state.body}
+                      onChange={this.handleBodyChange} />
+                    <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
+                  </div>
                 </div>
-                <div className="char-option-width"> Width
-                  <label className="char-width"></label>
-                  <input type="radio"
-                    name="Width"
-                    value="1"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="2"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="3"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="4"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="5"
-                    onChange={this.handleWidthChange} />
+                <br></br>
+                <div className="user-overall-detail-container">
+                  <div className="user-detail-container">
+                    <div className="nickname-container">
+                      <div className="title-section">Nickname</div>
+                      <input className="Nickname"
+                        maxLength="60"
+                        required
+                        type="text"
+                        placeholder="Example: jackson11!"
+                        value={this.state.nickname}
+                        onChange={this.handleNicknameChange} />
+                      <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
+                    </div>
+                    <br></br>
+                    <div className="title-section">Email</div>
+                    <input className="email"
+                      type="text"
+                      placeholder="Example: jackson11@email.com"
+                      value={this.state.email}
+                      onChange={this.handleEmailChange} />
+                    <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
+                    <br></br>
+                  </div>
+                  <div className="added-Image-Container">
+                    <div className="title-section">Add an Image</div>
+                    <input className="img"
+                      type="file"
+                      multiple
+                      name="myImage"
+                      onChange={this.handleImgChange} />
+                  </div>
                 </div>
-                <div className="char-option-comfort"> Comfort
-                  <label className="char-comfort"></label>
-                  <input type="radio"
-                    name="Comfort"
-                    value="1"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="2"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="3"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="4"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="5"
-                    onChange={this.handleComfortChange} />
-                  {this.comfortDescription}
-                </div>
-                <div className="char-option-quality"> Quality
-                  <label className="char-quality"></label>
-                  <input type="radio"
-                    name="Quality"
-                    value="1"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="2"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="3"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="4"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="5"
-                    onChange={this.handleQualityChange} />
-                </div>
-                <input className="review-summary"
-                  maxLength="60"
-                  type="text"
-                  placeholder="Example: Best purchase ever!"
-                  value={this.state.summary}
-                  onChange={this.handleSummaryChange} />
-                <br></br>
-                <textarea className="review-body"
-                  maxLength="1000"
-                  required
-                  type="text"
-                  placeholder="Why did you like the product or not?"
-                  value={this.state.body}
-                  onChange={this.handleBodyChange} />
-                <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
-                <br></br>
-                <input className="Nickname"
-                  maxLength="60"
-                  required
-                  type="text"
-                  placeholder="Example: jackson11!"
-                  value={this.state.nickname}
-                  onChange={this.handleNicknameChange} />
-                <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
-                <br></br>
-                <input className="email"
-                  type="text"
-                  placeholder="Example: jackson11@email.com"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange} />
-                <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
-                <br></br>
-                <input className="img"
-                  type="file"
-                  multiple
-                  name="myImage"
-                  onChange={this.handleImgChange} />
                 <button
                   className='close-modal'
                   onClick={this.toggleModal}>
                     Close
                 </button>
-                <button
-                  className='submit-review'
-                  onClick={this.submitReview}>
-                    Submit
-                </button>
+                <div className="submit-review-btn">
+                  <button
+                    className='submit-review'
+                    onClick={this.submitReview}>
+                      Submit
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -641,7 +755,7 @@ class AddReview extends React.Component {
             <div className="modalRR">
               <div className="overlayRR"></div>
               <div className="modal-content">
-                <h2>Write your review: {this.props.productName}</h2>
+                <h2 className="create-review-title">Write your review: {this.props.productName}</h2>
                 <div className="star-rating">
                   <input
                     type="radio"
@@ -649,234 +763,271 @@ class AddReview extends React.Component {
                     id="star-a"
                     value="5"
                     onChange={this.handleStarChange} />
-                  <label for="star-a"></label>
+                  <label htmlFor="star-a"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-b"
                     value="4"
                     onChange={this.handleStarChange} />
-                  <label for="star-b"></label>
+                  <label htmlFor="star-b"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-c"
                     value="3"
                     onChange={this.handleStarChange} />
-                  <label for="star-c"></label>
+                  <label htmlFor="star-c"></label>
                   <input
                     type="radio"
                     name="stars"
                     id="star-d"
                     value="2"
                     onChange={this.handleStarChange} />
-                  <label for="star-d"></label>
+                  <label htmlFor="star-d"></label>
                   <input type="radio"
                     name="stars"
                     id="star-e"
                     value="1"
                     onChange={this.handleStarChange} />
-                  <label for="star-e"></label>
+                  <label htmlFor="star-e"></label>
                 </div>
                 <div className="recommended-select"> Do you recommend this product?
-                  <label for="recommend-option"></label>
+                  <label htmlFor="recommend-option"></label>
                   <input type="radio"
                     name="recommendation"
                     value="true"
                     onChange={this.handleRecommendedChange}/> Yes
-                  <label for="recommend-option" >
+                  <label htmlFor="recommend-option" >
                   </label>
                   <input type="radio"
                     name="recommendation"
                     value="false"
                     onChange={this.handleRecommendedChange}/> No
                 </div>
-                <div className="char-option-size"> Size
-                  <label className="char-size"></label>
-                  <input type="radio"
-                    name="Size"
-                    value="1"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="2"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="3"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="4"
-                    onChange={this.handleSizeChange} />
-                  <input type="radio"
-                    name="Size"
-                    value="5"
-                    onChange={this.handleSizeChange} />
+                <div className="Section-box-1">
+                  <div className="character-container">
+                    <div className="char-option-size"> Size
+                      <label className="char-size"></label>
+                      <input type="radio"
+                        name="Size"
+                        value="1"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="2"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="3"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="4"
+                        onChange={this.handleSizeChange} />
+                      <input type="radio"
+                        name="Size"
+                        value="5"
+                        onChange={this.handleSizeChange} />
+                    </div>
+                    <div className="char-container">
+                    Current Selection: {this.state.sizeDescrib}
+                    </div>
+                    <div className="char-option-width"> Width
+                      <label className="char-width"></label>
+                      <input type="radio"
+                        name="Width"
+                        value="1"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="2"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="3"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="4"
+                        onChange={this.handleWidthChange} />
+                      <input type="radio"
+                        name="Width"
+                        value="5"
+                        onChange={this.handleWidthChange} />
+                    </div>
+                    <div className="char-container">
+                    Current Selection: {this.state.handleDescrib}
+                    </div>
+                    <div className="char-option-comfort"> Comfort
+                      <label className="char-comfort"></label>
+                      <input type="radio"
+                        name="Comfort"
+                        value="1"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="2"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="3"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="4"
+                        onChange={this.handleComfortChange} />
+                      <input type="radio"
+                        name="Comfort"
+                        value="5"
+                        onChange={this.handleComfortChange} />
+                      {this.comfortDescription}
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.comfortDescrib}
+                    </div>
+                    <div className="char-option-quality"> Quality
+                      <label className="char-quality"></label>
+                      <input type="radio"
+                        name="Quality"
+                        value="1"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="2"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="3"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="4"
+                        onChange={this.handleQualityChange} />
+                      <input type="radio"
+                        name="Quality"
+                        value="5"
+                        onChange={this.handleQualityChange} />
+                    </div>
+                    <div className="char-container">
+                      Current Selection: {this.state.qualityDescrib}
+                    </div>
+                    <div className="char-option-length"> Length
+                      <label className="char-length"></label>
+                      <input type="radio"
+                        name="Length"
+                        value="1"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="2"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="3"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="4"
+                        onChange={this.handleLengthChange} />
+                      <input type="radio"
+                        name="Length"
+                        value="5"
+                        onChange={this.handleLengthChange} />
+                    </div>
+                    <div className="char-container">
+                        Current Selection: {this.state.lengthDescrib}
+                    </div>
+                    <div className="char-option-fit"> Fit
+                      <label className="char-fit"></label>
+                      <input type="radio"
+                        name="Fit"
+                        value="1"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="2"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="3"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="4"
+                        onChange={this.handleFitChange} />
+                      <input type="radio"
+                        name="Fit"
+                        value="5"
+                        onChange={this.handleFitChange} />
+                    </div>
+                    <div className="char-container">
+                        Current Selection: {this.state.fitDescrib}
+                    </div>
+                  </div>
+                  <div className="description-box">
+                    <input className="review-summary"
+                      maxLength="60"
+                      type="text"
+                      placeholder="Example: Best purchase ever!"
+                      value={this.state.summary}
+                      onChange={this.handleSummaryChange} />
+                    <br></br>
+                    <textarea className="review-body"
+                      maxLength="1000"
+                      required
+                      type="text"
+                      placeholder="Why did you like the product or not?"
+                      value={this.state.body}
+                      onChange={this.handleBodyChange} />
+                    <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
+                  </div>
                 </div>
-                <div className="char-option-width"> Width
-                  <label className="char-width"></label>
-                  <input type="radio"
-                    name="Width"
-                    value="1"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="2"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="3"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="4"
-                    onChange={this.handleWidthChange} />
-                  <input type="radio"
-                    name="Width"
-                    value="5"
-                    onChange={this.handleWidthChange} />
-                </div>
-                <div className="char-option-comfort"> Comfort
-                  <label class="char-comfort"></label>
-                  <input type="radio"
-                    name="Comfort"
-                    value="1"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="2"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="3"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="4"
-                    onChange={this.handleComfortChange} />
-                  <input type="radio"
-                    name="Comfort"
-                    value="5"
-                    onChange={this.handleComfortChange} />
-                  {this.comfortDescription}
-                </div>
-                <div className="char-option-quality"> Quality
-                  <label className="char-quality"></label>
-                  <input type="radio"
-                    name="Quality"
-                    value="1"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="2"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="3"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="4"
-                    onChange={this.handleQualityChange} />
-                  <input type="radio"
-                    name="Quality"
-                    value="5"
-                    onChange={this.handleQualityChange} />
-                </div>
-                <div className="char-option-length"> Length
-                  <label className="char-length"></label>
-                  <input type="radio"
-                    name="Length"
-                    value="1"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="2"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="3"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="4"
-                    onChange={this.handleLengthChange} />
-                  <input type="radio"
-                    name="Length"
-                    value="5"
-                    onChange={this.handleLengthChange} />
-                </div>
-                <div className="char-option-fit"> Fit
-                  <label className="char-fit"></label>
-                  <input type="radio"
-                    name="Fit"
-                    value="1"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="2"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="3"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="4"
-                    onChange={this.handleFitChange} />
-                  <input type="radio"
-                    name="Fit"
-                    value="5"
-                    onChange={this.handleFitChange} />
-                </div>
-                <input className="review-summary"
-                  maxLength="60"
-                  type="text"
-                  placeholder="Example: Best purchase ever!"
-                  value={this.state.summary}
-                  onChange={this.handleSummaryChange} />
                 <br></br>
-                <textarea className="review-body"
-                  maxLength="1000"
-                  required
-                  type="text"
-                  placeholder="Why did you like the product or not?"
-                  value={this.state.body}
-                  onChange={this.handleBodyChange} />
-                <div className="MinCharNeeded">Minimum required characters left: {this.state.minCharNeeded}</div>
-                <br></br>
-                <input className="Nickname"
-                  maxLength="60"
-                  required
-                  type="text"
-                  placeholder="Example: jackson11!"
-                  value={this.state.nickname}
-                  onChange={this.handleNicknameChange} />
-                <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
-                <br></br>
-                <input className="email"
-                  type="text"
-                  placeholder="Example: jackson11@email.com"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange} />
-                <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
-                <br></br>
-                <input className="img"
-                  type="file"
-                  multiple
-                  name="myImage"
-                  onChange={this.handleImgChange} />
+                <div className="user-overall-detail-container">
+                  <div className="user-detail-container">
+                    <div className="nickname-container">
+                      <div className="title-section">Nickname</div>
+                      <input className="Nickname"
+                        maxLength="60"
+                        required
+                        type="text"
+                        placeholder="Example: jackson11!"
+                        value={this.state.nickname}
+                        onChange={this.handleNicknameChange} />
+                      <div className="warning-line" id="username">For privacy reasons, do not use your full name or email address </div>
+                    </div>
+                    <br></br>
+                    <div className="title-section">Email</div>
+                    <input className="email"
+                      type="text"
+                      placeholder="Example: jackson11@email.com"
+                      value={this.state.email}
+                      onChange={this.handleEmailChange} />
+                    <div className="warning-line" id="email">For authentication reasons, you will not be emailed </div>
+                    <br></br>
+                  </div>
+                  <div className="added-Image-Container">
+                    <div className="title-section">Add an Image</div>
+                    <input className="img"
+                      type="file"
+                      multiple
+                      name="myImage"
+                      onChange={this.handleImgChange} />
+                  </div>
+                </div>
                 <button
                   className='close-modal'
                   onClick={this.toggleModal}>
                     Close
                 </button>
-                <button
-                  className='submit-review'
-                  onClick={this.submitReview}>
-                    Submit
-                </button>
+                <div className="submit-review-btn">
+                  <button
+                    className='submit-review'
+                    onClick={this.submitReview}>
+                      Submit
+                  </button>
+                </div>
               </div>
             </div>
           )}
