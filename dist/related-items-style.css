@@ -4,6 +4,7 @@
   margin: auto;
   padding: 1em;
   border-bottom: solid lightgrey;
+  box-sizing: border-box;
 }
 
 .card-list {
