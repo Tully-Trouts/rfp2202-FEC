@@ -4,6 +4,7 @@
   width: 100%;
   border-bottom: solid lightgrey;
   background-color: white;
+  box-sizing: border-box;
 }
 
 .QA_Title {
