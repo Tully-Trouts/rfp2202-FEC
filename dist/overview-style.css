@@ -36,6 +36,7 @@ li.devtool.devtool-product-list-item {
   margin: auto;
   padding: 1em;
   border-bottom: solid lightgrey;
+  background-color: white;
 }
 
 .overview-main {
