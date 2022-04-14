@@ -4,6 +4,7 @@ import axios from 'axios';
 import StarReview from './StarReview.jsx';
 import RatingReviewBar from './RatingReviewBar.jsx';
 import StarReviewBar from './StarReviewBar.jsx';
+import { Button } from '../styledComponents';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -26,10 +27,14 @@ class RatingBreakdown extends React.Component {
       totalReviewScore: 0,
       totalAvgReview: 0,
       clothes: null,
+      starId: [],
+      allPossibleChar: ['Fit', 'Length', 'Comfort', 'Quality', 'Width', 'Size']
     };
     this.retrieveMetaList = this.retrieveMetaList.bind(this);
     this.totalReview = this.totalReview.bind(this);
     this.totalRatingScore = this.totalRatingScore.bind(this);
+    this.handleStarClickFilter = this.handleStarClickFilter.bind(this);
+    this.handleClearFilter = this.handleClearFilter.bind(this);
   }
 
   totalReview(object) {
@@ -68,7 +73,11 @@ class RatingBreakdown extends React.Component {
         console.log('Current Metadata', this.state.overview);
         this.totalRatingScore(this.state.overview.ratings);
         const avgReview = Number(this.state.totalReviewScore / this.state.total).toFixed(1);
-        this.setState({totalAvgReview: avgReview});
+        if (avgReview !== 'NaN') {
+          this.setState({totalAvgReview: avgReview});
+        } else {
+          this.setState({totalAvgReview: 0});
+        }
         if (this.state.overview.characteristics.Fit) {
           this.setState({clothes: true});
           this.props.updateCharOption(1);
@@ -82,22 +91,40 @@ class RatingBreakdown extends React.Component {
       });
   }
 
+  handleStarClickFilter(starId) {
+    if (this.state.starId.includes(starId)) {
+      const updatedStarId = this.state.starId.filter(word => word !== starId);
+      this.setState({starId: updatedStarId});
+    } else {
+      this.setState({starId: [...this.state.starId, starId]});
+    }
+  }
+
+  handleClearFilter(event) {
+    event.preventDefault();
+    this.setState({starId: []});
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.productId !== this.props.productId) {
       this.retrieveMetaList(this.props.productId);
+
     }
   }
 
   render() {
-    console.log('current recommended', this.state.overview.recommended);
-    const totalRecommended = ((Number(this.state.overview.recommended.true) / (Number(this.state.overview.recommended.false) + Number(this.state.overview.recommended.true)) * 100).toFixed(2));
+    let totalRecommended = ((Number(this.state.overview.recommended.true) / (Number(this.state.overview.recommended.false) + Number(this.state.overview.recommended.true)) * 100).toFixed(2));
+
+    if (totalRecommended === 'NaN') {
+      totalRecommended = 0;
+    }
     console.log('current Recommended percentage', totalRecommended);
     var currentStar = 0;
     const starRating = Object.values(this.state.overview.ratings);
     const starOverallRating = starRating.map((starValue, i) =>
-      <StarReviewBar key={i} starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} currentStar={currentStar += 1}/>
-
+      <StarReviewBar key={i} starRating={Number((parseInt(starValue) / parseInt(this.state.total)) * 100).toFixed(2)} currentStar={currentStar += 1} handleStarClickFilter={this.handleStarClickFilter}/>
     );
+    console.log('Detail check', this.state.allPossibleChar);
     if (this.state.clothes === true) {
       return (
         <div>
@@ -117,17 +144,25 @@ class RatingBreakdown extends React.Component {
             <div>
               {starOverallRating}
             </div>
+            <div className="currentStarFilter-Active">
+              Current Filter Active: {this.state.starId}
+            </div>
+            <div className="resetFilter-btn-container">
+              <Button className="resetFilter-btn" size={3} onClick={this.handleClearFilter}>
+              Clear Filter
+              </Button>
+            </div>
             <div className="comfort-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)} charIndex={this.state.allPossibleChar[2]}/>
             </div>
             <div className="quality-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div className={'characteristic-tag'}>Quality</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div className={'characteristic-tag'}>Quality</div>)} charIndex={this.state.allPossibleChar[3]}/>
             </div>
             <div className="length-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Length.value} name={(<div className={'characteristic-tag'}>Length</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Length.value} name={(<div className={'characteristic-tag'}>Length</div>)} charIndex={this.state.allPossibleChar[1]}/>
             </div>
             <div className="fit-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Fit.value} name={(<div className={'characteristic-tag'}>Fit</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Fit.value} name={(<div className={'characteristic-tag'}>Fit</div>)} charIndex={this.state.allPossibleChar[0]}/>
             </div>
           </div>
         </div>
@@ -151,17 +186,25 @@ class RatingBreakdown extends React.Component {
             <div>
               {starOverallRating}
             </div>
+            <div className="currentStarFilter-Active">
+              Current Filter Active: {this.state.starId}
+            </div>
+            <div className="resetFilter-btn-container">
+              <Button className="resetFilter-btn" size={3} onClick={this.handleClearFilter}>
+              Clear Filter
+              </Button>
+            </div>
             <div className="comfort-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Comfort.value} name={(<div className={'characteristic-tag'}>Comfort</div>)} charIndex={this.state.allPossibleChar[2]}/>
             </div>
             <div className="quality-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div className={'characteristic-tag'}>Quality</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Quality.value} name={(<div className={'characteristic-tag'}>Quality</div>)} charIndex={this.state.allPossibleChar[3]}/>
             </div>
             <div className="size-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Size.value} name={(<div className={'characteristic-tag'}>Size</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Size.value} name={(<div className={'characteristic-tag'}>Size</div>)} charIndex={this.state.allPossibleChar[5]}/>
             </div>
             <div className="width-tag">
-              <RatingReviewBar ratingValue={this.state.overview.characteristics.Width.value} name={(<div className={'characteristic-tag'}>Width</div>)}/>
+              <RatingReviewBar ratingValue={this.state.overview.characteristics.Width.value} name={(<div className={'characteristic-tag'}>Width</div>)} charIndex={this.state.allPossibleChar[4]}/>
             </div>
           </div>
         </div>
