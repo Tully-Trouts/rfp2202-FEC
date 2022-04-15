@@ -17,7 +17,7 @@ export default function AnswerImagesModal ({ open, children, onClose }) {
 
   return ReactDOM.createPortal (
     <>
-      <div style={modalStyles} >
+      <div style={modalStyles} className='Add_QA_Form'>
         <Button size={1} onClick={onClose}>Cancel</Button>
         {children}
       </div>
