@@ -74,6 +74,13 @@
   object-fit: cover;
 }
 
+.not-cover {
+  object-fit: none;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: gray;
+}
+
 .comparison-modal {
   position: absolute;
   top: 40%;
@@ -133,6 +140,11 @@ td {
   width: 25px;
   height: 25px;
   margin: 5px;
+}
+
+.card-list-nav {
+  display: flex;
+  flex-direction: row;
 }
 
 .absolute {
