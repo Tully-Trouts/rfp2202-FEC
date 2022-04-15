@@ -17,7 +17,7 @@ class SubmittedImg extends React.Component {
       />
     );
     return (
-      <div>
+      <div className="ReviewImg-each">
         {renderedImg}
       </div>
     );

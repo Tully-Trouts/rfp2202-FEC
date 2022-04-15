@@ -188,13 +188,17 @@
   /* border-style: solid; */
   font-style: small;
 }
+
+.reviewImg-each {
+  overflow-x: auto;
+}
 .reviewList_container {
   height: 70%;
-  overflow-y: scroll
+  overflow-y: auto;
 }
 .review_list {
   width: 65%;
-  height: 450px;
+  height: 580px;
   padding: 1em;
   margin: auto;
   display: inline-block;
