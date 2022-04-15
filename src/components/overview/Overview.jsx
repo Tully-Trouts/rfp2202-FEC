@@ -65,24 +65,7 @@ var Overview = ({product}) => {
   //   width: '65%',
   // };
 
-  // let infoPanelStyle = {};
-
-  // var setGallerySize = () => {
-  //   if (galleryExpanded) {
-  //     // collapse
-  //     console.log('collapse');
-  //     infoPanelStyle = {
-  //       display: 'flex',
-  //     };
-  //     expandoStyle = {
-  //       width: '100%',
-  //     };
-  //   } else {
-  //     // expand
-  //     console.log('expand');
-  //   }
-  //   setGalleryExpanded(!galleryExpanded);
-  // };
+  let infoPanelStyle = {};
 
   // Passing in an array as second argument to useEffect causes react to check that prop
   //  for changes before using th effect again. This is to prevent infinite loop
@@ -93,11 +76,10 @@ var Overview = ({product}) => {
 
   return (
     <div id="overview-container">
-      <div className="overview overview-main" id="overview-panel">
-        <div className="overview overview-image-panel">
-          <Gallery photos={selectedStyle.photos} />
-        </div>
-        <div className="overview overview-product-information-panel">
+      <div id="overview-panel"></div>
+      <div className="overview overview-main" >
+        <Gallery photos={selectedStyle.photos} />
+        <div className="overview overview-product-information-panel" style={infoPanelStyle}>
           <div className="overview product-review sm">
             <StarReview stars={avgRating} /> &nbsp; &nbsp;
             <Link>

@@ -81,11 +81,12 @@ var Gallery = (props) => {
   const imagePanel = document.getElementById('overview-panel'); // portal container
 
   const child = (
-    <>
+    <div className="overview-image-panel">
       <div className="overview overview-gallery">
         <button
           className="btn image-expando-button"
-          onClick={()=>{ setGallerySize(); }}>
+          onClick={()=>{ setGallerySize(); }}
+          hidden={true}>
           Expando
         </button>
         <nav className="gallery-nav">
@@ -104,7 +105,7 @@ var Gallery = (props) => {
           {getThumbnails()}
         </nav>
       </div>
-    </>
+    </div>
   );
 
   if (!expanded) {
