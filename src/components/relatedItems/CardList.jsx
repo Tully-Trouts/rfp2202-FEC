@@ -12,6 +12,7 @@ class CardList extends React.Component {
       relatedItems: [],
       firstCard: 0,
       maxCards: 3,
+      cardList: []
     };
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
@@ -36,16 +37,35 @@ class CardList extends React.Component {
     this.setState({firstCard: nextCard});
   }
 
+  getCards() {
+    const { relatedItems } = this.state;
+    const { product, getProductById } = this.props;
+    const cardList = relatedItems.map((productId) => {
+      return (
+        <div className="card" key={productId}>
+          <Card isOutfit={false} currProduct={product} productId={productId} getProductById={getProductById}/>
+        </div>
+      );
+    });
+    this.setState({cardList});
+  }
+
   componentDidMount() {
     this.getRelatedProducts(this.props.product.id);
+    this.getCards();
   }
 
   componentDidUpdate(prevProps) {
+
+
     if (prevProps.product.id !== this.props.product.id) {
       this.getRelatedProducts(this.props.product.id);
       const maxCards = Math.floor(document.getElementById('related-items-cards').offsetWidth / CARDW);
       this.setState({maxCards});
+
+      this.getCards();
     }
+
   }
 
   render() {
@@ -66,6 +86,7 @@ class CardList extends React.Component {
 
       );
     });
+
 
     return (
       <div id="related-items-cards">
