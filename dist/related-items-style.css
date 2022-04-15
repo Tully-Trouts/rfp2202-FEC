@@ -4,6 +4,31 @@
   margin: auto;
   padding: 1em;
   border-bottom: solid lightgrey;
+  box-sizing: border-box;
+}
+
+#related-items-container:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 60%);
+  height: 100%;
+  width: 4em;
+  pointer-events: none;
+}
+
+#outfit-list-container:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 60%);
+  height: 100%;
+  width: 4em;
+  pointer-events: none;
 }
 
 .card-list {

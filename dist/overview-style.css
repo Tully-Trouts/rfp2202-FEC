@@ -52,6 +52,7 @@ li.devtool-product-list-item:hover {
   margin: auto;
   padding: 1em;
   border-bottom: solid lightgrey;
+  background-color: white;
 }
 
 .overview-main {

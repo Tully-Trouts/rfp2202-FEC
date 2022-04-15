@@ -1,10 +1,17 @@
 import React from 'react';
+import { Link } from '../styledComponents';
 
 class StarReviewBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
+    this.handleStarClick = this.handleStarClick.bind(this);
+  }
+
+  handleStarClick(event) {
+    event.preventDefault();
+    this.props.handleStarClickFilter(this.props.currentStar);
   }
 
   render() {
@@ -13,7 +20,8 @@ class StarReviewBar extends React.Component {
         <div>{this.props.name}</div>
         <div className="StarBar-Container">
           <div className="progress-Container">
-            {this.props.currentStar} Star
+            <Link onClick={this.handleStarClick}>
+              {this.props.currentStar} Star </Link>
             <div className="progress">
               <div className="progress-done" style={{
                 opacity: 1,

@@ -8,20 +8,19 @@ class Sort extends React.Component {
   }
 
   handleSortChange(event) {
-    this.props.updateSort(event.target.value);
+    this.props.retrieveReviewList(this.props.productId, event.target.value);
   }
 
   render() {
-    console.log('Current Total', this.props.totalCurrentReviews);
     if (this.props.totalCurrentReviews > 1) {
       return (
         <div className="sort-label">
           {`${this.props.totalCurrentReviews} reviews, sorted by`}
           <label className="sort-btn">
             <select className="sort-btn-container" onChange={this.handleSortChange}>
-              <option value="Relevant">Relevant</option>
-              <option value="Helpful">Helpful</option>
-              <option value="Newest">Newest</option>
+              <option value="relevant">Relevant</option>
+              <option value="helpful">Helpful</option>
+              <option value="newest">Newest</option>
             </select>
           </label>
         </div>
@@ -34,5 +33,6 @@ class Sort extends React.Component {
     }
   }
 }
+
 
 export default Sort;

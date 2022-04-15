@@ -138,7 +138,7 @@ class QA extends Component {
 
   handleNewQuestionSubmit(e) {
     e.preventDefault();
-    const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
+    const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId, toLoad} = this.state;
     const {getQuestionsById} = this;
 
     //Check for input formatting:
@@ -162,6 +162,7 @@ class QA extends Component {
         newQuestionNickname: '',
         newQuestionEmail: '',
         isQuestionModalOpen: false,
+        toLoad: toLoad + 1
       });
     }
   }
