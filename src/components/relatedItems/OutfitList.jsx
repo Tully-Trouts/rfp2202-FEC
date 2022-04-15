@@ -6,10 +6,8 @@ import { Button } from '../styledComponents';
 const OutfitList = ({ product }) => {
 
   const [outfitList, setOutfitList] = React.useState([]);
-  //const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.length);
 
   let handleRemoveOutfit = (e, productId) => {
-    console.log('outfit clicking');
     const newOutfitList = outfitList;
     newOutfitList.filter(div => {
       return div.key !== productId;
@@ -17,8 +15,6 @@ const OutfitList = ({ product }) => {
     localStorage.removeItem(productId);
     setOutfitList(newOutfitList);
   };
-
-
 
   const getAvgRating = (ratings) => {
     let sum = 0;
@@ -94,19 +90,13 @@ const OutfitList = ({ product }) => {
           localStorage.setItem([productId], JSON.stringify(productId));
           setOutfitList((previousOutfitList) => [...previousOutfitList, newItem]);
         });
-      //localStorage.setItem([product.id], JSON.stringify(product));
-      //setLocalStorageSize(localStorage.length);
     }
   };
 
   React.useEffect(() => {
     const outfitProductIds = outfitList.map((div) => div.key);
     Object.keys(localStorage).forEach((productId) => {
-      // outfitList[0].key -> productId
       if (!outfitProductIds.includes(productId)) {
-        // check if the productId is already in outfitList (state)
-        // if so, do nothing
-        // if not, getAllInfo and add a new rendered card to outfitList (state)
         getAllInfo(productId)
           .then(info => {
             return (
@@ -126,7 +116,6 @@ const OutfitList = ({ product }) => {
     });
   }, [product.id]);
 
-  // Need to style the Add to outfit card correctly
   return (
     <div id="outfit-list-container">
       <h5>YOUR OUTFIT</h5>
@@ -141,7 +130,6 @@ const OutfitList = ({ product }) => {
               <div className="fixedHeight"></div>
             </div>
           </div>
-          {/* <Button size={1} aria-label="open" onClick={() => addProductToOutfit(product.id)}>Add to outfit</Button> */}
         </div>
         <>{outfitList}</>
       </div>
