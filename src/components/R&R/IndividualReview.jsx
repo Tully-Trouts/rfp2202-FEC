@@ -43,7 +43,6 @@ class IndividualReview extends React.Component {
   }
 
   render() {
-    console.log('HERE', this.props.review);
     return (
       <div className="review-tile">
         <div className="User-box-1">

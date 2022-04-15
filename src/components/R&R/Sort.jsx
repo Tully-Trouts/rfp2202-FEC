@@ -9,6 +9,7 @@ class Sort extends React.Component {
 
   handleSortChange(event) {
     this.props.retrieveReviewList(this.props.productId, event.target.value);
+    this.props.handleSort(event.target.value);
   }
 
   render() {
