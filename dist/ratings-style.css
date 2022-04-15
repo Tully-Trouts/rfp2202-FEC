@@ -477,6 +477,11 @@ body.active-modal {
   text-align: center;
 }
 
+.submittedImage {
+  height: 170px;
+  padding: 5px;
+}
+
 /* Star Rating CSS */
 
 .star-rating {
