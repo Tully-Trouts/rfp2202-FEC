@@ -7,7 +7,9 @@ class CardList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedItems: []
+      relatedItems: [],
+      firstCard: 0,
+      maxCards: 3,
     };
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
@@ -25,6 +27,13 @@ class CardList extends React.Component {
     }
   }
 
+  navigate(direction) {
+    const containerWidth = document.getElementById('related-items-cards').offsetWidth;
+    console.log('Max cards:', Math.floor(containerWidth / 200));
+    const nextCard = this.state.firstCard + direction;
+    this.setState({firstCard: nextCard});
+  }
+
   componentDidMount() {
     this.getRelatedProducts(this.props.product.id);
   }
@@ -39,8 +48,9 @@ class CardList extends React.Component {
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
     let uniqueItems = [...new Set(relatedItems)];
+    let uniqueItems1 = relatedItems.filter((element, index) => element !== product.id && index >= this.state.firstCard);
 
-    const cardList = uniqueItems.filter(productId => productId !== product.id).map((productId) => {
+    const cardList = uniqueItems1.map((productId) => {
       return (
         <div className="card" key={productId}>
           <Card isOutfit={false} currProduct={product} productId={productId} getProductById={getProductById}/>
@@ -50,8 +60,18 @@ class CardList extends React.Component {
     });
 
     return (
-      <div className="card-list">
-        {cardList}
+      <div id="related-items-cards">
+        <nav className="card-list-nav">
+          <button
+            className="card-nav card-nav-left"
+            onClick={()=>{ this.navigate(-1); }}>Left</button>
+          <button
+            className="card-nav card-nav-right"
+            onClick={()=>{ this.navigate(1); }}>Right</button>
+        </nav>
+        <div className="card-list">
+          {cardList}
+        </div>
       </div>
     );
   }
