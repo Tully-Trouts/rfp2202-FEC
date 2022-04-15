@@ -55,6 +55,9 @@ class App extends React.Component {
           <QA productId={product.id} product={product} />
           <Ratings productId={product.id} productName={product.name}/>
         </div>
+        <div className="app-footer">
+          <p>Copyright © 2022 Tully-Trouts, Inc.</p>
+        </div>
       </div>
     );
   }

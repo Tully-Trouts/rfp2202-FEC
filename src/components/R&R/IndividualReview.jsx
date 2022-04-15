@@ -3,12 +3,14 @@ import moment from 'moment';
 import StarReview from './StarReview.jsx';
 import { Link } from '../styledComponents';
 import axios from 'axios';
+import SubmittedImg from './SubmittedImg.jsx';
 
 class IndividualReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       review: false,
+      selectYes: false,
     };
     this.handleYesSelect = this.handleYesSelect.bind(this);
     this.handleReportSelect = this.handleReportSelect.bind(this);
@@ -16,14 +18,17 @@ class IndividualReview extends React.Component {
 
   handleYesSelect(event) {
     event.preventDefault();
-    axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
-      .then((result) => {
-
-        console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!this.state.selectYes) {
+      this.setState({selectYes: true});
+      axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
+        .then((result) => {
+          this.props.retrieveReviewList(this.props.productId);
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   handleReportSelect(event) {
@@ -64,6 +69,9 @@ class IndividualReview extends React.Component {
           <span className="Review_Body">
             {this.props.review.body}
           </span>
+        </div>
+        <div className="photoContainer">
+          <SubmittedImg providedImg={this.props.review.photos}/>
         </div>
         <div className="Response">
           {this.state.review &&

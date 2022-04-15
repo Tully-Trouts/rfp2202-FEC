@@ -4,6 +4,31 @@
   margin: auto;
   padding: 1em;
   border-bottom: solid lightgrey;
+  box-sizing: border-box;
+}
+
+#related-items-container:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 60%);
+  height: 100%;
+  width: 4em;
+  pointer-events: none;
+}
+
+#outfit-list-container:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 60%);
+  height: 100%;
+  width: 4em;
+  pointer-events: none;
 }
 
 .card-list {
@@ -31,8 +56,12 @@
   padding: 5px;
 }
 
+.hidden {
+  color: white;
+}
+
 .fixedHeight {
-  height: 51.77px;
+  height: 22.57px;
 }
 
 .clickable:hover {
@@ -42,7 +71,14 @@
 .preview-image {
   width: 200px;
   height: 200px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: gray;
   object-fit: cover;
+}
+
+.not-cover {
+  object-fit: none;
 }
 
 .comparison-modal {
@@ -62,7 +98,7 @@
   margin: 5px;
   padding: 0 1.5em;
   font-size: x-small;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .comparison-table {
@@ -104,6 +140,22 @@ td {
   width: 25px;
   height: 25px;
   margin: 5px;
+}
+
+.card-nav {
+  border: none;
+  background-color: transparent;
+  margin: 5px;
+}
+
+.card-nav:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.card-list-nav {
+  display: flex;
+  flex-direction: row;
 }
 
 .absolute {

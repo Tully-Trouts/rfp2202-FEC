@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "build-dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
     "start": "nodemon Routes/server.js",
     "cypress:open": "cypress open",
     "test-ov": "jest src/components/overview/__tests__/*"
@@ -23,6 +24,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "babel": "^6.23.0",
+    "compression": "^1.7.4",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mocha": "^9.2.2",

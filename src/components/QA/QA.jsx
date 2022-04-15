@@ -10,7 +10,7 @@ class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 65631, //this.props.productId,
+      productId: this.props.productId, //65631
       questions: [],
       search: '',
       newQuestionBody: '',
@@ -35,10 +35,6 @@ class QA extends Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNewQuestionSubmit = this.handleNewQuestionSubmit.bind(this);
     this.handleNewQuestionSubmitError = this.handleNewQuestionSubmitError.bind(this);
-  }
-
-  componentDidMount() {
-    this.getQuestionsById(this.state.productId);
   }
 
   componentDidUpdate(prevProps) {
@@ -103,11 +99,6 @@ class QA extends Component {
 
   handleLoadMoreQuestions(e) {
     e.preventDefault();
-    // if (e.target.value === 'loadMore') {
-    //   this.setState({toLoad: this.state.questions.length, loadingMore: true});
-    // } else {
-    //   this.setState({toLoad: 4, loadingMore: false});
-    // }
     if (e.target.value === 'loadMore') {
       this.setState({toLoad: this.state.toLoad + 2, loadingMore: true});
     } else {
@@ -122,13 +113,11 @@ class QA extends Component {
 
   closeAddQuestion(e) {
     e.preventDefault();
-    // this.setState({isQuestionModalOpen: false, submitError: false});
     this.setState({
       newQuestionBody: '',
       newQuestionNickname: '',
       newQuestionEmail: '',
       isQuestionModalOpen: false,
-      // submitError: false,
     });
   }
 
@@ -149,14 +138,11 @@ class QA extends Component {
 
   handleNewQuestionSubmit(e) {
     e.preventDefault();
-    const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId} = this.state;
+    const {newQuestionBody, newQuestionNickname, newQuestionEmail, productId, toLoad} = this.state;
     const {getQuestionsById} = this;
 
     //Check for input formatting:
     const clearForSubmit = true;
-
-
-
 
     if (clearForSubmit) {
       axios.post('api/qa/questions', {
@@ -166,7 +152,7 @@ class QA extends Component {
         product_id: productId
       })
         .then((response) => {
-          console.log(response.data);
+          getQuestionsById(productId);
         })
         .catch((err) => {
           console.log(err);
@@ -176,9 +162,8 @@ class QA extends Component {
         newQuestionNickname: '',
         newQuestionEmail: '',
         isQuestionModalOpen: false,
-        // submitError: false,
+        toLoad: toLoad + 1
       });
-      getQuestionsById(productId);
     }
   }
 
@@ -204,13 +189,10 @@ class QA extends Component {
     return (
       <div id='QA'>
         <h3 id='QA_Title'>Questions and Answers</h3>
-        { questions.length === 0
-          ?
-          <div>No current questions</div>
-          :
+        { questions.length === 0 ?
+          <div>No current questions</div> :
           <div>
             <QASearch liftSearch={liftSearch} liftClear={liftClear} />
-            {/* <div className={loadingMore ? 'Q_List_Overflow' : 'Q_List'}> */}
             <div className='Q_List'>
               {filter().slice(0, toLoad).map((question) =>
                 <Question getQuestionsById={getQuestionsById} question={question} key={question.question_id} product={product}/>
@@ -232,12 +214,12 @@ class QA extends Component {
             </div>
 
             <div className='Flex_New_QA_Submit'>
-
               <div className='Flex_Nickname_Email'>
                 <div>
                   <label>Enter Nickname: </label>
                   <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
                 </div>
+
                 <span>
                   <label>Enter Email: </label>
                   <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
@@ -245,11 +227,11 @@ class QA extends Component {
               </div>
 
               <div>
-                <Button size={2} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
+                <Button size={1} onClick={ handleNewQuestionSubmit}>Submit Your Question</Button>
               </div>
             </div>
-
           </form>
+
         </QuestionModal>
       </div>
     );

@@ -29,7 +29,7 @@ export default function AnswerModal ({ open, children, onClose }) {
     <>
       <div style={overlayStyles} />
       <div style={modalStyles} >
-        <Button onClick={onClose}>Close</Button>
+        <Button size={1} onClick={onClose}>Close</Button>
         {children}
       </div>
     </>,

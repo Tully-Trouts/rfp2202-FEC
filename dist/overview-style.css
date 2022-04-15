@@ -1,11 +1,18 @@
 .devtool {
-  border-style: solid;
+  font-family: 'Courier New', Courier, monospace;
   font-size: x-small;
+  background: #5F5562;
 }
 
 .devtool-container {
   margin: 0 0 20px 0;
-  padding: 0 20px 20px 20px;
+  padding: 20px;
+  border: none;
+  box-shadow: 1px 3px 11px rgba(91, 91, 91, 0.455);
+}
+
+.devtool-container > h3 {
+  margin-top: 0;
 }
 
 .devtool ul.devtool-product-list {
@@ -18,15 +25,24 @@
 }
 
 li.devtool.devtool-product-list-item {
-  width: 80px;
+  width: 8%;
   padding: 0.3em;
+  border: solid grey;
+  background-color: rgb(241, 235, 255);
+  box-shadow: 1px 2px 2px rgb(47, 47, 47);
 }
 
 .devtool-product {
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
-.devtool-product-list-item:hover {
+.devtool-product.product-id {
+  font-weight: bold;
+}
+
+li.devtool-product-list-item:hover {
   background-color: cyan;
   cursor: pointer;
 }
@@ -36,6 +52,7 @@ li.devtool.devtool-product-list-item {
   margin: auto;
   padding: 1em;
   border-bottom: solid lightgrey;
+  background-color: white;
 }
 
 .overview-main {
@@ -70,13 +87,14 @@ div.app-header > h3 {
 .overview-image-panel {
   /* will need to figure out how make this dynamic */
   width: 65%;
+  position: relative;
+  margin: 0;
 }
 
 /* Phasing out gallery styling for gallery photo */
 .overview-gallery {
   height: 100%;
   margin: 0;
-  /* padding: 5px; */
   box-sizing: border-box;
   background-color: grey;
 }
@@ -91,12 +109,39 @@ div.app-header > h3 {
   background-repeat: no-repeat;
 }
 
-span.gallery-control.previous {
-  float: left;
+nav.gallery-nav {
+  display: flex;
+  position: absolute;
+  /* justify-content: space-between; */
 }
 
-span.gallery-control.next {
-  float: right;
+nav.thumbnail-nav {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  top: -100%;
+  justify-content: center;
+  margin: 2em;
+}
+
+button.thumbnail-nav-item {
+  width: 5%;
+  aspect-ratio: 1;
+  background-size: cover;
+  opacity: 60%;
+  margin: 0.5em;
+}
+
+button.thumbnail-nav-item:hover {
+  opacity: 20%;
+  /* background: rgba(255, 255, 255, 0.6);
+  background-position: center center; */
+}
+
+button.btn.image-expando-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 span.gallery-control:hover {
@@ -110,12 +155,27 @@ span.gallery-control:hover {
   width: 35%;
 }
 
+div.overview.product-review {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
 h5.overview-product-description {
   margin: 1.67em 1.5em;
 }
 
 h4.style-selector {
+  margin-top: 0.5em;
   font-weight: normal;
+}
+
+div.product-price {
+  font-size: larger;
+}
+
+span.product-title > h1 {
+  margin: 0.5em 0;
 }
 
 
@@ -174,10 +234,21 @@ ul.style-list {
 li.style-list-item {
   display: flex;
   margin: 10%;
+  /* setting position property to checkmark can position based on this and not the body */
+  position: relative;
+  opacity: 90%;
+}
+
+svg.style-list-item-checkmark {
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  background:rgba(255, 255, 255, 0.944)
 }
 
 span.style-list-item-circle {
   width: 100%;
+  border: solid;
   border-radius: 50%;
   background-color: aqua;
   background-size: cover;
@@ -193,49 +264,8 @@ span.style-list-item-circle::before {
 
 li.style-list-item:hover {
   cursor: pointer;
-  background-color: aqua;
-  opacity: 60%;
+  /* background-color: aqua; */
+  opacity: 80%;
 }
 
-.styled-btn {
-  display: inline-flex;
-  line-height: 3em;
-  font-weight: 600;
-  margin: 3px;
-  padding: 0 1em;
-  border-width: 1px;
-  border-style: solid;
-  background-color: white;
-}
 
-.styled-btn.styled-btn-size-1 {
-  justify-content: center;
-}
-
-.styled-btn:hover {
-  background: linear-gradient(#e1dede, #eaeaea);
-}
-
-.styled-btn:active {
-  background: linear-gradient(#d5d5d5, #e5e5e5);
-}
-
-span.styled-link {
-  text-decoration: underline;
-}
-
-span.styled-link:hover {
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.styled-input {
-  display: inline-flex;
-  line-height: 3em;
-  font-weight: 600;
-  margin: 3px;
-  padding: 0 1em;
-  border-width: 1px;
-  border-style: solid;
-  background-color: white;
-}

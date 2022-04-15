@@ -2,12 +2,27 @@ body main {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: #F7F7F7;
 }
 
 div.super-app {
-  width: 75%;
+  width: 85%;
   /* border: solid; */
   margin: auto;
+  padding: 1em;
+  background-color: white;
+}
+
+div.app-footer {
+  display: flex;
+  height: 50px;
+  width: 85%;
+  margin: auto;
+  padding: 1em;
+  background-color: gray;
+  color:#ffffff;
+  align-items: center;
+  justify-content: center;
 }
 
 div.star-component.star-component-container {
@@ -22,7 +37,54 @@ div.star-component.star-component-cover {
   position: relative;
   top: -100%;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   mix-blend-mode: color;
   background: white;
+}
+
+.styled-btn {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
+}
+
+.styled-btn.styled-btn-size-1 {
+  justify-content: center;
+}
+
+.styled-btn:hover {
+  background: linear-gradient(#e1dede, #eaeaea);
+}
+
+.styled-btn:active {
+  background: linear-gradient(#d5d5d5, #e5e5e5);
+}
+
+span.styled-link {
+  text-decoration: underline;
+}
+
+span.styled-link > a:visited {
+  color:rgb(80, 80, 80);
+}
+
+span.styled-link:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.styled-input {
+  display: inline-flex;
+  line-height: 3em;
+  font-weight: 600;
+  margin: 3px;
+  padding: 0 1em;
+  border-width: 1px;
+  border-style: solid;
+  background-color: white;
 }

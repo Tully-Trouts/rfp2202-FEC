@@ -4,11 +4,11 @@ import moment from 'moment';
 import { Link } from '../styledComponents';
 import axios from 'axios';
 
-
 class Answer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      answer: this.props.answer
     };
     this.handleHelpful = this.handleHelpful.bind(this);
     this.handleReport = this.handleReport.bind(this);
@@ -16,39 +16,40 @@ class Answer extends Component {
 
   handleReport(e) {
     e.preventDefault();
-    const {answer, getQuestionsById} = this.props;
-    axios.put(`api/qa/questions/${answer[0]}/report`)
+    const {answer, getAllAnswers, questionId} = this.props;
+    axios.put(`api/qa/answers/${answer.answer_id}/report`)
       .then((response) => {
         console.log(response);
+        getAllAnswers(questionId);
       })
       .catch((err) => {
         console.log(err);
       });
-    getQuestionsById();
   }
 
   handleHelpful(e) {
     e.preventDefault();
-    const {answer, getQuestionsById} = this.props;
-    axios.put(`api/qa/questions/${answer[0]}/helpful`)
+    const {getAllAnswers, questionId, answer} = this.props;
+    const {answer_id} = answer;
+    console.log('ANSWER WE WANT TO MARK AS HELPFUL -- ', answer_id);
+    axios.put(`api/qa/answers/${answer_id}/helpful`)
       .then((response) => {
         console.log(response);
+        getAllAnswers(questionId);
       })
       .catch((err) => {
         console.log(err);
       });
-    getQuestionsById();
   }
 
   render() {
     const {answer} = this.props;
     const {handleReport, handleHelpful} = this;
-    const {answerer_name, date, body, helpfulness, photos} = answer[1];
-    const answerId = answer[0];
+    const {answerer_name, date, body, helpfulness, photos} = answer;
 
-    const images = photos.map((src) => {
+    const images = photos.map((photo) => {
       return (
-        <img src={src} key={src} className='A_Images' />
+        <img src={photo.url} key={photo.id} className='A_Images' />
       );
     });
 
@@ -56,6 +57,7 @@ class Answer extends Component {
       <div className='Answer'>
         <span className='A'>A: </span>
         <span>{body}</span>
+
         <div>
           <>{images}</>
         </div>

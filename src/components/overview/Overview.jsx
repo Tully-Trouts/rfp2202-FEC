@@ -4,12 +4,13 @@ import Gallery from './Gallery';
 import CartSelector from './CartSelector';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button, StarReview } from '../styledComponents';
+import { Button, StarReview, Link } from '../styledComponents';
 
 var Overview = ({product}) => {
   const [avgRating, setAvgRating] = React.useState(0);
   const [styles, setStyles] = React.useState([]);
   const [selectedStyle, setSelectedStyle] = React.useState({});
+  const [galleryExpanded, setGalleryExpanded] = React.useState(false);
 
   var getAvgRating = (reviewMetadata) => {
     let totalRatings = 0;
@@ -58,8 +59,13 @@ var Overview = ({product}) => {
           console.log(err);
         });
     }
-
   };
+
+  // let expandoStyle = {
+  //   width: '65%',
+  // };
+
+  let infoPanelStyle = {};
 
   // Passing in an array as second argument to useEffect causes react to check that prop
   //  for changes before using th effect again. This is to prevent infinite loop
@@ -70,33 +76,30 @@ var Overview = ({product}) => {
 
   return (
     <div id="overview-container">
-      <div className="overview overview-main">
-        <div className="overview overview-image-panel">
-          <Gallery photos={selectedStyle.photos} />
-        </div>
-        <div className="overview overview-product-information-panel">
+      <div id="overview-panel"></div>
+      <div className="overview overview-main" >
+        <Gallery photos={selectedStyle.photos} />
+        <div className="overview overview-product-information-panel" style={infoPanelStyle}>
           <div className="overview product-review sm">
-            [product review: {avgRating}]&nbsp;&nbsp;
-            <StarReview stars={avgRating} />
-            <a href="#rating_and_reviews-container">Read all reviews</a>
+            <StarReview stars={avgRating} /> &nbsp; &nbsp;
+            <Link>
+              <a href="#rating_and_reviews-container">Read all reviews</a>
+            </Link>
           </div>
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
           <div className="overview product-price">
             {!!selectedStyle.sale_price &&
-            (<span className="sale-price"> {selectedStyle.sale_price}</span>) ||
-            (<span className="original-price">{selectedStyle.original_price}</span>) ||
-            (<span className="price">{product.default_price}</span>)}
+            (<span className="sale-price"> ${selectedStyle.sale_price}</span>) ||
+            (<span className="original-price">${selectedStyle.original_price}</span>) ||
+            (<span className="price">${product.default_price}</span>)}
           </div>
-          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} />
+          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} selected={selectedStyle} />
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
-      <div className="overview overview-main-2">
-        [testing]
-      </div>
       <div className="overview overview-product-description">
-        <h5 className="overview-product-description">{product.description}</h5>
+        <h4 className="overview-product-description">{product.description}</h4>
       </div>
     </div>
   );
