@@ -6,20 +6,14 @@ import { Button } from '../styledComponents';
 const OutfitList = ({ product }) => {
 
   const [outfitList, setOutfitList] = React.useState([]);
-  const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.length);
 
   let handleRemoveOutfit = (e, productId) => {
-    console.log('outfit clicking');
+    const newOutfitList = outfitList;
+    newOutfitList.filter(div => {
+      return div.key !== productId;
+    });
     localStorage.removeItem(productId);
-    setOutfitList([]);
-    setLocalStorageSize(localStorage.length);
-  };
-
-  const addProductToOutfit = (id) => {
-    if (id) {
-      localStorage.setItem([product.id], JSON.stringify(product));
-      setLocalStorageSize(localStorage.length);
-    }
+    setOutfitList(newOutfitList);
   };
 
   const getAvgRating = (ratings) => {
@@ -77,13 +71,11 @@ const OutfitList = ({ product }) => {
       });
   };
 
-  React.useEffect(() => {
-    // refactor: definitely not the most efficient way to be doing this
-    console.log('Heyy outfits rendering');
-    Object.keys(localStorage).map(productId => {
+  const addProductToOutfit = (productId) => {
+    console.log('triggering addProductToOutfit');
+    if (productId) {
       getAllInfo(productId)
-        .then((info) => {
-          console.log('from outfitlist:', info);
+        .then(info => {
           return (
             <div className="card" key={productId}>
               <Card isOutfit={true}
@@ -94,21 +86,43 @@ const OutfitList = ({ product }) => {
             </div>
           );
         })
-        .then((renderedOutfit) => {
-          setOutfitList((previousOutfitList) => [...previousOutfitList, renderedOutfit]);
+        .then(newItem => {
+          localStorage.setItem([productId], JSON.stringify(productId));
+          setOutfitList((previousOutfitList) => [...previousOutfitList, newItem]);
         });
+    }
+  };
+
+  React.useEffect(() => {
+    const outfitProductIds = outfitList.map((div) => div.key);
+    Object.keys(localStorage).forEach((productId) => {
+      if (!outfitProductIds.includes(productId)) {
+        getAllInfo(productId)
+          .then(info => {
+            return (
+              <div className="card" key={productId}>
+                <Card isOutfit={true}
+                  currProduct={product}
+                  productId={productId}
+                  info={info}
+                  handleRemoveOutfit={handleRemoveOutfit}/>
+              </div>
+            );
+          })
+          .then(newItem => {
+            setOutfitList((previousOutfitList) => [...previousOutfitList, newItem]);
+          });
+      }
     });
+  }, [product.id]);
 
-  }, [localStorageSize]);
-
-  // Need to style the Add to outfit card correctly
   return (
     <div id="outfit-list-container">
       <h5>YOUR OUTFIT</h5>
       <div className="card-list">
         <div className="card">
           <div className="inner-card clickable" onClick={() => addProductToOutfit(product.id)}>
-            <img className="preview-image" src="https://upload.wikimedia.org/wikipedia/commons/5/53/WP20Symbols_PLUS.svg"/>
+            <img className="preview-image not-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/PlusCM128.svg"/>
             <div className="card-info">
               <h6>Add to Outfit</h6>
               <div className="hidden">$Priceless</div>
@@ -116,7 +130,6 @@ const OutfitList = ({ product }) => {
               <div className="fixedHeight"></div>
             </div>
           </div>
-          {/* <Button size={1} aria-label="open" onClick={() => addProductToOutfit(product.id)}>Add to outfit</Button> */}
         </div>
         <>{outfitList}</>
       </div>
