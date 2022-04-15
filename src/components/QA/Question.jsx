@@ -180,24 +180,26 @@ class Question extends Component {
             <h4 className='New_QA_Form_Sub_Header'>{product.name} : {question_body}</h4>
             <div>
               <label>Enter Answer: </label>
-              <textarea className={newAnsBody.length === 0 ? 'New_QA_Input_Error' : ''} value={newAnsBody} placeholder='Your Answer' maxLength={1000} onChange={handleNewAnswerInput} rows='10' cols='100' />
+              <div>
+                <textarea className={newAnsBody.length === 0 ? 'New_QA_Input_Error' : ''} value={newAnsBody} placeholder='Your Answer' maxLength={1000} onChange={handleNewAnswerInput} rows='10' cols='100' />
+              </div>
             </div>
             <div>
               <label>Enter Nickname: </label>
-              <textarea className={newAnsNickname.length === 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newAnsNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
+              <div>
+                <textarea className={newAnsNickname.length === 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newAnsNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
+              </div>
             </div>
             <span>
               <label>Enter Email: </label>
-              <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
+              <div>
+                <textarea className={newAnsEmail.length === 0 ? 'New_QA_Email_Input_Error' : ''} value={newAnsEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
+              </div>
             </span>
 
             <div>
               <Button size={1} onClick={handleAddImages}>Add Images</Button>
             </div>
-            <div>
-              <Button size={1} onClick={handleNewAnsSubmit}>Submit</Button>
-            </div>
-
             <div className='New_Ans_Images'>
               {newAnswerPhotos.length > 0
                 ?
@@ -206,11 +208,14 @@ class Question extends Component {
                 <></>
               }
             </div>
+            <div>
+              <Button size={1} onClick={handleNewAnsSubmit}>Submit</Button>
+            </div>
           </form>
         </AnswerModal>
 
         <AnswerImagesModal open={isImagesModalOpen} onClose={closeAddImages}>
-          <div>
+          <div className='Add_Img_Form'>
             <h4>Insert Image URL:</h4>
             <textarea row='2' cols='70' onChange={handleImageURL} />
             <Button size={1} onClick={handeImageSubmit}>Enter</Button>

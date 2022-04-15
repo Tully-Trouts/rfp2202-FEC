@@ -9,7 +9,7 @@ const modalStyles = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
   padding: '50px',
-  zIndex: 100000
+  zIndex: 100000 ,
 };
 
 const overlayStyles = {
@@ -28,7 +28,7 @@ export default function QuestionModal ({ open, children, onClose }) {
   return ReactDOM.createPortal (
     <>
       <div style={overlayStyles} />
-      <div style={modalStyles}>
+      <div style={modalStyles} className='Add_QA_Form'>
         <Button size={1} onClick={onClose}>Close</Button>
         {children}
       </div>

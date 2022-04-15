@@ -159,3 +159,7 @@ span.loadMore {
 span.collapse {
   text-decoration: none;
 }
+
+.Add_QA_Form {
+  border-radius: 3px;
+}

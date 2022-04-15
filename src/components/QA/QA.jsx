@@ -210,19 +210,25 @@ class QA extends Component {
             <h4 className='New_QA_Form_Sub_Header'>about the {product.name}</h4>
             <div>
               <label>Enter Question: </label>
-              <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' maxLength={1000} onChange={handleNewQuestionInput} rows='10' cols='100' />
+              <div>
+                <textarea className={newQuestionBody.length <= 0 ? 'New_QA_Input_Error' : ''} value={newQuestionBody} placeholder='Your Question' maxLength={1000} onChange={handleNewQuestionInput} rows='10' cols='100' />
+              </div>
             </div>
 
             <div className='Flex_New_QA_Submit'>
               <div className='Flex_Nickname_Email'>
                 <div>
                   <label>Enter Nickname: </label>
-                  <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
+                  <div>
+                    <textarea className={newQuestionNickname.length <= 0 ? 'New_QA_Nickname_Input_Error' : ''} value={newQuestionNickname} placeholder='Example: jack543!' maxLength={60} onChange={handleNicknameInput} rows='1' cols='60' />
+                  </div>
                 </div>
 
                 <span>
                   <label>Enter Email: </label>
-                  <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
+                  <div>
+                    <textarea className={newQuestionEmail.length <= 0 ? 'New_QA_Email_Input_Error' : ''} value={newQuestionEmail} placeholder='Example: jack@email.com' maxLength={60} onChange={handleEmailInput} rows='1' cols='60' />
+                  </div>
                 </span>
               </div>
 
