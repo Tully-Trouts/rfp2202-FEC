@@ -165,7 +165,7 @@
 .stars {
   position: relative;
   white-space: nowrap;
-  fill: gold
+  fill: lightblue;
 }
 
 .cover {
@@ -189,13 +189,17 @@
   /* border-style: solid; */
   font-style: small;
 }
+
+.reviewImg-each {
+  overflow-x: auto;
+}
 .reviewList_container {
   height: 70%;
-  overflow-y: scroll
+  overflow-y: auto;
 }
 .review_list {
   width: 65%;
-  height: 450px;
+  height: 580px;
   padding: 1em;
   margin: auto;
   display: inline-block;
@@ -475,6 +479,11 @@ body.active-modal {
   text-align: center;
 }
 
+.submittedImage {
+  height: 170px;
+  padding: 5px;
+}
+
 /* Star Rating CSS */
 
 .star-rating {
@@ -497,7 +506,7 @@ body.active-modal {
   font-family: Arial;
   font-size: 30px;
   transition: 0.1s ease;
-  color: gold;
+  color: lightblue;
 }
 /* give label a hover state */
 .star-rating label:hover {
