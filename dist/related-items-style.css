@@ -71,7 +71,14 @@
 .preview-image {
   width: 200px;
   height: 200px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: gray;
   object-fit: cover;
+}
+
+.not-cover {
+  object-fit: none;
 }
 
 .comparison-modal {
@@ -133,6 +140,22 @@ td {
   width: 25px;
   height: 25px;
   margin: 5px;
+}
+
+.card-nav {
+  border: none;
+  background-color: transparent;
+  margin: 5px;
+}
+
+.card-nav:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.card-list-nav {
+  display: flex;
+  flex-direction: row;
 }
 
 .absolute {

@@ -3,7 +3,7 @@ import RelatedItems from './RelatedItems';
 import Card from './Card';
 import axios from 'axios';
 
-const CARDW = 200;
+const CARDW = 201.99;
 
 class CardList extends React.Component {
   constructor(props) {
@@ -31,8 +31,6 @@ class CardList extends React.Component {
   }
 
   getAllInfo(productId) {
-    // naive solution for MVP: need to refactor with Promsie.all() and separate concerns.
-    // const { productId } = this.props;
     return axios.get(`api/products/${productId}`)
       .then((response) => {
         const compProduct = response.data;
@@ -154,18 +152,18 @@ class CardList extends React.Component {
       index < lastCard
     ));
     const leftBound = this.state.firstCard === 0;
-    const rightBound = this.state.firstCard + this.state.maxCards === this.state.cardList.length;
+    const rightBound = this.state.firstCard + this.state.maxCards >= this.state.cardList.length;
     return (
       <div id="related-items-cards">
         <nav className="card-list-nav">
           <button
             className="card-nav card-nav-left"
             onClick={()=>{ this.navigate(-1); }}
-            disabled={leftBound}>Left</button>
+            disabled={leftBound}>Previous</button>
           <button
             className="card-nav card-nav-right"
             onClick={()=>{ this.navigate(1); }}
-            disabled={rightBound}>Right</button>
+            disabled={rightBound}>Next</button>
         </nav>
         <div className="card-list">
           {displayedCards}

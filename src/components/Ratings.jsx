@@ -25,13 +25,14 @@ class Ratings extends React.Component {
           photos: []
         }
       ],
-      // sort: 'relevant',
+      sort: 'relevant',
       tileRender: 2,
       submitCharOption: null,
     };
     this.retrieveReviewList = this.retrieveReviewList.bind(this);
     this.handleMoreReview = this.handleMoreReview.bind(this);
     this.updateCharOption = this.updateCharOption.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   handleMoreReview(e) {
@@ -65,14 +66,16 @@ class Ratings extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.productId !== this.props.productId) {
-      this.retrieveReviewList(this.props.productId);
-    } else if (prevState.sort !== this.state.sort) {
       this.retrieveReviewList(this.props.productId, this.state.sort);
     }
   }
 
   updateCharOption(value) {
     this.setState({submitCharOption: value});
+  }
+
+  handleSort(value) {
+    this.setState({sort: value});
   }
 
   render() {
@@ -83,7 +86,7 @@ class Ratings extends React.Component {
           <h3>Rating and Review</h3>
           <div id="review-panal">
             <div className="sorting">
-              <Sort retrieveReviewList={this.retrieveReviewList} totalCurrentReviews={this.state.reviewList.length} productId={this.props.productId} />
+              <Sort retrieveReviewList={this.retrieveReviewList} totalCurrentReviews={this.state.reviewList.length} productId={this.props.productId} handleSort={this.handleSort}/>
             </div>
             <div className="RR-Container">
               <div className="rating_container">
@@ -107,7 +110,7 @@ class Ratings extends React.Component {
           <h3>Rating and Review</h3>
           <div id="review-panal">
             <div className="sorting">
-              <Sort retrieveReviewList={this.retrieveReviewList} totalCurrentReviews={this.state.reviewList.length} productId={this.props.productId} />
+              <Sort retrieveReviewList={this.retrieveReviewList} totalCurrentReviews={this.state.reviewList.length} productId={this.props.productId} handleSort={this.handleSort}/>
             </div>
             <div className="RR-Container">
               <div className="rating_container">
