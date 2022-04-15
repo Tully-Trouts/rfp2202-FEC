@@ -32,6 +32,7 @@ class Card extends React.Component {
   // }
 
   handleModalClick() {
+    console.log('handleModalClick is triggering');
     this.setState({show: !this.state.show});
   }
 
@@ -40,7 +41,8 @@ class Card extends React.Component {
     if (this.props.info) {
       console.log('this.props.info:::', this.props.info);
       const { isOutfit, productId, currProduct, getProductById, handleRemoveOutfit } = this.props;
-      const { compProduct, originalPrice, salePrice, previewImg, notFoundUrl, avgRating, show } = this.props.info;
+      const { compProduct, originalPrice, salePrice, previewImg, avgRating } = this.props.info;
+      const { show, notFoundUrl } = this.state;
       const { name, category } = compProduct;
 
       if (!isOutfit) {
