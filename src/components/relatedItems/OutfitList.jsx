@@ -9,10 +9,11 @@ const OutfitList = ({ product }) => {
   const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.length);
 
   let handleRemoveOutfit = (e, productId) => {
+    console.log('outfit clicking');
     localStorage.removeItem(productId);
+    setOutfitList([]);
     setLocalStorageSize(localStorage.length);
   };
-  handleRemoveOutfit = handleRemoveOutfit.bind(this);
 
   const addProductToOutfit = (id) => {
     if (id) {
@@ -78,6 +79,7 @@ const OutfitList = ({ product }) => {
 
   React.useEffect(() => {
     // refactor: definitely not the most efficient way to be doing this
+    console.log('Heyy outfits rendering');
     Object.keys(localStorage).map(productId => {
       getAllInfo(productId)
         .then((info) => {
@@ -96,8 +98,6 @@ const OutfitList = ({ product }) => {
           setOutfitList((previousOutfitList) => [...previousOutfitList, renderedOutfit]);
         });
     });
-
-    //setOutfitList(currentOutfits);
 
   }, [localStorageSize]);
 
