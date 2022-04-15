@@ -3,19 +3,23 @@ import RelatedItems from './RelatedItems';
 import Card from './Card';
 import axios from 'axios';
 
+const CARDW = 200;
+
 class CardList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedItems: []
+      relatedItems: [],
+      firstCard: 0,
+      maxCards: 3,
+      cardList: []
     };
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
 
   getRelatedProducts(productId) {
-
     if (productId) {
-      axios.get(`api/products/${productId}/related`)
+      return axios.get(`api/products/${productId}/related`)
         .then((response) => {
           this.setState({relatedItems: response.data});
         })
@@ -25,33 +29,71 @@ class CardList extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.getRelatedProducts(this.props.product.id);
+  navigate(direction) {
+    const containerWidth = document.getElementById('related-items-cards').offsetWidth;
+    console.log('Max cards:', Math.floor(containerWidth / CARDW));
+    const nextCard = this.state.firstCard + direction;
+    this.setState({firstCard: nextCard});
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.product.id !== this.props.product.id) {
-      this.getRelatedProducts(this.props.product.id);
-    }
-  }
-
-  render() {
+  getCards() {
+    console.log('GETTING CARDS');
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
-    let uniqueItems = [...new Set(relatedItems)];
-
+    const uniqueItems = [...new Set(relatedItems)];
     const cardList = uniqueItems.filter(productId => productId !== product.id).map((productId) => {
       return (
         <div className="card" key={productId}>
           <Card isOutfit={false} currProduct={product} productId={productId} getProductById={getProductById}/>
         </div>
-
       );
     });
+    this.setState({cardList});
+  }
 
+  componentDidMount() {
+    if (this.props.product.id) {
+      this.getRelatedProducts(this.props.product.id)
+        .then(() => {
+          this.getCards();
+        });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      const maxCards = Math.floor(document.getElementById('related-items-cards').offsetWidth / CARDW);
+      this.setState({maxCards});
+      this.getRelatedProducts(this.props.product.id)
+        .then(() => {
+          this.getCards();
+        });
+    }
+  }
+
+  render() {
+    const lastCard = this.state.firstCard + this.state.maxCards;
+    const displayedCards = this.state.cardList.filter((card, index) => (
+      index >= this.state.firstCard &&
+      index < lastCard
+    ));
+    const leftBound = this.state.firstCard === 0;
+    const rightBound = this.state.firstCard + this.state.maxCards === this.state.cardList.length;
     return (
-      <div className="card-list">
-        {cardList}
+      <div id="related-items-cards">
+        <nav className="card-list-nav">
+          <button
+            className="card-nav card-nav-left"
+            onClick={()=>{ this.navigate(-1); }}
+            disabled={leftBound}>Left</button>
+          <button
+            className="card-nav card-nav-right"
+            onClick={()=>{ this.navigate(1); }}
+            disabled={rightBound}>Right</button>
+        </nav>
+        <div className="card-list">
+          {displayedCards}
+        </div>
       </div>
     );
   }
