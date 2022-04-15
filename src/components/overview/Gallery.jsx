@@ -1,10 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 var Gallery = (props) => {
 
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
-
   const [galleryStyle, setGalleryStyle] = React.useState({});
+  const [expanded, setExpanded] = React.useState(false);
 
   const newStyle = {
     transition: '1s',
@@ -73,25 +74,46 @@ var Gallery = (props) => {
     }
   };
 
-  return (
-    <div className="overview overview-gallery">
-      <nav className="gallery-nav">
-        <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
-          Previous
-        </span>
-        <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
-          Next
-        </span>
-      </nav>
-      <div
-        className="gallery-photos"
-        style={galleryStyle}>
+  var setGallerySize = () => {
+    console.log('clicked');
+  };
+
+  const imagePanel = document.getElementById('overview-panel'); // portal container
+
+  const child = (
+    <div className="overview-image-panel">
+      <div className="overview overview-gallery">
+        <button
+          className="btn image-expando-button"
+          onClick={()=>{ setGallerySize(); }}
+          hidden={true}>
+          Expando
+        </button>
+        <nav className="gallery-nav">
+          <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
+            Previous
+          </span>
+          <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
+            Next
+          </span>
+        </nav>
+        <div
+          className="gallery-photos"
+          style={galleryStyle}>
+        </div>
+        <nav className="thumbnail-nav">
+          {getThumbnails()}
+        </nav>
       </div>
-      <nav className="thumbnail-nav">
-        {getThumbnails()}
-      </nav>
     </div>
   );
+
+  if (!expanded) {
+    return child;
+  } else {
+    return ReactDOM.createPortal(child, imagePanel);
+  }
+
 };
 
 export default Gallery;

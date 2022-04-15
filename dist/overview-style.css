@@ -87,13 +87,14 @@ div.app-header > h3 {
 .overview-image-panel {
   /* will need to figure out how make this dynamic */
   width: 65%;
+  position: relative;
+  margin: 0;
 }
 
 /* Phasing out gallery styling for gallery photo */
 .overview-gallery {
   height: 100%;
   margin: 0;
-  /* padding: 5px; */
   box-sizing: border-box;
   background-color: grey;
 }
@@ -135,6 +136,12 @@ button.thumbnail-nav-item:hover {
   opacity: 20%;
   /* background: rgba(255, 255, 255, 0.6);
   background-position: center center; */
+}
+
+button.btn.image-expando-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 span.gallery-control:hover {
@@ -261,45 +268,4 @@ li.style-list-item:hover {
   opacity: 80%;
 }
 
-.styled-btn {
-  display: inline-flex;
-  line-height: 3em;
-  font-weight: 600;
-  margin: 3px;
-  padding: 0 1em;
-  border-width: 1px;
-  border-style: solid;
-  background-color: white;
-}
 
-.styled-btn.styled-btn-size-1 {
-  justify-content: center;
-}
-
-.styled-btn:hover {
-  background: linear-gradient(#e1dede, #eaeaea);
-}
-
-.styled-btn:active {
-  background: linear-gradient(#d5d5d5, #e5e5e5);
-}
-
-span.styled-link {
-  text-decoration: underline;
-}
-
-span.styled-link:hover {
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.styled-input {
-  display: inline-flex;
-  line-height: 3em;
-  font-weight: 600;
-  margin: 3px;
-  padding: 0 1em;
-  border-width: 1px;
-  border-style: solid;
-  background-color: white;
-}
