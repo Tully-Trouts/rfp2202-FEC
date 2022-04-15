@@ -12,7 +12,7 @@ class SubmittedImg extends React.Component {
   render() {
     const renderedImg = this.props.providedImg.map((eachImg, i) =>
       <img className="submittedImage"
-        key='i'
+        key={i}
         src={eachImg.url}
       />
     );
