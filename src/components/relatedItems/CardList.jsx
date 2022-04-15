@@ -37,7 +37,7 @@ class CardList extends React.Component {
   }
 
   getCards() {
-    console.warn('GETTING CARDS');
+    console.log('GETTING CARDS');
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
     const cardList = relatedItems.map((productId) => {
@@ -71,16 +71,11 @@ class CardList extends React.Component {
   }
 
   render() {
-    const { relatedItems } = this.state;
-    const { product, getProductById } = this.props;
-
     const lastCard = this.state.firstCard + this.state.maxCards;
-    let uniqueItems = [...new Set(relatedItems)];
-    let uniqueItems1 = relatedItems.filter((element, index) => element !== product.id &&
-     index >= this.state.firstCard &&
-     index < lastCard);
-
-
+    const displayedCards = this.state.cardList.filter((card, index) => (
+      index >= this.state.firstCard &&
+      index < lastCard
+    ));
     return (
       <div id="related-items-cards">
         <nav className="card-list-nav">
@@ -92,7 +87,7 @@ class CardList extends React.Component {
             onClick={()=>{ this.navigate(1); }}>Right</button>
         </nav>
         <div className="card-list">
-          {this.state.cardList}
+          {displayedCards}
         </div>
       </div>
     );
