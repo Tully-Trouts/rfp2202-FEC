@@ -3,6 +3,8 @@ import RelatedItems from './RelatedItems';
 import Card from './Card';
 import axios from 'axios';
 
+const CARDW = 200;
+
 class CardList extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ class CardList extends React.Component {
 
   navigate(direction) {
     const containerWidth = document.getElementById('related-items-cards').offsetWidth;
-    console.log('Max cards:', Math.floor(containerWidth / 200));
+    console.log('Max cards:', Math.floor(containerWidth / CARDW));
     const nextCard = this.state.firstCard + direction;
     this.setState({firstCard: nextCard});
   }
@@ -41,14 +43,20 @@ class CardList extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.product.id !== this.props.product.id) {
       this.getRelatedProducts(this.props.product.id);
+      const maxCards = Math.floor(document.getElementById('related-items-cards').offsetWidth / CARDW);
+      this.setState({maxCards});
     }
   }
 
   render() {
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
+
+    const lastCard = this.state.firstCard + this.state.maxCards;
     let uniqueItems = [...new Set(relatedItems)];
-    let uniqueItems1 = relatedItems.filter((element, index) => element !== product.id && index >= this.state.firstCard);
+    let uniqueItems1 = relatedItems.filter((element, index) => element !== product.id &&
+     index >= this.state.firstCard &&
+     index < lastCard);
 
     const cardList = uniqueItems1.map((productId) => {
       return (
