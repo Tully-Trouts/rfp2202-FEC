@@ -18,9 +18,8 @@ class CardList extends React.Component {
   }
 
   getRelatedProducts(productId) {
-
     if (productId) {
-      axios.get(`api/products/${productId}/related`)
+      return axios.get(`api/products/${productId}/related`)
         .then((response) => {
           this.setState({relatedItems: response.data});
         })
@@ -38,6 +37,7 @@ class CardList extends React.Component {
   }
 
   getCards() {
+    console.warn('GETTING CARDS');
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
     const cardList = relatedItems.map((productId) => {
@@ -51,21 +51,23 @@ class CardList extends React.Component {
   }
 
   componentDidMount() {
-    this.getRelatedProducts(this.props.product.id);
-    this.getCards();
+    if (this.props.product.id) {
+      this.getRelatedProducts(this.props.product.id)
+        .then(() => {
+          this.getCards();
+        });
+    }
   }
 
   componentDidUpdate(prevProps) {
-
-
     if (prevProps.product.id !== this.props.product.id) {
-      this.getRelatedProducts(this.props.product.id);
       const maxCards = Math.floor(document.getElementById('related-items-cards').offsetWidth / CARDW);
       this.setState({maxCards});
-
-      this.getCards();
+      this.getRelatedProducts(this.props.product.id)
+        .then(() => {
+          this.getCards();
+        });
     }
-
   }
 
   render() {
@@ -77,15 +79,6 @@ class CardList extends React.Component {
     let uniqueItems1 = relatedItems.filter((element, index) => element !== product.id &&
      index >= this.state.firstCard &&
      index < lastCard);
-
-    const cardList = uniqueItems1.map((productId) => {
-      return (
-        <div className="card" key={productId}>
-          <Card isOutfit={false} currProduct={product} productId={productId} getProductById={getProductById}/>
-        </div>
-
-      );
-    });
 
 
     return (
@@ -99,7 +92,7 @@ class CardList extends React.Component {
             onClick={()=>{ this.navigate(1); }}>Right</button>
         </nav>
         <div className="card-list">
-          {cardList}
+          {this.state.cardList}
         </div>
       </div>
     );
