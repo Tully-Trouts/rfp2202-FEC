@@ -72,8 +72,7 @@ const OutfitList = ({ product }) => {
   };
 
   const addProductToOutfit = (productId) => {
-    console.log('triggering addProductToOutfit');
-    if (productId) {
+    if (productId && !Object.keys(localStorage).includes(productId.toString())) {
       getAllInfo(productId)
         .then(info => {
           return (

@@ -7,39 +7,21 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      compProduct: {},
-      originalPrice: '',
-      salePrice: '',
-      previewImg: '',
-      avgRating: '',
       show: false,
       notFoundUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/768px-No_image_available.svg.png'
     };
 
-    // this.getAllInfo = this.getAllInfo.bind(this);
-    // this.getAvgRating = this.getAvgRating.bind(this);
     this.handleModalClick = this.handleModalClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getAllInfo(this.props.productId);
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.productId !== this.props.productId) {
-  //     this.getAllInfo(this.props.productId);
-  //   }
-  // }
-
   handleModalClick() {
-    console.log('handleModalClick is triggering');
     this.setState({show: !this.state.show});
   }
 
   render() {
 
     if (this.props.info) {
-      console.log('this.props.info:::', this.props.info);
+
       const { isOutfit, productId, currProduct, getProductById, handleRemoveOutfit } = this.props;
       const { compProduct, originalPrice, salePrice, previewImg, avgRating } = this.props.info;
       const { show, notFoundUrl } = this.state;
@@ -87,5 +69,4 @@ class Card extends React.Component {
 
 export default Card;
 
-// <div>Rating: {avgRating !== 'no reviews yet' ? `${avgRating}/5` : avgRating}</div>
 

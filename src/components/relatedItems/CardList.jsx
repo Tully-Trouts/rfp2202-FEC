@@ -3,7 +3,7 @@ import RelatedItems from './RelatedItems';
 import Card from './Card';
 import axios from 'axios';
 
-const CARDW = 201.99;
+const CARDW = 212;
 
 class CardList extends React.Component {
   constructor(props) {
@@ -93,15 +93,14 @@ class CardList extends React.Component {
   }
 
   getCards() {
-    console.log('GETTING CARDS');
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
     const uniqueItems = [...new Set(relatedItems)];
-    console.log('uniqueItems:::', uniqueItems);
-    const cardList = uniqueItems.filter(productId => productId !== product.id).map((productId) => {
+
+    uniqueItems.filter(productId => productId !== product.id).forEach((productId) => {
       this.getAllInfo(productId)
         .then((info) => {
-          console.log(info);
+
           return (
             <div className="card" key={productId}>
               <Card isOutfit={false}
@@ -125,7 +124,6 @@ class CardList extends React.Component {
 
   componentDidMount() {
     if (this.props.product.id) {
-
       this.getRelatedProducts(this.props.product.id)
         .then(() => {
           this.getCards();
