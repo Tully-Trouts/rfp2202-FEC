@@ -6,13 +6,22 @@ import { Button } from '../styledComponents';
 const OutfitList = ({ product }) => {
 
   const [outfitList, setOutfitList] = React.useState([]);
+  const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.length);
 
   let handleRemoveOutfit = (e, productId) => {
     const newOutfitList = outfitList;
+
+    console.log('newOutfitList:::', newOutfitList);
+    console.log('outfitList:::', outfitList);
+
     newOutfitList.filter(div => {
       return div.key !== productId;
     });
     localStorage.removeItem(productId);
+    setLocalStorageSize(localStorage.length);
+
+    console.log('localStorageSize in handleRemoveOutfit:::', localStorageSize);
+
     setOutfitList(newOutfitList);
   };
 
@@ -93,7 +102,14 @@ const OutfitList = ({ product }) => {
   };
 
   React.useEffect(() => {
+
+    console.log(':::useEffect triggering:::');
+    console.log('localStorageSize in useEffect:::', localStorageSize);
+
     const outfitProductIds = outfitList.map((div) => div.key);
+
+    console.log('outFitProductIds:::', outfitProductIds);
+
     Object.keys(localStorage).forEach((productId) => {
       if (!outfitProductIds.includes(productId)) {
         getAllInfo(productId)
@@ -110,6 +126,7 @@ const OutfitList = ({ product }) => {
           })
           .then(newItem => {
             setOutfitList((previousOutfitList) => [...previousOutfitList, newItem]);
+
           });
       }
     });
