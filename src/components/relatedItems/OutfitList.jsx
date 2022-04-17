@@ -164,6 +164,66 @@ const OutfitList2 = ( {product} ) => {
   const [outfitList, setOutfitList] = React.useState([]);
   const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.size);
 
+  const getAllInfo = (productId) => {
+    return axios.get(`api/products/${productId}`)
+      .then((response) => {
+        const compProduct = response.data;
+        return axios.get(`api/products/${productId}/styles`)
+          .then((response) => {
+            let results = response.data.results;
+            let defaultStyle = null;
+
+            // if the product doesn't have a default style, set default to last style in results
+            defaultStyle = results.find((element, index) => element['default?'] || index === (results.length - 1));
+
+            const originalPrice = defaultStyle.original_price;
+            const salePrice = defaultStyle.sale_price;
+
+            // the first image in the set will be displayed as the main image
+            const previewImg = defaultStyle.photos[0].thumbnail_url;
+
+            return axios.get('api/reviews/meta', {
+              params: {
+                'product_id': productId,
+              }
+            })
+              .then((response) => {
+                let avgRating = getAvgRating(response.data.ratings);
+                return {
+                  compProduct: compProduct,
+                  originalPrice: originalPrice,
+                  salePrice: salePrice,
+                  previewImg: previewImg,
+                  avgRating: avgRating,
+                };
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  addProductToOutfit = (productId) => {
+    getAllInfo(productId)
+      .then(info => {
+        return (
+          <div className="card" key={productId}>
+            <Card isOutfit={true}
+              currProduct={product}
+              productId={productId}
+              info={info}
+              handleRemoveOutfit={handleRemoveOutfit}/>
+          </div>
+        );
+      });
+  };
+
+
+
   React.useEffect(() => {
     // get cards from local storage
     const storedCards = Object.values({...localStorage});
