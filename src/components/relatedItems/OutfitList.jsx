@@ -18,9 +18,13 @@ const OutfitList = ({ product }) => {
       return div.key !== productId;
     });
     localStorage.removeItem(productId);
-    setLocalStorageSize(localStorage.length);
+    let localStorageLength = localStorage.length;
+
+    console.log('localStorageLength:::', localStorageLength);
+    setLocalStorageSize(localStorageLength);
 
     console.log('localStorageSize in handleRemoveOutfit:::', localStorageSize);
+    console.log('localStorage.length:::', localStorage.length);
 
     setOutfitList(newOutfitList);
   };
@@ -154,3 +158,36 @@ const OutfitList = ({ product }) => {
 };
 
 export default OutfitList;
+
+const OutfitList2 = ( {product} ) => {
+
+  const [outfitList, setOutfitList] = React.useState([]);
+  const [localStorageSize, setLocalStorageSize] = React.useState(localStorage.size);
+
+  React.useEffect(() => {
+    // get cards from local storage
+    const storedCards = Object.values({...localStorage});
+    // generate cards
+    setOutfitList(storedCards);
+  }, [product.id, localStorageSize]);
+
+  return (
+    <div id="outfit-list-container">
+      <h5>YOUR OUTFIT</h5>
+      <div className="card-list">
+        <div className="card">
+          <div className="inner-card clickable" onClick={() => addProductToOutfit(product.id)}>
+            <img className="preview-image not-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/PlusCM128.svg"/>
+            <div className="card-info">
+              <h6>Add to Outfit</h6>
+              <div className="hidden">$Priceless</div>
+              <div className="hidden">Rating: 10/10</div>
+              <div className="fixedHeight"></div>
+            </div>
+          </div>
+        </div>
+        <>{outfitList}</>
+      </div>
+    </div>
+  );
+};
