@@ -75,10 +75,10 @@ const QA = ({ product }) => {
       { questions.length === 0 ?
         <div>No current questions</div> :
         <div>
-          <QASearch />
+          <QASearch search={search} setSearch={(input) => setSearch(input)} />
           <div className='Q_List'>
             {sortQuestions().slice(0, toLoad).map((question) =>
-              <Question getQuestions={getQuestions} question={question} key={question.question_id} product={product}/>
+              <Question getQuestions={getQuestions} question={question} key={question.question_id} product={product} />
             )}
           </div>
         </div>
