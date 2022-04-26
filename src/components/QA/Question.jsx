@@ -90,7 +90,7 @@ class Question extends Component {
   handleNewAnsSubmit(e) {
     e.preventDefault();
     const {newAnsBody, newAnsNickname, newAnsEmail, newAnswerPhotos, questionId} = this.state;
-    const {getQuestionsById, question} = this.props;
+    const {getQuestions, question} = this.props;
 
     axios.post(`api/qa/questions/${questionId}/answers`, {
       body: newAnsBody,
@@ -117,12 +117,12 @@ class Question extends Component {
 
   handleHelpful(e) {
     e.preventDefault();
-    const {questionId} = this.state;
-    const {getQuestionsById} = this.props;
+    const { questionId } = this.state;
+    const { getQuestions } = this.props;
     axios.put(`api/qa/questions/${questionId}/helpful`)
       .then((response) => {
         console.log(response);
-        getQuestionsById();
+        getQuestions();
       })
       .catch((err) => {
         console.log(err);
@@ -156,7 +156,7 @@ class Question extends Component {
   }
 
   render() {
-    const {question, product, getQuestionsById} = this.props;
+    const {question, product, getQuestions} = this.props;
     const {question_body, question_helpfulness} = question;
     const {addAnsClick, closeAddAns, handleNewAnswerInput, handleNicknameInput, handleEmailInput, handleNewAnsSubmit, handleHelpful, handleAddImages, closeAddImages, handleImageURL, handeImageSubmit, getAllAnswers} = this;
     const {isAnswerModalOpen, newAnsBody, newAnsNickname, newAnsEmail, isImagesModalOpen, newAnswerPhotos, answers} = this.state;
@@ -222,7 +222,7 @@ class Question extends Component {
           </div>
         </AnswerImagesModal>
 
-        <AList questionId={question.question_id} getQuestionsById={getQuestionsById} getAllAnswers={getAllAnswers} answers={answers} questionBody={question_body} product={product}/>
+        <AList questionId={question.question_id} getQuestions={getQuestions} getAllAnswers={getAllAnswers} answers={answers} questionBody={question_body} product={product}/>
       </div>
     );
   }

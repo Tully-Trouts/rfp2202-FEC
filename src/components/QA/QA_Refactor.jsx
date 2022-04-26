@@ -7,6 +7,7 @@ import { Button, Link } from '../styledComponents';
 
 const QA = ({ product }) => {
   const [questions, setQuestions] = useState([]);
+  const [search, setSearch] = useState('');
   const [newQuestionBody, setNewQuestionBody] = useState('');
   const [newQuestionNickname, setNewQuestionNickName] = useState('');
   const [newQuestionEmail, setNewQuestionEmail] = useState('');
@@ -14,11 +15,11 @@ const QA = ({ product }) => {
   const [toLoad, setToLoad] = useState(4);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  const getQuestions = (id) => {
+  const getQuestions = () => {
     axios.get('/api/qa/questions', {
       params: {
         // eslint-disable-next-line camelcase
-        product_id: id,
+        product_id: product.id,
         page: 1,
         count: 10000
       }
@@ -32,9 +33,21 @@ const QA = ({ product }) => {
   };
 
   useEffect(() => {
-    getQuestions(product.id);
+    getQuestions();
   }, [product.id]);
 
+  const sortQuestions = () => {
+    questions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+    if (search.length >= 3) {
+      return questions.filter((question) => {
+        if (question.question_body.toLowerCase().includes(search.toLowerCase())) {
+          return true;
+        }
+        return false;
+      });
+    }
+    return questions;
+  };
 
   const handleLoadMoreQuestions = (e) => {
     e.preventDefault();
@@ -59,7 +72,21 @@ const QA = ({ product }) => {
   return (
     <div id='QA'>
       <h3 id='QA_Title'>Questions and Answers</h3>
+      { questions.length === 0 ?
+        <div>No current questions</div> :
+        <div>
+          <QASearch />
+          <div className='Q_List'>
+            {sortQuestions().slice(0, toLoad).map((question) =>
+              <Question getQuestions={getQuestions} question={question} key={question.question_id} product={product}/>
+            )}
+          </div>
+        </div>
+      }
+
       {loadMoreButton}
+
+      <Button className='Add_Question' onClick={() => setIsQuestionModal(true)} size={1}>Add A Question +</Button>
     </div>
   );
 };
