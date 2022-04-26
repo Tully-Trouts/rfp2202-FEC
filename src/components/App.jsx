@@ -52,7 +52,7 @@ class App extends React.Component {
         <div className="super-app">
           <RelatedItems getProductById={this.getProductById} product={product} />
           <OutfitList product={product}/>
-          <QA productId={product.id} product={product} />
+          <QA product={product} />
           <Ratings productId={product.id} productName={product.name}/>
         </div>
         <div className="app-footer">
