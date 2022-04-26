@@ -14,18 +14,17 @@ const QA = ({ product }) => {
   const [toLoad, setToLoad] = useState(4);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  const getQuestions = (productId) => {
+  const getQuestions = (id) => {
     axios.get('/api/qa/questions', {
       params: {
         // eslint-disable-next-line camelcase
-        product_id: productId,
+        product_id: id,
         page: 1,
         count: 10000
       }
     })
       .then((response) => {
         setQuestions(response.data.results);
-        console.log('QUESTIONS STATE SHEEEEEEEEEEEEEEEE -- ', questions);
       })
       .catch((err) => {
         console.log(err);
@@ -33,15 +32,34 @@ const QA = ({ product }) => {
   };
 
   useEffect(() => {
-    getQuestions(product.productId);
-    console.log(questions);
-  });
+    getQuestions(product.id);
+  }, [product.id]);
 
+
+  const handleLoadMoreQuestions = (e) => {
+    e.preventDefault();
+    if (e.target.value === 'loadMore') {
+      setToLoad(toLoad + 2);
+      setLoadingMore(true);
+    } else {
+      setToLoad(4);
+      setLoadingMore(false);
+    }
+  };
+
+  let loadMoreButton;
+  if (questions.length > toLoad) {
+    loadMoreButton = <Button className={'More_Qs'} size={1} value='loadMore' onClick={handleLoadMoreQuestions}>Load More Questions</Button>;
+  } else if (questions.length > 4 && questions.length <= toLoad) {
+    loadMoreButton = <Button className='More_Qs' size={1} value='collapse' onClick={handleLoadMoreQuestions}>Collapse</Button>;
+  } else {
+    loadMoreButton = <></>;
+  }
 
   return (
     <div id='QA'>
       <h3 id='QA_Title'>Questions and Answers</h3>
-
+      {loadMoreButton}
     </div>
   );
 };
