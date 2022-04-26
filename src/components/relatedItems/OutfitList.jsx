@@ -62,17 +62,17 @@ const OutfitList = ({ product }) => {
                 };
               })
               .catch((err) => {
-                console.log(err);
+                //console.log(err);
               });
           });
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 
   const addProductToOutfit = (productId) => {
-    console.log('triggering addProductToOutfit');
+    //console.log('triggering addProductToOutfit');
     if (productId) {
       getAllInfo(productId)
         .then(info => {

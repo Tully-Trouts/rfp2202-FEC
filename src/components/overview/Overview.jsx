@@ -30,11 +30,11 @@ var Overview = ({product}) => {
         }
       })
         .then((response) => {
-          console.log('review metadata:', response.data);
+          //console.log('review metadata:', response.data);
           getAvgRating(response.data);
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     }
   };
@@ -43,7 +43,7 @@ var Overview = ({product}) => {
     if (!!id) {
       axios.get(`api/products/${id}/styles`)
         .then(({data}) => {
-          console.log('styles:', data.results);
+          //console.log('styles:', data.results);
           setStyles(data.results);
           // setting the default style
           // find (and return) element with default? = true or last, whichever comes first
@@ -56,7 +56,7 @@ var Overview = ({product}) => {
 
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     }
   };

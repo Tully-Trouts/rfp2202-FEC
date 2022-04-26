@@ -33,14 +33,14 @@ var CartSelector = ({skus}) => {
 
   var selectSku = (event) => {
     if (event.target.value === '') {
-      console.log('No size selected!');
+      //console.log('No size selected!');
       setQuantities(0);
       setSelectedSku({});
     } else {
       const sku = event.target.value;
-      console.log('selected sku:', sku);
+      //console.log('selected sku:', sku);
       setSelectedSku(sku);
-      console.log('quantity available:', skus[sku].quantity);
+      //console.log('quantity available:', skus[sku].quantity);
       setQuantities(skus[sku].quantity);
     }
   };
@@ -52,10 +52,10 @@ var CartSelector = ({skus}) => {
     };
     axios.post('/api/cart', payload)
       .then((res) => {
-        console.log('Cart:', res.data);
+        //console.log('Cart:', res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 

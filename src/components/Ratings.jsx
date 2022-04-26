@@ -54,7 +54,7 @@ class Ratings extends React.Component {
         this.setState({reviewList: result.data.results, tileRender: 2});
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }
 

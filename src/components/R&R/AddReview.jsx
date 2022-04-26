@@ -93,10 +93,10 @@ class AddReview extends React.Component {
       characteristics: this.state.submitChar,
     })
       .then((result) => {
-        console.log(result);
+        //console.log(result);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
     this.setState({setModal: false, summary: '', body: '', nickname: '', email: '', img: [], submitChar: {}});
   }
@@ -251,7 +251,7 @@ class AddReview extends React.Component {
     if (this.state.img.length < 5) {
       this.setState({img: [...this.state.img, ...event.target.files]});
     } else {
-      console.log('Max photos uploaded');
+      //console.log('Max photos uploaded');
     }
   }
   handleStarChange(event) {

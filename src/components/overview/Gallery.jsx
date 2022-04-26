@@ -14,7 +14,7 @@ var Gallery = (props) => {
   };
 
   React.useEffect(() => {
-    console.log('Rendering gallery');
+    //console.log('Rendering gallery');
 
     if (props.photos && props.photos.length !== 0) {
       const backgroundImage = props.photos.map(element => `url(${element.url})`);
@@ -27,7 +27,7 @@ var Gallery = (props) => {
 
   const nextPhoto = () => {
     if (!props.photos || props.photos.length === 0) {
-      console.log('No next photos!');
+      //console.log('No next photos!');
       return;
     }
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
@@ -39,7 +39,7 @@ var Gallery = (props) => {
 
   const prevPhoto = () => {
     if (!props.photos || props.photos.length === 0) {
-      console.log('No previous photos!');
+      //console.log('No previous photos!');
       return;
     }
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
@@ -75,7 +75,7 @@ var Gallery = (props) => {
   };
 
   var setGallerySize = () => {
-    console.log('clicked');
+    //console.log('clicked');
   };
 
   const imagePanel = document.getElementById('overview-panel'); // portal container

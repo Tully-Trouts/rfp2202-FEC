@@ -31,7 +31,7 @@ class Answer extends Component {
     e.preventDefault();
     const {getAllAnswers, questionId, answer} = this.props;
     const {answer_id} = answer;
-    console.log('ANSWER WE WANT TO MARK AS HELPFUL -- ', answer_id);
+    //console.log('ANSWER WE WANT TO MARK AS HELPFUL -- ', answer_id);
     axios.put(`api/qa/answers/${answer_id}/helpful`)
       .then((response) => {
         console.log(response);

@@ -7,7 +7,7 @@ var Devtool = (props) => {
   const [page, setPage] = React.useState(1);
 
   const log = (...msgs) => {
-    console.log('[TULLY-DEV]:', ...msgs);
+    //console.log('[TULLY-DEV]:', ...msgs);
   };
 
   var getProducts = (count = 5, page = 1) => {

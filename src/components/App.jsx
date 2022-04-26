@@ -25,14 +25,14 @@ class App extends React.Component {
     }
     return axios.get(`/api/products/${id}`)
       .then(({data}) => {
-        console.log(data);
+        //console.log(data);
         this.setState({
           product: data,
         });
         return data;
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }
 
@@ -41,7 +41,7 @@ class App extends React.Component {
       product,
       productList,
     } = this.state;
-    console.log('Check Here', product);
+    //console.log('Check Here', product);
     return (
       <div>
         <Devtool updateProduct={this.getProductById} />

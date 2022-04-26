@@ -64,12 +64,12 @@ class CardList extends React.Component {
                 };
               })
               .catch((err) => {
-                console.log(err);
+                //console.log(err);
               });
           });
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }
 
@@ -80,28 +80,28 @@ class CardList extends React.Component {
           this.setState({relatedItems: response.data});
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     }
   }
 
   navigate(direction) {
     const containerWidth = document.getElementById('related-items-cards').offsetWidth;
-    console.log('Max cards:', Math.floor(containerWidth / CARDW));
+    //console.log('Max cards:', Math.floor(containerWidth / CARDW));
     const nextCard = this.state.firstCard + direction;
     this.setState({firstCard: nextCard});
   }
 
   getCards() {
-    console.log('GETTING CARDS');
+    //console.log('GETTING CARDS');
     const { relatedItems } = this.state;
     const { product, getProductById } = this.props;
     const uniqueItems = [...new Set(relatedItems)];
-    console.log('uniqueItems:::', uniqueItems);
+    //console.log('uniqueItems:::', uniqueItems);
     const cardList = uniqueItems.filter(productId => productId !== product.id).map((productId) => {
       this.getAllInfo(productId)
         .then((info) => {
-          console.log(info);
+          //console.log(info);
           return (
             <div className="card" key={productId}>
               <Card isOutfit={false}
