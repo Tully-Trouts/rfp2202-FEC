@@ -8,9 +8,6 @@ import { Button, Link } from '../styledComponents';
 const QA = ({ product }) => {
   const [questions, setQuestions] = useState([]);
   const [search, setSearch] = useState('');
-  const [newQuestionBody, setNewQuestionBody] = useState('');
-  const [newQuestionNickname, setNewQuestionNickName] = useState('');
-  const [newQuestionEmail, setNewQuestionEmail] = useState('');
   const [isQuestionModalOpen, setIsQuestionModal] = useState(false);
   const [toLoad, setToLoad] = useState(4);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -72,21 +69,17 @@ const QA = ({ product }) => {
   return (
     <div id='QA'>
       <h3 id='QA_Title'>Questions and Answers</h3>
-      { questions.length === 0 ?
-        <div>No current questions</div> :
-        <div>
-          <QASearch search={search} setSearch={(input) => setSearch(input)} />
-          <div className='Q_List'>
-            {sortQuestions().slice(0, toLoad).map((question) =>
-              <Question getQuestions={getQuestions} question={question} key={question.question_id} product={product} />
-            )}
-          </div>
-        </div>
-      }
-
+      <QASearch search={search} setSearch={(input) => setSearch(input)} />
+      <div className='Q_List'>
+        {sortQuestions().slice(0, toLoad).map((question) =>
+          <Question getQuestions={getQuestions} question={question} key={question.question_id} product={product} />
+        )}
+      </div>
       {loadMoreButton}
-
       <Button className='Add_Question' onClick={() => setIsQuestionModal(true)} size={1}>Add A Question +</Button>
+      <QuestionModal getQuestions={getQuestions} product={product} open={isQuestionModalOpen} onClose={() => setIsQuestionModal(false)}>
+      </QuestionModal>
+
     </div>
   );
 };
