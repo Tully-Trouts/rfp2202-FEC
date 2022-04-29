@@ -71,7 +71,7 @@ class IndividualReview extends React.Component {
           </span>
         </div>
         <div className="photoContainer">
-          <SubmittedImg providedImg={this.props.review.photos}/>
+          <SubmittedImg providedImg={Array(this.props.review.photos)}/>
         </div>
         <div className="Response">
           {this.state.review &&

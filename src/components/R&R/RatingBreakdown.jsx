@@ -61,13 +61,14 @@ class RatingBreakdown extends React.Component {
     this.setState({clothes: null});
     axios({
       method: 'get',
-      url: '/api/reviews/meta/',
+      url: 'http://54.153.66.246/reviews/meta',
       params: {
         // eslint-disable-next-line camelcase
         product_id: productId
       }
     })
       .then((result) => {
+        console.log('\n\n', result.data);
         this.setState({overview: result.data});
         this.totalReview(this.state.overview.ratings);
         this.totalRatingScore(this.state.overview.ratings);

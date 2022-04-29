@@ -43,7 +43,7 @@ class Ratings extends React.Component {
   retrieveReviewList(productId, filter) {
     axios({
       method: 'get',
-      url: '/api/reviews/',
+      url: 'http://54.153.66.246/reviews',
       params: {
         sort: filter,
         product_id: productId,
@@ -51,6 +51,7 @@ class Ratings extends React.Component {
       }
     })
       .then((result) => {
+        console.log(result);
         this.setState({reviewList: result.data.results, tileRender: 2});
       })
       .catch((err) => {
@@ -61,7 +62,7 @@ class Ratings extends React.Component {
 
   componentDidMount() {
     // FOR DEV: need to remove hard coded  productId
-    this.retrieveReviewList(this.props.productId, 'Relevant');
+    this.retrieveReviewList(1000, 'Relevant');
   }
 
   componentDidUpdate(prevProps, prevState) {
