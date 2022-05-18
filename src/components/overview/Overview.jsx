@@ -105,6 +105,7 @@ var Overview = ({product}) => {
   );
 };
 
+// Reverting HEAD
 Overview.propTypes = {
   product: PropTypes.object.isRequired,
 };
