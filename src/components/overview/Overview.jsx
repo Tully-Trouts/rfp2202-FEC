@@ -1,33 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import StyleSelector from './StyleSelector';
 import Gallery from './Gallery';
 import CartSelector from './CartSelector';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Button, StarReview, Link } from '../styledComponents';
+import { StarReview, Link } from '../styledComponents';
 
-var Overview = ({product}) => {
+function Overview({ product }) {
   const [avgRating, setAvgRating] = React.useState(0);
   const [styles, setStyles] = React.useState([]);
   const [selectedStyle, setSelectedStyle] = React.useState({});
-  const [galleryExpanded, setGalleryExpanded] = React.useState(false);
+  // const [galleryExpanded, setGalleryExpanded] = React.useState(false);
 
-  var getAvgRating = (reviewMetadata) => {
+  const getAvgRating = (reviewMetadata) => {
     let totalRatings = 0;
     let sum = 0;
-    for (var star = 1; star <= 5; star += 1) {
+    for (let star = 1; star <= 5; star += 1) {
       totalRatings += Number(reviewMetadata.ratings[star] || 0);
       sum += Number(reviewMetadata.ratings[star] || 0) * star;
     }
     setAvgRating(totalRatings === 0 ? 0 : (sum / totalRatings).toFixed(2));
   };
 
-  var getProductReviewMetadata = (id) => {
-    if (!!id) {
+  const getProductReviewMetadata = (id) => {
+    if (id) {
       axios.get('api/reviews/meta', {
         params: {
-          'product_id': id,
-        }
+          product_id: id,
+        },
       })
         .then((response) => {
           console.log('review metadata:', response.data);
@@ -39,10 +39,10 @@ var Overview = ({product}) => {
     }
   };
 
-  var getProductStyles = (id) => {
-    if (!!id) {
+  const getProductStyles = (id) => {
+    if (id) {
       axios.get(`api/products/${id}/styles`)
-        .then(({data}) => {
+        .then(({ data }) => {
           console.log('styles:', data.results);
           setStyles(data.results);
           // setting the default style
@@ -50,10 +50,9 @@ var Overview = ({product}) => {
           if (data.results.length > 0) {
             // error boundary for results
             setSelectedStyle(data.results.find(
-              (element, index) => element['default?'] || index === (data.results.length - 1)
+              (element, index) => element['default?'] || index === (data.results.length - 1),
             ));
           }
-
         })
         .catch((err) => {
           console.log(err);
@@ -65,7 +64,7 @@ var Overview = ({product}) => {
   //   width: '65%',
   // };
 
-  let infoPanelStyle = {};
+  const infoPanelStyle = {};
 
   // Passing in an array as second argument to useEffect causes react to check that prop
   //  for changes before using th effect again. This is to prevent infinite loop
@@ -76,12 +75,14 @@ var Overview = ({product}) => {
 
   return (
     <div id="overview-container">
-      <div id="overview-panel"></div>
-      <div className="overview overview-main" >
+      <div id="overview-panel" />
+      <div className="overview overview-main">
         <Gallery photos={selectedStyle.photos} />
         <div className="overview overview-product-information-panel" style={infoPanelStyle}>
           <div className="overview product-review sm">
-            <StarReview stars={avgRating} /> &nbsp; &nbsp;
+            <StarReview stars={avgRating} />
+            {' '}
+&nbsp; &nbsp;
             <Link>
               <a href="#rating_and_reviews-container">Read all reviews</a>
             </Link>
@@ -89,12 +90,32 @@ var Overview = ({product}) => {
           <span className="category">{product.category}</span>
           <span className="product-title"><h1>{product.name}</h1></span>
           <div className="overview product-price">
-            {!!selectedStyle.sale_price &&
-            (<span className="sale-price"> ${selectedStyle.sale_price}</span>) ||
-            (<span className="original-price">${selectedStyle.original_price}</span>) ||
-            (<span className="price">${product.default_price}</span>)}
+            {!!selectedStyle.sale_price
+            && (
+            <span className="sale-price">
+              {' '}
+              $
+              {selectedStyle.sale_price}
+            </span>
+            )
+            || (
+            <span className="original-price">
+              $
+              {selectedStyle.original_price}
+            </span>
+            )
+            || (
+            <span className="price">
+              $
+              {product.default_price}
+            </span>
+            )}
           </div>
-          <StyleSelector styles={styles} setSelectedStyle={setSelectedStyle} selected={selectedStyle} />
+          <StyleSelector
+            styles={styles}
+            setSelectedStyle={setSelectedStyle}
+            selected={selectedStyle}
+          />
           <CartSelector skus={selectedStyle.skus} />
         </div>
       </div>
@@ -103,7 +124,7 @@ var Overview = ({product}) => {
       </div>
     </div>
   );
-};
+}
 
 // Reverting HEAD
 Overview.propTypes = {

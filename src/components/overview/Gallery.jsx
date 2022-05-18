@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var Gallery = (props) => {
-
+function Gallery(props) {
   const [displayPhotoIndex, setDisplayPhotoIndex] = React.useState(0);
   const [galleryStyle, setGalleryStyle] = React.useState({});
   const [expanded, setExpanded] = React.useState(false);
@@ -17,10 +16,10 @@ var Gallery = (props) => {
     console.log('Rendering gallery');
 
     if (props.photos && props.photos.length !== 0) {
-      const backgroundImage = props.photos.map(element => `url(${element.url})`);
+      const backgroundImage = props.photos.map((element) => `url(${element.url})`);
       const backgroundPosition = [...Array(props.photos.length)].map(() => '500%');
       backgroundPosition[0] = '50%';
-      setGalleryStyle({backgroundImage, backgroundPosition});
+      setGalleryStyle({ backgroundImage, backgroundPosition });
     }
     setDisplayPhotoIndex(0);
   }, [props.photos]);
@@ -31,9 +30,9 @@ var Gallery = (props) => {
       return;
     }
     const nextIndex = displayPhotoIndex < (props.photos.length - 1) ? displayPhotoIndex + 1 : 0;
-    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => (i < nextIndex ? '-500%' : '500%'));
     backgroundPosition[nextIndex] = '50%';
-    setGalleryStyle((previousStyle) => ({...previousStyle, backgroundPosition, ...newStyle}));
+    setGalleryStyle((previousStyle) => ({ ...previousStyle, backgroundPosition, ...newStyle }));
     setDisplayPhotoIndex(nextIndex);
   };
 
@@ -43,20 +42,20 @@ var Gallery = (props) => {
       return;
     }
     const nextIndex = displayPhotoIndex > 0 ? displayPhotoIndex - 1 : (props.photos.length - 1);
-    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < nextIndex ? '-500%' : '500%');
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => (i < nextIndex ? '-500%' : '500%'));
     backgroundPosition[nextIndex] = '50%';
-    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle, backgroundPosition}));
+    setGalleryStyle((previousStyle) => ({ ...previousStyle, ...newStyle, backgroundPosition }));
     setDisplayPhotoIndex(nextIndex);
   };
 
   const setPhoto = (index) => {
-    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => i < index ? '-500%' : '500%');
+    const backgroundPosition = [...Array(props.photos.length)].map((e, i) => (i < index ? '-500%' : '500%'));
     backgroundPosition[index] = '50%';
-    setGalleryStyle((previousStyle) => ({...previousStyle, ...newStyle, backgroundPosition}));
+    setGalleryStyle((previousStyle) => ({ ...previousStyle, ...newStyle, backgroundPosition }));
     setDisplayPhotoIndex(index);
   };
 
-  var getThumbnails = () => {
+  const getThumbnails = () => {
     if (props.photos) {
       return (
         props.photos.map((e, i) => (
@@ -64,17 +63,17 @@ var Gallery = (props) => {
             key={i}
             value={i}
             className="thumbnail-nav-item"
-            onClick={()=>{ setPhoto(i); }}
+            onClick={() => { setPhoto(i); }}
             style={{
-              backgroundImage: `url(${e.url})`
-            }}>
-          </button>
+              backgroundImage: `url(${e.url})`,
+            }}
+          />
         ))
       );
     }
   };
 
-  var setGallerySize = () => {
+  const setGallerySize = () => {
     console.log('clicked');
   };
 
@@ -85,22 +84,23 @@ var Gallery = (props) => {
       <div className="overview overview-gallery">
         <button
           className="btn image-expando-button"
-          onClick={()=>{ setGallerySize(); }}
-          hidden={true}>
+          onClick={() => { setGallerySize(); }}
+          hidden
+        >
           Expando
         </button>
         <nav className="gallery-nav">
-          <span className="overview sm gallery-control previous" onClick={()=>{ prevPhoto(); }}>
+          <span className="overview sm gallery-control previous" onClick={() => { prevPhoto(); }}>
             Previous
           </span>
-          <span className="overview sm gallery-control next" onClick={()=>{ nextPhoto(); }}>
+          <span className="overview sm gallery-control next" onClick={() => { nextPhoto(); }}>
             Next
           </span>
         </nav>
         <div
           className="gallery-photos"
-          style={galleryStyle}>
-        </div>
+          style={galleryStyle}
+        />
         <nav className="thumbnail-nav">
           {getThumbnails()}
         </nav>
@@ -110,10 +110,8 @@ var Gallery = (props) => {
 
   if (!expanded) {
     return child;
-  } else {
-    return ReactDOM.createPortal(child, imagePanel);
   }
-
-};
+  return ReactDOM.createPortal(child, imagePanel);
+}
 
 export default Gallery;
