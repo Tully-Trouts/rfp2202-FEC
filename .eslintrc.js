@@ -1,23 +1,11 @@
 module.exports = {
+
   env: {
     browser: true,
     es2021: true,
-    node: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
+  extends: './node_modules/eslint-config-hackreactor/index.js',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: [
-    'react',
-  ],
-  rules: {
+    ecmaVersion: 2018,
   },
 };
