@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
 import Overview from './overview/Overview';
@@ -21,7 +22,7 @@ class App extends React.Component {
       event.stopPropagation();
     }
     return axios.get(`/api/products/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         console.log(data);
         this.setState({
           product: data,
