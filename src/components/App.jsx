@@ -11,10 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productList: [],
       product: {},
-      outfit: [],
-      cart: [],
     };
     this.getProductById = this.getProductById.bind(this);
   }
@@ -39,7 +36,6 @@ class App extends React.Component {
   render() {
     const {
       product,
-      productList,
     } = this.state;
     console.log('Check Here', product);
     return (
@@ -51,9 +47,9 @@ class App extends React.Component {
         <Overview product={product} />
         <div className="super-app">
           <RelatedItems getProductById={this.getProductById} product={product} />
-          <OutfitList product={product}/>
+          <OutfitList product={product} />
           <QA productId={product.id} product={product} />
-          <Ratings productId={product.id} productName={product.name}/>
+          <Ratings productId={product.id} productName={product.name} />
         </div>
         <div className="app-footer">
           <p>Copyright © 2022 Tully-Trouts, Inc.</p>

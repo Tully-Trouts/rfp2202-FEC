@@ -30,6 +30,7 @@
     "mocha": "^9.2.2",
     "moment": "^2.29.2",
     "nodemon": "^2.0.15",
+    "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "style-components": "^0.1.0",
